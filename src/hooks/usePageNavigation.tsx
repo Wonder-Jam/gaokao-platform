@@ -12,5 +12,11 @@ export function usePageNavigation() {
     goToSearchMajorPage() {
       router.push('/SearchMajorPage')
     },
+    goToYangGuangGaoKaoPage(){
+      window.location.href = 'https://gaokao.chsi.com.cn/'
+    },
+    goToEolPage(){
+      window.location.href = 'https://www.eol.cn/'
+    }
   }
 }

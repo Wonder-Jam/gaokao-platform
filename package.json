@@ -10,6 +10,7 @@
     "prettier": "prettier --write ./src"
   },
   "dependencies": {
+    "@ant-design/icons": "^5.2.6",
     "@types/node": "20.6.2",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
