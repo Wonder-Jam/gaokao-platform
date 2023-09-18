@@ -15,7 +15,7 @@ import React from 'react'
 const items = [
   {
     label: '首页',
-    key: '/MainPage',
+    key: '/',
   },
   {
     label: '查学校',
@@ -25,20 +25,101 @@ const items = [
     label: '查专业',
     key: '/SearchMajorPage',
   },
+  {
+    label: '看一看',
+    key: '/VideoPlayPage',
+  },
 ]
 
 export default function Entry({ children }: { children: React.ReactNode }) {
+  return (
+    <>
+      <HeaderBar />
+      <GaoKaoMenu />
+      {children}
+    </>
+  )
+}
+
+function GaoKaoMenu() {
   const router = useRouter()
   const [current, setCurrent] = React.useState(router.pathname)
   const onClick: MenuProps['onClick'] = e => {
     setCurrent(e.key)
     router.push(e.key)
   }
-  const onSearch = (value: any) => console.log(value)
+  return (
+    <>
+      <Menu
+        onClick={onClick}
+        selectedKeys={[current]}
+        items={items}
+        mode="horizontal"
+      />
+    </>
+  )
+}
+
+function HeaderBar() {
+  const { goToEolPage, goToYangGuangGaoKaoPage } = usePageNavigation()
   const [isModalOpen, setIsModalOpen] = React.useState(false)
   const openLoginModal = () => setIsModalOpen(true)
   const closeLoginModal = () => setIsModalOpen(false)
-  const { goToEolPage, goToYangGuangGaoKaoPage } = usePageNavigation()
+  return (
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        height: 100,
+      }}
+    >
+      <div>
+        <Image
+          style={{
+            cursor: 'pointer',
+            width: 169,
+            marginRight: 10,
+          }}
+          src={'https://www.gaokao.cn/static/media/head_logo1.133254dc.png'}
+          preview={false}
+          onClick={goToEolPage}
+        />
+        <Image
+          style={{
+            cursor: 'pointer',
+            width: 169,
+            marginRight: 10,
+          }}
+          src={
+            'https://t1.chei.com.cn/gaokao/images/index/gk_logo.png?v=1620294265752'
+          }
+          preview={false}
+          onClick={goToYangGuangGaoKaoPage}
+        />
+      </div>
+      <Input.Search
+        style={{
+          width: '30%',
+          minWidth: 190,
+        }}
+        placeholder="查大学，查专业，搜问答"
+        allowClear
+        size="large"
+      />
+      <Button onClick={openLoginModal}>登录 | 注册</Button>
+      <LoginModal isModalOpen={isModalOpen} closeLoginModal={closeLoginModal} />
+    </div>
+  )
+}
+
+function LoginModal({
+  isModalOpen,
+  closeLoginModal,
+}: {
+  isModalOpen: boolean
+  closeLoginModal: () => void
+}) {
   const prefixSelector = (
     <Form.Item name="prefix" noStyle>
       <Select
@@ -53,50 +134,6 @@ export default function Entry({ children }: { children: React.ReactNode }) {
   )
   return (
     <>
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'space-around',
-          alignItems: 'center',
-          height: 100,
-        }}
-      >
-        <div>
-          <Image
-            style={{
-              cursor: 'pointer',
-              width: 169,
-              marginRight: 10,
-            }}
-            src={'https://www.gaokao.cn/static/media/head_logo1.133254dc.png'}
-            preview={false}
-            onClick={goToEolPage}
-          />
-          <Image
-            style={{
-              cursor: 'pointer',
-              width: 169,
-              marginRight: 10,
-            }}
-            src={
-              'https://t1.chei.com.cn/gaokao/images/index/gk_logo.png?v=1620294265752'
-            }
-            preview={false}
-            onClick={goToYangGuangGaoKaoPage}
-          />
-        </div>
-        <Input.Search
-          style={{
-            width: '30%',
-            minWidth: 190,
-          }}
-          placeholder="查大学，查专业，搜问答"
-          allowClear
-          size="large"
-          onSearch={onSearch}
-        />
-        <Button onClick={openLoginModal}>登录 | 注册</Button>
-      </div>
       <Modal
         open={isModalOpen}
         onCancel={closeLoginModal}
@@ -137,13 +174,6 @@ export default function Entry({ children }: { children: React.ReactNode }) {
           </div>
         </div>
       </Modal>
-      <Menu
-        onClick={onClick}
-        selectedKeys={[current]}
-        items={items}
-        mode="horizontal"
-      />
-      {children}
     </>
   )
 }

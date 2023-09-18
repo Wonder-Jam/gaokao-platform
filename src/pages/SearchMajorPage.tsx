@@ -1,4 +1,4 @@
-import Entry from './Entry'
+import Entry from '../components/Entry'
 
 export default function SearchMajorPage() {
   return (

@@ -1,10 +1,10 @@
 import React from 'react'
-import Entry from './Entry'
+import Entry from '../components/Entry'
 
 export default function Home() {
   return (
     <>
-      <Entry> </Entry>
+      <Entry>this is the main page</Entry>
     </>
   )
 }
