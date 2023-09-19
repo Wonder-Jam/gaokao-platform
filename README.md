@@ -36,3 +36,33 @@ npm run prettier
   "endOfLine": "lf"              // 使用 LF（换行符）作为行结束符
 }
 ```
+
+## emotion - CIJ 的使用
+使用emotion,vscode推荐插件：vscode-styled-components
+参照Mask组件 
+
+1.  
+```css
+export const ParticipantAvatar = styled.div`
+  border: 2px solid #ffffff;
+  border-radius: 12px;
+  position: absolute;
+  top: 0;
+  left: ${(props: { index: number }) => props.index * 16}px;
+`
+```
+2.  
+
+```css
+export const HeaderNavStyle = styled.div<{
+  scrollDown: boolean
+}>`
+  position: fixed;
+  width: 100%;
+  height: 48px;
+  background-color: #fafafa;
+  z-index: 10;
+  transition: all 0.3s;
+  transform: translateY(${({ scrollDown }) => (scrollDown ? -100 : 0)}%);
+`
+```

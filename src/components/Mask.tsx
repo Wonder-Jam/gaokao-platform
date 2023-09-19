@@ -1,4 +1,4 @@
-import styled from "@emotion/styled"
+import styled from '@emotion/styled'
 
 export default function Mask({
   isShown,
@@ -19,7 +19,7 @@ export const MaskStyle = styled.div<{
   left: 0;
   top: 0;
   z-index: 20;
-  background-color: hsla(0,0%,100%,0.98); // rgba(0, 0, 0, 0.88)
+  background-color: hsla(0, 0%, 100%, 0.98); // rgba(0, 0, 0, 0.88)
   transition: all 0.3s;
   visibility: ${({ isShown }) =>
     isShown
