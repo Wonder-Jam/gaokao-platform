@@ -6,6 +6,7 @@ const { Meta } = Card
 import { ArrowLeftOutlined } from '@ant-design/icons'
 import { CardContainer, CardListContainer, ArrowLeftContainer } from './style'
 import Mask from '@/components/Mask'
+import styled from '@emotion/styled'
 
 function CardItem(props) {
   const { title, description, image, avatar } = props
@@ -30,13 +31,32 @@ function CardItem(props) {
         </Card>
       </CardContainer>
       <Mask isShown={show}>
-        <ArrowLeftContainer>
-          <ArrowLeftOutlined onClick={() => setShow(false)} />
+        <ArrowLeftContainer onClick={() => setShow(false)}>
+          <ArrowLeftOutlined />
         </ArrowLeftContainer>
+        {show ? <Demo /> : null}
       </Mask>
     </>
   )
 }
+
+export const Demo = styled.div`
+  width: 1074px;
+  transition:
+    transform 0.4s ease 0s,
+    width 0.4s ease 0s;
+  transform: translate(148px, 24px) scale(1);
+  overflow: visible;
+  height: calc(100% - 48px);
+  display: flex;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow:
+    0 8px 64px 0 rgba(0, 0, 0, 0.04),
+    0 1px 4px 0 rgba(0, 0, 0, 0.02);
+  border-radius: 20px;
+  background: #ffffff;
+  transform-origin: left top;
+`
 
 export default function VideoPlayPage() {
   const cardItems = cards.map(card => <CardItem key={card.title} {...card} />)

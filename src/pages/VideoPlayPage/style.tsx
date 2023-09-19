@@ -31,14 +31,23 @@ export const CardListContainer = styled.div`
 `
 
 export const ArrowLeftContainer = styled.div`
-    height: 40px;
-    width: 40px;
-    border-radius: 40px;
-    background-color: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    left: 24px;
-    top: 24px;
+  height: 50px;
+  width: 50px;
+  border-radius: 50px;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  left: 24px;
+  top: 24px;
+  cursor: pointer;
+  transition: all 0.3s;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow:
+    0 2px 8px 0 rgba(0, 0, 0, 0.04),
+    0 1px 2px 0 rgba(0, 0, 0, 0.02);
+  &:hover {
+    background-color: #f7f7f7;
+  }
 `
