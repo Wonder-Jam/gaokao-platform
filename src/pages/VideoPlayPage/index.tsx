@@ -1,4 +1,3 @@
-// 导入React和antd的组件
 import React from 'react'
 import { Card, Image, Avatar } from 'antd'
 import Entry from '../../components/Entry'
@@ -7,6 +6,7 @@ import { ArrowLeftOutlined } from '@ant-design/icons'
 import { CardContainer, CardListContainer, ArrowLeftContainer } from './style'
 import Mask from '@/components/Mask'
 import styled from '@emotion/styled'
+import { keyframes } from '@emotion/react'
 
 function CardItem(props) {
   const { title, description, image, avatar } = props
@@ -34,11 +34,33 @@ function CardItem(props) {
         <ArrowLeftContainer onClick={() => setShow(false)}>
           <ArrowLeftOutlined />
         </ArrowLeftContainer>
-        {show ? <Demo /> : null}
+        {show ? <Animation /> : null}
       </Mask>
     </>
   )
 }
+const slide = keyframes`
+  from{
+    top: 0;
+    left: 0;
+    position: fixed;
+    background-color: palegreen;
+  }
+  to{
+    top: calc(50% - 100px);
+    left: calc(50% - 100px);
+    position: fixed;
+    background-color: palegoldenrod;
+  }
+`
+
+const Animation = styled.div`
+  animation: ${slide} 0.3s ease-in-out;
+  animation-fill-mode: forwards;
+  width: 200px;
+  height: 200px;
+  z-index: 100;
+`
 
 export const Demo = styled.div`
   width: 1074px;
