@@ -1,4 +1,4 @@
-import { usePageNavigation } from '../hooks/usePageNavigation'
+import { usePageNavigation } from '../../hooks/usePageNavigation'
 import {
   Button,
   Menu,
@@ -11,7 +11,12 @@ import {
 } from 'antd'
 import { useRouter } from 'next/router'
 import React from 'react'
-
+import {
+  HeaderContainer,
+  MainContainer,
+  HeaderBarContainer,
+  ImageContainer,
+} from './style'
 const items = [
   {
     label: '首页',
@@ -33,11 +38,13 @@ const items = [
 
 export default function Entry({ children }: { children: React.ReactNode }) {
   return (
-    <>
-      <HeaderBar />
-      <GaoKaoMenu />
-      {children}
-    </>
+    <div>
+      <HeaderContainer>
+        <HeaderBar />
+        <GaoKaoMenu />
+      </HeaderContainer>
+      <MainContainer>{children}</MainContainer>
+    </div>
   )
 }
 
@@ -66,37 +73,24 @@ function HeaderBar() {
   const openLoginModal = () => setIsModalOpen(true)
   const closeLoginModal = () => setIsModalOpen(false)
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'space-around',
-        alignItems: 'center',
-        height: 100,
-      }}
-    >
+    <HeaderBarContainer>
       <div>
-        <Image
-          style={{
-            cursor: 'pointer',
-            width: 169,
-            marginRight: 10,
-          }}
-          src={'https://www.gaokao.cn/static/media/head_logo1.133254dc.png'}
-          preview={false}
-          onClick={goToEolPage}
-        />
-        <Image
-          style={{
-            cursor: 'pointer',
-            width: 169,
-            marginRight: 10,
-          }}
-          src={
-            'https://t1.chei.com.cn/gaokao/images/index/gk_logo.png?v=1620294265752'
-          }
-          preview={false}
-          onClick={goToYangGuangGaoKaoPage}
-        />
+        <ImageContainer>
+          <Image
+            src={'https://www.gaokao.cn/static/media/head_logo1.133254dc.png'}
+            preview={false}
+            onClick={goToEolPage}
+          />
+        </ImageContainer>
+        <ImageContainer>
+          <Image
+            src={
+              'https://t1.chei.com.cn/gaokao/images/index/gk_logo.png?v=1620294265752'
+            }
+            preview={false}
+            onClick={goToYangGuangGaoKaoPage}
+          />
+        </ImageContainer>
       </div>
       <Input.Search
         style={{
@@ -109,7 +103,7 @@ function HeaderBar() {
       />
       <Button onClick={openLoginModal}>登录 | 注册</Button>
       <LoginModal isModalOpen={isModalOpen} closeLoginModal={closeLoginModal} />
-    </div>
+    </HeaderBarContainer>
   )
 }
 

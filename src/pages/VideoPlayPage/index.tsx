@@ -1,6 +1,6 @@
 import React from 'react'
 import { Card, Image, Avatar } from 'antd'
-import Entry from '../../components/Entry'
+import Entry from '@/components/Entry'
 const { Meta } = Card
 import { ArrowLeftOutlined } from '@ant-design/icons'
 import { CardContainer, CardListContainer, ArrowLeftContainer } from './style'
@@ -108,12 +108,24 @@ from{
 
 export default function VideoPlayPage() {
   const cardItems = cards.map(card => <CardItem key={card.title} {...card} />)
+  const PageRef = React.useRef<HTMLDivElement>(null)
+  React.useEffect(() => {
+    if (PageRef.current) {
+      console.log(PageRef.current.scrollTop)
+    }
+  }, [PageRef.current?.scrollTop])
   return (
-    <>
+    <div ref={PageRef}>
       <Entry>
-        <CardListContainer>{cardItems}</CardListContainer>
+        <CardListContainer
+          onScroll={() => {
+            console.log('erer')
+          }}
+        >
+          {cardItems}
+        </CardListContainer>
       </Entry>
-    </>
+    </div>
   )
 }
 const cards = [

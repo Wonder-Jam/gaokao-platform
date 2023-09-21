@@ -1,5 +1,5 @@
 import React from 'react'
-import Entry from '../components/Entry'
+import Entry from '@/components/Entry'
 
 export default function SearchMajorPage() {
   return (
