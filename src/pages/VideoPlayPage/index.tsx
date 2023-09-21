@@ -6,16 +6,78 @@ import { ArrowLeftOutlined } from '@ant-design/icons'
 import { CardContainer, CardListContainer, ArrowLeftContainer } from './style'
 import Mask from '@/components/Mask'
 import styled from '@emotion/styled'
-import { keyframes } from '@emotion/react'
+import { Keyframes, keyframes } from '@emotion/react'
 
 function CardItem(props) {
   const { title, description, image, avatar } = props
   const [show, setShow] = React.useState(false)
+  const cardRef = React.useRef<HTMLDivElement>(null)
+  const xAndy = React.useRef({ top: 0, left: 0 })
+  const back = React.useRef<Keyframes>()
+  const slide = React.useRef<Keyframes>()
+  React.useEffect(() => {
+    if (cardRef.current) {
+      const { top, left } = cardRef.current.getBoundingClientRect()
+      xAndy.current.top = top
+      xAndy.current.left = left
+    }
+  }, [cardRef.current])
+  React.useEffect(() => {
+    slide.current = keyframes`
+  from{
+    top: ${xAndy.current.top}px;
+    left: ${xAndy.current.left}px;
+    position: fixed;
+    background-color: palegreen;
+  }
+  to{
+    top: calc(50% - 100px);
+    left: calc(50% - 100px);
+    position: fixed;
+    background-color: palegoldenrod;
+  }
+`
+    back.current = keyframes`
+to{
+  top: ${xAndy.current.top}px;
+  left: ${xAndy.current.left}px;
+  position: fixed;
+  background-color: palegreen;
+}
+from{
+  top: calc(50% - 100px);
+  left: calc(50% - 100px);
+  position: fixed;
+  background-color: palegoldenrod;
+}
+`
+  }, [xAndy.current.top, xAndy.current.left])
+
+  const Back = styled.div`
+    animation: ${back.current} 0.3s ease-in-out;
+    animation-fill-mode: forwards;
+    width: 200px;
+    height: 200px;
+    z-index: 100;
+  `
+
+  const Animation = styled.div`
+    animation: ${slide.current} 0.3s ease-in-out;
+    animation-fill-mode: forwards;
+    width: 200px;
+    height: 200px;
+    z-index: 100;
+  `
+
   return (
     <>
       <CardContainer isShown={show}>
         <Card
-          onClick={() => setShow(true)}
+          ref={cardRef}
+          onClick={() => {
+            console.log(xAndy.current)
+            setShow(true)
+          }}
           hoverable
           cover={<Image preview={false} alt="example" src={image} />}
         >
@@ -34,33 +96,11 @@ function CardItem(props) {
         <ArrowLeftContainer onClick={() => setShow(false)}>
           <ArrowLeftOutlined />
         </ArrowLeftContainer>
-        {show ? <Animation /> : null}
+        {show ? <Animation /> : <Back />}
       </Mask>
     </>
   )
 }
-const slide = keyframes`
-  from{
-    top: 0;
-    left: 0;
-    position: fixed;
-    background-color: palegreen;
-  }
-  to{
-    top: calc(50% - 100px);
-    left: calc(50% - 100px);
-    position: fixed;
-    background-color: palegoldenrod;
-  }
-`
-
-const Animation = styled.div`
-  animation: ${slide} 0.3s ease-in-out;
-  animation-fill-mode: forwards;
-  width: 200px;
-  height: 200px;
-  z-index: 100;
-`
 
 export const Demo = styled.div`
   width: 1074px;
