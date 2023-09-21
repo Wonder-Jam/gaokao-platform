@@ -1,4 +1,4 @@
-import { usePageNavigation } from '@/hooks/usePageNavigation'
+import { usePageNavigation } from '../hooks/usePageNavigation'
 import {
   Button,
   Menu,

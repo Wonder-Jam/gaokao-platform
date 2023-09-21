@@ -4,7 +4,7 @@ import Entry from '../../components/Entry'
 const { Meta } = Card
 import { ArrowLeftOutlined } from '@ant-design/icons'
 import { CardContainer, CardListContainer, ArrowLeftContainer } from './style'
-import Mask from '@/components/Mask'
+import Mask from '../../components/Mask'
 import styled from '@emotion/styled'
 import { Keyframes, keyframes } from '@emotion/react'
 
