@@ -66,3 +66,26 @@ export const HeaderNavStyle = styled.div<{
   transform: translateY(${({ scrollDown }) => (scrollDown ? -100 : 0)}%);
 `
 ```
+
+## using nivo
+使用nivo创建交互式地图  
+安装依赖  
+``` bash
+npm install @nivo/core @nivo/geo
+```
+为了减轻编写压力，交互式地图使用jsx语法
+
+### 跨域访问
+为了在开发环境中请求外部网络资源并且避免跨域限制，可以在next.config.js中配置
+``` json
+    async rewrites() {
+        return [
+            {
+              source: '/files/:path*', // 匹配所有以 /files 开头的路径
+              destination: 'https://files.lsmcloud.top/:path*', // 代理到的目标地址
+            },
+          ];
+    },
+```
+
+(files.lsmcloud.top 是lyl的资源buncket)
