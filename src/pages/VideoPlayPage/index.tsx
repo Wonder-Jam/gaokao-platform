@@ -8,7 +8,7 @@ import Mask from '../../components/Mask'
 import styled from '@emotion/styled'
 import { Keyframes, keyframes } from '@emotion/react'
 
-function CardItem(props) {
+function CardItem(props:any) {
   const { title, description, image, avatar } = props
   const [show, setShow] = React.useState(false)
   const cardRef = React.useRef<HTMLDivElement>(null)

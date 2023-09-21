@@ -8,7 +8,6 @@ export const HeaderContainer = styled.div`
 `
 export const MainContainer = styled.div`
   padding-top: 146px;
-  overflow: scroll;
 `
 
 export const HeaderBarContainer = styled.div`
