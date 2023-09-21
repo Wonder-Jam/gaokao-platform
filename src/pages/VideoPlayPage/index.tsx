@@ -12,21 +12,28 @@ function CardItem(props) {
   const { title, description, image, avatar } = props
   const [show, setShow] = React.useState(false)
   const cardRef = React.useRef<HTMLDivElement>(null)
-  const xAndy = React.useRef({ top: 0, left: 0 })
+  const [xAndy, setXandY] = React.useState({ top: 0, left: 0 })
   const back = React.useRef<Keyframes>()
   const slide = React.useRef<Keyframes>()
   React.useEffect(() => {
     if (cardRef.current) {
-      const { top, left } = cardRef.current.getBoundingClientRect()
-      xAndy.current.top = top
-      xAndy.current.left = left
+      const observer = new ResizeObserver(entries => {
+        for (let entry of entries) {
+          const { top, left } = entry.target.getBoundingClientRect()
+          setXandY({
+            top,
+            left,
+          })
+        }
+      })
+      observer.observe(cardRef.current)
     }
   }, [cardRef.current])
   React.useEffect(() => {
     slide.current = keyframes`
   from{
-    top: ${xAndy.current.top}px;
-    left: ${xAndy.current.left}px;
+    top: ${xAndy.top}px;
+    left: ${xAndy.left}px;
     position: fixed;
     background-color: palegreen;
   }
@@ -39,8 +46,8 @@ function CardItem(props) {
 `
     back.current = keyframes`
 to{
-  top: ${xAndy.current.top}px;
-  left: ${xAndy.current.left}px;
+  top: ${xAndy.top}px;
+  left: ${xAndy.left}px;
   position: fixed;
   background-color: palegreen;
 }
@@ -51,7 +58,7 @@ from{
   background-color: palegoldenrod;
 }
 `
-  }, [xAndy.current.top, xAndy.current.left])
+  }, [xAndy.top, xAndy.left])
 
   const Back = styled.div`
     animation: ${back.current} 0.3s ease-in-out;
@@ -74,10 +81,7 @@ from{
       <CardContainer isShown={show}>
         <Card
           ref={cardRef}
-          onClick={() => {
-            console.log(xAndy.current)
-            setShow(true)
-          }}
+          onClick={() => setShow(true)}
           hoverable
           cover={<Image preview={false} alt="example" src={image} />}
         >
@@ -101,24 +105,6 @@ from{
     </>
   )
 }
-
-export const Demo = styled.div`
-  width: 1074px;
-  transition:
-    transform 0.4s ease 0s,
-    width 0.4s ease 0s;
-  transform: translate(148px, 24px) scale(1);
-  overflow: visible;
-  height: calc(100% - 48px);
-  display: flex;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow:
-    0 8px 64px 0 rgba(0, 0, 0, 0.04),
-    0 1px 4px 0 rgba(0, 0, 0, 0.02);
-  border-radius: 20px;
-  background: #ffffff;
-  transform-origin: left top;
-`
 
 export default function VideoPlayPage() {
   const cardItems = cards.map(card => <CardItem key={card.title} {...card} />)
@@ -156,7 +142,7 @@ const cards = [
     avatar: 'https://xsgames.co/randomusers/avatar.php?g=pixel&key=4',
   },
   {
-    title: 'Card title 3',
+    title: 'Card title 5',
     description: 'This is the description 3',
     image: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
     avatar: 'https://xsgames.co/randomusers/avatar.php?g=pixel&key=4',
