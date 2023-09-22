@@ -689,13 +689,14 @@ import InteractiveUniversityMap from '../components/InteractiveUniversityMap'
 //   },
 // ]
 
-let data = [{
+let data = [
+  {
   id: '江苏省',
-  value: 65384,
+  value: 65,
 },
 {
   id: '湖南省',
-  value: 65384,
+  value: 30,
 }
 ]
 
