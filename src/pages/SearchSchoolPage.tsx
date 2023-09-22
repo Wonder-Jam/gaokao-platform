@@ -703,7 +703,7 @@ export default function SearchSchoolPage() {
   const divStyle = {
     width: '1000px', // 设置宽度
     height: '500px', // 设置高度
-    backgroundColor: 'red', // 设置背景颜色为红色
+    backgroundColor: 'white', // 设置背景颜色为红色
   }
   return (
     <>

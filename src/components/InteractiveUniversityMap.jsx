@@ -12,11 +12,12 @@ const MyResponsiveChoropleth = ({ data }) => {
       .then(data => {
         console.log(data)
         const featuresWithIds = data.features.map((feature, index) => ({
-          id: `province_${index}`, // 使用索引作为id，你可以根据需要使用不同的标识符
+          id: feature.properties.name, // 使用索引作为id，你可以根据需要使用不同的标识符
           ...feature, // 替换为每个省份的实际value
         }));
         // setFeatures(data.features)
         setFeatures(featuresWithIds)
+        console.log(featuresWithIds)
       })
       .catch(error => {
         // 处理错误
