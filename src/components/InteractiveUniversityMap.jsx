@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { ResponsiveChoropleth } from '@nivo/geo'
+import Feature from './feature'
+
 
 const MyResponsiveChoropleth = ({ data }) => {
   //   let fs = require('fs')
@@ -49,6 +51,10 @@ const MyResponsiveChoropleth = ({ data }) => {
       graticuleLineColor="#dddddd"
       borderWidth={0.5}
       borderColor="#152538"
+      tooltip={e=>{
+        console.log(e)
+        return (<Feature data={e}/>)
+      }}
       defs={[
         {
           id: 'dots',
