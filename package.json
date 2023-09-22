@@ -30,10 +30,5 @@
     "@emotion/babel-plugin": "^11.11.0",
     "eslint": "^8.49.0",
     "prettier": "^3.0.3"
-  },
-  "browser": {
-    "fs": false,
-    "path": false,
-    "os": false
   }
 }

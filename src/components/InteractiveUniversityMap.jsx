@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { ResponsiveChoropleth } from '@nivo/geo'
-import fs from 'fs'
-import path from 'path'
 
 const MyResponsiveChoropleth = ({ data }) => {
   //   let fs = require('fs')
