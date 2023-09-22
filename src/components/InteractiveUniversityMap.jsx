@@ -7,11 +7,16 @@ const MyResponsiveChoropleth = ({ data }) => {
   const [features, setFeatures] = useState(null)
 
   useEffect(() => {
-    fetch('/files/world_countries.json')
+    fetch('/files/ChinaMap.geoJson')
       .then(response => response.json())
       .then(data => {
         console.log(data)
-        setFeatures(data.features)
+        const featuresWithIds = data.features.map((feature, index) => ({
+          id: `province_${index}`, // 使用索引作为id，你可以根据需要使用不同的标识符
+          ...feature, // 替换为每个省份的实际value
+        }));
+        // setFeatures(data.features)
+        setFeatures(featuresWithIds)
       })
       .catch(error => {
         // 处理错误
@@ -36,7 +41,8 @@ const MyResponsiveChoropleth = ({ data }) => {
       unknownColor="#666666"
       label="properties.name"
       valueFormat=".2s"
-      projectionTranslation={[0.5, 0.5]}
+      projectionTranslation={[-0.55, 1.25]}  // 设置投影的平移量
+      projectionScale={500}  // 设置投影的缩放比例
       projectionRotation={[0, 0, 0]}
       enableGraticule={true}
       graticuleLineColor="#dddddd"
