@@ -38,13 +38,13 @@ const items = [
 
 export default function Entry({ children }: { children: React.ReactNode }) {
   return (
-    <div>
+    <>
       <HeaderContainer>
         <HeaderBar />
         <GaoKaoMenu />
       </HeaderContainer>
       <MainContainer>{children}</MainContainer>
-    </div>
+    </>
   )
 }
 

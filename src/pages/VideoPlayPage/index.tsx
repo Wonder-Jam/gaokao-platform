@@ -7,6 +7,7 @@ import { CardContainer, CardListContainer, ArrowLeftContainer } from './style'
 import Mask from '../../components/Mask'
 import styled from '@emotion/styled'
 import { Keyframes, keyframes } from '@emotion/react'
+import { usePageContainer } from '../_app'
 
 function CardItem(props:any) {
   const { title, description, image, avatar } = props
@@ -15,6 +16,14 @@ function CardItem(props:any) {
   const [xAndy, setXandY] = React.useState({ top: 0, left: 0 })
   const back = React.useRef<Keyframes>()
   const slide = React.useRef<Keyframes>()
+  const PageRef = usePageContainer()
+  const onScroll = React.useCallback(() => {
+    const { top, left } = cardRef.current?.getBoundingClientRect() ?? {top:0,left:0}
+    setXandY({
+      top,
+      left,
+    })
+  },[cardRef.current])
   React.useEffect(() => {
     if (cardRef.current) {
       const observer = new ResizeObserver(entries => {
@@ -28,7 +37,13 @@ function CardItem(props:any) {
       })
       observer.observe(cardRef.current)
     }
-  }, [cardRef.current])
+    if(PageRef.current){
+      PageRef.current.addEventListener('scroll',onScroll)
+    }
+    return () => {
+      PageRef.current?.removeEventListener('scroll',onScroll)
+    }
+  }, [cardRef.current,PageRef.current])
   React.useEffect(() => {
     slide.current = keyframes`
   from{
