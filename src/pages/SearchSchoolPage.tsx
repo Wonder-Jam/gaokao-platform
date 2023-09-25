@@ -1,6 +1,8 @@
 import React from 'react'
 import Entry from '@/components/Entry'
 import InteractiveUniversityMap from '../components/InteractiveUniversityMap'
+import { Radio, RadioChangeEvent } from 'antd'
+import { useState, useEffect } from 'react'
 
 // let data = [
 //   {
@@ -689,28 +691,51 @@ import InteractiveUniversityMap from '../components/InteractiveUniversityMap'
 //   },
 // ]
 
+
 let data = [
   {
-  id: '江苏省',
-  value: 65,
-},
-{
-  id: '湖南省',
-  value: 30,
-}
+    id: '江苏省',
+    "value": 10
+  },
+  {
+    id: '湖南省',
+    "value": 30
+  }
 ]
 
 export default function SearchSchoolPage() {
-  const divStyle = {
-    width: '1000px', // 设置宽度
-    height: '500px', // 设置高度
-    backgroundColor: 'white', // 设置背景颜色为红色
+  const MapStyle = {
+    width: '900px',
+    height: '400px',
+    // backgroundColor: 'yellow', // 设置背景颜色为白色
   }
+
+  const InteractiveStyle = {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '900px',
+    height: '500px',
+    // backgroundColor: 'green', // 设置背景颜色为白色
+  }
+  const [kind, setKind] = useState('GDP')
+
+  const handleKindChange = (e: RadioChangeEvent) => {
+    setKind(e.target.value);
+  };
   return (
     <>
       <Entry>this is the SearchSchoolPage</Entry>
-      <div style={divStyle}>
-        <InteractiveUniversityMap data={data} />
+      <div style={InteractiveStyle}>
+        <div style={MapStyle}>
+          <InteractiveUniversityMap data={data} />
+        </div>
+        <Radio.Group value={kind} onChange={handleKindChange}>
+          <Radio.Button value="GDP">全省GDP总值</Radio.Button>
+          <Radio.Button value="fee">教育经费</Radio.Button>
+          <Radio.Button value="numOfGreat">双一流大学数</Radio.Button>
+        </Radio.Group>
       </div>
     </>
   )

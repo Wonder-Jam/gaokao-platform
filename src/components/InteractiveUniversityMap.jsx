@@ -12,7 +12,7 @@ const MyResponsiveChoropleth = ({ data }) => {
     fetch('/files/ChinaMap.geoJson')
       .then(response => response.json())
       .then(data => {
-        console.log(data)
+        // console.log(data)
         const featuresWithIds = data.features.map((feature, index) => ({
           id: feature.properties.name, // 使用索引作为id，你可以根据需要使用不同的标识符
           color: `#${Math.floor(Math.random() * 16777215).toString(16)}`, // 随机颜色
@@ -20,7 +20,7 @@ const MyResponsiveChoropleth = ({ data }) => {
         }));
         // setFeatures(data.features)
         setFeatures(featuresWithIds)
-        console.log(featuresWithIds)
+        // console.log(featuresWithIds)
       })
       .catch(error => {
         // 处理错误
@@ -41,22 +41,23 @@ const MyResponsiveChoropleth = ({ data }) => {
       features={features}
       margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
       colors="nivo"
-      domain={[0, 1000000]}
+      domain={[0, 100]}
       unknownColor="#FFFAF0"
       label="properties.name"
+      // match="id"
       valueFormat=".2s"
-      projectionTranslation={[-0.55, 1.25]}  // 设置投影的平移量
-      projectionScale={500}  // 设置投影的缩放比例
+      projectionTranslation={[-0.42, 1.25]}  // 设置投影的平移量
+      projectionScale={450}  // 设置投影的缩放比例
       projectionRotation={[0, 0, 0]}
       enableGraticule={false}
       graticuleLineColor="#dddddd"
       borderWidth={0.5}
       borderColor="#152538"
       fillColor={feature => {
-        console.log(feature)
+        // console.log(feature)
         return feature.color}} 
       tooltip={e=>{
-        console.log(e)
+        // console.log(e)
         return (<Feature data={e}/>)
       }}
       // defs={[
@@ -96,9 +97,9 @@ const MyResponsiveChoropleth = ({ data }) => {
       // fill={[
       //   {
       //     match: {
-      //       id: 'CAN',
+      //       id: '江苏省',
       //     },
-      //     id: 'dots',
+      //     color: '#FF0000',
       //   },
       //   {
       //     match: {
