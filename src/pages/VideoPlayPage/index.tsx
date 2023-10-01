@@ -5,92 +5,20 @@ const { Meta } = Card
 import { ArrowLeftOutlined } from '@ant-design/icons'
 import { CardContainer, CardListContainer, ArrowLeftContainer } from './style'
 import Mask from '../../components/Mask'
-import styled from '@emotion/styled'
-import { Keyframes, keyframes } from '@emotion/react'
 import { usePageContainer } from '../_app'
+import { useSlideAnimation } from '@/hooks/useSlideAnimation'
 
-function CardItem(props:any) {
+function CardItem(props: any) {
   const { title, description, image, avatar } = props
   const [show, setShow] = React.useState(false)
   const cardRef = React.useRef<HTMLDivElement>(null)
-  const [xAndy, setXandY] = React.useState({ top: 0, left: 0 })
-  const back = React.useRef<Keyframes>()
-  const slide = React.useRef<Keyframes>()
   const PageRef = usePageContainer()
-  const onScroll = React.useCallback(() => {
-    const { top, left } = cardRef.current?.getBoundingClientRect() ?? {top:0,left:0}
-    setXandY({
-      top,
-      left,
-    })
-  },[cardRef.current])
-  React.useEffect(() => {
-    if (cardRef.current) {
-      const observer = new ResizeObserver(entries => {
-        for (let entry of entries) {
-          const { top, left } = entry.target.getBoundingClientRect()
-          setXandY({
-            top,
-            left,
-          })
-        }
-      })
-      observer.observe(cardRef.current)
-    }
-    if(PageRef.current){
-      PageRef.current.addEventListener('scroll',onScroll)
-    }
-    return () => {
-      PageRef.current?.removeEventListener('scroll',onScroll)
-    }
-  }, [cardRef.current,PageRef.current])
-  React.useEffect(() => {
-    slide.current = keyframes`
-  from{
-    top: ${xAndy.top}px;
-    left: ${xAndy.left}px;
-    position: fixed;
-    background-color: palegreen;
-  }
-  to{
-    top: calc(50% - 100px);
-    left: calc(50% - 100px);
-    position: fixed;
-    background-color: palegoldenrod;
-  }
-`
-    back.current = keyframes`
-to{
-  top: ${xAndy.top}px;
-  left: ${xAndy.left}px;
-  position: fixed;
-  background-color: palegreen;
-}
-from{
-  top: calc(50% - 100px);
-  left: calc(50% - 100px);
-  position: fixed;
-  background-color: palegoldenrod;
-}
-`
-  }, [xAndy.top, xAndy.left])
-
-  const Back = styled.div`
-    animation: ${back.current} 0.3s ease-in-out;
-    animation-fill-mode: forwards;
-    width: 200px;
-    height: 200px;
-    z-index: 100;
-  `
-
-  const Animation = styled.div`
-    animation: ${slide.current} 0.3s ease-in-out;
-    animation-fill-mode: forwards;
-    width: 200px;
-    height: 200px;
-    z-index: 100;
-  `
-
+  console.log(cardRef.current)
+  const Animation = useSlideAnimation({
+    targetRef: cardRef,
+    direction: show ? 'slide-in' : 'slide-out',
+    pageRef: PageRef,
+  })
   return (
     <>
       <CardContainer isShown={show}>
@@ -115,7 +43,7 @@ from{
         <ArrowLeftContainer onClick={() => setShow(false)}>
           <ArrowLeftOutlined />
         </ArrowLeftContainer>
-        {show ? <Animation /> : <Back />}
+        {Animation}
       </Mask>
     </>
   )
