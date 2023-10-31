@@ -39,6 +39,8 @@ const MyResponsiveChoropleth = ({ data }) => {
     <ResponsiveChoropleth
       data={data}
       features={features}
+      width={500}
+      height={500}
       margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
       colors="nivo"
       domain={[0, 100]}
@@ -46,7 +48,7 @@ const MyResponsiveChoropleth = ({ data }) => {
       label="properties.name"
       // match="id"
       valueFormat=".2s"
-      projectionTranslation={[-0.42, 1.25]}  // 设置投影的平移量
+      projectionTranslation={[-1.15, 1.00]}  // 设置投影的平移量
       projectionScale={450}  // 设置投影的缩放比例
       projectionRotation={[0, 0, 0]}
       enableGraticule={false}
