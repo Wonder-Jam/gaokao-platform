@@ -11,12 +11,18 @@ function EChartsMap() {
             const myChart = echarts.init(chartRef.current);
             echarts.registerMap("china", features);
             const option = {
-                series: [
-                    {
-                        type: "map",
-                        map: "china", // 引入地图数据
-                    },
-                ],
+                geo: {
+                    map: "china",
+                    roam: false,// 一定要关闭拖拽
+                    zoom: 1.23,
+                    center: [105, 36], // 调整地图位置
+                },
+                // series: [
+                //     {
+                //         type: "map",
+                //         map: "china", // 引入地图数据
+                //     },
+                // ],
             };
 
             myChart.setOption(option);
@@ -39,18 +45,15 @@ function EChartsMap() {
         
     }, []);
 
-    if (!features) {
-        // 如果features还没有初始化完成，则返回loading状态或其他占位内容
-        return <div>Loading...</div>
-    } else{
+    if (features) {
         initEChart();
     }
 
     return (
         <div
             ref={chartRef}
-            style={{  height: "100%" }}
-        ></div>
+            style={{  width:"500px", height: "500px" }}
+        >Loading...</div>
     );
 }
 

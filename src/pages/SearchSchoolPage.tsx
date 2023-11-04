@@ -718,11 +718,11 @@ export default function SearchSchoolPage() {
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    // width: '100%',
+    width: '100%',
     // margin: '0 auto',
     // position: 'absolute',
     // left: '20%',
-    // height: '80%',
+    height: '80%',
     // backgroundColor: 'green', // 设置背景颜色为白色
   }
   const [kind, setKind] = useState('GDP')
@@ -739,7 +739,7 @@ export default function SearchSchoolPage() {
         {/* <div style={MapStyle}>
           <InteractiveUniversityMap data={data} />
         </div> */}
-        <EchartsMap/>
+        <EchartsMap style={MapStyle}/>
 
         <Radio.Group value={kind} onChange={handleKindChange}>
           <Radio.Button value="GDP">全省GDP总值</Radio.Button>
