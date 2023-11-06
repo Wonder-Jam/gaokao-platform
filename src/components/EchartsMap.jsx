@@ -52,7 +52,7 @@ function EChartsMap() {
 
     useEffect(() => {
 
-        fetch('/files/blogd8fd6f7912ba2533e02c0b1a47d4a626.json')
+        fetch('/files/ChinaMap.geoJson')
             .then(response => response.json())
             .then(data => {
                 setFeatures(data)
