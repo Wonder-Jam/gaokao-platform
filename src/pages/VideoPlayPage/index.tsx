@@ -77,7 +77,7 @@ function CardDetail(props: { imageUrl: string }) {
       <div
         style={{
           width: 445,
-          height:'100%',
+          height: '100%',
           backgroundColor: '#F7F7F7',
         }}
       >
