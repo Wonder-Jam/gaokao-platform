@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { ResponsiveChoropleth } from '@nivo/geo'
 import Feature from './feature'
 
-
 const MyResponsiveChoropleth = ({ data }) => {
   //   let fs = require('fs')
   //   let path = require('path')
@@ -17,7 +16,7 @@ const MyResponsiveChoropleth = ({ data }) => {
           id: feature.properties.name, // 使用索引作为id，你可以根据需要使用不同的标识符
           color: `#${Math.floor(Math.random() * 16777215).toString(16)}`, // 随机颜色
           ...feature, // 替换为每个省份的实际value
-        }));
+        }))
         // setFeatures(data.features)
         setFeatures(featuresWithIds)
         // console.log(featuresWithIds)
@@ -48,8 +47,8 @@ const MyResponsiveChoropleth = ({ data }) => {
       label="properties.name"
       // match="id"
       valueFormat=".2s"
-      projectionTranslation={[-1.15, 1.00]}  // 设置投影的平移量
-      projectionScale={450}  // 设置投影的缩放比例
+      projectionTranslation={[-1.15, 1.0]} // 设置投影的平移量
+      projectionScale={450} // 设置投影的缩放比例
       projectionRotation={[0, 0, 0]}
       enableGraticule={false}
       graticuleLineColor="#dddddd"
@@ -57,10 +56,11 @@ const MyResponsiveChoropleth = ({ data }) => {
       borderColor="#152538"
       fillColor={feature => {
         // console.log(feature)
-        return feature.color}} 
-      tooltip={e=>{
+        return feature.color
+      }}
+      tooltip={e => {
         // console.log(e)
-        return (<Feature data={e}/>)
+        return <Feature data={e} />
       }}
       // defs={[
       //   {

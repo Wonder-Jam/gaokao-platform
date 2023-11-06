@@ -692,16 +692,15 @@ import { useState, useEffect } from 'react'
 //   },
 // ]
 
-
 let data = [
   {
     id: '江苏省',
-    "value": 10
+    value: 10,
   },
   {
     id: '湖南省',
-    "value": 30
-  }
+    value: 30,
+  },
 ]
 
 export default function SearchSchoolPage() {
@@ -730,8 +729,8 @@ export default function SearchSchoolPage() {
   // Window.onresize = function () {}
 
   const handleKindChange = (e: RadioChangeEvent) => {
-    setKind(e.target.value);
-  };
+    setKind(e.target.value)
+  }
   return (
     <div>
       <Entry>this is the SearchSchoolPage</Entry>
@@ -739,7 +738,7 @@ export default function SearchSchoolPage() {
         {/* <div style={MapStyle}>
           <InteractiveUniversityMap data={data} />
         </div> */}
-        <EchartsMap style={MapStyle}/>
+        <EchartsMap style={MapStyle} />
 
         <Radio.Group value={kind} onChange={handleKindChange}>
           <Radio.Button value="GDP">全省GDP总值</Radio.Button>

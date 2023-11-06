@@ -14,15 +14,15 @@ export default function App({ Component, pageProps }) {
       window.document.addEventListener('DOMContentLoaded', setInnerHeight) // 没有触发
       window.addEventListener('resize', setInnerHeight)
     })()
-    ref.current = document.getElementById("__next")
-    if(ref.current){
+    ref.current = document.getElementById('__next')
+    if (ref.current) {
       ref.current.style.height = 'calc(100 * var(--innerHeight))'
       ref.current.style.overflowY = 'auto'
       ref.current.style.overscrollBehavior = 'none'
     }
-  },[])
+  }, [])
   return (
-    <ContainerContext.Provider value={{container: ref}}>
+    <ContainerContext.Provider value={{ container: ref }}>
       <Component {...pageProps} />
     </ContainerContext.Provider>
   )
@@ -34,4 +34,5 @@ interface ContainerContextValue {
 const ContainerContext = React.createContext<ContainerContextValue>({
   container: null as any,
 })
-export const usePageContainer = () => React.useContext(ContainerContext).container
+export const usePageContainer = () =>
+  React.useContext(ContainerContext).container

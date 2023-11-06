@@ -1,14 +1,15 @@
 import { Keyframes, keyframes } from '@emotion/react'
 import styled from '@emotion/styled'
-import React from 'react'
-import {useDebounceFn} from 'ahooks'
+import React, { ReactNode } from 'react'
+import { useDebounceFn } from 'ahooks'
 interface slideOptions {
   pageRef?: React.MutableRefObject<HTMLElement | null>
   targetRef: React.RefObject<HTMLElement>
   direction: 'slide-in' | 'slide-out'
+  contentNode?: ReactNode
 }
 export function useSlideAnimation(props: slideOptions) {
-  const { targetRef, direction, pageRef } = props
+  const { targetRef, direction, pageRef, contentNode } = props
   const slideIn = React.useRef<Keyframes>()
   const slideOut = React.useRef<Keyframes>()
   const [coordinate, setCoordinate] = React.useState({ top: 0, left: 0 })
@@ -22,68 +23,64 @@ export function useSlideAnimation(props: slideOptions) {
       left,
     })
   }, [targetRef.current])
-  const { run: debounceOnScroll } = useDebounceFn(onScroll,{ wait: 50})
+  const { run: debounceOnScroll } = useDebounceFn(onScroll, { wait: 50 })
   React.useEffect(() => {
-    window.addEventListener('resize',debounceOnScroll)
+    window.addEventListener('resize', debounceOnScroll)
     if (pageRef && pageRef.current) {
       pageRef.current.addEventListener('scroll', debounceOnScroll)
     }
     return () => {
-      pageRef?.current?.removeEventListener('scroll', onScroll)
+      pageRef?.current?.removeEventListener('scroll', debounceOnScroll)
     }
   }, [pageRef?.current])
   React.useEffect(() => {
     onScroll()
-  },[])
-  React.useEffect(() => {
-    slideIn.current = keyframes`
+  }, [targetRef.current])
+  slideIn.current = keyframes`
       from{
         top: ${coordinate.top}px;
         left: ${coordinate.left}px;
         position: fixed;
-        background-color: palegreen;
       }
       to{
-        top: calc(50% - 100px);
-        left: calc(50% - 100px);
+        top: calc(50% - 450px);
+        left: calc(50% - 475px);
         position: fixed;
-        background-color: palegoldenrod;
       }
     `
-    slideOut.current = keyframes`
+  slideOut.current = keyframes`
     to{
       top: ${coordinate.top}px;
       left: ${coordinate.left}px;
       position: fixed;
-      background-color: palegreen;
     }
     from{
-      top: calc(50% - 100px);
-      left: calc(50% - 100px);
-      position: fixed;
-      background-color: palegoldenrod;
+      to{
+        top: calc(50% - 450px);
+        left: calc(50% - 475px);
+        position: fixed;
     }
+  }
     `
-  }, [coordinate.top, coordinate.left])
 
   const SlideOutAnimation = styled.div`
     animation: ${slideOut.current} 0.3s ease-in-out;
     animation-fill-mode: forwards;
-    width: 200px;
-    height: 200px;
     z-index: 100;
   `
 
   const SlideInAnimation = styled.div`
     animation: ${slideIn.current} 0.3s ease-in-out;
     animation-fill-mode: forwards;
-    width: 200px;
-    height: 200px;
     z-index: 100;
   `
   return (
     <>
-      {direction === 'slide-in' ? <SlideInAnimation /> : <SlideOutAnimation />}
+      {direction === 'slide-in' ? (
+        <SlideInAnimation>{contentNode}</SlideInAnimation>
+      ) : (
+        <SlideOutAnimation>{contentNode}</SlideOutAnimation>
+      )}
     </>
   )
 }

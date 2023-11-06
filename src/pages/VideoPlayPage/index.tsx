@@ -13,11 +13,11 @@ function CardItem(props: any) {
   const [show, setShow] = React.useState(false)
   const cardRef = React.useRef<HTMLDivElement>(null)
   const PageRef = usePageContainer()
-  console.log(cardRef.current)
   const Animation = useSlideAnimation({
     targetRef: cardRef,
     direction: show ? 'slide-in' : 'slide-out',
     pageRef: PageRef,
+    contentNode: <CardDetail imageUrl={image} />,
   })
   return (
     <>
@@ -39,24 +39,74 @@ function CardItem(props: any) {
           />
         </Card>
       </CardContainer>
-      <Mask isShown={show}>
-        <ArrowLeftContainer onClick={() => setShow(false)}>
-          <ArrowLeftOutlined />
-        </ArrowLeftContainer>
+      <MaskContainer isShown={show} setShow={setShow}>
         {Animation}
-      </Mask>
+      </MaskContainer>
     </>
   )
 }
 
+function MaskContainer(props: {
+  isShown: boolean
+  setShow: (value: React.SetStateAction<boolean>) => void
+  children: React.ReactNode
+}) {
+  const { isShown, setShow, children } = props
+  return (
+    <Mask isShown={isShown}>
+      <ArrowLeftContainer onClick={() => setShow(false)}>
+        <ArrowLeftOutlined />
+      </ArrowLeftContainer>
+      {children}
+    </Mask>
+  )
+}
+
+function CardDetail(props: { imageUrl: string }) {
+  const { imageUrl } = props
+  return (
+    <div
+      style={{
+        width: 900,
+        height: 950,
+        borderRadius: 20,
+        overflow: 'hidden',
+        backgroundColor: 'palegoldenrod',
+      }}
+    >
+      <div
+        style={{
+          width: 445,
+          height:'100%',
+          backgroundColor: '#F7F7F7',
+        }}
+      >
+        <Image
+          style={{ objectFit: 'contain' }}
+          height={'100%'}
+          width={'100%'}
+          preview={false}
+          alt="example"
+          src={imageUrl}
+        />
+        imgageContainer
+      </div>
+      <div
+        style={{
+          backgroundColor: 'palegreen',
+        }}
+      >
+        InteractionContainer
+      </div>
+    </div>
+  )
+}
+
+function InteractionContainer() {}
+
 export default function VideoPlayPage() {
   const cardItems = cards.map(card => <CardItem key={card.title} {...card} />)
   const PageRef = React.useRef<HTMLDivElement>(null)
-  React.useEffect(() => {
-    if (PageRef.current) {
-      console.log(PageRef.current.scrollTop)
-    }
-  }, [PageRef.current?.scrollTop])
   return (
     <div ref={PageRef}>
       <Entry>
