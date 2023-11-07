@@ -1,9 +1,11 @@
 import React from 'react'
 import Entry from '@/components/Entry'
-import InteractiveUniversityMap from '../components/InteractiveUniversityMap'
-import EchartsMap from '../components/EchartsMap'
+import EchartsMap from './components/EchartsMap'
+import FilterMenu from './components/FilterMenu'
+import UniversityList from './components/UniversityList'
 import { Radio, RadioChangeEvent } from 'antd'
 import { useState, useEffect } from 'react'
+import { MapContainer, Layer, CardListContainer } from './style'
 
 // let data = [
 //   {
@@ -692,60 +694,31 @@ import { useState, useEffect } from 'react'
 //   },
 // ]
 
+
 let data = [
   {
     id: '江苏省',
-    value: 10,
+    "value": 10
   },
   {
     id: '湖南省',
-    value: 30,
-  },
+    "value": 30
+  }
 ]
 
 export default function SearchSchoolPage() {
-  const MapStyle = {
-    display: 'flex',
-    alignItems: 'center',
-    width: '100%',
-    height: '100%',
-    backgroundColor: 'yellow', // 设置背景颜色为白色
-  }
-
-  const InteractiveStyle = {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '100%',
-    // margin: '0 auto',
-    // position: 'absolute',
-    // left: '20%',
-    height: '80%',
-    // backgroundColor: 'green', // 设置背景颜色为白色
-  }
-  const [kind, setKind] = useState('GDP')
-
-  // Window.onresize = function () {}
-
-  const handleKindChange = (e: RadioChangeEvent) => {
-    setKind(e.target.value)
-  }
   return (
-    <div>
-      <Entry>this is the SearchSchoolPage</Entry>
-      <div style={InteractiveStyle}>
-        {/* <div style={MapStyle}>
-          <InteractiveUniversityMap data={data} />
-        </div> */}
-        <EchartsMap style={MapStyle} />
-
-        <Radio.Group value={kind} onChange={handleKindChange}>
-          <Radio.Button value="GDP">全省GDP总值</Radio.Button>
-          <Radio.Button value="fee">教育经费</Radio.Button>
-          <Radio.Button value="numOfGreat">双一流大学数</Radio.Button>
-        </Radio.Group>
-      </div>
-    </div>
+    <>
+      <Entry> </Entry>
+      <Layer>
+        <FilterMenu />
+        <MapContainer>
+          <EchartsMap />
+        </MapContainer>
+        <CardListContainer>
+          <UniversityList />
+        </CardListContainer>
+      </Layer>
+    </>
   )
 }
