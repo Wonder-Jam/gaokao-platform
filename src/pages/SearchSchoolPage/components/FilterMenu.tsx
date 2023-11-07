@@ -53,7 +53,7 @@ const FilterMenu: React.FC = () => {
   return (
     <Menu
       onClick={onClick}
-      style={{ width: 256 }}
+      style={{ height:'100%', width: 256, overflowY: 'auto' }}
       defaultSelectedKeys={['1']}
       defaultOpenKeys={['sub1']}
       mode="inline"

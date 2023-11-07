@@ -16,8 +16,8 @@ function EChartsMap() {
                         type: "map",
                         map: "china",
                         roam: false,// 一定要关闭拖拽
-                        zoom: 1.23,
-                        center: [105, 29], // 调整地图位置
+                        zoom: 1.60,
+                        center: [105, 35], // 调整地图位置
                         showLegendSymbol: false, // 存在legend时显示
                         selectedMode: "single",
                         itemStyle: {
