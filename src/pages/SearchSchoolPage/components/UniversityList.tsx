@@ -1,25 +1,33 @@
 import React, { useEffect, useState } from 'react';
-import { Avatar, Button, List, Skeleton } from 'antd';
+import { Avatar, Button, List, Skeleton, Typography } from 'antd';
+
+const { Text } = Typography;
+
+// TODO: UniversityList 太丑了，需要美化：1.太空了，资源利用不到位 2.List.Item.Meta限制太多了，要自定义内容
 
 interface DataType {
-  gender?: string;
-  name: {
-    title?: string;
-    first?: string;
-    last?: string;
-  };
-  email?: string;
+  // gender?: string;
+  // name: {
+  //   title?: string;
+  //   first?: string;
+  //   last?: string;
+  // };
+  name?: string;
+  // email?: string;
+  website?: string;
   picture: {
     large?: string;
     medium?: string;
     thumbnail?: string;
   };
-  nat?: string;
+  motto?: string;
+  // nat?: string;
   loading: boolean;
+  description?: string;
 }
 
 const count = 3;
-const fakeDataUrl = `https://randomuser.me/api/?results=${count}&inc=name,gender,email,nat,picture&noinfo`;
+const fakeDataUrl = `/files/universities.json`;
 
 const UniversityList: React.FC = () => {
   const [initLoading, setInitLoading] = useState(true);
@@ -34,13 +42,17 @@ const UniversityList: React.FC = () => {
         setInitLoading(false);
         setData(res.results);
         setList(res.results);
+      })
+      .catch((e) => {
+        console.log(e);
+        setInitLoading(false);
       });
   }, []);
 
   const onLoadMore = () => {
     setLoading(true);
     setList(
-      data.concat([...new Array(count)].map(() => ({ loading: true, name: {}, picture: {} }))),
+      data.concat([...new Array(count)].map(() => ({ loading: true, name: "", picture: {} }))),
     );
     fetch(fakeDataUrl)
       .then((res) => res.json())
@@ -53,6 +65,10 @@ const UniversityList: React.FC = () => {
         // In real scene, you can using public method of react-virtualized:
         // https://stackoverflow.com/questions/46700726/how-to-use-public-method-updateposition-of-react-virtualized
         window.dispatchEvent(new Event('resize'));
+      })
+      .catch((e) => {
+        console.log(e);
+        setLoading(false);
       });
   };
 
@@ -70,6 +86,15 @@ const UniversityList: React.FC = () => {
       </div>
     ) : null;
 
+  const info = (item: DataType) => {
+    return (
+      <>
+        <p>{item.motto}</p>
+        <Text>{item.description}</Text>
+      </>
+    )
+  }
+
   return (
     <List
       className="demo-loadmore-list"
@@ -84,10 +109,10 @@ const UniversityList: React.FC = () => {
           <Skeleton avatar title={false} loading={item.loading} active>
             <List.Item.Meta
               avatar={<Avatar src={item.picture.large} />}
-              title={<a href="https://ant.design">{item.name?.last}</a>}
-              description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+              title={<a href={item.website}>{item.name}</a>}
+              description={info(item)}
             />
-            {/* <div>content</div> */}
+            {/* <p>{item.description}</p> */}
           </Skeleton>
         </List.Item>
       )}

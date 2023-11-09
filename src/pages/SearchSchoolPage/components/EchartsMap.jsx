@@ -2,6 +2,8 @@ import React, { useEffect, useState, useRef } from "react";
 import * as echarts from "echarts";
 // import china from "../data/china"; // 假设你有中国地图数据
 
+// TODO: 1. 使用context传递数据
+
 function EChartsMap() {
 
     const [features, setFeatures] = useState(null)
@@ -48,12 +50,6 @@ function EChartsMap() {
                         }
                     },
                 ]
-                // series: [
-                //     {
-                //         type: "map",
-                //         map: "china", // 引入地图数据
-                //     },
-                // ],
             };
 
             myChart.setOption(option);
