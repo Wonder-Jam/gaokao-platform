@@ -2,6 +2,7 @@ import React from 'react';
 import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Menu } from 'antd';
+import ProvinceList from './ProvinceList';
 
 // TODO: 1. 这个Menu也是信息密度太低了，目前计划改成三个antd中的select组件（但是感觉也不合适）2. 使用context
 
@@ -23,10 +24,14 @@ function getItem(
   } as MenuItem;
 }
 
+const handleProvinceSelect = (selectedProvince: string) => {
+  // 在这里处理选中省份的逻辑，可以将选中的值存储在某个变量中
+  console.log(`Selected Province: ${selectedProvince}`);
+};
+
 const items: MenuProps['items'] = [
   getItem('地区', 'sub1', <MailOutlined />, [
-    getItem('Item 1', 'g1', null, [getItem('Option 1', '1'), getItem('Option 2', '2')], 'group'),
-    getItem('Item 2', 'g2', null, [getItem('Option 3', '3'), getItem('Option 4', '4')], 'group'),
+    getItem(<ProvinceList onSelect={handleProvinceSelect}/>, 'g1', null, [], 'group')
   ]),
 
   getItem('经济', 'sub2', <AppstoreOutlined />, [
