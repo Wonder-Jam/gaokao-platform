@@ -4,13 +4,13 @@ import EchartsMap from './components/EchartsMap'
 import FilterMenu from './components/FilterMenu'
 import UniversityList from './components/UniversityList'
 import { MapContainer, Layer, CardListContainer } from './style'
-import {createContext} from 'react'
+import { createContext } from 'react'
 import * as Enum from './enum'
 
 export const choices = createContext({
   province: Enum.provice.None,
   city: Enum.city.None,
-  rank: Enum.rank.None
+  rank: Enum.rank.None,
 })
 
 export default function SearchSchoolPage() {
