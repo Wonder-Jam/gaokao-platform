@@ -25,7 +25,7 @@ export function useSlideAnimation(props: slideOptions) {
   }, [targetRef.current])
   const { run: debounceOnScroll } = useDebounceFn(onScroll, { wait: 50 })
   React.useEffect(() => {
-    window.addEventListener('resize', debounceOnScroll)
+    // window.addEventListener('resize', debounceOnScroll)
     if (pageRef && pageRef.current) {
       pageRef.current.addEventListener('scroll', debounceOnScroll)
     }
@@ -55,11 +55,9 @@ export function useSlideAnimation(props: slideOptions) {
       position: fixed;
     }
     from{
-      to{
         top: calc(50% - 450px);
         left: calc(50% - 475px);
         position: fixed;
-    }
   }
     `
 

@@ -21,7 +21,7 @@ function CardItem(props: any) {
   })
   return (
     <>
-      <CardContainer isShown={show}>
+      <CardContainer>
         <Card
           ref={cardRef}
           onClick={() => setShow(true)}
@@ -110,13 +110,7 @@ export default function VideoPlayPage() {
   return (
     <div ref={PageRef}>
       <Entry>
-        <CardListContainer
-          onScroll={() => {
-            console.log('erer')
-          }}
-        >
-          {cardItems}
-        </CardListContainer>
+        <CardListContainer>{cardItems}</CardListContainer>
       </Entry>
     </div>
   )

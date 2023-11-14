@@ -1,8 +1,5 @@
 import styled from '@emotion/styled'
-export const CardContainer = styled.div<{
-  isShown: boolean
-}>`
-  color: ${({ isShown }) => (isShown ? 'red' : 'green')};
+export const CardContainer = styled.div`
   min-width: 142px;
   max-width: 330px;
   margin: 10px;
