@@ -41,10 +41,12 @@ export function useSlideAnimation(props: slideOptions) {
         top: ${coordinate.top}px;
         left: ${coordinate.left}px;
         position: fixed;
+        transform: scale(0.5);
       }
       to{
-        top: calc(50% - 450px);
-        left: calc(50% - 475px);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%) scale(1);
         position: fixed;
       }
     `
@@ -53,10 +55,12 @@ export function useSlideAnimation(props: slideOptions) {
       top: ${coordinate.top}px;
       left: ${coordinate.left}px;
       position: fixed;
+      transform: scale(0.5);
     }
     from{
-        top: calc(50% - 450px);
-        left: calc(50% - 475px);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%) scale(1);
         position: fixed;
   }
     `

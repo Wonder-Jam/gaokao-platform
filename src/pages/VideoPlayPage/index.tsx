@@ -2,14 +2,20 @@ import React from 'react'
 import { Card, Image, Avatar } from 'antd'
 import Entry from '@/components/Entry'
 const { Meta } = Card
-import { ArrowLeftOutlined } from '@ant-design/icons'
-import { CardContainer, CardListContainer, ArrowLeftContainer } from './style'
+import { ArrowLeftOutlined, DownOutlined, UpOutlined } from '@ant-design/icons'
+import {
+  CardContainer,
+  CardListContainer,
+  ArrowLeftContainer,
+  UpAndDownContainer,
+} from './style'
 import Mask from '../../components/Mask'
 import { usePageContainer } from '../_app'
 import { useSlideAnimation } from '@/hooks/useSlideAnimation'
+import { VideoSchoolType, data } from './data'
 
-function CardItem(props: any) {
-  const { title, description, image, avatar } = props
+function CardItem(props: VideoSchoolType & { image: string }) {
+  const { image, ...video } = props
   const [show, setShow] = React.useState(false)
   const cardRef = React.useRef<HTMLDivElement>(null)
   const PageRef = usePageContainer()
@@ -17,7 +23,7 @@ function CardItem(props: any) {
     targetRef: cardRef,
     direction: show ? 'slide-in' : 'slide-out',
     pageRef: PageRef,
-    contentNode: <CardDetail imageUrl={image} />,
+    contentNode: <CardDetail {...video} />,
   })
   return (
     <>
@@ -33,9 +39,8 @@ function CardItem(props: any) {
               display: 'flex',
               alignItems: 'center',
             }}
-            avatar={<Avatar src={avatar} />}
-            title={title}
-            description={description}
+            title={video.schoolName}
+            description={video.schoolSiteUrl}
           />
         </Card>
       </CardContainer>
@@ -57,13 +62,17 @@ function MaskContainer(props: {
       <ArrowLeftContainer onClick={() => setShow(false)}>
         <ArrowLeftOutlined />
       </ArrowLeftContainer>
+      <UpAndDownContainer>
+        <UpOutlined />
+        <DownOutlined />
+      </UpAndDownContainer>
       {children}
     </Mask>
   )
 }
 
-function CardDetail(props: { imageUrl: string }) {
-  const { imageUrl } = props
+function CardDetail(props: VideoSchoolType) {
+  const { videoUrl, schoolName } = props
   return (
     <div
       style={{
@@ -72,32 +81,15 @@ function CardDetail(props: { imageUrl: string }) {
         borderRadius: 20,
         overflow: 'hidden',
         backgroundColor: 'palegoldenrod',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
       }}
     >
-      <div
-        style={{
-          width: 445,
-          height: '100%',
-          backgroundColor: '#F7F7F7',
-        }}
-      >
-        <Image
-          style={{ objectFit: 'contain' }}
-          height={'100%'}
-          width={'100%'}
-          preview={false}
-          alt="example"
-          src={imageUrl}
-        />
-        imgageContainer
-      </div>
-      <div
-        style={{
-          backgroundColor: 'palegreen',
-        }}
-      >
-        InteractionContainer
-      </div>
+      <div>{schoolName}</div>
+      <video controls width={'100%'}>
+        <source src={videoUrl} />
+      </video>
     </div>
   )
 }
@@ -105,7 +97,7 @@ function CardDetail(props: { imageUrl: string }) {
 function InteractionContainer() {}
 
 export default function VideoPlayPage() {
-  const cardItems = cards.map(card => <CardItem key={card.title} {...card} />)
+  const cardItems = data.map(item => <CardItem key={item.title} {...item} />)
   const PageRef = React.useRef<HTMLDivElement>(null)
   return (
     <div ref={PageRef}>
@@ -115,53 +107,3 @@ export default function VideoPlayPage() {
     </div>
   )
 }
-const cards = [
-  {
-    title: 'Card title 1',
-    description: 'This is the description 1',
-    image: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
-    avatar: 'https://xsgames.co/randomusers/avatar.php?g=pixel&key=2',
-  },
-  {
-    title: 'Card title 2',
-    description: 'This is the description 2',
-    image: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
-    avatar: 'https://xsgames.co/randomusers/avatar.php?g=pixel&key=3',
-  },
-  {
-    title: 'Card title 3',
-    description: 'This is the description 3',
-    image: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
-    avatar: 'https://xsgames.co/randomusers/avatar.php?g=pixel&key=4',
-  },
-  {
-    title: 'Card title 3',
-    description: 'This is the description 3',
-    image: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
-    avatar: 'https://xsgames.co/randomusers/avatar.php?g=pixel&key=4',
-  },
-  {
-    title: 'Card title 5',
-    description: 'This is the description 3',
-    image: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
-    avatar: 'https://xsgames.co/randomusers/avatar.php?g=pixel&key=4',
-  },
-  {
-    title: 'Card title 3',
-    description: 'This is the description 3',
-    image: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
-    avatar: 'https://xsgames.co/randomusers/avatar.php?g=pixel&key=4',
-  },
-  {
-    title: 'Card title 3',
-    description: 'This is the description 3',
-    image: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
-    avatar: 'https://xsgames.co/randomusers/avatar.php?g=pixel&key=4',
-  },
-  {
-    title: 'Card title 3',
-    description: 'This is the description 3',
-    image: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
-    avatar: 'https://xsgames.co/randomusers/avatar.php?g=pixel&key=4',
-  },
-]
