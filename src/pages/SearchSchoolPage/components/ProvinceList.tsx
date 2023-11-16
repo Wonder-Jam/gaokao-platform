@@ -18,7 +18,7 @@ const ProvinceList: React.FC<ProvinceListProps> = ({ onSelect, selected }) => {
   return (
     <ListContainer>
       <List>
-        {provinces.map((province) => (
+        {provinces.map(province => (
           <ListItem
             key={province}
             style={{
@@ -31,7 +31,7 @@ const ProvinceList: React.FC<ProvinceListProps> = ({ onSelect, selected }) => {
         ))}
       </List>
     </ListContainer>
-  );
-};
+  )
+}
 
-export default ProvinceList;
+export default ProvinceList

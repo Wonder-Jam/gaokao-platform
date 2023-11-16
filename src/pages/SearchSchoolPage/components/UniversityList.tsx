@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { Avatar, Button, List, Skeleton, Typography } from 'antd';
+import React, { useEffect, useState } from 'react'
+import { Avatar, Button, List, Skeleton, Typography } from 'antd'
 
-const { Text } = Typography;
+const { Text } = Typography
 
 // TODO: UniversityList 太丑了，需要美化：1.太空了，资源利用不到位 2.List.Item.Meta限制太多了，要自定义内容
 
@@ -12,65 +12,71 @@ interface DataType {
   //   first?: string;
   //   last?: string;
   // };
-  name?: string;
+  name?: string
   // email?: string;
-  website?: string;
+  website?: string
   picture: {
-    large?: string;
-    medium?: string;
-    thumbnail?: string;
-  };
-  motto?: string;
+    large?: string
+    medium?: string
+    thumbnail?: string
+  }
+  motto?: string
   // nat?: string;
-  loading: boolean;
-  description?: string;
+  loading: boolean
+  description?: string
 }
 
-const count = 3;
-const fakeDataUrl = `/files/universities.json`;
+const count = 3
+const fakeDataUrl = `/files/universities.json`
 
 const UniversityList: React.FC = () => {
-  const [initLoading, setInitLoading] = useState(true);
-  const [loading, setLoading] = useState(false);
-  const [data, setData] = useState<DataType[]>([]);
-  const [list, setList] = useState<DataType[]>([]);
+  const [initLoading, setInitLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
+  const [data, setData] = useState<DataType[]>([])
+  const [list, setList] = useState<DataType[]>([])
 
   useEffect(() => {
     fetch(fakeDataUrl)
-      .then((res) => res.json())
-      .then((res) => {
-        setInitLoading(false);
-        setData(res.results);
-        setList(res.results);
+      .then(res => res.json())
+      .then(res => {
+        setInitLoading(false)
+        setData(res.results)
+        setList(res.results)
       })
-      .catch((e) => {
-        console.log(e);
-        setInitLoading(false);
-      });
-  }, []);
+      .catch(e => {
+        console.log(e)
+        setInitLoading(false)
+      })
+  }, [])
 
   const onLoadMore = () => {
-    setLoading(true);
+    setLoading(true)
     setList(
-      data.concat([...new Array(count)].map(() => ({ loading: true, name: "", picture: {} }))),
-    );
+      data.concat(
+        [...new Array(count)].map(() => ({
+          loading: true,
+          name: '',
+          picture: {},
+        })),
+      ),
+    )
     fetch(fakeDataUrl)
-      .then((res) => res.json())
-      .then((res) => {
-        const newData = data.concat(res.results);
-        setData(newData);
-        setList(newData);
-        setLoading(false);
+      .then(res => res.json())
+      .then(res => {
+        const newData = data.concat(res.results)
+        setData(newData)
+        setList(newData)
+        setLoading(false)
         // Resetting window's offsetTop so as to display react-virtualized demo underfloor.
         // In real scene, you can using public method of react-virtualized:
         // https://stackoverflow.com/questions/46700726/how-to-use-public-method-updateposition-of-react-virtualized
-        window.dispatchEvent(new Event('resize'));
+        window.dispatchEvent(new Event('resize'))
       })
-      .catch((e) => {
-        console.log(e);
-        setLoading(false);
-      });
-  };
+      .catch(e => {
+        console.log(e)
+        setLoading(false)
+      })
+  }
 
   const loadMore =
     !initLoading && !loading ? (
@@ -84,7 +90,7 @@ const UniversityList: React.FC = () => {
       >
         <Button onClick={onLoadMore}>loading more</Button>
       </div>
-    ) : null;
+    ) : null
 
   const info = (item: DataType) => {
     return (
@@ -102,7 +108,7 @@ const UniversityList: React.FC = () => {
       itemLayout="horizontal"
       loadMore={loadMore}
       dataSource={list}
-      renderItem={(item) => (
+      renderItem={item => (
         <List.Item
         //   actions={[<a key="list-loadmore-edit">edit</a>, <a key="list-loadmore-more">more</a>]}
         >
@@ -117,7 +123,7 @@ const UniversityList: React.FC = () => {
         </List.Item>
       )}
     />
-  );
-};
+  )
+}
 
-export default UniversityList;
+export default UniversityList

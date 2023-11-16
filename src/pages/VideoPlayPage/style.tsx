@@ -1,8 +1,5 @@
 import styled from '@emotion/styled'
-export const CardContainer = styled.div<{
-  isShown: boolean
-}>`
-  color: ${({ isShown }) => (isShown ? 'red' : 'green')};
+export const CardContainer = styled.div`
   min-width: 142px;
   max-width: 330px;
   margin: 10px;
@@ -49,5 +46,26 @@ export const ArrowLeftContainer = styled.div`
     0 1px 2px 0 rgba(0, 0, 0, 0.02);
   &:hover {
     background-color: #f7f7f7;
+  }
+`
+
+export const UpAndDownContainer = styled.div`
+  position: fixed;
+  top: 50%;
+  right: 8px;
+  transform: translatex(-50%);
+  height: 88px;
+  width: 44px;
+  background-color: #bfbfbf;
+  z-index: 101;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  transition: all 0.3s;
+  &:hover {
+    background-color: #d9d9d9;
+    cursor: pointer;
   }
 `

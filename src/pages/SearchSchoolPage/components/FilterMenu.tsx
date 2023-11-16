@@ -8,7 +8,7 @@ import { SearchContext } from '../index';
 
 // TODO: 1. 这个Menu也是信息密度太低了，目前计划改成三个antd中的select组件（但是感觉也不合适）2. 使用context
 
-type MenuItem = Required<MenuProps>['items'][number];
+type MenuItem = Required<MenuProps>['items'][number]
 
 function getItem(
   label: React.ReactNode,
@@ -23,7 +23,7 @@ function getItem(
     children,
     label,
     type,
-  } as MenuItem;
+  } as MenuItem
 }
 
 const provinceAbbreviationMap: Map<string, Enum.province> = new Map([
@@ -103,13 +103,13 @@ const FilterMenu: React.FC = () => {
   return (
     <Menu
       onClick={onClick}
-      style={{ height:'100%', width: '20%', overflowY: 'auto' }}
+      style={{ height: '100%', width: '20%', overflowY: 'auto' }}
       defaultSelectedKeys={['1']}
       defaultOpenKeys={['sub1']}
       mode="inline"
       items={items}
     />
-  );
-};
+  )
+}
 
-export default FilterMenu;
+export default FilterMenu

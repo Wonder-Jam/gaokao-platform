@@ -188,6 +188,7 @@ function EChartsMap() {
     if (features) {
         initEChart();
     }
+  
 
     return (
         <div
@@ -197,4 +198,4 @@ function EChartsMap() {
     );
 }
 
-export default EChartsMap;
+export default EChartsMap
