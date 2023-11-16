@@ -16,7 +16,7 @@ export const List = styled.ul`
 
 export const ListItem = styled.li`
     cursor: pointer;
-    margin-left: 5px;
+    margin-right: 5px;
 `
 export const SelectedItem = styled.li`
     backgroundColor: '#eee';

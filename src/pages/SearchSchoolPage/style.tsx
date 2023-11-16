@@ -5,7 +5,7 @@ export const MapContainer = styled.div`
     flex-direction: column;
     align-items: center;
     width: 50%;
-    height: 70%;
+    height: 100%;
     overflow: hidden;
 `
 
