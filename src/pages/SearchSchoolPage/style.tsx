@@ -7,10 +7,11 @@ export const MapContainer = styled.div`
     width: 50%;
     height: 100%;
     overflow: hidden;
+    background-color: #F5F5F5;
 `
 
 export const Layer = styled.div`
-  height: 70%;
+  height: 75%;
   display: flex;
   width: 100%;
   justify-content: space-between;
@@ -19,5 +20,8 @@ export const Layer = styled.div`
 
 export const CardListContainer = styled.div`
   width: 30%;
+  height: 100%;
   overflow-y: auto;
+  // margin-right: 5px;
+  
 `

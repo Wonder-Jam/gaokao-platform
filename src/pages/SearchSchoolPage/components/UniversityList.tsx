@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Avatar, Button, List, Skeleton, Typography } from 'antd'
+import { UniversityItem } from './style'
+import { it } from 'node:test'
 
 const { Text } = Typography
 
@@ -78,6 +80,19 @@ const UniversityList: React.FC = () => {
       })
   }
 
+  const ListItem = (item: DataType) => {
+    return (
+      <UniversityItem>
+        <img src={item.picture.large} style={{ borderRadius: '3px', width: '80px', height: '80px' }} />
+        <div style={{ marginLeft: '10px' }}>
+          <h3 style={{margin: '0px', marginTop: '6px'}}><a href={item.website}>{item.name}</a></h3>
+          <p style={{margin: '0px', marginTop: '5px', color: 'gray'}}>{item.motto}</p>
+          <p style={{margin: '0px', marginTop: '2px'}}>{item.description}</p>
+        </div>
+      </UniversityItem>
+    )
+  }
+
   const loadMore =
     !initLoading && !loading ? (
       <div
@@ -106,6 +121,7 @@ const UniversityList: React.FC = () => {
       className="demo-loadmore-list"
       loading={initLoading}
       itemLayout="horizontal"
+      // bordered
       loadMore={loadMore}
       dataSource={list}
       renderItem={item => (
@@ -113,12 +129,13 @@ const UniversityList: React.FC = () => {
         //   actions={[<a key="list-loadmore-edit">edit</a>, <a key="list-loadmore-more">more</a>]}
         >
           <Skeleton avatar title={false} loading={item.loading} active>
-            <List.Item.Meta
+            {/* <List.Item.Meta
               avatar={<Avatar src={item.picture.large} />}
               title={<a href={item.website}>{item.name}</a>}
               description={info(item)}
-            />
+            /> */}
             {/* <p>{item.description}</p> */}
+            <ListItem {...item} />
           </Skeleton>
         </List.Item>
       )}

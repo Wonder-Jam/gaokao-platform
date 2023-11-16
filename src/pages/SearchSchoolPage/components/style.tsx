@@ -15,14 +15,15 @@ export const List = styled.ul`
 `
 
 export const ListItem = styled.li`
-<<<<<<< HEAD
     cursor: pointer;
     margin-right: 5px;
-=======
-  cursor: pointer;
-  margin-left: 5px;
->>>>>>> tmp
 `
 export const SelectedItem = styled.li`
   backgroundcolor: '#eee';
+`
+
+export const UniversityItem = styled.li`
+  display: flex;
+  flex-direction: row;
+  font-family: PingFangSC-Regular, sans-serif;
 `

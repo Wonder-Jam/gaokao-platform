@@ -3,7 +3,7 @@ export const HeaderContainer = styled.div`
   position: fixed;
   z-index: 1;
   width: 100%;
-  height: 146px;
+  height: 15%;
   background-color: #fff;
 `
 export const MainContainer = styled.div`
