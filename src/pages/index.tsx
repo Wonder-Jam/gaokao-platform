@@ -11,6 +11,7 @@ export default function Home() {
                     <Slider></Slider>
                     <SmartRecommend></SmartRecommend>
                 </div>
+
             </Entry>
         </>
     )

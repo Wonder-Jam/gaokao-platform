@@ -9,10 +9,10 @@ const Slider: React.FC = () => {
     };
     let contentStyle: React.CSSProperties = {
         height: '480px',
-        color: '#fff',
+        color: '#4096ff',
         lineHeight: '160px',
         textAlign: 'center',
-        background: '#364d79',
+        background: '#e6f0fd',
     };
     return (
         <div style={sliderSytle}>
@@ -25,9 +25,6 @@ const Slider: React.FC = () => {
                 </div>
                 <div>
                     <h3 style={contentStyle}>3</h3>
-                </div>
-                <div>
-                    <h3 style={contentStyle}>4</h3>
                 </div>
             </Carousel>
         </div>
