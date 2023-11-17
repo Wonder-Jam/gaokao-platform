@@ -19,7 +19,7 @@ export const SearchContext = createContext<{
   province: Enum.province.None,
   city: Enum.city.None,
   rank: Enum.rank.None,
-  setChoices: () => {}, // 初始值可以是一个空函数，不过在使用时会被替换
+  setChoices: () => { }, // 初始值可以是一个空函数，不过在使用时会被替换
 });
 
 
@@ -43,16 +43,17 @@ export default function SearchSchoolPage() {
   return (
     <SearchContext.Provider value={{ ...choices, setChoices }}>
       <>
-        <Entry> </Entry>
-        <Layer>
-          <FilterMenu />
-          <MapContainer>
-            <EchartsMap />
-          </MapContainer>
-          <CardListContainer>
-            <UniversityList />
-          </CardListContainer>
-        </Layer>
+        <Entry> 
+          <Layer>
+            <FilterMenu />
+            <MapContainer>
+              <EchartsMap />
+            </MapContainer>
+            <CardListContainer>
+              <UniversityList />
+            </CardListContainer>
+          </Layer> 
+        </Entry>
       </>
     </SearchContext.Provider>
   );

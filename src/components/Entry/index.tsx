@@ -41,7 +41,6 @@ export default function Entry({ children }: { children: React.ReactNode }) {
     <>
       <HeaderContainer>
         <HeaderBar />
-        <GaoKaoMenu />
       </HeaderContainer>
       <MainContainer>{children}</MainContainer>
     </>
@@ -64,6 +63,8 @@ function GaoKaoMenu() {
         mode="horizontal"
         style={{
           display: 'flex',
+          width: '40%',
+          justifyContent: 'space-between',
         }}
       />
     </>
@@ -80,12 +81,14 @@ function HeaderBar() {
       <div>
         <ImageContainer>
           <Image
-            src={'https://www.gaokao.cn/static/media/head_logo1.133254dc.png'}
+            src={'https://files.lsmcloud.top/blog218cc985c57906433217d46ca1db1205.png'}
             preview={false}
+            width={'200px'}
+            style={{transform: 'scale(1.2)'}}
             onClick={goToEolPage}
           />
         </ImageContainer>
-        <ImageContainer>
+        {/* <ImageContainer>
           <Image
             src={
               'https://t1.chei.com.cn/gaokao/images/index/gk_logo.png?v=1620294265752'
@@ -93,11 +96,12 @@ function HeaderBar() {
             preview={false}
             onClick={goToYangGuangGaoKaoPage}
           />
-        </ImageContainer>
+        </ImageContainer> */}
       </div>
+      <GaoKaoMenu />
       <Input.Search
         style={{
-          width: '30%',
+          width: '15%',
           minWidth: 190,
         }}
         placeholder="查大学，查专业，搜问答"

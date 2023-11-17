@@ -589,7 +589,7 @@ const educationBudget = [
     return (
         <div
             ref={chartRef}
-            style={{ width: "1000px", height: "1000px" }}
+            style={{ width: "500px", height: "500px" }}
         >Loading...</div>
     );
 }
