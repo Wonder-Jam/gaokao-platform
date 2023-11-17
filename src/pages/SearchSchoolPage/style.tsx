@@ -11,7 +11,7 @@ export const MapContainer = styled.div`
 `
 
 export const Layer = styled.div`
-  height: 75%;
+  height: 80%;
   display: flex;
   width: 100%;
   justify-content: space-between;

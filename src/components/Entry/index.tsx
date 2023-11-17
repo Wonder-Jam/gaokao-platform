@@ -62,6 +62,9 @@ function GaoKaoMenu() {
         selectedKeys={[current]}
         items={items}
         mode="horizontal"
+        style={{
+          display: 'flex',
+        }}
       />
     </>
   )
