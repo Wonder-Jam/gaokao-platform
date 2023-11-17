@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
+import { BarChartOutlined, GlobalOutlined, SettingOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Menu } from 'antd';
 import ProvinceList from './ProvinceList';
@@ -74,38 +74,42 @@ const FilterMenu: React.FC = () => {
   };
   
   const items: MenuProps['items'] = [
-    getItem('地区', 'sub1', <MailOutlined />, [
+    getItem('地区', 'sub1', <GlobalOutlined />, [
       getItem(<ProvinceList onSelect={handleProvinceSelect} selected={province}/>, 'g1', null, [], 'group')
     ]),
   
-    getItem('经济', 'sub2', <AppstoreOutlined />, [
-      getItem('Option 5', '5'),
-      getItem('Option 6', '6'),
-      getItem('Submenu', 'sub3', null, [getItem('Option 7', '7'), getItem('Option 8', '8')]),
+    getItem('为地区排序', 'sub2', <BarChartOutlined />, [
+      getItem('无', Enum.rank.None),
+      getItem('全省GDP总值', Enum.rank.GDP),
+      getItem('985大学数量', Enum.rank._985),
+      getItem('211大学数量', Enum.rank._211),
+      getItem('双一流大学数量', Enum.rank.DoubleFristClass),
+      getItem('教育总经费', Enum.rank.EduFunds),
     ]),
   
     { type: 'divider' },
   
-    getItem('等级', 'sub4', <SettingOutlined />, [
-      getItem('Option 9', '9'),
-      getItem('Option 10', '10'),
-      getItem('Option 11', '11'),
-      getItem('Option 12', '12'),
-    ]),
+    // getItem('等级', 'sub4', <SettingOutlined />, [
+    //   getItem('Option 9', '9'),
+    //   getItem('Option 10', '10'),
+    //   getItem('Option 11', '11'),
+    //   getItem('Option 12', '12'),
+    //   getItem('双一流大学数', 'sub3', null, [getItem('Option 7', '7'), getItem('Option 8', '8')]),
+    // ]),
   
-    getItem('Group', 'grp', null, [getItem('Option 13', '13'), getItem('Option 14', '14')], 'group'),
+    // getItem('Group', 'grp', null, [getItem('Option 13', '13'), getItem('Option 14', '14')], 'group'),
   ];
 
   const onClick: MenuProps['onClick'] = (e) => {
-    console.log('click ', e);
+    setChoices({province,city,rank: Number(e.key) as Enum.rank})
   };
 
   return (
     <Menu
       onClick={onClick}
       style={{ height: '100%', width: '20%', overflowY: 'auto' }}
-      defaultSelectedKeys={['1']}
-      defaultOpenKeys={['sub1']}
+      defaultSelectedKeys={['0']}
+      defaultOpenKeys={['sub1', 'sub2']}
       mode="inline"
       items={items}
     />

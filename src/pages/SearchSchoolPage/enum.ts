@@ -51,8 +51,9 @@ export enum city {
 
 export enum rank {
     None,
-    gdp,
-    _985211,
-    doubleFristClass,
-    eduFunds
+    GDP,
+    _985,
+    _211,
+    DoubleFristClass,
+    EduFunds
 }
