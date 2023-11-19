@@ -13,7 +13,7 @@ import Mask from '../../components/Mask'
 import { usePageContainer } from '../_app'
 import { useSlideAnimation } from '@/hooks/useSlideAnimation'
 import { VideoSchoolType, data } from './data'
-
+import NjuLogo from '@/static/school-badge/南京大学 NJU.svg'
 function CardItem(props: VideoSchoolType & { image: string }) {
   const { image, ...video } = props
   const [show, setShow] = React.useState(false)
@@ -90,6 +90,7 @@ function CardDetail(props: VideoSchoolType) {
       <video controls width={'100%'}>
         <source src={videoUrl} />
       </video>
+      <NjuLogo />
     </div>
   )
 }
