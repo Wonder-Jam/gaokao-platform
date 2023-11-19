@@ -7,13 +7,20 @@ export const videoList = [
   'https://zdzsc.zju.edu.cn/_upload/article/videos/13/3a/c74ace004db59744c4134e092c5e/08e0e213-098b-4e30-aa12-c8513c4eedd3.mp4',
   'https://zdzsc.zju.edu.cn/_upload/article/videos/ae/8b/efb9dd37409297f15460d51100f4/3b78cde6-3fc1-47ef-a1e2-e864841625d8-B.mp4',
 ]
-
+import NJU_LOGO from '@/static/school-badge/南京大学 NJU.svg'
+import ZJU_LOGO from '@/static/school-badge/浙江大学 ZJU-1.svg'
+import FDU_LOGO from '@/static/school-badge/复旦大学 FDU-1.svg'
+import SJTU_LOGO from '@/static/school-badge/上海交通大学 SJTU-1.svg'
+import USTC_LOGO from '@/static/school-badge/中国科学技术大学 USTC-1.svg'
+import THU_LOGO from '@/static/school-badge/清华大学 THU-1.svg'
+import PKU_LOGO from '@/static/school-badge/北京大学 PKU-1.svg'
 export interface VideoSchoolType {
   schoolName: string
   schoolLogo: string
   schoolSiteUrl: string
   schoolRecuritmentUrl: string
   videoUrl: string
+  schoolBdage: React.ReactNode
 }
 
 export const VideoSchoolList: VideoSchoolType[] = [
@@ -24,6 +31,7 @@ export const VideoSchoolList: VideoSchoolType[] = [
     schoolRecuritmentUrl: 'https://bkzs.nju.edu.cn',
     videoUrl:
       'https://bkzs.nju.edu.cn/upload/cms/video/3dc16732de844d53b73f1c60f319cfbe.mp4',
+    schoolBdage: <NJU_LOGO />,
   },
   {
     schoolName: '南京大学',
@@ -32,6 +40,8 @@ export const VideoSchoolList: VideoSchoolType[] = [
     schoolRecuritmentUrl: 'https://bkzs.nju.edu.cn',
     videoUrl:
       'https://bkzs.nju.edu.cn/upload/cms/video/92bec00c5c144aa1a8a34aa3a052be5d.mp4',
+
+    schoolBdage: <NJU_LOGO />,
   },
   {
     schoolName: '南京大学',
@@ -40,6 +50,7 @@ export const VideoSchoolList: VideoSchoolType[] = [
     schoolRecuritmentUrl: 'https://bkzs.nju.edu.cn/',
     videoUrl:
       'https://bkzs.nju.edu.cn/upload/cms/video/e5663e84db014278a4ca59ba3f33ae00.mp4',
+    schoolBdage: <NJU_LOGO />,
   },
   {
     schoolName: '南京大学',
@@ -48,6 +59,7 @@ export const VideoSchoolList: VideoSchoolType[] = [
     schoolRecuritmentUrl: 'https://bkzs.nju.edu.cn/',
     videoUrl:
       'https://bkzs.nju.edu.cn/upload/cms/video/fce8244248b145eeae89ee16a5fb49ce.mp4',
+    schoolBdage: <NJU_LOGO />,
   },
   {
     schoolName: '浙江大学',
@@ -57,6 +69,7 @@ export const VideoSchoolList: VideoSchoolType[] = [
     schoolRecuritmentUrl: 'https://zdzsc.zju.edu.cn/',
     videoUrl:
       'https://zdzsc.zju.edu.cn/_upload/article/videos/f9/ad/97e15ccf4a619d9f0fb1ceca1c30/48686922-7e4c-48e3-945e-6e5a60b5f6ab-B.mp4',
+    schoolBdage: <ZJU_LOGO />,
   },
   {
     schoolName: '浙江大学',
@@ -66,6 +79,7 @@ export const VideoSchoolList: VideoSchoolType[] = [
     schoolRecuritmentUrl: 'https://zdzsc.zju.edu.cn/',
     videoUrl:
       'https://zdzsc.zju.edu.cn/_upload/article/videos/13/3a/c74ace004db59744c4134e092c5e/08e0e213-098b-4e30-aa12-c8513c4eedd3.mp4',
+    schoolBdage: <ZJU_LOGO />,
   },
   {
     schoolName: '复旦大学',
@@ -73,6 +87,7 @@ export const VideoSchoolList: VideoSchoolType[] = [
     schoolSiteUrl: 'https://www.fudan.edu.cn/',
     schoolRecuritmentUrl: 'https://ao.fudan.edu.cn/',
     videoUrl: 'xxx',
+    schoolBdage: <FDU_LOGO />,
   },
   {
     schoolName: '上海交通大学',
@@ -80,6 +95,7 @@ export const VideoSchoolList: VideoSchoolType[] = [
     schoolSiteUrl: 'https://www.sjtu.edu.cn/',
     schoolRecuritmentUrl: 'https://zsb.sjtu.edu.cn/web/jdzsb/3810001.htm',
     videoUrl: 'xxx',
+    schoolBdage: <SJTU_LOGO />,
   },
   {
     schoolName: '中国科学技术大学',
@@ -87,6 +103,7 @@ export const VideoSchoolList: VideoSchoolType[] = [
     schoolSiteUrl: 'https://www.ustc.edu.cn/',
     schoolRecuritmentUrl: 'https://zsb.ustc.edu.cn/main.htm',
     videoUrl: 'xxx',
+    schoolBdage: <USTC_LOGO />,
   },
   {
     schoolName: '清华大学',
@@ -94,6 +111,7 @@ export const VideoSchoolList: VideoSchoolType[] = [
     schoolSiteUrl: 'https://www.tsinghua.edu.cn/',
     schoolRecuritmentUrl: 'https://join-tsinghua.edu.cn/',
     videoUrl: '',
+    schoolBdage: <THU_LOGO />,
   },
   {
     schoolName: '北京大学',
@@ -102,6 +120,7 @@ export const VideoSchoolList: VideoSchoolType[] = [
     schoolSiteUrl: 'https://www.pku.edu.cn/',
     schoolRecuritmentUrl: 'https://www.gotopku.cn/',
     videoUrl: '',
+    schoolBdage: <PKU_LOGO />,
   },
 ]
 
