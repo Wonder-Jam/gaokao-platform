@@ -81,10 +81,12 @@ function HeaderBar() {
       <div>
         <ImageContainer>
           <Image
-            src={'https://files.lsmcloud.top/blog218cc985c57906433217d46ca1db1205.png'}
+            src={
+              'https://files.lsmcloud.top/blog218cc985c57906433217d46ca1db1205.png'
+            }
             preview={false}
             width={'200px'}
-            style={{transform: 'scale(1.2)'}}
+            style={{ transform: 'scale(1.2)' }}
             onClick={goToEolPage}
           />
         </ImageContainer>

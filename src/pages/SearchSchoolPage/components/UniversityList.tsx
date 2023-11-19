@@ -6,7 +6,7 @@ import { SearchProps } from 'antd/es/input/Search'
 
 const { Text } = Typography
 
-const { Search } = Input;
+const { Search } = Input
 
 // TODO: UniversityList 太丑了，需要美化：1.太空了，资源利用不到位 2.List.Item.Meta限制太多了，要自定义内容
 
@@ -86,10 +86,17 @@ const UniversityList: React.FC = () => {
   const ListItem = (item: DataType) => {
     return (
       <UniversityItem>
-        <img src={item.picture.large} style={{ borderRadius: '3px', width: '80px', height: '80px' }} />
+        <img
+          src={item.picture.large}
+          style={{ borderRadius: '3px', width: '80px', height: '80px' }}
+        />
         <div style={{ marginLeft: '10px' }}>
-          <h3 style={{ margin: '0px', marginTop: '6px' }}><a href={item.website}>{item.name}</a></h3>
-          <p style={{ margin: '0px', marginTop: '5px', color: 'gray' }}>{item.motto}</p>
+          <h3 style={{ margin: '0px', marginTop: '6px' }}>
+            <a href={item.website}>{item.name}</a>
+          </h3>
+          <p style={{ margin: '0px', marginTop: '5px', color: 'gray' }}>
+            {item.motto}
+          </p>
           <p style={{ margin: '0px', marginTop: '2px' }}>{item.description}</p>
         </div>
       </UniversityItem>
@@ -119,11 +126,18 @@ const UniversityList: React.FC = () => {
     )
   }
 
-  const onSearch: SearchProps['onSearch'] = (value, _e, info) => console.log(info?.source, value);
+  const onSearch: SearchProps['onSearch'] = (value, _e, info) =>
+    console.log(info?.source, value)
 
   return (
     <>
-      <Search placeholder="搜索大学..." onSearch={onSearch} enterButton size="large" bordered={true}/>
+      <Search
+        placeholder="搜索大学..."
+        onSearch={onSearch}
+        enterButton
+        size="large"
+        bordered={true}
+      />
       <List
         className="demo-loadmore-list"
         loading={initLoading}
