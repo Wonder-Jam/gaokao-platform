@@ -5,28 +5,24 @@ import UniversityList from './components/UniversityList';
 import { MapContainer, Layer, CardListContainer } from './style';
 import * as Enum from './enum';
 
-export const SearchContext = createContext<{
-  province: Enum.province;
-  city: Enum.city;
-  rank: Enum.rank;
+export const MajorSearchContext = createContext<{
+  majorCategories: Enum.majorCategories;
+
   setChoices: React.Dispatch<React.SetStateAction<{
-    province: Enum.province;
-    city: Enum.city;
-    rank: Enum.rank;
+    majorCategories: Enum.majorCategories;
   }>>;
 }>({
-  province: Enum.province.None,
-  city: Enum.city.None,
-  rank: Enum.rank.None,
+  majorCategories: Enum.majorCategories.ALL,
+
   setChoices: () => { }, // 初始值可以是一个空函数，不过在使用时会被替换
 });
 
 
+
+
 export default function SearchSchoolPage() {
   const [choices, setChoices] = useState({
-    province: Enum.province.None,
-    city: Enum.city.None,
-    rank: Enum.rank.None,
+    majorCategories: Enum.majorCategories.ALL,
   });
 
   useEffect(() => {
@@ -40,7 +36,7 @@ export default function SearchSchoolPage() {
   }, [choices]);
 
   return (
-    <SearchContext.Provider value={{ ...choices, setChoices }}>
+    <MajorSearchContext.Provider value={{ ...choices, setChoices }}>
       <>
         <Entry> 
           <Layer>
@@ -52,6 +48,6 @@ export default function SearchSchoolPage() {
           </Layer> 
         </Entry>
       </>
-    </SearchContext.Provider>
+    </MajorSearchContext.Provider>
   );
 }
