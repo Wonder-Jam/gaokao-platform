@@ -19,7 +19,7 @@ export const Layer = styled.div`
 `
 
 export const CardListContainer = styled.div`
-  width: 30%;
+  width: 80%;
   height: 100%;
   overflow-y: auto;
   // margin-right: 5px;

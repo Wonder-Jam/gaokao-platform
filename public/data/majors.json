@@ -1,0 +1,42 @@
+{
+  "results": [
+    {
+      "id": 1,
+      "name": "哲学",
+      "website": "https://nju.edu.cn/",
+      "picture": {
+        "large": "https://files.lsmcloud.top/blog049ee3d1eb59c42ad5daa5ad08c21c01.svg",
+        "medium": "https://randomuser.me/api/portraits/med/women/89.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/women/89.jpg"
+      },
+      "salary": 11000,
+      "description": "专业代码：010101  |  修业年限：四年  |  授予学位：哲学学士  |  男女比例：40:60"
+    },
+    {
+      "id": 2,
+      "name": "逻辑学",
+      "website": "https://www.shu.university/",
+      "picture": {
+        "large": "https://files.lsmcloud.top/blog99e8c5c6c2fea504ce95647940bf210d.svg",
+        "medium": "https://randomuser.me/api/portraits/med/women/89.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/women/89.jpg"
+      },
+      "motto": "博学，求知",
+      "salary": 15000,
+      "description": "专业代码：010102 | 修业年限：四年 | 授予学位：哲学学士 | 男女比例：51:49"
+    },
+    {
+      "id": 3,
+      "name": "宗教学",
+      "website": "https://www.sysu.edu.cn/",
+      "picture": {
+        "large": "https://files.lsmcloud.top/blog656ac9fc66a720ce26135d70f8182f52.svg",
+        "medium": "https://randomuser.me/api/portraits/med/women/89.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/women/89.jpg"
+      },
+      "motto": "博学 审问 慎思 明辨 笃行 化疗",
+      "salary": 11200,
+      "description": "专业代码：010103K | 修业年限：四年 | 授予学位：哲学学士 | 男女比例：32:68"
+    }
+  ]
+}

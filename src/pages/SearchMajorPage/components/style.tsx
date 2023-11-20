@@ -8,7 +8,7 @@ export const ListContainer = styled.div`
 
 export const List = styled.ul`
   display: flex;
-  flex-wrap: wrap; // 允许多个省份在同一行显示，并换行
+  flex-wrap: wrap; // 允许多个在同一行显示，并换行
   width: 100%;
   justify-content: space-between;
   overflow: hidden;
@@ -22,7 +22,7 @@ export const SelectedItem = styled.li`
   backgroundcolor: '#eee';
 `
 
-export const UniversityItem = styled.li`
+export const MajorItem = styled.li`
   display: flex;
   flex-direction: row;
   font-family: PingFangSC-Regular, sans-serif;

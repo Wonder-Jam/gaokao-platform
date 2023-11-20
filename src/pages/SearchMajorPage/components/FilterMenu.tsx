@@ -3,7 +3,7 @@ import { BarChartOutlined, GlobalOutlined, SettingOutlined } from '@ant-design/i
 import type { MenuProps } from 'antd';
 import { Menu } from 'antd';
 import * as Enum from '../enum';
-import {MajorSearchContext, SearchContext} from '../index';
+import {MajorSearchContext} from '../index';
 import {majorCategories} from "../enum";
 import MajorCategoriesList from "@/pages/SearchMajorPage/components/MajorCategoriesList";
 

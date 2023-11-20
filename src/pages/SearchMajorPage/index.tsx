@@ -1,7 +1,7 @@
 import React, { createContext, useState, useEffect } from 'react';
 import Entry from '@/components/Entry';
 import FilterMenu from './components/FilterMenu';
-import UniversityList from './components/UniversityList';
+import MajorList from './components/MajorList';
 import { MapContainer, Layer, CardListContainer } from './style';
 import * as Enum from './enum';
 
@@ -43,7 +43,7 @@ export default function SearchSchoolPage() {
             <FilterMenu />
 
             <CardListContainer>
-              <UniversityList />
+              <MajorList />
             </CardListContainer>
           </Layer> 
         </Entry>
