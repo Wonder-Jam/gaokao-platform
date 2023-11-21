@@ -37,7 +37,7 @@ interface DataType {
 const count = 3
 const fakeDataUrl = `/data/majors.json`
 
-const MajorList: React.FC = () => {
+const MajorInfo: React.FC = () => {
   const [initLoading, setInitLoading] = useState(true)
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState<DataType[]>([])
@@ -87,10 +87,9 @@ const MajorList: React.FC = () => {
   }
 
     const handleMajorItemClick = () => {
-// router.push('/majorDetailPage')
+router.push('/SearchSchoolPage')
       // router.push('/SearchSchoolPage');
-        router.push('/majorDetailPage')
-        // window.open('/majorDetailPage', '_blank');
+      //   window.open('https://www.example.com', '_blank');
     }
 
   const ListItem = (item: DataType) => {
@@ -161,4 +160,4 @@ const MajorList: React.FC = () => {
   )
 }
 
-export default MajorList
+export default MajorInfo
