@@ -87,7 +87,7 @@ const MajorInfo: React.FC = () => {
   }
 
     const handleMajorItemClick = () => {
-router.push('/SearchSchoolPage')
+// router.push('/SearchSchoolPage')
       // router.push('/SearchSchoolPage');
       //   window.open('https://www.example.com', '_blank');
     }

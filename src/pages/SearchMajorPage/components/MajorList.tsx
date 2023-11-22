@@ -89,8 +89,8 @@ const MajorList: React.FC = () => {
     const handleMajorItemClick = () => {
 // router.push('/majorDetailPage')
       // router.push('/SearchSchoolPage');
-        router.push('/majorDetailPage')
-        // window.open('/majorDetailPage', '_blank');
+      //   router.push('/majorDetailPage')
+        window.open('/majorDetailPage', '_blank');
     }
 
   const ListItem = (item: DataType) => {

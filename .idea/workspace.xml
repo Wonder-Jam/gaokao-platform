@@ -5,14 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e4fa2bc5-a298-4e0f-9480-461789a4112b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/pages/majorDetailPage/components/MajorInfo.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/majorDetailPage/components/style.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/majorDetailPage/enum.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/majorDetailPage/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/majorDetailPage/style.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/SearchMajorPage/components/MajorList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/SearchMajorPage/components/MajorList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/SearchMajorPage/enum.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/SearchMajorPage/enum.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/majorDetailPage/components/MajorInfo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/majorDetailPage/components/MajorInfo.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,7 +17,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="noError" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -51,7 +46,7 @@
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "com.github.copilot.settings.ApplicationConfigurable",
     "settings.editor.splitter.proportion": "0.16390179",
-    "ts.external.directory.path": "E:\\HCI\\gao-kao-platform\\node_modules\\typescript\\lib",
+    "ts.external.directory.path": "D:\\JetBrains\\WebStorm 2023.2.2\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
