@@ -98,6 +98,36 @@ function EChartsMap() {
             myChart = echarts.init(chartRef.current);
             echarts.registerMap(map, features);
             const option = {
+                tooltip: {
+                    // textStyle: {
+                    //     color: "#B1D6F6",
+                    //     fontSize: 8,
+                    //     padding: 20,
+                    //     align: "left"
+                    // },
+                    backgroundColor: "#FFFFFFE6",
+                    borderWidth: 0,
+
+                    trigger: "item",
+                    formatter: function (params) {
+                        console.log(params)
+                        const name = params.name;
+                        const gdp = gdpData.find(item => item.name === name) ?? { value: "unkown" };
+                        const _985 = universities985.find(item => item.name === name) ?? { value: "unkown" };
+                        const _211 = universities211.find(item => item.name === name) ?? { value: "unkown" };
+                        const doubleFirstClass = universitiesDoubleFirstClass.find(item => item.name === name) ?? { value: "unkown" };
+                        const eduFunds = educationBudget.find(item => item.name === name) ?? { value: "unkown" };
+                        return `
+                        <div style="font-size: 16; font-weight: bold">${name}</div>
+                        <div style="font-size: 10">GDP: ${gdp.value} (亿)</div>
+                        <div style="font-size: 10">985: ${_985.value} (所)</div>
+                        <div style="font-size: 10">211: ${_211.value} (所)</div>
+                        <div style="font-size: 10">双一流: ${doubleFirstClass.value} (所)</div>
+                        <div style="font-size: 10">教育经费: ${eduFunds.value} (亿)</div>
+                    `
+
+                    }
+                },
                 series: [
                     {
                         type: "map",
@@ -295,74 +325,74 @@ function EChartsMap() {
     ];
 
     // 双一流数组
-const universitiesDoubleFirstClass = [
-    { name: "北京市", value: 11 },
-    { name: "天津市", value: 4 },
-    { name: "河北省", value: 1 },
-    { name: "山西省", value: 1 },
-    { name: "内蒙古自治区", value: 1 },
-    { name: "辽宁省", value: 3 },
-    { name: "吉林省", value: 2 },
-    { name: "黑龙江省", value: 2 },
-    { name: "上海市", value: 9 },
-    { name: "江苏省", value: 6 },
-    { name: "浙江省", value: 3 },
-    { name: "安徽省", value: 3 },
-    { name: "福建省", value: 2 },
-    { name: "江西省", value: 1 },
-    { name: "山东省", value: 4 },
-    { name: "河南省", value: 2 },
-    { name: "湖北省", value: 5 },
-    { name: "湖南省", value: 5 },
-    { name: "广东省", value: 6 },
-    { name: "广西壮族自治区", value: 1 },
-    { name: "海南省", value: 1 },
-    { name: "重庆市", value: 2 },
-    { name: "四川省", value: 5 },
-    { name: "贵州省", value: 1 },
-    { name: "云南省", value: 1 },
-    { name: "西藏自治区", value: 1 },
-    { name: "陕西省", value: 6 },
-    { name: "甘肃省", value: 1 },
-    { name: "青海省", value: 1 },
-    { name: "宁夏回族自治区", value: 1 },
-    { name: "新疆维吾尔自治区", value: 2 }
-];
+    const universitiesDoubleFirstClass = [
+        { name: "北京市", value: 11 },
+        { name: "天津市", value: 4 },
+        { name: "河北省", value: 1 },
+        { name: "山西省", value: 1 },
+        { name: "内蒙古自治区", value: 1 },
+        { name: "辽宁省", value: 3 },
+        { name: "吉林省", value: 2 },
+        { name: "黑龙江省", value: 2 },
+        { name: "上海市", value: 9 },
+        { name: "江苏省", value: 6 },
+        { name: "浙江省", value: 3 },
+        { name: "安徽省", value: 3 },
+        { name: "福建省", value: 2 },
+        { name: "江西省", value: 1 },
+        { name: "山东省", value: 4 },
+        { name: "河南省", value: 2 },
+        { name: "湖北省", value: 5 },
+        { name: "湖南省", value: 5 },
+        { name: "广东省", value: 6 },
+        { name: "广西壮族自治区", value: 1 },
+        { name: "海南省", value: 1 },
+        { name: "重庆市", value: 2 },
+        { name: "四川省", value: 5 },
+        { name: "贵州省", value: 1 },
+        { name: "云南省", value: 1 },
+        { name: "西藏自治区", value: 1 },
+        { name: "陕西省", value: 6 },
+        { name: "甘肃省", value: 1 },
+        { name: "青海省", value: 1 },
+        { name: "宁夏回族自治区", value: 1 },
+        { name: "新疆维吾尔自治区", value: 2 }
+    ];
 
-// 教育总经费数组（单位：亿元）
-const educationBudget = [
-    { name: "北京市", value: 500 },
-    { name: "天津市", value: 200 },
-    { name: "河北省", value: 300 },
-    { name: "山西省", value: 150 },
-    { name: "内蒙古自治区", value: 100 },
-    { name: "辽宁省", value: 250 },
-    { name: "吉林省", value: 120 },
-    { name: "黑龙江省", value: 100 },
-    { name: "上海市", value: 400 },
-    { name: "江苏省", value: 450 },
-    { name: "浙江省", value: 350 },
-    { name: "安徽省", value: 200 },
-    { name: "福建省", value: 200 },
-    { name: "江西省", value: 150 },
-    { name: "山东省", value: 400 },
-    { name: "河南省", value: 300 },
-    { name: "湖北省", value: 250 },
-    { name: "湖南省", value: 250 },
-    { name: "广东省", value: 600 },
-    { name: "广西壮族自治区", value: 150 },
-    { name: "海南省", value: 50 },
-    { name: "重庆市", value: 200 },
-    { name: "四川省", value: 300 },
-    { name: "贵州省", value: 100 },
-    { name: "云南省", value: 150 },
-    { name: "西藏自治区", value: 50 },
-    { name: "陕西省", value: 200 },
-    { name: "甘肃省", value: 100 },
-    { name: "青海省", value: 50 },
-    { name: "宁夏回族自治区", value: 50 },
-    { name: "新疆维吾尔自治区", value: 150 }
-];
+    // 教育总经费数组（单位：亿元）
+    const educationBudget = [
+        { name: "北京市", value: 500 },
+        { name: "天津市", value: 200 },
+        { name: "河北省", value: 300 },
+        { name: "山西省", value: 150 },
+        { name: "内蒙古自治区", value: 100 },
+        { name: "辽宁省", value: 250 },
+        { name: "吉林省", value: 120 },
+        { name: "黑龙江省", value: 100 },
+        { name: "上海市", value: 400 },
+        { name: "江苏省", value: 450 },
+        { name: "浙江省", value: 350 },
+        { name: "安徽省", value: 200 },
+        { name: "福建省", value: 200 },
+        { name: "江西省", value: 150 },
+        { name: "山东省", value: 400 },
+        { name: "河南省", value: 300 },
+        { name: "湖北省", value: 250 },
+        { name: "湖南省", value: 250 },
+        { name: "广东省", value: 600 },
+        { name: "广西壮族自治区", value: 150 },
+        { name: "海南省", value: 50 },
+        { name: "重庆市", value: 200 },
+        { name: "四川省", value: 300 },
+        { name: "贵州省", value: 100 },
+        { name: "云南省", value: 150 },
+        { name: "西藏自治区", value: 50 },
+        { name: "陕西省", value: 200 },
+        { name: "甘肃省", value: 100 },
+        { name: "青海省", value: 50 },
+        { name: "宁夏回族自治区", value: 50 },
+        { name: "新疆维吾尔自治区", value: 150 }
+    ];
 
 
 
@@ -406,6 +436,7 @@ const educationBudget = [
                         const max = getMax(gdpData);
                         myChart.setOption({
                             visualMap: {
+                                show: true,
                                 min: 0,
                                 max: max,
                                 text: ['高', '低'],
@@ -430,14 +461,6 @@ const educationBudget = [
                                     },
                                 }
                             ],
-                            // legend: {
-                            //     // Try 'horizontal'
-                            //     show: true,
-                            //     orient: 'vertical',
-                            //     right: 10,
-                            //     top: 'center',
-                            //     data: 'map',
-                            // },
                         })
                         console.log("set gdp")
                     }
@@ -447,6 +470,7 @@ const educationBudget = [
                         const max = getMax(universities985);
                         myChart.setOption({
                             visualMap: {
+                                show: true,
                                 min: 0,
                                 max: max,
                                 text: ['高', '低'],
@@ -481,6 +505,7 @@ const educationBudget = [
                         console.log(max)
                         myChart.setOption({
                             visualMap: {
+                                show: true,
                                 min: 0,
                                 max: max,
                                 text: ['高', '低'],
@@ -515,6 +540,7 @@ const educationBudget = [
                         console.log(max)
                         myChart.setOption({
                             visualMap: {
+                                show: true,
                                 min: 0,
                                 max: max,
                                 text: ['高', '低'],
@@ -549,6 +575,7 @@ const educationBudget = [
                         console.log(max)
                         myChart.setOption({
                             visualMap: {
+                                show: true,
                                 min: 0,
                                 max: max,
                                 text: ['高', '低'],
