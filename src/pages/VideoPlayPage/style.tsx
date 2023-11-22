@@ -41,6 +41,7 @@ export const ArrowLeftContainer = styled.div`
   cursor: pointer;
   transition: all 0.3s;
   border: 1px solid rgba(0, 0, 0, 0.08);
+  z-index: 10;
   box-shadow:
     0 2px 8px 0 rgba(0, 0, 0, 0.04),
     0 1px 2px 0 rgba(0, 0, 0, 0.02);

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Image, Avatar } from 'antd'
+import { Card, Image, Button } from 'antd'
 import Entry from '@/components/Entry'
 const { Meta } = Card
 import { ArrowLeftOutlined, DownOutlined, UpOutlined } from '@ant-design/icons'
@@ -13,7 +13,6 @@ import Mask from '../../components/Mask'
 import { usePageContainer } from '../_app'
 import { useSlideAnimation } from '@/hooks/useSlideAnimation'
 import { VideoSchoolType, data } from './data'
-
 function CardItem(props: VideoSchoolType & { image: string }) {
   const { image, ...video } = props
   const [show, setShow] = React.useState(false)
@@ -72,7 +71,14 @@ function MaskContainer(props: {
 }
 
 function CardDetail(props: VideoSchoolType) {
-  const { videoUrl, schoolName } = props
+  const {
+    videoUrl,
+    schoolName,
+    schoolSiteUrl,
+    schoolRecuritmentUrl,
+    schoolBdage,
+    schoolLogo,
+  } = props
   return (
     <div
       style={{
@@ -84,17 +90,67 @@ function CardDetail(props: VideoSchoolType) {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        flexDirection: 'column',
       }}
     >
       <div>{schoolName}</div>
+      <img src={schoolLogo} />
+      {schoolBdage}
       <video controls width={'100%'}>
         <source src={videoUrl} />
       </video>
+      <div
+        style={{
+          display: 'flex',
+          width: '50%',
+          marginTop: '16px',
+          justifyContent: 'space-around',
+        }}
+      >
+        <Button
+          style={{
+            fontSize: '30px',
+            height: '60px',
+            lineHeight: '40px',
+          }}
+          size="large"
+          target="_blank"
+          href={schoolSiteUrl}
+        >
+          学校官网
+        </Button>
+        <Button
+          style={{ fontSize: '30px', height: '60px', lineHeight: '40px' }}
+          size="large"
+          target="_blank"
+          href={schoolRecuritmentUrl}
+        >
+          本科招生网
+        </Button>
+      </div>
     </div>
   )
 }
 
-function InteractionContainer() {}
+interface ButtonProps {
+  content: string
+  href?: string
+}
+
+function MyButton(props: ButtonProps) {
+  return (
+    <button>
+      <a
+        style={{
+          textDecoration: 'none',
+        }}
+        href={props.href}
+        target="_blank"
+      />
+      {props.content}
+    </button>
+  )
+}
 
 export default function VideoPlayPage() {
   const cardItems = data.map(item => <CardItem key={item.title} {...item} />)

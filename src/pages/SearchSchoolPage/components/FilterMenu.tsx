@@ -1,10 +1,14 @@
-import React, { useContext } from 'react';
-import { BarChartOutlined, GlobalOutlined, SettingOutlined } from '@ant-design/icons';
-import type { MenuProps } from 'antd';
-import { Menu } from 'antd';
-import ProvinceList from './ProvinceList';
-import * as Enum from '../enum';
-import { SearchContext } from '../index';
+import React, { useContext } from 'react'
+import {
+  BarChartOutlined,
+  GlobalOutlined,
+  SettingOutlined,
+} from '@ant-design/icons'
+import type { MenuProps } from 'antd'
+import { Menu } from 'antd'
+import ProvinceList from './ProvinceList'
+import * as Enum from '../enum'
+import { SearchContext } from '../index'
 
 // TODO: 1. 这个Menu也是信息密度太低了，目前计划改成三个antd中的select组件（但是感觉也不合适）2. 使用context
 
@@ -62,22 +66,32 @@ const provinceAbbreviationMap: Map<string, Enum.province> = new Map([
   ['澳门', Enum.province.Macau],
   ['台湾', Enum.province.Taiwan],
   ['全国', Enum.province.None],
-]);
-
+])
 
 const FilterMenu: React.FC = () => {
-  const { province, city, rank, setChoices } = useContext(SearchContext);
+  const { province, city, rank, setChoices } = useContext(SearchContext)
   const handleProvinceSelect = (selectedProvince: string) => {
     // 在这里处理选中省份的逻辑，可以将选中的值存储在某个变量中
     // console.log(`Selected Province: ${selectedProvince}`);
-    setChoices({province: provinceAbbreviationMap.get(selectedProvince) ?? Enum.province.None,city,rank})
-  };
-  
+    setChoices({
+      province:
+        provinceAbbreviationMap.get(selectedProvince) ?? Enum.province.None,
+      city,
+      rank,
+    })
+  }
+
   const items: MenuProps['items'] = [
     getItem('地区', 'sub1', <GlobalOutlined />, [
-      getItem(<ProvinceList onSelect={handleProvinceSelect} selected={province}/>, 'g1', null, [], 'group')
+      getItem(
+        <ProvinceList onSelect={handleProvinceSelect} selected={province} />,
+        'g1',
+        null,
+        [],
+        'group',
+      ),
     ]),
-  
+
     getItem('为地区排序', 'sub2', <BarChartOutlined />, [
       getItem('无', Enum.rank.None),
       getItem('全省GDP总值', Enum.rank.GDP),
@@ -86,9 +100,9 @@ const FilterMenu: React.FC = () => {
       getItem('双一流大学数量', Enum.rank.DoubleFristClass),
       getItem('教育总经费', Enum.rank.EduFunds),
     ]),
-  
+
     { type: 'divider' },
-  
+
     // getItem('等级', 'sub4', <SettingOutlined />, [
     //   getItem('Option 9', '9'),
     //   getItem('Option 10', '10'),
@@ -96,13 +110,13 @@ const FilterMenu: React.FC = () => {
     //   getItem('Option 12', '12'),
     //   getItem('双一流大学数', 'sub3', null, [getItem('Option 7', '7'), getItem('Option 8', '8')]),
     // ]),
-  
-    // getItem('Group', 'grp', null, [getItem('Option 13', '13'), getItem('Option 14', '14')], 'group'),
-  ];
 
-  const onClick: MenuProps['onClick'] = (e) => {
-    setChoices({province,city,rank: Number(e.key) as Enum.rank})
-  };
+    // getItem('Group', 'grp', null, [getItem('Option 13', '13'), getItem('Option 14', '14')], 'group'),
+  ]
+
+  const onClick: MenuProps['onClick'] = e => {
+    setChoices({ province, city, rank: Number(e.key) as Enum.rank })
+  }
 
   return (
     <Menu
