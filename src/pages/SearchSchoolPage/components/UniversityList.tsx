@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Input, Button, List, Skeleton, Typography, Card } from 'antd'
 import { UniversityItem } from './style'
-import { eventBus } from '../utils/Eventbus'
+import { eventBus } from '../utils/EventBus'
 import { SearchProps } from 'antd/es/input/Search'
 
 const { Text } = Typography

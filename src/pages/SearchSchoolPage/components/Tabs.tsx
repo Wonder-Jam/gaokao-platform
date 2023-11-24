@@ -10,7 +10,7 @@ import { CSS } from '@dnd-kit/utilities';
 import React, { useState, useRef, useEffect } from 'react';
 import { Tabs, Divider } from 'antd';
 import EChartsMap from './EchartsMap';
-import { eventBus } from '../utils/Eventbus';
+import { eventBus } from '../utils/EventBus';
 
 const initialItems = [
     {
