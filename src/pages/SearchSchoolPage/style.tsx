@@ -22,5 +22,6 @@ export const CardListContainer = styled.div`
   width: 30%;
   height: 100%;
   overflow-y: auto;
-  // margin-right: 5px;
+  background-color: #f5f5f5;
+  // margin-left: 5px;
 `

@@ -24,6 +24,7 @@ export const SelectedItem = styled.li`
 
 export const UniversityItem = styled.li`
   display: flex;
+  padding: 0px;
   flex-direction: row;
   font-family: PingFangSC-Regular, sans-serif;
 `

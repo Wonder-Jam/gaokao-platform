@@ -616,7 +616,7 @@ function EChartsMap() {
     return (
         <div
             ref={chartRef}
-            style={{ width: "500px", height: "500px" }}
+            style={{ width: "500px", height: "500px", display: "flex", justifyContent: "center", alignItems: "center"}}
         >Loading...</div>
     );
 }

@@ -5,6 +5,8 @@ import FilterMenu from './components/FilterMenu'
 import UniversityList from './components/UniversityList'
 import { MapContainer, Layer, CardListContainer } from './style'
 import * as Enum from './enum'
+import { usePageNavigation } from '@/hooks/usePageNavigation'
+import Tabs from './components/Tabs'
 
 export const SearchContext = createContext<{
   province: Enum.province
@@ -48,7 +50,7 @@ export default function SearchSchoolPage() {
           <Layer>
             <FilterMenu />
             <MapContainer>
-              <EchartsMap />
+              <Tabs/>
             </MapContainer>
             <CardListContainer>
               <UniversityList />

@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.2.6",
+    "@dnd-kit/sortable": "^8.0.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@nivo/core": "^0.83.0",
@@ -22,6 +23,7 @@
     "ahooks": "^3.7.8",
     "antd": "^5.9.1",
     "d3": "^7.8.5",
+    "dnd-kit": "^0.0.0-0",
     "echarts": "^5.4.3",
     "eslint-config-next": "13.4.19",
     "fs": "^0.0.1-security",

@@ -18,5 +18,8 @@ export function usePageNavigation() {
     goToEolPage() {
       window.open('https://www.eol.cn/', '_blank')
     },
+    goToSchoolDetailPage() {
+      router.push('/SchoolDetailPage')
+    }
   }
 }

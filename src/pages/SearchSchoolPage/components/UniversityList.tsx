@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { Input, Button, List, Skeleton, Typography } from 'antd'
+import { Input, Button, List, Skeleton, Typography, Card } from 'antd'
 import { UniversityItem } from './style'
-import { it } from 'node:test'
+import { eventBus } from '../utils/Eventbus'
 import { SearchProps } from 'antd/es/input/Search'
 
 const { Text } = Typography
@@ -11,14 +11,7 @@ const { Search } = Input
 // TODO: UniversityList 太丑了，需要美化：1.太空了，资源利用不到位 2.List.Item.Meta限制太多了，要自定义内容
 
 interface DataType {
-  // gender?: string;
-  // name: {
-  //   title?: string;
-  //   first?: string;
-  //   last?: string;
-  // };
   name?: string
-  // email?: string;
   website?: string
   picture: {
     large?: string
@@ -26,7 +19,6 @@ interface DataType {
     thumbnail?: string
   }
   motto?: string
-  // nat?: string;
   loading: boolean
   description?: string
 }
@@ -83,6 +75,12 @@ const UniversityList: React.FC = () => {
       })
   }
 
+  const onItemClicked = (item: DataType) => {
+    // Access the properties of the item here
+    console.log(item);
+    eventBus.emit('universityClicked', item)
+  }
+
   const ListItem = (item: DataType) => {
     return (
       <UniversityItem>
@@ -91,14 +89,15 @@ const UniversityList: React.FC = () => {
           style={{ borderRadius: '3px', width: '80px', height: '80px' }}
         />
         <div style={{ marginLeft: '10px' }}>
-          <h3 style={{ margin: '0px', marginTop: '6px' }}>
+          <h3 style={{ margin: '0px', marginTop: '3px' }}>
             <a href={item.website}>{item.name}</a>
           </h3>
-          <p style={{ margin: '0px', marginTop: '5px', color: 'gray' }}>
+          <p style={{ margin: '0px', marginTop: '2px', color: 'gray' }}>
             {item.motto}
           </p>
-          <p style={{ margin: '0px', marginTop: '2px' }}>{item.description}</p>
+          {/* <p style={{ margin: '0px', marginTop: '1px' }}>{item.description}</p> */}
         </div>
+        <Button onClick={()=>onItemClicked(item)} style={{position: 'absolute', bottom: '5px', right: '5px', fontFamily: "PingFangSC-Regular, sans-serif", color: '#4096ff'}}>更多</Button>
       </UniversityItem>
     )
   }
@@ -137,27 +136,21 @@ const UniversityList: React.FC = () => {
         enterButton
         size="large"
         bordered={true}
+        style={{ marginBottom: '10px' }}
       />
       <List
         className="demo-loadmore-list"
         loading={initLoading}
+        grid={{ gutter: 16, column: 1 }}
         itemLayout="horizontal"
         // bordered
         loadMore={loadMore}
         dataSource={list}
         renderItem={item => (
-          <List.Item
-          //   actions={[<a key="list-loadmore-edit">edit</a>, <a key="list-loadmore-more">more</a>]}
-          >
-            <Skeleton avatar title={false} loading={item.loading} active>
-              {/* <List.Item.Meta
-              avatar={<Avatar src={item.picture.large} />}
-              title={<a href={item.website}>{item.name}</a>}
-              description={info(item)}
-            /> */}
-              {/* <p>{item.description}</p> */}
+          <List.Item style={{ display:'flex', justifyContent:'center', alignItems:'center', padding:'0px'}}>
+            <Card hoverable={true} size='small' style={{width:'97%', height:'15%', padding:'0px'}}>
               <ListItem {...item} />
-            </Skeleton>
+            </Card>
           </List.Item>
         )}
       />
