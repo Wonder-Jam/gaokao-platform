@@ -89,3 +89,7 @@ npm install @nivo/core @nivo/geo
 ```
 
 (files.lsmcloud.top 是lyl的资源buncket)
+
+### 部署问题
+- 避免循环依赖
+- 页面要使用.page.tsx（在next.conifg里面配置了），因为next原则上不允许pages文件夹下面放components，next默认把它们都当成页面进行优化，导致build失败，所以配置了只有后缀为.page.tsx的才为页面

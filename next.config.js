@@ -3,6 +3,7 @@ const nextConfig = {
     reactStrictMode: true,
     transpilePackages: ["@nivo"],
     experimental: { esmExternals: "loose", },
+    pageExtensions: ['page.tsx', 'page.ts', 'page.jsx', 'page.js'],
     async rewrites() {
         return [
             {
