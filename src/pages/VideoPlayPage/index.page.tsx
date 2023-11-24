@@ -10,7 +10,7 @@ import {
   UpAndDownContainer,
 } from './style'
 import Mask from '../../components/Mask'
-import { usePageContainer } from '../_app'
+import { usePageContainer } from '../_app.page'
 import { useSlideAnimation } from '@/hooks/useSlideAnimation'
 import { VideoSchoolType, data } from './data'
 function CardItem(props: VideoSchoolType & { image: string }) {
