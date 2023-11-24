@@ -8,7 +8,7 @@ interface EventBus {
 
 export const eventBus: EventBus = {
     listeners: {},
-    subscribe(event, callback) {
+    subscribe(event, callback) {    
       if (!this.listeners[event]) {
         this.listeners[event] = [];
       }
