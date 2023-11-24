@@ -8,7 +8,7 @@ import type { MenuProps } from 'antd'
 import { Menu } from 'antd'
 import ProvinceList from './ProvinceList'
 import * as Enum from '../enum'
-import { SearchContext } from '../index'
+import { SearchContext } from '../Context/SearchContext'
 
 // TODO: 1. 这个Menu也是信息密度太低了，目前计划改成三个antd中的select组件（但是感觉也不合适）2. 使用context
 

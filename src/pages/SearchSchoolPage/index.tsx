@@ -1,30 +1,11 @@
 import React, { createContext, useState, useEffect } from 'react'
 import Entry from '@/components/Entry'
-import EchartsMap from './components/EchartsMap'
 import FilterMenu from './components/FilterMenu'
 import UniversityList from './components/UniversityList'
 import { MapContainer, Layer, CardListContainer } from './style'
 import * as Enum from './enum'
-import { usePageNavigation } from '@/hooks/usePageNavigation'
 import Tabs from './components/Tabs'
-
-export const SearchContext = createContext<{
-  province: Enum.province
-  city: Enum.city
-  rank: Enum.rank
-  setChoices: React.Dispatch<
-    React.SetStateAction<{
-      province: Enum.province
-      city: Enum.city
-      rank: Enum.rank
-    }>
-  >
-}>({
-  province: Enum.province.None,
-  city: Enum.city.None,
-  rank: Enum.rank.None,
-  setChoices: () => {}, // 初始值可以是一个空函数，不过在使用时会被替换
-})
+import { SearchContext } from './Context/SearchContext'
 
 export default function SearchSchoolPage() {
   const [choices, setChoices] = useState({
