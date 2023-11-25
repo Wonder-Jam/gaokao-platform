@@ -118,9 +118,11 @@ const App: React.FC = () => {
             activeKey={activeKey}
             items={items}
             type="editable-card"
-            style={{ width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+            // style={{ width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+            // style={{ width: '100%', height: '100%' }}
             renderTabBar={(tabBarProps, DefaultTabBar) => (
-                <div style={{display: "flex", alignItems:"start", width:"100%", overflow:"auto"}}>
+                // <div style={{display: "flex", alignItems:"start", width:"100%", overflow:"auto"}}>
+                <div>
                     <DndContext sensors={[sensor]} onDragEnd={onDragEnd}>
                         <SortableContext items={items.map((i) => i.key)} strategy={horizontalListSortingStrategy}>
                             <DefaultTabBar {...tabBarProps}>

@@ -1,9 +1,9 @@
 import styled from '@emotion/styled'
 
 export const MapContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
   width: 50%;
   height: 100%;
   overflow: hidden;
