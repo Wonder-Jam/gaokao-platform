@@ -31,7 +31,7 @@ export default function SearchSchoolPage() {
           <Layer>
             <FilterMenu />
             <MapContainer>
-              <Tabs/>
+              <Tabs />
             </MapContainer>
             <CardListContainer>
               <UniversityList />

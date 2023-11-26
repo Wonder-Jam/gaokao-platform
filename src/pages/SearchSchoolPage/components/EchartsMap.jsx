@@ -183,7 +183,8 @@ function EChartsMap() {
 
     useEffect(() => {
 
-        fetch('https://geo.datav.aliyun.com/areas_v3/bound/100000_full.json')
+        // fetch('https://geo.datav.aliyun.com/areas_v3/bound/100000_full.json')
+        fetch('files/china.json')
             .then(response => response.json())
             .then(data => {
                 setMap("china");
@@ -616,7 +617,7 @@ function EChartsMap() {
     return (
         <div
             ref={chartRef}
-            style={{ width: "500px", height: "500px", display: "flex", justifyContent: "center", alignItems: "center"}}
+            style={{ width: "500px", height: "500px", margin: "auto"}}
         >Loading...</div>
     );
 }

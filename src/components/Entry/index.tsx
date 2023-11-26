@@ -1,4 +1,5 @@
 import { usePageNavigation } from '../../hooks/usePageNavigation'
+import logo from '../../static/logo.jpeg'
 import {
   Button,
   Menu,
@@ -81,12 +82,13 @@ function HeaderBar() {
       <div>
         <ImageContainer>
           <Image
-            src={
-              'https://files.lsmcloud.top/blog218cc985c57906433217d46ca1db1205.png'
-            }
+            // src={
+            //   'https://files.lsmcloud.top/blog218cc985c57906433217d46ca1db1205.png'
+            // }
+            src={logo.src}
             preview={false}
-            width={'200px'}
-            style={{ transform: 'scale(1.2)' }}
+            // style={{ transform: 'scale(0.6)' }}
+            height={'60px'}
             onClick={goToEolPage}
           />
         </ImageContainer>
@@ -110,7 +112,7 @@ function HeaderBar() {
         allowClear
         size="large"
       />
-      <Button onClick={openLoginModal}>登录 | 注册</Button>
+      <Button onClick={openLoginModal} >登录 | 注册</Button>
       <LoginModal isModalOpen={isModalOpen} closeLoginModal={closeLoginModal} />
     </HeaderBarContainer>
   )
