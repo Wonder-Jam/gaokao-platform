@@ -39,7 +39,7 @@ const PolicyInformation: React.FC = () => {
 
     };
     return (
-        <div style={{backgroundColor: '#fff', margin: '20px'}}>
+        <div style={{backgroundColor: '#fff', margin: '20px', height: '430px'}}>
             <div style={titleStyle}>
                 政策与资讯
             </div>
@@ -110,7 +110,7 @@ const PolicyInformation: React.FC = () => {
                                     dataSource={guide}
                                     renderItem={(item, index) => (
                                         <List.Item style={{fontSize: '16px', fontWeight: '500'}}>
-                                            {item.length > 22 ? item.substring(0, 22)+'......' : item}
+                                            {item}
                                         </List.Item>
                                     )}
                                 />

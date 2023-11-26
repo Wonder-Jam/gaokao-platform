@@ -4,6 +4,7 @@ import Slider from "@/pages/HomePage/Slider";
 import SmartRecommend from "@/pages/HomePage/SmartRecommend";
 import MonthCalendar from "@/pages/HomePage/MonthCalendar";
 import PolicyInformation from "@/pages/HomePage/PolicyInformation";
+import CommonSense from "@/pages/HomePage/CommonSense";
 
 export default function Home() {
     let headerContainer: React.CSSProperties={
@@ -22,6 +23,7 @@ export default function Home() {
                         <SmartRecommend></SmartRecommend>
                     </div>
                     <PolicyInformation></PolicyInformation>
+                    <CommonSense></CommonSense>
                 </div>
             </Entry>
         </>
