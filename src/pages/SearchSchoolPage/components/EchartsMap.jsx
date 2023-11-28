@@ -617,7 +617,7 @@ function EChartsMap() {
     return (
         <div
             ref={chartRef}
-            style={{ height: "100vh", margin: "auto"}}
+            style={{ height: "85vh", margin: "auto"}}
         >Loading...</div>
     );
 }

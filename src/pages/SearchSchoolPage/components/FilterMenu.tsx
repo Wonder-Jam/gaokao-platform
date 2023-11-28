@@ -87,6 +87,9 @@ const FilterMenu: React.FC = () => {
   }
 
   const items: MenuProps['items'] = [
+    
+    getItem(collapsed? '收缩':'展开', 'sub3', collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined  />),
+
     getItem('地区', 'sub1', <GlobalOutlined />, [
       getItem(
         <ProvinceList onSelect={handleProvinceSelect} selected={province} />,
@@ -105,8 +108,6 @@ const FilterMenu: React.FC = () => {
       getItem('双一流大学数量', Enum.rank.DoubleFristClass),
       getItem('教育总经费', Enum.rank.EduFunds),
     ]),
-
-    getItem(collapsed? '收缩':'展开', 'sub3', collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined  />),
 
     { type: 'divider' },
 
