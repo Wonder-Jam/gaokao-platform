@@ -11,6 +11,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Tabs, Divider } from 'antd';
 import EChartsMap from './EchartsMap';
 import { eventBus } from '../utils/eventBus';
+import UniversityDetail from './UniversityDetail';
 
 const initialItems = [
     {
@@ -101,7 +102,7 @@ const App: React.FC = () => {
 
     const add = (item: any) => {
         const newActiveKey = `newTab${newTabIndex.current++}`;
-        setItems([...items, { label: item.name, children: <div>{item.name}</div>, key: newActiveKey, closable: true }]);
+        setItems([...items, { label: item.name, children: <UniversityDetail/>, key: newActiveKey, closable: true }]);
         setActiveKey(newActiveKey);
     };
 
@@ -119,7 +120,7 @@ const App: React.FC = () => {
             items={items}
             type="editable-card"
             // style={{ width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-            // style={{ width: '100%', height: '100%' }}
+            style={{ height: '100%' }}
             renderTabBar={(tabBarProps, DefaultTabBar) => (
                 // <div style={{display: "flex", alignItems:"start", width:"100%", overflow:"auto"}}>
                 <div>

@@ -64,8 +64,8 @@ function GaoKaoMenu() {
         mode="horizontal"
         style={{
           display: 'flex',
-          width: '40%',
-          justifyContent: 'space-between',
+          width: '60%',
+          justifyContent: 'space-evenly',
         }}
       />
     </>
@@ -103,7 +103,7 @@ function HeaderBar() {
         </ImageContainer> */}
       </div>
       <GaoKaoMenu />
-      <Input.Search
+      {/* <Input.Search
         style={{
           width: '15%',
           minWidth: 190,
@@ -111,8 +111,12 @@ function HeaderBar() {
         placeholder="查大学，查专业，搜问答"
         allowClear
         size="large"
-      />
+      /> */}
+      <div style={{
+        width: '15%',
+      }}>
       <Button onClick={openLoginModal} >登录 | 注册</Button>
+      </div>
       <LoginModal isModalOpen={isModalOpen} closeLoginModal={closeLoginModal} />
     </HeaderBarContainer>
   )

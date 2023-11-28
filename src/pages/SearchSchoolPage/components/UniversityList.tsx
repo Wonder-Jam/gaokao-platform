@@ -136,7 +136,7 @@ const UniversityList: React.FC = () => {
         enterButton
         size="large"
         bordered={true}
-        style={{ marginBottom: '10px' }}
+        style={{ marginBottom: '10px', marginLeft: '5px', marginRight: '5px' }}
       />
       <List
         className="demo-loadmore-list"
