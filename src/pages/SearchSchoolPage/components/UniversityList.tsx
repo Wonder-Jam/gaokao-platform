@@ -77,7 +77,7 @@ const UniversityList: React.FC = () => {
 
   const onItemClicked = (item: DataType) => {
     // Access the properties of the item here
-    console.log(item);
+    console.log(item)
     eventBus.emit('universityClicked', item)
   }
 
@@ -97,7 +97,18 @@ const UniversityList: React.FC = () => {
           </p>
           {/* <p style={{ margin: '0px', marginTop: '1px' }}>{item.description}</p> */}
         </div>
-        <Button onClick={()=>onItemClicked(item)} style={{position: 'absolute', bottom: '5px', right: '5px', fontFamily: "PingFangSC-Regular, sans-serif", color: '#4096ff'}}>更多</Button>
+        <Button
+          onClick={() => onItemClicked(item)}
+          style={{
+            position: 'absolute',
+            bottom: '5px',
+            right: '5px',
+            fontFamily: 'PingFangSC-Regular, sans-serif',
+            color: '#4096ff',
+          }}
+        >
+          更多
+        </Button>
       </UniversityItem>
     )
   }
@@ -147,8 +158,19 @@ const UniversityList: React.FC = () => {
         loadMore={loadMore}
         dataSource={list}
         renderItem={item => (
-          <List.Item style={{ display:'flex', justifyContent:'center', alignItems:'center', padding:'0px'}}>
-            <Card hoverable={true} size='small' style={{width:'97%', height:'15%', padding:'0px'}}>
+          <List.Item
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              padding: '0px',
+            }}
+          >
+            <Card
+              hoverable={true}
+              size="small"
+              style={{ width: '97%', height: '15%', padding: '0px' }}
+            >
               <ListItem {...item} />
             </Card>
           </List.Item>

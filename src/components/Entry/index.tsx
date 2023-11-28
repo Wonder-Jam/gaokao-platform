@@ -111,12 +111,17 @@ function HeaderBar() {
         placeholder="查大学，查专业，搜问答"
         allowClear
         size="large"
+<<<<<<< HEAD
       /> */}
       <div style={{
         width: '15%',
       }}>
       <Button onClick={openLoginModal} >登录 | 注册</Button>
       </div>
+=======
+      />
+      <Button onClick={openLoginModal}>登录 | 注册</Button>
+>>>>>>> tmp
       <LoginModal isModalOpen={isModalOpen} closeLoginModal={closeLoginModal} />
     </HeaderBarContainer>
   )
