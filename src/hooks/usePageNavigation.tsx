@@ -20,6 +20,6 @@ export function usePageNavigation() {
     },
     goToSchoolDetailPage() {
       router.push('/SchoolDetailPage')
-    }
+    },
   }
 }

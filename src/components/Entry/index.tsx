@@ -112,7 +112,7 @@ function HeaderBar() {
         allowClear
         size="large"
       />
-      <Button onClick={openLoginModal} >登录 | 注册</Button>
+      <Button onClick={openLoginModal}>登录 | 注册</Button>
       <LoginModal isModalOpen={isModalOpen} closeLoginModal={closeLoginModal} />
     </HeaderBarContainer>
   )

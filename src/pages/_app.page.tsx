@@ -1,6 +1,12 @@
 import React from 'react'
 import '../styles/global.css'
-export default function App({ Component, pageProps }: { Component: React.ComponentType<any>, pageProps: any }) {
+export default function App({
+  Component,
+  pageProps,
+}: {
+  Component: React.ComponentType<any>
+  pageProps: any
+}) {
   const ref = React.useRef<HTMLElement | null>(null)
   React.useEffect(() => {
     ;(function loadGlobalCssVariables() {
