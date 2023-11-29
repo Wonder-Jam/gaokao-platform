@@ -9,10 +9,6 @@ const nextConfig = {
             {
               source: '/files/:path*', // 匹配所有以 /files 开头的路径
               destination: 'https://files.lsmcloud.top/:path*', // 代理到的目标地址
-            },
-            {
-              source: '/api/:path*', // 匹配所有以 /files 开头的路径
-              destination: 'https://api.lsmcloud.top/:path*', // 代理到的目标地址
             }
           ];
     },
