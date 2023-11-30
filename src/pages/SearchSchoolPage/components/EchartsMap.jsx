@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef, useContext } from 'react'  
 import * as echarts from 'echarts'
-import { SearchContext } from '../context/SearchContext'
+import { SearchContext } from '../Context/SearchContext'
 // import china from "../data/china"; // 假设你有中国地图数据
 
 // TODO: 1. 使用context传递数据
