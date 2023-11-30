@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Input, Button, List, Skeleton, Typography, Card } from 'antd'
+import { Input, Button, List, Typography, Card, Tag, Space } from 'antd'
 import { UniversityItem } from './style'
 import { eventBus } from '../utils/eventBus'
 import { SearchProps } from 'antd/es/input/Search'
@@ -84,20 +84,30 @@ const UniversityList: React.FC = () => {
   const ListItem = (item: DataType) => {
     return (
       <UniversityItem>
-        <img
-          src={item.picture.large}
-          style={{ borderRadius: '3px', width: '80px', height: '80px' }}
-        />
-        <div style={{ marginLeft: '10px' }}>
-          <h3 style={{ margin: '0px', marginTop: '3px' }}>
-            <a href={item.website}>{item.name}</a>
-          </h3>
-          <p style={{ margin: '0px', marginTop: '2px', color: 'gray' }}>
-            {item.motto}
-          </p>
-          {/* <p style={{ margin: '0px', marginTop: '1px' }}>{item.description}</p> */}
+        <div style={{ display: 'flex', flexDirection: 'row' }}>
+          <img
+            src={item.picture.large}
+            style={{ borderRadius: '3px', width: '80px', height: '80px' }}
+          />
+          <div style={{ marginLeft: '10px' }}>
+            <h3 style={{ margin: '0px', marginTop: '3px' }}>
+              <a href={item.website}>{item.name}</a>
+            </h3>
+            <p style={{ margin: '0px', marginTop: '2px', color: 'gray' }}>
+              {item.motto}
+            </p>
+            {/* <div style={{ display: 'flex', justifyContent: 'center' }}> */}
+            <Space size={[0,4]} wrap>
+              <Tag color="#f50">985</Tag>
+              <Tag color="#2db7f5">211</Tag>
+              <Tag color="#87d068">双一流</Tag>
+              <Tag color="#108ee9">华东五校</Tag>
+            </Space>
+            {/* </div> */}
+            {/* <p style={{ margin: '0px', marginTop: '1px' }}>{item.description}</p> */}
+          </div>
         </div>
-        <Button
+        {/* <Button
           onClick={() => onItemClicked(item)}
           style={{
             position: 'absolute',
@@ -108,7 +118,7 @@ const UniversityList: React.FC = () => {
           }}
         >
           更多
-        </Button>
+        </Button> */}
       </UniversityItem>
     )
   }
@@ -170,6 +180,7 @@ const UniversityList: React.FC = () => {
               hoverable={true}
               size="small"
               style={{ width: '97%', height: '15%', padding: '0px' }}
+              onClick={() => onItemClicked(item)}
             >
               <ListItem {...item} />
             </Card>
