@@ -5,7 +5,7 @@ import UniversityList from './components/UniversityList'
 import { MapContainer, Layer, CardListContainer } from './style'
 import * as Enum from './enum'
 import Tabs from './components/Tabs'
-import { SearchContext } from './Context/SearchContext'
+import { SearchContext } from './context/SearchContext'
 
 export default function SearchSchoolPage() {
   const [choices, setChoices] = useState({

@@ -40,7 +40,7 @@ const LineChart: React.FC<Props> = (props) => {
       },
       legend: {
         bottom: "bottom", // 图例位置
-        data: ["文史", "理工"], // 图例，对应两条折线的名称
+        data: ["文史/历史", "理工/物理"], // 图例，对应两条折线的名称
       },
       xAxis: {
         type: "category", // 横轴类型，类目型
@@ -53,12 +53,12 @@ const LineChart: React.FC<Props> = (props) => {
       },
       series: [
         {
-          name: "文史", // 系列名称，对应图例
+          name: "文史/历史", // 系列名称，对应图例
           type: "line", // 系列类型，折线图
           data: groups.文史.map((item) => item[1]), // 系列数据，取文史组的分数
         },
         {
-          name: "理工", // 系列名称，对应图例
+          name: "理工/物理", // 系列名称，对应图例
           type: "line", // 系列类型，折线图
           data: groups.理工.map((item) => item[1]), // 系列数据，取理工组的分数
         },
