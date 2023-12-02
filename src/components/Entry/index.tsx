@@ -17,22 +17,24 @@ import {
   MainContainer,
   HeaderBarContainer,
   ImageContainer,
+  TextContainer,
 } from './style'
+
 const items = [
   {
-    label: '首页',
+    label: <TextContainer>首页</TextContainer>,
     key: '/',
   },
   {
-    label: '查学校',
+    label: <TextContainer>查学校</TextContainer>,
     key: '/SearchSchoolPage',
   },
   {
-    label: '查专业',
+    label: <TextContainer>查专业</TextContainer>,
     key: '/SearchMajorPage',
   },
   {
-    label: '看一看',
+    label: <TextContainer>看一看</TextContainer>,
     key: '/VideoPlayPage',
   },
 ]
@@ -43,6 +45,12 @@ export default function Entry({ children }: { children: React.ReactNode }) {
       <HeaderContainer>
         <HeaderBar />
       </HeaderContainer>
+      <div
+        style={{
+          width:'100vw',
+          height:'80px'
+        }}
+      ></div>
       <MainContainer>{children}</MainContainer>
     </>
   )
@@ -65,6 +73,7 @@ function GaoKaoMenu() {
         style={{
           display: 'flex',
           width: '60%',
+          height:'100%',
           justifyContent: 'space-evenly',
         }}
       />
