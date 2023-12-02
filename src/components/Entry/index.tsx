@@ -47,8 +47,8 @@ export default function Entry({ children }: { children: React.ReactNode }) {
       </HeaderContainer>
       <div
         style={{
-          width:'100vw',
-          height:'80px'
+          width: '100vw',
+          height: '80px',
         }}
       ></div>
       <MainContainer>{children}</MainContainer>
@@ -73,7 +73,7 @@ function GaoKaoMenu() {
         style={{
           display: 'flex',
           width: '60%',
-          height:'100%',
+          height: '100%',
           justifyContent: 'space-evenly',
         }}
       />

@@ -12,9 +12,9 @@ import {
 import Mask from '../../components/Mask'
 import { usePageContainer } from '../_app.page'
 import { useSlideAnimation } from '@/hooks/useSlideAnimation'
-import { VideoSchoolType, data } from './data'
-function CardItem(props: VideoSchoolType & { image: string }) {
-  const { image, ...video } = props
+import { VideoSchoolType, VideoSchoolList } from './data'
+
+function CardItem(props: VideoSchoolType) {
   const [show, setShow] = React.useState(false)
   const cardRef = React.useRef<HTMLDivElement>(null)
   const PageRef = usePageContainer()
@@ -22,24 +22,35 @@ function CardItem(props: VideoSchoolType & { image: string }) {
     targetRef: cardRef,
     direction: show ? 'slide-in' : 'slide-out',
     pageRef: PageRef,
-    contentNode: <CardDetail {...video} />,
+    contentNode: <CardDetail {...props} />,
   })
   return (
     <>
       <CardContainer>
         <Card
+          style={{}}
           ref={cardRef}
           onClick={() => setShow(true)}
           hoverable
-          cover={<Image preview={false} alt="example" src={image} />}
+          cover={
+            <Image
+              style={{
+                height: '350px',
+                objectFit: 'cover',
+              }}
+              preview={false}
+              alt="example"
+              src={props.schoolCover}
+            />
+          }
         >
           <Meta
             style={{
               display: 'flex',
-              alignItems: 'center',
+              alignItems: 'contain',
             }}
-            title={video.schoolName}
-            description={video.schoolSiteUrl}
+            title={props.schoolName}
+            description={props.schoolSiteUrl}
           />
         </Card>
       </CardContainer>
@@ -77,56 +88,57 @@ function CardDetail(props: VideoSchoolType) {
     schoolSiteUrl,
     schoolRecuritmentUrl,
     schoolBdage,
-    schoolLogo,
   } = props
   return (
     <div
       style={{
-        width: 900,
-        height: 950,
+        width: '75vw',
+        height: '90vh',
         borderRadius: 20,
         overflow: 'hidden',
-        backgroundColor: 'palegoldenrod',
+        backgroundColor: '#f5f5f5',
         display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
+        justifyContent: 'space-around',
         flexDirection: 'column',
       }}
     >
-      <div>{schoolName}</div>
-      <img src={schoolLogo} />
-      {schoolBdage}
-      <video controls width={'100%'}>
-        <source src={videoUrl} />
-      </video>
       <div
         style={{
           display: 'flex',
-          width: '50%',
-          marginTop: '16px',
-          justifyContent: 'space-around',
+          minHeight: '160px',
+          height: '20vh',
         }}
       >
-        <Button
+        {schoolBdage}
+        <div>
+          <div style={{ color: '#0070f3' }}>{schoolName}</div>
+          <Button size="large" target="_blank" href={schoolSiteUrl}>
+            学校官网
+          </Button>
+          <Button size="large" target="_blank" href={schoolRecuritmentUrl}>
+            本科招生网
+          </Button>
+        </div>
+      </div>
+      {/* <img src={schoolLogo} /> */}
+      <div
+        style={{
+          width: '100%',
+          display: 'flex',
+          // padding:'25px',
+          height: '65vh',
+          justifyContent: 'center',
+          // backgroundColor:'#000000'
+        }}
+      >
+        <video
+          controls
           style={{
-            fontSize: '30px',
-            height: '60px',
-            lineHeight: '40px',
+            maxWidth: '1000px',
           }}
-          size="large"
-          target="_blank"
-          href={schoolSiteUrl}
         >
-          学校官网
-        </Button>
-        <Button
-          style={{ fontSize: '30px', height: '60px', lineHeight: '40px' }}
-          size="large"
-          target="_blank"
-          href={schoolRecuritmentUrl}
-        >
-          本科招生网
-        </Button>
+          <source src={videoUrl} />
+        </video>
       </div>
     </div>
   )
@@ -153,7 +165,9 @@ function MyButton(props: ButtonProps) {
 }
 
 export default function VideoPlayPage() {
-  const cardItems = data.map(item => <CardItem key={item.title} {...item} />)
+  const cardItems = VideoSchoolList.map(item => (
+    <CardItem key={item.schoolName} {...item} />
+  ))
   const PageRef = React.useRef<HTMLDivElement>(null)
   return (
     <div ref={PageRef}>
