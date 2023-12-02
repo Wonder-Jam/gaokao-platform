@@ -1,8 +1,8 @@
 export interface ScorelineDataType {
-    key: React.Key;
-    arts: number;
-    science: number;
-    year: number;
+  key: React.Key
+  arts: number
+  science: number
+  year: number
 }
 
 export interface MajorDataType {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useContext } from 'react'  
+import React, { useEffect, useState, useRef, useContext } from 'react'
 import * as echarts from 'echarts'
 import { SearchContext } from '../Context/SearchContext'
 // import china from "../data/china"; // 假设你有中国地图数据
@@ -718,12 +718,11 @@ function EChartsMap() {
     initEChart()
   }
 
-    return (
-        <div
-            ref={chartRef}
-            style={{ height: "85vh", margin: "auto"}}
-        >Loading...</div>
-    );
+  return (
+    <div ref={chartRef} style={{ height: '85vh', margin: 'auto' }}>
+      Loading...
+    </div>
+  )
 }
 
 export default EChartsMap

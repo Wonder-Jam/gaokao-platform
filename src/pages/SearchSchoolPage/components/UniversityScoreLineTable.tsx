@@ -1,13 +1,10 @@
-import React from 'react';
-import { Table } from 'antd';
-import type { ColumnsType, TableProps } from 'antd/es/table';
-import { ScorelineDataType } from '../type';
-
-
+import React from 'react'
+import { Table } from 'antd'
+import type { ColumnsType, TableProps } from 'antd/es/table'
+import { ScorelineDataType } from '../type'
 
 interface AppProps {
-  data: ScorelineDataType[];
-
+  data: ScorelineDataType[]
 }
 
 const columns: ColumnsType<ScorelineDataType> = [
@@ -27,15 +24,15 @@ const columns: ColumnsType<ScorelineDataType> = [
     dataIndex: 'science',
     sorter: (a, b) => a.science - b.science,
   },
-];
+]
 
 // const data: DataType[] = [
-  // {
-  //   key: '1',
-  //   arts: 602,
-  //   science: 652,
-  //   year: 2010,
-  // },
+// {
+//   key: '1',
+//   arts: 602,
+//   science: 652,
+//   year: 2010,
+// },
 //   {
 //     key: '2',
 //     name: 'Jim Green',
@@ -56,14 +53,25 @@ const columns: ColumnsType<ScorelineDataType> = [
 //   },
 // ];
 
-const onChange: TableProps<ScorelineDataType>['onChange'] = (pagination, filters, sorter, extra) => {
-  console.log('params', pagination, filters, sorter, extra);
-};
+const onChange: TableProps<ScorelineDataType>['onChange'] = (
+  pagination,
+  filters,
+  sorter,
+  extra,
+) => {
+  console.log('params', pagination, filters, sorter, extra)
+}
 
 const App: React.FC<AppProps> = ({ data }) => {
   return (
-    <Table pagination={{ pageSize: 4 }} style={{}}  columns={columns} dataSource={data} onChange={onChange} />
+    <Table
+      pagination={{ pageSize: 4 }}
+      style={{}}
+      columns={columns}
+      dataSource={data}
+      onChange={onChange}
+    />
   )
-};
+}
 
-export default App;
+export default App

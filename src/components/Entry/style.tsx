@@ -5,10 +5,10 @@ export const HeaderContainer = styled.div`
   width: 100%;
   height: 80px;
   background-color: #fff;
-  padding-top: 16px;
   // align-items: center;
   // justify-content: space-between;
   flex-direction: row;
+  position: fixed;
 `
 export const MainContainer = styled.div`
   // padding-top: 146px;
@@ -17,9 +17,9 @@ export const MainContainer = styled.div`
 
 export const HeaderBarContainer = styled.div`
   display: flex;
-  // justify-content: space-between;
+  justify-content: space-around;
   flex-direction: row;
-  // align-items: center;
+  align-items: center;
   height: 100%;
   width: 100%;
 `
@@ -31,4 +31,12 @@ export const ImageContainer = styled.span`
   margin-right: 10px;
   margin-left: 10px;
   // margin-top: 16px;
+`
+
+export const TextContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-size: 16px;
 `
