@@ -3,7 +3,7 @@ import {
   BarChartOutlined,
   GlobalOutlined,
   MenuFoldOutlined,
-  MenuUnfoldOutlined
+  MenuUnfoldOutlined,
 } from '@ant-design/icons'
 import type { MenuProps } from 'antd'
 import { Menu, Button } from 'antd'
@@ -71,10 +71,10 @@ const provinceAbbreviationMap: Map<string, Enum.province> = new Map([
 
 const FilterMenu: React.FC = () => {
   const { province, city, rank, setChoices } = useContext(SearchContext)
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(false)
   const toggleCollapsed = () => {
-    setCollapsed(!collapsed);
-  };
+    setCollapsed(!collapsed)
+  }
   const handleProvinceSelect = (selectedProvince: string) => {
     // 在这里处理选中省份的逻辑，可以将选中的值存储在某个变量中
     // console.log(`Selected Province: ${selectedProvince}`);
@@ -87,8 +87,11 @@ const FilterMenu: React.FC = () => {
   }
 
   const items: MenuProps['items'] = [
-    
-    getItem(collapsed? '收缩':'展开', 'sub3', collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined  />),
+    getItem(
+      collapsed ? '收缩' : '展开',
+      'sub3',
+      collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />,
+    ),
 
     getItem('地区', 'sub1', <GlobalOutlined />, [
       getItem(
@@ -122,7 +125,6 @@ const FilterMenu: React.FC = () => {
     // getItem('Group', 'grp', null, [getItem('Option 13', '13'), getItem('Option 14', '14')], 'group'),
   ]
 
-
   const onClick: MenuProps['onClick'] = e => {
     setChoices({ province, city, rank: Number(e.key) as Enum.rank })
     if (e.key === 'sub3') {
@@ -131,15 +133,19 @@ const FilterMenu: React.FC = () => {
   }
 
   return (
-      <Menu
-        onClick={onClick}
-        style={{ height: '100%', width: collapsed ? '5%' :'20%', overflowY: 'auto' }}
-        defaultSelectedKeys={['0']}
-        defaultOpenKeys={['sub1', 'sub2']}
-        mode="inline"
-        items={items}
-        inlineCollapsed={collapsed}
-      />
+    <Menu
+      onClick={onClick}
+      style={{
+        height: '100%',
+        width: collapsed ? '5%' : '20%',
+        overflowY: 'auto',
+      }}
+      defaultSelectedKeys={['0']}
+      defaultOpenKeys={['sub1', 'sub2']}
+      mode="inline"
+      items={items}
+      inlineCollapsed={collapsed}
+    />
   )
 }
 

@@ -97,7 +97,7 @@ const UniversityList: React.FC = () => {
               {item.motto}
             </p>
             {/* <div style={{ display: 'flex', justifyContent: 'center' }}> */}
-            <Space size={[0,4]} wrap>
+            <Space size={[0, 4]} wrap>
               <Tag color="#f50">985</Tag>
               <Tag color="#2db7f5">211</Tag>
               <Tag color="#87d068">双一流</Tag>

@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import schoolBadge from '@/static/school-badge/南京大学 NJU.svg';
+import schoolBadge from '@/static/school-badge/南京大学 NJU.svg'
 
 export const MapContainer = styled.div`
   // display: flex;
@@ -27,5 +27,3 @@ export const CardListContainer = styled.div`
   background-color: #f5f5f5;
   // margin-left: 5px;
 `
-
-

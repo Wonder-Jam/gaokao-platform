@@ -112,10 +112,12 @@ function HeaderBar() {
         allowClear
         size="large"
       /> */}
-      <div style={{
-        width: '15%',
-      }}>
-      <Button onClick={openLoginModal} >登录 | 注册</Button>
+      <div
+        style={{
+          width: '15%',
+        }}
+      >
+        <Button onClick={openLoginModal}>登录 | 注册</Button>
       </div>
       <LoginModal isModalOpen={isModalOpen} closeLoginModal={closeLoginModal} />
     </HeaderBarContainer>
