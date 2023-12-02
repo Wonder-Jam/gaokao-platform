@@ -24,7 +24,7 @@ interface DataType {
 }
 
 const count = 3
-const fakeDataUrl = `/files/universities.json`
+const fakeDataUrl = `https://gaokaoapi.lsmcloud.top/api/universitylist`
 
 const UniversityList: React.FC = () => {
   const [initLoading, setInitLoading] = useState(true)
@@ -37,8 +37,9 @@ const UniversityList: React.FC = () => {
       .then(res => res.json())
       .then(res => {
         setInitLoading(false)
-        setData(res.results)
-        setList(res.results)
+        setData(res)
+        setList(res)
+        // console.log(res.results)
       })
       .catch(e => {
         console.log(e)
@@ -60,7 +61,7 @@ const UniversityList: React.FC = () => {
     fetch(fakeDataUrl)
       .then(res => res.json())
       .then(res => {
-        const newData = data.concat(res.results)
+        const newData = data.concat(res)
         setData(newData)
         setList(newData)
         setLoading(false)

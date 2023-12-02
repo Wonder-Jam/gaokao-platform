@@ -7,9 +7,11 @@ export interface ScorelineDataType {
 
 export interface MajorDataType {
     key: React.Key;
-    major: string;
-    category: string;
+    major: string[];
+    majorGroup: string;
     admissionType: string;
+    category: string;
     requirement: string;
     year: number;
+    scoreLine: number;
 }

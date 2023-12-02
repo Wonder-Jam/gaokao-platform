@@ -2,18 +2,12 @@ import React, {useState} from 'react';
 import { Table, Space, Select } from 'antd';
 import type { ColumnsType, TableProps } from 'antd/es/table';
 import type { SelectProps } from 'antd';
-import { MajorDataType } from '../type';
+import type { MajorDataType } from '../type';
 
 
-interface DataType {
-    key: React.Key;
-    name: string;
-    age: number;
-    address: string;
-}
 
 interface AppProps {
-    data: DataType[];
+    data: MajorDataType[];
 
 
 }
@@ -41,95 +35,108 @@ const firstChoiceOptions: SelectProps['options'] = [
 ]
 
 
-const columns: ColumnsType<DataType> = [
+const columns: ColumnsType<MajorDataType> = [
     {
         title: '年份',
-        dataIndex: 'name',
-        filters: [
-            {
-                text: 'Joe',
-                value: 'Joe',
-            },
-            {
-                text: 'Jim',
-                value: 'Jim',
-            },
-            {
-                text: 'Submenu',
-                value: 'Submenu',
-                children: [
-                    {
-                        text: 'Green',
-                        value: 'Green',
-                    },
-                    {
-                        text: 'Black',
-                        value: 'Black',
-                    },
-                ],
-            },
-        ],
+        dataIndex: 'year',
         // specify the condition of filtering result
         // here is that finding the name started with `value`
-        onFilter: (value: string | number | boolean, record) => String(record.name).indexOf(String(value)) === 0,
-        sorter: (a, b) => a.name.length - b.name.length,
-        sortDirections: ['descend'],
+        // onFilter: (value: string | number | boolean, record) => String(record.name).indexOf(String(value)) === 0,
+        sorter: (a, b) => a.year-b.year,
+        // sortDirections: ['descend'],
     },
     {
-        title: 'Age',
-        dataIndex: 'age',
-        defaultSortOrder: 'descend',
-        sorter: (a, b) => a.age - b.age,
+        title: '录取批次',
+        dataIndex: 'admissionType',
+        // defaultSortOrder: 'descend',
+        // sorter: (a, b) => a.admissionType.length - b.admissionType.length,
     },
     {
-        title: 'Address',
-        dataIndex: 'address',
+        title: '科目要求',
+        dataIndex: 'requirement',
         filters: [
             {
-                text: 'London',
-                value: 'London',
+                text: '物理',
+                value: 'pyhsics',
             },
             {
-                text: 'New York',
-                value: 'New York',
+                text: '历史',
+                value: 'history',
+            },
+            {
+                text: '化学',
+                value: 'chemistry',
+            },
+            {
+                text: '生物',
+                value: 'biology',
+            },
+            {
+                text: '政治',
+                value: 'politics',
+            },
+            {
+                text: '地理',
+                value: 'geography',
             },
         ],
-        onFilter: (value: string | number | boolean, record) => String(record.name).indexOf(String(value)) === 0,
+        onFilter: (value: string | number | boolean, record) => {
+            if (value === 'pyhsics') {
+                return record.requirement.includes('物理') || record.requirement.includes('不限');
+            }
+            if (value === 'history') {
+                return record.requirement.includes('历史') || record.requirement.includes('不限');
+            }
+            if (value === 'chemistry') {
+                return record.requirement.includes('化学') || record.requirement.includes('不限');
+            }
+            if (value === 'biology') {
+                return record.requirement.includes('生物') || record.requirement.includes('不限');
+            }
+            if (value === 'politics') {
+                return record.requirement.includes('政治') || record.requirement.includes('不限');
+            }
+            if (value === 'geography') {
+                return record.requirement.includes('地理') || record.requirement.includes('不限');
+            }
+            return false;
+        },
+    },
+    {
+        title: '分数线',
+        dataIndex: 'scoreLine',
+        // defaultSortOrder: 'descend',
+        sorter: (a, b) => a.scoreLine - b.scoreLine,
+    },
+    {
+        title: '专业组',
+        dataIndex: 'majorGroup',
+        defaultSortOrder: 'ascend',
+        sorter: (a, b) => {
+            return Number(a.majorGroup.substring(3)) - Number(b.majorGroup.substring(3));
+        },
+    },
+    {
+        title: '包含专业',
+        dataIndex: 'major',
+        // defaultSortOrder: 'descend',
+        render: (major: string[]) => (
+            <>
+                {major.map((item: string) => (
+                    <Space key={item}>{item} </Space>
+                ))}
+            </>
+            )
+        // sorter: (a, b) => a.majorGroup.length - b.majorGroup.length,
     },
 ];
 
-const data = [
-    {
-        key: '1',
-        name: 'John Brown',
-        age: 32,
-        address: 'New York No. 1 Lake Park',
-    },
-    {
-        key: '2',
-        name: 'Jim Green',
-        age: 42,
-        address: 'London No. 1 Lake Park',
-    },
-    {
-        key: '3',
-        name: 'Joe Black',
-        age: 32,
-        address: 'Sydney No. 1 Lake Park',
-    },
-    {
-        key: '4',
-        name: 'Jim Red',
-        age: 32,
-        address: 'London No. 2 Lake Park',
-    },
-];
 
-const onChange: TableProps<DataType>['onChange'] = (pagination, filters, sorter, extra) => {
+const onChange: TableProps<MajorDataType>['onChange'] = (pagination, filters, sorter, extra) => {
     console.log('params', pagination, filters, sorter, extra);
 };
 
-const App: React.FC = () => {
+const App: React.FC<AppProps> = ({data}) => {
 
     const [selectedYears, setSelectedYears] = useState<string[]>(['2022']);
     const [selectedCategories, setSelectedCategories] = useState<string[]>(['文史/历史', '理工/物理']);
@@ -142,12 +149,12 @@ const App: React.FC = () => {
         setSelectedCategories(value);
     }
 
-    // const filteredData = data.filter(item => {
-    //     return (
-    //         selectedYears.includes(item.year) &&
-    //         selectedCategories.includes(item.category)
-    //     );
-    // });
+    const filteredData = data.filter(item => {
+        return (
+            selectedYears.includes(String(item.year)) &&
+            (selectedCategories.includes(item.category) || item.category === '不限')
+        );
+    });
 
     return (
         <Space style={{ width: '100%' }} direction="vertical">
@@ -159,7 +166,7 @@ const App: React.FC = () => {
                     placeholder="请选择年份"
                     defaultValue={selectedYears}
                     onChange={handleYearChange}
-                    options={timeOptions}
+                    options={timeOptions.reverse()}
                 />
                 <Select
                     mode="multiple"
@@ -171,7 +178,7 @@ const App: React.FC = () => {
                     options={firstChoiceOptions}
                 />
             </div>
-            <Table columns={columns} dataSource={data} onChange={onChange} />
+            <Table columns={columns} dataSource={filteredData} onChange={onChange} pagination={{pageSize:7}} />
         </Space>
     )
 }
