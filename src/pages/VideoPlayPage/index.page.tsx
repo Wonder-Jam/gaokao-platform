@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Image, Button } from 'antd'
+import { Card, Image, Button, Avatar, List } from 'antd'
 import Entry from '@/components/Entry'
 const { Meta } = Card
 import { ArrowLeftOutlined, DownOutlined, UpOutlined } from '@ant-design/icons'
@@ -82,6 +82,32 @@ function MaskContainer(props: {
     </Mask>
   )
 }
+const data = [
+  {
+    title: 'Ant Design Title 1',
+  },
+  {
+    title: 'Ant Design Title 2',
+  },
+  {
+    title: 'Ant Design Title 3',
+  },
+  {
+    title: 'Ant Design Title 4',
+  },
+  {
+    title: 'Ant Design Title 4',
+  },
+  {
+    title: 'Ant Design Title 4',
+  },
+  {
+    title: 'Ant Design Title 4',
+  },
+  {
+    title: 'Ant Design Title 4',
+  },
+]
 
 function CardDetail(props: VideoSchoolType) {
   const {
@@ -115,45 +141,69 @@ function CardDetail(props: VideoSchoolType) {
         overflow: 'hidden',
         backgroundColor: '#f5f5f5',
         display: 'flex',
+        position: 'relative',
       }}
     >
       <div id={videoUrl + 'video'}></div>
       <div
         style={{
-          position: 'relative',
+          position: 'absolute',
+          zIndex: 10,
+          display: 'flex',
+          justifyContent: 'center',
+          height: '150px',
+          width: '30%',
+          minWidth: '300px',
+          backgroundColor: '#fff',
+          right: 0,
+        }}
+      >
+        <div style={{ marginTop: '10px' }}>{schoolBdage}</div>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-evenly',
+            textAlign: 'center',
+          }}
+        >
+          <div style={{ color: '#0070f3' }}>{schoolName}</div>
+          <Button size="large" target="_blank" href={schoolSiteUrl}>
+            学校官网
+          </Button>
+          <Button size="large" target="_blank" href={schoolRecuritmentUrl}>
+            本科招生网
+          </Button>
+        </div>
+      </div>
+      <div
+        style={{
           width: '30%',
           height: '100%',
           minWidth: '300px',
+          overflowY: 'auto',
         }}
       >
         <div
-          style={{
-            position: 'absolute',
-            zIndex: 10,
-            display: 'flex',
-            justifyContent: 'center',
-            height: '150px',
-            width: '100%',
-          }}
-        >
-          <div style={{ marginTop: '10px' }}>{schoolBdage}</div>
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-evenly',
-              textAlign: 'center',
-            }}
-          >
-            <div style={{ color: '#0070f3' }}>{schoolName}</div>
-            <Button size="large" target="_blank" href={schoolSiteUrl}>
-              学校官网
-            </Button>
-            <Button size="large" target="_blank" href={schoolRecuritmentUrl}>
-              本科招生网
-            </Button>
-          </div>
-        </div>
+          style={{ height: '150px', width: '100%', backgroundColor: '#fff' }}
+        ></div>
+        <List
+          itemLayout="horizontal"
+          dataSource={data}
+          renderItem={(item, index) => (
+            <List.Item>
+              <List.Item.Meta
+                avatar={
+                  <Avatar
+                    src={`https://xsgames.co/randomusers/avatar.php?g=pixel&key=${index}`}
+                  />
+                }
+                title={<a href="https://ant.design">{item.title}</a>}
+                description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+              />
+            </List.Item>
+          )}
+        />
       </div>
     </div>
   )
