@@ -75,7 +75,7 @@ export interface SearchbarProps {
     style?: CSSProperties
 }
 
-export const Searchbar: React.FC = ({style}: SearchbarProps) => {
+export function Searchbar({style}: SearchbarProps): JSX.Element {
   const [value, setValue] = useState<UserValue[]>([]);
 
   return (

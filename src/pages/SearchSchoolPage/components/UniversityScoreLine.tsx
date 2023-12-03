@@ -70,7 +70,7 @@ const LineChart: React.FC<Props> = props => {
   }, [props.data])
 
   // 返回一个ReactECharts组件，传入option作为props
-  return <ReactECharts style={{height: '270px'}} option={option} />;
-};
+  return <ReactECharts style={{ height: '270px' }} option={option} />
+}
 
 export default LineChart

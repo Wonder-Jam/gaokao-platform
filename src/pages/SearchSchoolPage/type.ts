@@ -6,14 +6,14 @@ export interface ScorelineDataType {
 }
 
 export interface MajorDataType {
-    key: React.Key;
-    major: string[];
-    majorGroup: string;
-    admissionType: string;
-    category: string;
-    requirement: string;
-    year: number;
-    scoreLine: number;
+  key: React.Key
+  major: string[]
+  majorGroup: string
+  admissionType: string
+  category: string
+  requirement: string
+  year: number
+  scoreLine: number
 }
 
 export interface UniversityDetailProps {
