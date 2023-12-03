@@ -24,7 +24,7 @@ interface DataType {
 }
 
 const count = 3
-const fakeDataUrl = `https://gaokaoapi.lsmcloud.top/api/universitylist`
+const fakeDataUrl = 'api/universitylist'
 
 const UniversityList: React.FC = () => {
   const [initLoading, setInitLoading] = useState(true)
