@@ -1,15 +1,11 @@
-import React, {useState} from 'react';
-import { Table, Space, Select } from 'antd';
-import type { ColumnsType, TableProps } from 'antd/es/table';
-import type { SelectProps } from 'antd';
-import type { MajorDataType } from '../type';
-
-
+import React, { useState } from 'react'
+import { Table, Space, Select } from 'antd'
+import type { ColumnsType, TableProps } from 'antd/es/table'
+import type { SelectProps } from 'antd'
+import type { MajorDataType } from '../type'
 
 interface AppProps {
-    data: MajorDataType[];
-
-
+  data: MajorDataType[]
 }
 
 // TODO: 从props中获取数据，生成options，这需要后端接口的支持
@@ -34,155 +30,183 @@ const firstChoiceOptions: SelectProps['options'] = [
   { value: '理工/物理', label: '理工/物理' },
 ]
 
-
 const columns: ColumnsType<MajorDataType> = [
-    {
-        title: '年份',
-        dataIndex: 'year',
-        // specify the condition of filtering result
-        // here is that finding the name started with `value`
-        // onFilter: (value: string | number | boolean, record) => String(record.name).indexOf(String(value)) === 0,
-        sorter: (a, b) => a.year-b.year,
-        // sortDirections: ['descend'],
-    },
-    {
-        title: '录取批次',
-        dataIndex: 'admissionType',
-        // defaultSortOrder: 'descend',
-        // sorter: (a, b) => a.admissionType.length - b.admissionType.length,
-    },
-    {
-        title: '科目要求',
-        dataIndex: 'requirement',
-        filters: [
-            {
-                text: '物理',
-                value: 'pyhsics',
-            },
-            {
-                text: '历史',
-                value: 'history',
-            },
-            {
-                text: '化学',
-                value: 'chemistry',
-            },
-            {
-                text: '生物',
-                value: 'biology',
-            },
-            {
-                text: '政治',
-                value: 'politics',
-            },
-            {
-                text: '地理',
-                value: 'geography',
-            },
-        ],
-        onFilter: (value: string | number | boolean, record) => {
-            if (value === 'pyhsics') {
-                return record.requirement.includes('物理') || record.requirement.includes('不限');
-            }
-            if (value === 'history') {
-                return record.requirement.includes('历史') || record.requirement.includes('不限');
-            }
-            if (value === 'chemistry') {
-                return record.requirement.includes('化学') || record.requirement.includes('不限');
-            }
-            if (value === 'biology') {
-                return record.requirement.includes('生物') || record.requirement.includes('不限');
-            }
-            if (value === 'politics') {
-                return record.requirement.includes('政治') || record.requirement.includes('不限');
-            }
-            if (value === 'geography') {
-                return record.requirement.includes('地理') || record.requirement.includes('不限');
-            }
-            return false;
-        },
-    },
-    {
-        title: '分数线',
-        dataIndex: 'scoreLine',
-        // defaultSortOrder: 'descend',
-        sorter: (a, b) => a.scoreLine - b.scoreLine,
-    },
-    {
-        title: '专业组',
-        dataIndex: 'majorGroup',
-        defaultSortOrder: 'ascend',
-        sorter: (a, b) => {
-            return Number(a.majorGroup.substring(3)) - Number(b.majorGroup.substring(3));
-        },
-    },
-    {
-        title: '包含专业',
-        dataIndex: 'major',
-        // defaultSortOrder: 'descend',
-        render: (major: string[]) => (
-            <>
-                {major.map((item: string) => (
-                    <Space key={item}>{item} </Space>
-                ))}
-            </>
-            )
-        // sorter: (a, b) => a.majorGroup.length - b.majorGroup.length,
-    },
-];
-
-
-const onChange: TableProps<MajorDataType>['onChange'] = (pagination, filters, sorter, extra) => {
-    console.log('params', pagination, filters, sorter, extra);
-};
-
-const App: React.FC<AppProps> = ({data}) => {
-
-    const [selectedYears, setSelectedYears] = useState<string[]>(['2022']);
-    const [selectedCategories, setSelectedCategories] = useState<string[]>(['文史/历史', '理工/物理']);
-
-    const handleYearChange = (value: string[]) => {
-        setSelectedYears(value);
-      };
-
-    const handleCategoryChange = (value: string[]) => {
-        setSelectedCategories(value);
-    }
-
-    const filteredData = data.filter(item => {
+  {
+    title: '年份',
+    dataIndex: 'year',
+    // specify the condition of filtering result
+    // here is that finding the name started with `value`
+    // onFilter: (value: string | number | boolean, record) => String(record.name).indexOf(String(value)) === 0,
+    sorter: (a, b) => a.year - b.year,
+    // sortDirections: ['descend'],
+  },
+  {
+    title: '录取批次',
+    dataIndex: 'admissionType',
+    // defaultSortOrder: 'descend',
+    // sorter: (a, b) => a.admissionType.length - b.admissionType.length,
+  },
+  {
+    title: '科目要求',
+    dataIndex: 'requirement',
+    filters: [
+      {
+        text: '物理',
+        value: 'pyhsics',
+      },
+      {
+        text: '历史',
+        value: 'history',
+      },
+      {
+        text: '化学',
+        value: 'chemistry',
+      },
+      {
+        text: '生物',
+        value: 'biology',
+      },
+      {
+        text: '政治',
+        value: 'politics',
+      },
+      {
+        text: '地理',
+        value: 'geography',
+      },
+    ],
+    onFilter: (value: string | number | boolean, record) => {
+      if (value === 'pyhsics') {
         return (
-            selectedYears.includes(String(item.year)) &&
-            (selectedCategories.includes(item.category) || item.category === '不限')
-        );
-    });
+          record.requirement.includes('物理') ||
+          record.requirement.includes('不限')
+        )
+      }
+      if (value === 'history') {
+        return (
+          record.requirement.includes('历史') ||
+          record.requirement.includes('不限')
+        )
+      }
+      if (value === 'chemistry') {
+        return (
+          record.requirement.includes('化学') ||
+          record.requirement.includes('不限')
+        )
+      }
+      if (value === 'biology') {
+        return (
+          record.requirement.includes('生物') ||
+          record.requirement.includes('不限')
+        )
+      }
+      if (value === 'politics') {
+        return (
+          record.requirement.includes('政治') ||
+          record.requirement.includes('不限')
+        )
+      }
+      if (value === 'geography') {
+        return (
+          record.requirement.includes('地理') ||
+          record.requirement.includes('不限')
+        )
+      }
+      return false
+    },
+  },
+  {
+    title: '分数线',
+    dataIndex: 'scoreLine',
+    // defaultSortOrder: 'descend',
+    sorter: (a, b) => a.scoreLine - b.scoreLine,
+  },
+  {
+    title: '专业组',
+    dataIndex: 'majorGroup',
+    defaultSortOrder: 'ascend',
+    sorter: (a, b) => {
+      return (
+        Number(a.majorGroup.substring(3)) - Number(b.majorGroup.substring(3))
+      )
+    },
+  },
+  {
+    title: '包含专业',
+    dataIndex: 'major',
+    // defaultSortOrder: 'descend',
+    render: (major: string[]) => (
+      <>
+        {major.map((item: string) => (
+          <Space key={item}>{item} </Space>
+        ))}
+      </>
+    ),
+    // sorter: (a, b) => a.majorGroup.length - b.majorGroup.length,
+  },
+]
 
-    return (
-        <Space style={{ width: '100%' }} direction="vertical">
-            <div style={{ display: 'flex', flexDirection: 'row' }}>
-                <Select
-                    mode="multiple"
-                    allowClear
-                    style={{ width: '50%' }}
-                    placeholder="请选择年份"
-                    defaultValue={selectedYears}
-                    onChange={handleYearChange}
-                    options={timeOptions.reverse()}
-                />
-                <Select
-                    mode="multiple"
-                    allowClear
-                    style={{ width: '50%' }}
-                    placeholder="请选择文理/首选科目"
-                    defaultValue={selectedCategories}
-                    onChange={handleCategoryChange}
-                    options={firstChoiceOptions}
-                />
-            </div>
-            <Table columns={columns} dataSource={filteredData} onChange={onChange} pagination={{pageSize:7}} />
-        </Space>
-    )
+const onChange: TableProps<MajorDataType>['onChange'] = (
+  pagination,
+  filters,
+  sorter,
+  extra,
+) => {
+  console.log('params', pagination, filters, sorter, extra)
 }
 
+const App: React.FC<AppProps> = ({ data }) => {
+  const [selectedYears, setSelectedYears] = useState<string[]>(['2022'])
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([
+    '文史/历史',
+    '理工/物理',
+  ])
 
+  const handleYearChange = (value: string[]) => {
+    setSelectedYears(value)
+  }
+
+  const handleCategoryChange = (value: string[]) => {
+    setSelectedCategories(value)
+  }
+
+  const filteredData = data.filter(item => {
+    return (
+      selectedYears.includes(String(item.year)) &&
+      (selectedCategories.includes(item.category) || item.category === '不限')
+    )
+  })
+
+  return (
+    <Space style={{ width: '100%' }} direction="vertical">
+      <div style={{ display: 'flex', flexDirection: 'row' }}>
+        <Select
+          mode="multiple"
+          allowClear
+          style={{ width: '50%' }}
+          placeholder="请选择年份"
+          defaultValue={selectedYears}
+          onChange={handleYearChange}
+          options={timeOptions.reverse()}
+        />
+        <Select
+          mode="multiple"
+          allowClear
+          style={{ width: '50%' }}
+          placeholder="请选择文理/首选科目"
+          defaultValue={selectedCategories}
+          onChange={handleCategoryChange}
+          options={firstChoiceOptions}
+        />
+      </div>
+      <Table
+        columns={columns}
+        dataSource={filteredData}
+        onChange={onChange}
+        pagination={{ pageSize: 7 }}
+      />
+    </Space>
+  )
+}
 
 export default App

@@ -13,6 +13,8 @@ import Mask from '../../components/Mask'
 import { usePageContainer } from '../_app.page'
 import { useSlideAnimation } from '@/hooks/useSlideAnimation'
 import { VideoSchoolType, VideoSchoolList } from './data'
+import Player from 'xgplayer'
+import 'xgplayer/dist/index.min.css'
 
 function CardItem(props: VideoSchoolType) {
   const [show, setShow] = React.useState(false)
@@ -88,7 +90,22 @@ function CardDetail(props: VideoSchoolType) {
     schoolSiteUrl,
     schoolRecuritmentUrl,
     schoolBdage,
+    schoolCover,
   } = props
+  React.useEffect(() => {
+    const player = new Player({
+      id: videoUrl + 'video',
+      url: videoUrl,
+      width: '70%',
+      height: '100%',
+      poster: schoolCover,
+    })
+    return () => {
+      if (player) {
+        player.destroy()
+      }
+    }
+  }, [])
   return (
     <div
       style={{
@@ -98,47 +115,45 @@ function CardDetail(props: VideoSchoolType) {
         overflow: 'hidden',
         backgroundColor: '#f5f5f5',
         display: 'flex',
-        justifyContent: 'space-around',
-        flexDirection: 'column',
       }}
     >
+      <div id={videoUrl + 'video'}></div>
       <div
         style={{
-          display: 'flex',
-          minHeight: '160px',
-          height: '20vh',
+          position: 'relative',
+          width: '30%',
+          height: '100%',
+          minWidth: '300px',
         }}
       >
-        {schoolBdage}
-        <div>
-          <div style={{ color: '#0070f3' }}>{schoolName}</div>
-          <Button size="large" target="_blank" href={schoolSiteUrl}>
-            学校官网
-          </Button>
-          <Button size="large" target="_blank" href={schoolRecuritmentUrl}>
-            本科招生网
-          </Button>
-        </div>
-      </div>
-      {/* <img src={schoolLogo} /> */}
-      <div
-        style={{
-          width: '100%',
-          display: 'flex',
-          // padding:'25px',
-          height: '65vh',
-          justifyContent: 'center',
-          // backgroundColor:'#000000'
-        }}
-      >
-        <video
-          controls
+        <div
           style={{
-            maxWidth: '1000px',
+            position: 'absolute',
+            zIndex: 10,
+            display: 'flex',
+            justifyContent: 'center',
+            height: '150px',
+            width: '100%',
           }}
         >
-          <source src={videoUrl} />
-        </video>
+          <div style={{ marginTop: '10px' }}>{schoolBdage}</div>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-evenly',
+              textAlign: 'center',
+            }}
+          >
+            <div style={{ color: '#0070f3' }}>{schoolName}</div>
+            <Button size="large" target="_blank" href={schoolSiteUrl}>
+              学校官网
+            </Button>
+            <Button size="large" target="_blank" href={schoolRecuritmentUrl}>
+              本科招生网
+            </Button>
+          </div>
+        </div>
       </div>
     </div>
   )
@@ -165,8 +180,8 @@ function MyButton(props: ButtonProps) {
 }
 
 export default function VideoPlayPage() {
-  const cardItems = VideoSchoolList.map(item => (
-    <CardItem key={item.schoolName} {...item} />
+  const cardItems = VideoSchoolList.map((item, index) => (
+    <CardItem key={item.schoolName + '' + index} {...item} />
   ))
   const PageRef = React.useRef<HTMLDivElement>(null)
   return (
