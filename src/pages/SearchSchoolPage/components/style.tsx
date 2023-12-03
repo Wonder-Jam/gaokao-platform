@@ -29,13 +29,7 @@ export const UniversityItem = styled.li`
   font-family: PingFangSC-Regular, sans-serif;
 `
 
-export const DetailBackgroundContainer = styled.div`
-  width: 100%;
-  height: 20vh;
-  background-color: #ffffff;
-  background-image: url(https://files.lsmcloud.top/blogdce2e342063735250399b454065cab94.jpg);
-  background-size: cover;
-`
+
 
 export const Mask = styled.div`
   height: 100%;

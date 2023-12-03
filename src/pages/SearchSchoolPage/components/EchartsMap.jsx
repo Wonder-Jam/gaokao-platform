@@ -1,6 +1,12 @@
 import React, { useEffect, useState, useRef, useContext } from 'react'
 import * as echarts from 'echarts'
 import { SearchContext } from '../Context/SearchContext'
+import { Dropdown, Button } from 'antd'
+import {
+  BarChartOutlined,
+} from '@ant-design/icons'
+// import * as Enum from '../enum'
+
 // import china from "../data/china"; // 假设你有中国地图数据
 
 // TODO: 1. 使用context传递数据
@@ -718,10 +724,44 @@ function EChartsMap() {
     initEChart()
   }
 
+  const items = [
+    {
+      key: '1',
+      label: '全省GPD总值',
+    },
+    {
+      key: '2',
+      label: '985高校数量',
+    },
+    {
+      key: '3',
+      label: '211高校数量',
+    },
+    {
+      key: '4',
+      label: '双一流大学数量',
+    },
+    {
+      key: '5',
+      label: '教育总经费',
+    },
+    {
+      key: '6',
+      label: '无'
+    }
+  ];
+
   return (
-    <div ref={chartRef} style={{ height: '85vh', margin: 'auto' }}>
-      Loading...
-    </div>
+    <>
+      <div style={{position: 'absolute', zIndex: '1', marginTop:'-15px', width: '100%', display: 'flex', justifyContent: 'center'}}>
+        <Dropdown menu={{ items, selectable: true, defaultSelectedKeys: ['6'], onSelect: (e)=>{setChoices({ province, city, rank: Number(e.key) })} }} placement="bottom" arrow>
+          <Button icon={<BarChartOutlined/>}  >为地区排序</Button>
+        </Dropdown>
+      </div>
+      <div ref={chartRef} style={{ height: '85vh', margin: 'auto' }}>
+        Loading...
+      </div>
+    </>
   )
 }
 

@@ -3,7 +3,7 @@ export const HeaderContainer = styled.div`
   display: flex;
   z-index: 1;
   width: 100%;
-  height: 80px;
+  height: 12%;
   background-color: #fff;
   // align-items: center;
   // justify-content: space-between;

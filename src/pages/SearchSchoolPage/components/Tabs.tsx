@@ -12,10 +12,11 @@ import { Tabs, Divider } from 'antd'
 import EChartsMap from './EchartsMap'
 import { eventBus } from '../utils/eventBus'
 import UniversityDetail from './UniversityDetail'
+import type {UniversityDetailProps} from '../type'
 
 const initialItems = [
   {
-    label: '全国数据',
+    label: '地图数据',
     children: <EChartsMap />,
     key: '1',
     closable: false,
@@ -111,7 +112,7 @@ const App: React.FC = () => {
       ...items,
       {
         label: item.name,
-        children: <UniversityDetail />,
+        children: <UniversityDetail name={item.name} description={item.description} motto={item.mooto} logoUrl={item.picture.large} backgroundUrl={item.background} tags={item.tags} website={item.website} />,
         key: newActiveKey,
         closable: true,
       },

@@ -15,3 +15,13 @@ export interface MajorDataType {
     year: number;
     scoreLine: number;
 }
+
+export interface UniversityDetailProps {
+  name: string;
+  description: string;
+  tags: string[];
+  website: string;
+  backgroundUrl: string;
+  logoUrl: string;
+  motto: string;
+}
