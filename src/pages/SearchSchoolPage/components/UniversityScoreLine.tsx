@@ -12,7 +12,7 @@ interface Props {
   }[]
 }
 
-const LineChart: React.FC<Props> = props => {
+const UniversityScoreLine: React.FC<Props> = props => {
   // 定义一个状态变量，用来存储ECharts的配置选项
   const [option, setOption] = useState<EChartsOption>({})
 
@@ -48,8 +48,8 @@ const LineChart: React.FC<Props> = props => {
       },
       yAxis: {
         type: 'value', // 纵轴类型，数值型
-        min: 500,
-        max: 750,
+        min: groups.文史.reduce((acc, cur) => Math.min(acc, cur[1]), 1000) - 20, // 纵轴最小值，取文史组中分数最低的减20
+        max: groups.理工.reduce((acc, cur) => Math.max(acc, cur[1]), 0) + 20, // 纵轴最大值，取理工组中分数最高的加20
       },
       series: [
         {
@@ -73,4 +73,4 @@ const LineChart: React.FC<Props> = props => {
   return <ReactECharts style={{ height: '270px' }} option={option} />
 }
 
-export default LineChart
+export default UniversityScoreLine
