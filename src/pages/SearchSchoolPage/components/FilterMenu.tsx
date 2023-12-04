@@ -103,14 +103,14 @@ const FilterMenu: React.FC = () => {
       ),
     ]),
 
-    getItem('为地区排序', 'sub2', <BarChartOutlined />, [
-      getItem('无', Enum.rank.None),
-      getItem('全省GDP总值', Enum.rank.GDP),
-      getItem('985大学数量', Enum.rank._985),
-      getItem('211大学数量', Enum.rank._211),
-      getItem('双一流大学数量', Enum.rank.DoubleFristClass),
-      getItem('教育总经费', Enum.rank.EduFunds),
-    ]),
+    // getItem('为地区排序', 'sub2', <BarChartOutlined />, [
+    //   getItem('无', Enum.rank.None),
+    //   getItem('全省GDP总值', Enum.rank.GDP),
+    //   getItem('985大学数量', Enum.rank._985),
+    //   getItem('211大学数量', Enum.rank._211),
+    //   getItem('双一流大学数量', Enum.rank.DoubleFristClass),
+    //   getItem('教育总经费', Enum.rank.EduFunds),
+    // ]),
 
     { type: 'divider' },
 

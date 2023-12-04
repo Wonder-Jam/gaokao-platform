@@ -3,24 +3,26 @@ import { Input, Button, List, Typography, Card, Tag, Space } from 'antd'
 import { UniversityItem } from './style'
 import { eventBus } from '../utils/eventBus'
 import { SearchProps } from 'antd/es/input/Search'
+import {Searchbar} from './Searchbar'
 
 const { Text } = Typography
 
-const { Search } = Input
 
 // TODO: UniversityList 太丑了，需要美化：1.太空了，资源利用不到位 2.List.Item.Meta限制太多了，要自定义内容
 
 interface DataType {
-  name?: string
-  website?: string
+  name: string
+  website: string
   picture: {
-    large?: string
+    large: string
     medium?: string
     thumbnail?: string
   }
-  motto?: string
+  motto: string
   loading: boolean
-  description?: string
+  description: string
+  background: string
+  tags: string[]
 }
 
 const count = 3
@@ -54,7 +56,12 @@ const UniversityList: React.FC = () => {
         [...new Array(count)].map(() => ({
           loading: true,
           name: '',
-          picture: {},
+          picture: {large: ''},
+          motto: '',
+          description: '',
+          website: '',
+          background: '',
+          tags: [],
         })),
       ),
     )
@@ -92,34 +99,22 @@ const UniversityList: React.FC = () => {
           />
           <div style={{ marginLeft: '10px' }}>
             <h3 style={{ margin: '0px', marginTop: '3px' }}>
-              <a href={item.website}>{item.name}</a>
+              {item.name}
             </h3>
             <p style={{ margin: '0px', marginTop: '2px', color: 'gray' }}>
               {item.motto}
             </p>
             {/* <div style={{ display: 'flex', justifyContent: 'center' }}> */}
             <Space size={[0, 4]} wrap>
-              <Tag color="#f50">985</Tag>
-              <Tag color="#2db7f5">211</Tag>
-              <Tag color="#87d068">双一流</Tag>
-              <Tag color="#108ee9">华东五校</Tag>
+              {item.tags[0] ? <Tag color="#f50">{item.tags[0]}</Tag> : null}
+              {item.tags[1] ? <Tag color="#2db7f5">{item.tags[1]}</Tag> : null}
+              {item.tags[2] ? <Tag color="#87d068">{item.tags[2]}</Tag> : null}
+              {item.tags[3] ? <Tag color="#108ee9">{item.tags[3]}</Tag> : null}
             </Space>
             {/* </div> */}
             {/* <p style={{ margin: '0px', marginTop: '1px' }}>{item.description}</p> */}
           </div>
         </div>
-        {/* <Button
-          onClick={() => onItemClicked(item)}
-          style={{
-            position: 'absolute',
-            bottom: '5px',
-            right: '5px',
-            fontFamily: 'PingFangSC-Regular, sans-serif',
-            color: '#4096ff',
-          }}
-        >
-          更多
-        </Button> */}
       </UniversityItem>
     )
   }
@@ -152,14 +147,15 @@ const UniversityList: React.FC = () => {
 
   return (
     <>
-      <Search
+      {/* <Search
         placeholder="搜索大学..."
         onSearch={onSearch}
         enterButton
         size="large"
         bordered={true}
-        style={{ marginBottom: '10px', marginLeft: '5px', marginRight: '5px' }}
-      />
+        style={{ position:'fixed', marginBottom: '10px', marginLeft: '5px', marginRight: '5px' }}
+      /> */}
+      <Searchbar style={{height: '7vh', width: '97%', marginBottom: '10px', marginLeft: '5px', marginRight: '5px'}}  />
       <List
         className="demo-loadmore-list"
         loading={initLoading}
@@ -168,6 +164,7 @@ const UniversityList: React.FC = () => {
         // bordered
         loadMore={loadMore}
         dataSource={list}
+        style={{  overflowY: 'auto', overflowX: 'hidden', height: '90vh'}}
         renderItem={item => (
           <List.Item
             style={{
@@ -178,6 +175,7 @@ const UniversityList: React.FC = () => {
             }}
           >
             <Card
+              loading={item.loading}
               hoverable={true}
               size="small"
               style={{ width: '97%', height: '15%', padding: '0px' }}

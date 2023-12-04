@@ -1,12 +1,14 @@
-import NJU_LOGO from '@/static/school-badge/南京大学 NJU.svg'
-import NJU_BACK from '@/static/school-badge/南京大学 NJU-1.svg'
-import { DetailBackgroundContainer, Mask } from './style'
-import { Card, Divider, Tag, Space } from 'antd'
-import LineChart from './UniversityScoreLine'
+import { Mask } from './style'
+import { Card, Divider, Tag, Space, Popover, Button } from 'antd'
+import UniversityScoreLine from './UniversityScoreLine'
 import UniversityScoreLineTable from './UniversityScoreLineTable'
 import UniversityMajorPlan from './UniversityMajorPlan'
-import type { ScorelineDataType } from '../type'
-
+import type { ScorelineDataType, UniversityDetailProps } from '../type'
+import UniersityOverview from './UniversityOverview'
+import { FieldTimeOutlined, FlagOutlined, EnvironmentOutlined, NodeIndexOutlined } from '@ant-design/icons';
+import UniversityRank from './UniversityRank'
+import GenderRatioChart from './UniversityGenderRatio'
+import UniversityEnvironment from './UniversityEvironment'
 // 测试数据，来源于[4]和[6]
 const scorelineData = [
   { year: 2010, score: 602, type: '文史' },
@@ -220,86 +222,158 @@ const MajorData = [
   },
 ]
 
-export default function UniversityDetail() {
-  const tableData: ScorelineDataType[] = []
-  const years = Array.from(new Set(scorelineData.map(item => item.year))) // 提取唯一年份
+const rankData = [
+  { year: 2010, rank: 120, type: 'USNews' },
+  { year: 2010, rank: 115, type: 'QS' },
+  { year: 2010, rank: 110, type: 'THE' },
+  { year: 2010, rank: 105, type: 'ARWU' },
+  { year: 2011, rank: 118, type: 'USNews' },
+  { year: 2011, rank: 113, type: 'QS' },
+  { year: 2011, rank: 108, type: 'THE' },
+  { year: 2011, rank: 103, type: 'ARWU' },
+  { year: 2012, rank: 116, type: 'USNews' },
+  { year: 2012, rank: 111, type: 'QS' },
+  { year: 2012, rank: 106, type: 'THE' },
+  { year: 2012, rank: 101, type: 'ARWU' },
+  { year: 2013, rank: 114, type: 'USNews' },
+  { year: 2013, rank: 109, type: 'QS' },
+  { year: 2013, rank: 104, type: 'THE' },
+  { year: 2013, rank: 99, type: 'ARWU' },
+  { year: 2014, rank: 112, type: 'USNews' },
+  { year: 2014, rank: 107, type: 'QS' },
+  { year: 2014, rank: 102, type: 'THE' },
+  { year: 2014, rank: 97, type: 'ARWU' },
+  { year: 2015, rank: 110, type: 'USNews' },
+  { year: 2015, rank: 105, type: 'QS' },
+  { year: 2015, rank: 100, type: 'THE' },
+  { year: 2015, rank: 95, type: 'ARWU' },
+  { year: 2016, rank: 108, type: 'USNews' },
+  { year: 2016, rank: 103, type: 'QS' },
+  { year: 2016, rank: 98, type: 'THE' },
+  { year: 2016, rank: 93, type: 'ARWU' },
+  { year: 2017, rank: 106, type: 'USNews' },
+  { year: 2017, rank: 101, type: 'QS' },
+  { year: 2017, rank: 96, type: 'THE' },
+  { year: 2017, rank: 91, type: 'ARWU' },
+  { year: 2018, rank: 104, type: 'USNews' },
+  { year: 2018, rank: 99, type: 'QS' },
+  { year: 2018, rank: 94, type: 'THE' },
+  { year: 2018, rank: 89, type: 'ARWU' },
+  { year: 2019, rank: 102, type: 'USNews' },
+  { year: 2019, rank: 97, type: 'QS' },
+  { year: 2019, rank: 92, type: 'THE' },
+  { year: 2019, rank: 87, type: 'ARWU' },
+  { year: 2020, rank: 100, type: 'USNews' },
+  { year: 2020, rank: 95, type: 'QS' },
+  { year: 2020, rank: 90, type: 'THE' },
+  { year: 2020, rank: 85, type: 'ARWU' },
+  { year: 2021, rank: 98, type: 'USNews' },
+  { year: 2021, rank: 93, type: 'QS' },
+  { year: 2021, rank: 88, type: 'THE' },
+  { year: 2021, rank: 83, type: 'ARWU' },
+  { year: 2022, rank: 96, type: 'USNews' },
+  { year: 2022, rank: 91, type: 'QS' },
+  { year: 2022, rank: 86, type: 'THE' },
+  { year: 2022, rank: 81, type: 'ARWU' },
+];
+
+
+export default function UniversityDetail(data: UniversityDetailProps) {
+
+  const tableData: ScorelineDataType[] = [];
+  const years = Array.from(new Set(scorelineData.map(item => item.year))); // 提取唯一年份
 
   years.forEach((year, index) => {
     const newDataItem: ScorelineDataType = {
       key: `${index + 1}`,
-      arts:
-        scorelineData.find(item => item.year === year && item.type === '文史')
-          ?.score || 0,
-      science:
-        scorelineData.find(item => item.year === year && item.type === '理工')
-          ?.score || 0,
+      arts: scorelineData.find(item => item.year === year && item.type === '文史')?.score || 0,
+      science: scorelineData.find(item => item.year === year && item.type === '理工')?.score || 0,
       year: year,
-    }
-    tableData.push(newDataItem)
-  })
+    };
+    tableData.push(newDataItem);
+  });
+
+  const content = (
+    <div style={{display:'flex',flexDirection:'column', alignItems:'center'}}>
+      <div><a href="#学校简介">学校简介</a></div>
+      <div><a href="#学校概况">学校概况</a></div>
+      <div><a href="#历年分数">历年分数</a></div>
+      <div><a href="#专业组分数">专业组分数</a></div>
+      <div><a href="#大学排名">大学排名</a></div>
+      <div><a href="#校园情况">校园情况</a></div>
+    </div>
+  );
+
 
   return (
-    <div
-      style={{
-        overflow: 'auto',
-        marginTop: '-13px',
-        height: '90vh',
-        paddingBottom: '100px',
-      }}
-    >
-      <DetailBackgroundContainer>
+    <div style={{ overflow: 'auto', marginTop: '-13px', height: '80vh', paddingBottom: '100px' }}>
+      <div style={{ position: 'absolute', zIndex: '1', right: '10px', top: '10px' }} >
+        <Popover title=<h1 style={{ display:'flex',justifyContent:'center',fontSize:'18px'}}>页内导航</h1> trigger="click" content={content}>
+          <Button><NodeIndexOutlined />页内导航</Button>
+        </Popover>
+      </div>
+      <div style={{ width: '100%', height: '20vh', backgroundColor: '#ffffff', backgroundImage: `url(${data.backgroundUrl})`, backgroundSize: 'cover' }}>
         <Mask />
-      </DetailBackgroundContainer>
-      <div
-        style={{
-          marginTop: '-75px',
-          display: 'flex',
-          flexDirection: 'row',
-          marginBottom: '-20px',
-        }}
-      >
-        <NJU_LOGO />
-        <h1 style={{ marginTop: '85px', color: '#1677FF' }}>
-          <a href="https://www.nju.edu.cn/">南京大学</a>
+      </div>
+      <div style={{ marginTop: '-75px', display: 'flex', flexDirection: 'row', marginBottom: '-20px' }}>
+        <img src={data.logoUrl} style={{ width: '150px', height: '150px' }} />
+        <h1 style={{ marginTop: '85px' }}>
+          {data.name}
           <Space style={{ marginLeft: '10px' }} size={[0, 4]} wrap>
-            <Tag color="#f50">985</Tag>
-            <Tag color="#2db7f5">211</Tag>
-            <Tag color="#87d068">双一流</Tag>
-            <Tag color="#108ee9">华东五校</Tag>
+            {data.tags[0] ? <Tag color="#f50">{data.tags[0]}</Tag> : null}
+            {data.tags[1] ? <Tag color="#2db7f5">{data.tags[1]}</Tag> : null}
+            {data.tags[2] ? <Tag color="#87d068">{data.tags[2]}</Tag> : null}
+            {data.tags[3] ? <Tag color="#108ee9">{data.tags[3]}</Tag> : null}
           </Space>
         </h1>
       </div>
-      <Card size="small" style={{ width: '100%' }}>
-        <p>
-          南京大学，简称南大，位于中国江苏省南京市，该校历史或可追溯至三国吴永安元年（258年），历史上曾历经多次变迁，亦是中国第一所集教学和研究于一体的现代大学。中华民国政府撤离南京后，中华人民共和国成立前夕由“国立中央大学”易名“国立南京大学”，翌年迳称“南京大学”，沿用至今。南京大学在长期的历史中积淀了丰厚的学风传统和精神遗产，倡行人文思想之会通与学术之昌明，以求世界的和平繁荣，在教育、学术和文化上均具重要贡献和影响。
-        </p>
+      <Card id='学校简介' size='small' style={{ width: '100%' }}>
+        <p>{data.description}</p>
+        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', }}>
+          <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}><FieldTimeOutlined style={{ marginRight: '5px', color: '#1677FF' }} /><p style={{ marginRight: '5px' }}>建校时间:</p><p>1902</p></div>
+          <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}><FlagOutlined style={{ marginRight: '5px', color: '#1677FF' }} /><p style={{ marginRight: '5px' }}>主管部门:</p><p>教育部</p></div>
+          <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}><EnvironmentOutlined style={{ marginRight: '5px', color: '#1677FF' }} /><p style={{ marginRight: '5px' }}>学校地址:</p><p>鼓楼校区: 江苏省南京市鼓楼区汉口路22号<br />仙林校区: 江苏省南京市栖霞区仙林大道163号</p></div>
+        </div>
       </Card>
-      <Divider orientation="left">历年分数</Divider>
-      <div
-        style={{
-          height: '300px',
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-        }}
-      >
-        <Card size="small" style={{ width: '49.5%', height: '300px' }}>
-          <LineChart
-            data={
-              scorelineData as {
-                year: number
-                score: number
-                type: '文史' | '理工'
-              }[]
-            }
-          />
+      <div id='学校概况'></div>
+      <Divider orientation="left">
+        学校概况
+      </Divider>
+      <UniersityOverview />
+      <div id='历年分数'></div>
+      <Divider orientation="left">
+        历年分数
+      </Divider>
+      <div style={{ height: '300px', display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+        <Card size='small' style={{ width: '49.5%', height: '300px' }}>
+          <UniversityScoreLine data={scorelineData as { year: number; score: number; type: "文史" | "理工"; }[]} />
         </Card>
         <div style={{ width: '49.5%', height: '50vh' }}>
           <UniversityScoreLineTable data={tableData.reverse()} />
         </div>
       </div>
-      <Divider orientation="left">专业组分数</Divider>
+      <div id='专业组分数'></div>
+      <Divider orientation="left">
+        专业组分数
+      </Divider>
       <UniversityMajorPlan data={MajorData} />
+      <div id='大学排名'></div>
+      <Divider orientation="left">
+        大学排名
+      </Divider>
+      <Card size='small' style={{ height: '300px' }}>
+        <UniversityRank data={rankData as { year: number; rank: number; type: "USNews" | "QS" | "THE" | "ARWU"; }[]} />
+      </Card>
+      <div id='校园情况'></div>
+      <Divider orientation="left">
+        校园情况
+      </Divider>
+      <div style={{ height: '300px', display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+        <Card size='small' style={{ height: '300px', width: '49.5%' }}>
+          <GenderRatioChart />
+        </Card>
+        <UniversityEnvironment style={{ width: '49.5%' }} />
+      </div>
     </div>
   )
 }

@@ -56,7 +56,7 @@ const ProvinceList: React.FC<ProvinceListProps> = ({ onSelect, selected }) => {
           <ListItem
             key={province}
             style={{
-              color: selected === province ? '#1677ff' : '',
+              color: selected === province ? '#1677ff' : 'gray',
             }}
             onClick={() => handleProvinceClick(province)}
           >
