@@ -3,10 +3,9 @@ import { Input, Button, List, Typography, Card, Tag, Space } from 'antd'
 import { UniversityItem } from './style'
 import { eventBus } from '../utils/eventBus'
 import { SearchProps } from 'antd/es/input/Search'
-import {Searchbar} from './Searchbar'
+import { Searchbar } from './Searchbar'
 
 const { Text } = Typography
-
 
 // TODO: UniversityList 太丑了，需要美化：1.太空了，资源利用不到位 2.List.Item.Meta限制太多了，要自定义内容
 
@@ -56,7 +55,7 @@ const UniversityList: React.FC = () => {
         [...new Array(count)].map(() => ({
           loading: true,
           name: '',
-          picture: {large: ''},
+          picture: { large: '' },
           motto: '',
           description: '',
           website: '',
@@ -98,9 +97,7 @@ const UniversityList: React.FC = () => {
             style={{ borderRadius: '3px', width: '80px', height: '80px' }}
           />
           <div style={{ marginLeft: '10px' }}>
-            <h3 style={{ margin: '0px', marginTop: '3px' }}>
-              {item.name}
-            </h3>
+            <h3 style={{ margin: '0px', marginTop: '3px' }}>{item.name}</h3>
             <p style={{ margin: '0px', marginTop: '2px', color: 'gray' }}>
               {item.motto}
             </p>
@@ -155,7 +152,15 @@ const UniversityList: React.FC = () => {
         bordered={true}
         style={{ position:'fixed', marginBottom: '10px', marginLeft: '5px', marginRight: '5px' }}
       /> */}
-      <Searchbar style={{height: '7vh', width: '97%', marginBottom: '10px', marginLeft: '5px', marginRight: '5px'}}  />
+      <Searchbar
+        style={{
+          height: '7vh',
+          width: '97%',
+          marginBottom: '10px',
+          marginLeft: '5px',
+          marginRight: '5px',
+        }}
+      />
       <List
         className="demo-loadmore-list"
         loading={initLoading}
@@ -164,7 +169,7 @@ const UniversityList: React.FC = () => {
         // bordered
         loadMore={loadMore}
         dataSource={list}
-        style={{  overflowY: 'auto', overflowX: 'hidden', height: '90vh'}}
+        style={{ overflowY: 'auto', overflowX: 'hidden', height: '90vh' }}
         renderItem={item => (
           <List.Item
             style={{

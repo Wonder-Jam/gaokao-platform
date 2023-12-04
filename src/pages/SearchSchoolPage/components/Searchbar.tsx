@@ -1,42 +1,50 @@
-import React, { useMemo, useRef, useState } from 'react';
-import debounce from 'lodash/debounce';
-import { Select, Spin } from 'antd';
-import type { SelectProps } from 'antd/es/select';
+import React, { useMemo, useRef, useState } from 'react'
+import debounce from 'lodash/debounce'
+import { Select, Spin } from 'antd'
+import type { SelectProps } from 'antd/es/select'
 import type { CSSProperties } from 'react'
 
 export interface DebounceSelectProps<ValueType = any>
   extends Omit<SelectProps<ValueType | ValueType[]>, 'options' | 'children'> {
-  fetchOptions: (search: string) => Promise<ValueType[]>;
-  debounceTimeout?: number;
+  fetchOptions: (search: string) => Promise<ValueType[]>
+  debounceTimeout?: number
 }
 
 function DebounceSelect<
-  ValueType extends { key?: string; label: React.ReactNode; value: string | number } = any,
->({ fetchOptions, debounceTimeout = 800, ...props }: DebounceSelectProps<ValueType>) {
-  const [fetching, setFetching] = useState(false);
-  const [options, setOptions] = useState<ValueType[]>([]);
-  const fetchRef = useRef(0);
+  ValueType extends {
+    key?: string
+    label: React.ReactNode
+    value: string | number
+  } = any,
+>({
+  fetchOptions,
+  debounceTimeout = 800,
+  ...props
+}: DebounceSelectProps<ValueType>) {
+  const [fetching, setFetching] = useState(false)
+  const [options, setOptions] = useState<ValueType[]>([])
+  const fetchRef = useRef(0)
 
   const debounceFetcher = useMemo(() => {
     const loadOptions = (value: string) => {
-      fetchRef.current += 1;
-      const fetchId = fetchRef.current;
-      setOptions([]);
-      setFetching(true);
+      fetchRef.current += 1
+      const fetchId = fetchRef.current
+      setOptions([])
+      setFetching(true)
 
-      fetchOptions(value).then((newOptions) => {
+      fetchOptions(value).then(newOptions => {
         if (fetchId !== fetchRef.current) {
           // for fetch callback order
-          return;
+          return
         }
 
-        setOptions(newOptions);
-        setFetching(false);
-      });
-    };
+        setOptions(newOptions)
+        setFetching(false)
+      })
+    }
 
-    return debounce(loadOptions, debounceTimeout);
-  }, [fetchOptions, debounceTimeout]);
+    return debounce(loadOptions, debounceTimeout)
+  }, [fetchOptions, debounceTimeout])
 
   return (
     <Select
@@ -47,36 +55,39 @@ function DebounceSelect<
       {...props}
       options={options}
     />
-  );
+  )
 }
 
 // Usage of DebounceSelect
 interface UserValue {
-  label: string;
-  value: string;
+  label: string
+  value: string
 }
 
 async function fetchUserList(username: string): Promise<UserValue[]> {
-  console.log('fetching user', username);
+  console.log('fetching user', username)
 
   return fetch('https://randomuser.me/api/?results=5')
-    .then((response) => response.json())
-    .then((body) =>
+    .then(response => response.json())
+    .then(body =>
       body.results.map(
-        (user: { name: { first: string; last: string }; login: { username: string } }) => ({
+        (user: {
+          name: { first: string; last: string }
+          login: { username: string }
+        }) => ({
           label: `${user.name.first} ${user.name.last}`,
           value: user.login.username,
         }),
       ),
-    );
+    )
 }
 
 export interface SearchbarProps {
-    style?: CSSProperties
+  style?: CSSProperties
 }
 
-export function Searchbar({style}: SearchbarProps): JSX.Element {
-  const [value, setValue] = useState<UserValue[]>([]);
+export function Searchbar({ style }: SearchbarProps): JSX.Element {
+  const [value, setValue] = useState<UserValue[]>([])
 
   return (
     <DebounceSelect
@@ -84,12 +95,12 @@ export function Searchbar({style}: SearchbarProps): JSX.Element {
       value={value}
       placeholder="搜索大学..."
       fetchOptions={fetchUserList}
-      onChange={(newValue) => {
-        setValue(newValue as UserValue[]);
+      onChange={newValue => {
+        setValue(newValue as UserValue[])
       }}
       style={{ ...style }}
     />
-  );
-};
+  )
+}
 
-export default Searchbar;
+export default Searchbar

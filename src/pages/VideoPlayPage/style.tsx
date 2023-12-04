@@ -70,3 +70,12 @@ export const UpAndDownContainer = styled.div`
     cursor: pointer;
   }
 `
+
+export const WxContanier = styled.div`
+  cursor: pointer;
+  padding-left: 10px;
+  padding-right: 10px;
+  &:active {
+    background-color: #e5e5e5;
+  }
+`

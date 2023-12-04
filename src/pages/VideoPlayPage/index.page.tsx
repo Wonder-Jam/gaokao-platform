@@ -8,11 +8,12 @@ import {
   CardListContainer,
   ArrowLeftContainer,
   UpAndDownContainer,
+  WxContanier,
 } from './style'
 import Mask from '../../components/Mask'
 import { usePageContainer } from '../_app.page'
 import { useSlideAnimation } from '@/hooks/useSlideAnimation'
-import { VideoSchoolType, VideoSchoolList } from './data'
+import { VideoSchoolType, VideoSchoolList, WeChatArticles } from './data'
 import Player from 'xgplayer'
 import 'xgplayer/dist/index.min.css'
 
@@ -82,32 +83,6 @@ function MaskContainer(props: {
     </Mask>
   )
 }
-const data = [
-  {
-    title: 'Ant Design Title 1',
-  },
-  {
-    title: 'Ant Design Title 2',
-  },
-  {
-    title: 'Ant Design Title 3',
-  },
-  {
-    title: 'Ant Design Title 4',
-  },
-  {
-    title: 'Ant Design Title 4',
-  },
-  {
-    title: 'Ant Design Title 4',
-  },
-  {
-    title: 'Ant Design Title 4',
-  },
-  {
-    title: 'Ant Design Title 4',
-  },
-]
 
 function CardDetail(props: VideoSchoolType) {
   const {
@@ -189,43 +164,28 @@ function CardDetail(props: VideoSchoolType) {
         ></div>
         <List
           itemLayout="horizontal"
-          dataSource={data}
+          dataSource={WeChatArticles}
           renderItem={(item, index) => (
-            <List.Item>
-              <List.Item.Meta
-                avatar={
-                  <Avatar
-                    src={`https://xsgames.co/randomusers/avatar.php?g=pixel&key=${index}`}
-                  />
-                }
-                title={<a href="https://ant.design">{item.title}</a>}
-                description="Ant Design, a design language for background applications, is refined by Ant UED Team"
-              />
-            </List.Item>
+            <WxContanier
+              onClick={() => window.open(item.destinationLink, '_blank')}
+            >
+              <List.Item>
+                <Avatar
+                  shape="square"
+                  size={{ xs: 24, sm: 32, md: 40, lg: 64, xl: 80, xxl: 100 }}
+                  src={item.image}
+                  style={{ marginRight: '5px' }}
+                />
+                <List.Item.Meta
+                  title={item.title}
+                  description={item.description}
+                />
+              </List.Item>
+            </WxContanier>
           )}
         />
       </div>
     </div>
-  )
-}
-
-interface ButtonProps {
-  content: string
-  href?: string
-}
-
-function MyButton(props: ButtonProps) {
-  return (
-    <button>
-      <a
-        style={{
-          textDecoration: 'none',
-        }}
-        href={props.href}
-        target="_blank"
-      />
-      {props.content}
-    </button>
   )
 }
 
@@ -235,7 +195,7 @@ export default function VideoPlayPage() {
   ))
   const PageRef = React.useRef<HTMLDivElement>(null)
   return (
-    <div ref={PageRef}>
+    <div style={{ height: '100%', width: '100%' }} ref={PageRef}>
       <Entry>
         <CardListContainer>{cardItems}</CardListContainer>
       </Entry>
