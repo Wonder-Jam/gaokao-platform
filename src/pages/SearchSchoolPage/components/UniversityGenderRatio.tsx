@@ -1,21 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import {ReactECharts} from '@/components/ReactECharts'; // 确保你已经安装了echarts-for-react
+import React, { useEffect, useState } from 'react'
+import { ReactECharts } from '@/components/ReactECharts' // 确保你已经安装了echarts-for-react
 
 const GenderRatioChart: React.FC = () => {
-  const [option, setOption] = useState({});
+  const [option, setOption] = useState({})
 
   useEffect(() => {
     setOption({
       title: {
         text: '男女性别比例',
-        left: 'center'
+        left: 'center',
       },
       tooltip: {
-        trigger: 'item'
+        trigger: 'item',
       },
       legend: {
         orient: 'vertical',
-        left: 'left'
+        left: 'left',
       },
       series: [
         {
@@ -24,21 +24,21 @@ const GenderRatioChart: React.FC = () => {
           radius: '50%',
           data: [
             { value: 55, name: '男' },
-            { value: 45, name: '女' }
+            { value: 45, name: '女' },
           ],
           emphasis: {
             itemStyle: {
               shadowBlur: 10,
               shadowOffsetX: 0,
-              shadowColor: 'rgba(0, 0, 0, 0.5)'
-            }
-          }
-        }
-      ]
-    });
-  }, []);
+              shadowColor: 'rgba(0, 0, 0, 0.5)',
+            },
+          },
+        },
+      ],
+    })
+  }, [])
 
-  return <ReactECharts style={{height: '270px'}} option={option} />;
-};
+  return <ReactECharts style={{ height: '270px' }} option={option} />
+}
 
-export default GenderRatioChart;
+export default GenderRatioChart

@@ -29,8 +29,6 @@ export const UniversityItem = styled.li`
   font-family: PingFangSC-Regular, sans-serif;
 `
 
-
-
 export const Mask = styled.div`
   height: 100%;
   width: 100%;

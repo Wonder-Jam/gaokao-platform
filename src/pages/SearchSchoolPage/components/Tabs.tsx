@@ -12,7 +12,7 @@ import { Tabs, Divider } from 'antd'
 import EChartsMap from './EchartsMap'
 import { eventBus } from '../utils/eventBus'
 import UniversityDetail from './UniversityDetail'
-import type {UniversityDetailProps} from '../type'
+import type { UniversityDetailProps } from '../type'
 
 const initialItems = [
   {
@@ -112,7 +112,17 @@ const App: React.FC = () => {
       ...items,
       {
         label: item.name,
-        children: <UniversityDetail name={item.name} description={item.description} motto={item.mooto} logoUrl={item.picture.large} backgroundUrl={item.background} tags={item.tags} website={item.website} />,
+        children: (
+          <UniversityDetail
+            name={item.name}
+            description={item.description}
+            motto={item.mooto}
+            logoUrl={item.picture.large}
+            backgroundUrl={item.background}
+            tags={item.tags}
+            website={item.website}
+          />
+        ),
         key: newActiveKey,
         closable: true,
       },

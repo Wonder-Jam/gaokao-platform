@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Image, Button } from 'antd'
+import { Card, Image, Button, Avatar, List } from 'antd'
 import Entry from '@/components/Entry'
 const { Meta } = Card
 import { ArrowLeftOutlined, DownOutlined, UpOutlined } from '@ant-design/icons'
@@ -8,11 +8,12 @@ import {
   CardListContainer,
   ArrowLeftContainer,
   UpAndDownContainer,
+  WxContanier,
 } from './style'
 import Mask from '../../components/Mask'
 import { usePageContainer } from '../_app.page'
 import { useSlideAnimation } from '@/hooks/useSlideAnimation'
-import { VideoSchoolType, VideoSchoolList } from './data'
+import { VideoSchoolType, VideoSchoolList, WeChatArticles } from './data'
 import Player from 'xgplayer'
 import 'xgplayer/dist/index.min.css'
 
@@ -115,67 +116,76 @@ function CardDetail(props: VideoSchoolType) {
         overflow: 'hidden',
         backgroundColor: '#f5f5f5',
         display: 'flex',
+        position: 'relative',
       }}
     >
       <div id={videoUrl + 'video'}></div>
       <div
         style={{
-          position: 'relative',
+          position: 'absolute',
+          zIndex: 10,
+          display: 'flex',
+          justifyContent: 'center',
+          height: '150px',
+          width: '30%',
+          minWidth: '300px',
+          backgroundColor: '#fff',
+          right: 0,
+        }}
+      >
+        <div style={{ marginTop: '10px' }}>{schoolBdage}</div>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-evenly',
+            textAlign: 'center',
+          }}
+        >
+          <div style={{ color: '#0070f3' }}>{schoolName}</div>
+          <Button size="large" target="_blank" href={schoolSiteUrl}>
+            学校官网
+          </Button>
+          <Button size="large" target="_blank" href={schoolRecuritmentUrl}>
+            本科招生网
+          </Button>
+        </div>
+      </div>
+      <div
+        style={{
           width: '30%',
           height: '100%',
           minWidth: '300px',
+          overflowY: 'auto',
         }}
       >
         <div
-          style={{
-            position: 'absolute',
-            zIndex: 10,
-            display: 'flex',
-            justifyContent: 'center',
-            height: '150px',
-            width: '100%',
-          }}
-        >
-          <div style={{ marginTop: '10px' }}>{schoolBdage}</div>
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-evenly',
-              textAlign: 'center',
-            }}
-          >
-            <div style={{ color: '#0070f3' }}>{schoolName}</div>
-            <Button size="large" target="_blank" href={schoolSiteUrl}>
-              学校官网
-            </Button>
-            <Button size="large" target="_blank" href={schoolRecuritmentUrl}>
-              本科招生网
-            </Button>
-          </div>
-        </div>
+          style={{ height: '150px', width: '100%', backgroundColor: '#fff' }}
+        ></div>
+        <List
+          itemLayout="horizontal"
+          dataSource={WeChatArticles}
+          renderItem={(item, index) => (
+            <WxContanier
+              onClick={() => window.open(item.destinationLink, '_blank')}
+            >
+              <List.Item>
+                <Avatar
+                  shape="square"
+                  size={{ xs: 24, sm: 32, md: 40, lg: 64, xl: 80, xxl: 100 }}
+                  src={item.image}
+                  style={{ marginRight: '5px' }}
+                />
+                <List.Item.Meta
+                  title={item.title}
+                  description={item.description}
+                />
+              </List.Item>
+            </WxContanier>
+          )}
+        />
       </div>
     </div>
-  )
-}
-
-interface ButtonProps {
-  content: string
-  href?: string
-}
-
-function MyButton(props: ButtonProps) {
-  return (
-    <button>
-      <a
-        style={{
-          textDecoration: 'none',
-        }}
-        href={props.href}
-        target="_blank"
-      />
-      {props.content}
-    </button>
   )
 }
 
@@ -185,7 +195,7 @@ export default function VideoPlayPage() {
   ))
   const PageRef = React.useRef<HTMLDivElement>(null)
   return (
-    <div ref={PageRef}>
+    <div style={{ height: '100%', width: '100%' }} ref={PageRef}>
       <Entry>
         <CardListContainer>{cardItems}</CardListContainer>
       </Entry>

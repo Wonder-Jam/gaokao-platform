@@ -2,9 +2,7 @@ import React, { useEffect, useState, useRef, useContext } from 'react'
 import * as echarts from 'echarts'
 import { SearchContext } from '../Context/SearchContext'
 import { Dropdown, Button } from 'antd'
-import {
-  BarChartOutlined,
-} from '@ant-design/icons'
+import { BarChartOutlined } from '@ant-design/icons'
 // import * as Enum from '../enum'
 
 // import china from "../data/china"; // 假设你有中国地图数据
@@ -747,15 +745,35 @@ function EChartsMap() {
     },
     {
       key: '6',
-      label: '无'
-    }
-  ];
+      label: '无',
+    },
+  ]
 
   return (
     <>
-      <div style={{position: 'absolute', zIndex: '1', marginTop:'-15px', width: '100%', display: 'flex', justifyContent: 'center'}}>
-        <Dropdown menu={{ items, selectable: true, defaultSelectedKeys: ['6'], onSelect: (e)=>{setChoices({ province, city, rank: Number(e.key) })} }} placement="bottom" arrow>
-          <Button icon={<BarChartOutlined/>}  >为地区排序</Button>
+      <div
+        style={{
+          position: 'absolute',
+          zIndex: '1',
+          marginTop: '-15px',
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'center',
+        }}
+      >
+        <Dropdown
+          menu={{
+            items,
+            selectable: true,
+            defaultSelectedKeys: ['6'],
+            onSelect: e => {
+              setChoices({ province, city, rank: Number(e.key) })
+            },
+          }}
+          placement="bottom"
+          arrow
+        >
+          <Button icon={<BarChartOutlined />}>为地区排序</Button>
         </Dropdown>
       </div>
       <div ref={chartRef} style={{ height: '85vh', margin: 'auto' }}>
