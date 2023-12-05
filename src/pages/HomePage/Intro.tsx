@@ -7,7 +7,8 @@ const Intro: React.FC = () => {
         <div style={{
             boxSizing: 'border-box',
             backgroundColor: "#fff",
-            marginTop: 50
+            marginTop: 100,
+            marginBottom: 100,
         }}>
             <div style={{
                 boxSizing: 'border-box',

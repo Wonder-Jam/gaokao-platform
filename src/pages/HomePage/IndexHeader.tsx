@@ -1,11 +1,25 @@
 import React, {useEffect, useState} from 'react'
 import {Button, Carousel, Image} from "antd";
 import QueueAnim from 'rc-queue-anim'
+import {PauseCircleOutlined, PlayCircleOutlined} from "@ant-design/icons";
 
 
 
 const IndexHeader: React.FC = () => {
     const [activeIndex, setActiveIndex] = useState(0)
+
+    // useEffect(() => {
+    //     const intervalId = setInterval(() => {
+    //         if (activeIndex === 1){
+    //             setActiveIndex(0)
+    //         }else{
+    //             setActiveIndex(1)
+    //         }
+    //         console.log(activeIndex)
+    //     }, 4000);
+    //
+    //     return () => clearInterval(intervalId);
+    // }, [activeIndex]);
 
     return (
         <div style={{
@@ -27,15 +41,20 @@ const IndexHeader: React.FC = () => {
 
             <div style={{
                 // backgroundColor: "#f00",
-                width: '20%'
+                width: '30%'
             }}>
-                <Description></Description>
+                <Description indexActive={activeIndex}></Description>
             </div>
 
             <div style={{
-                marginRight: 30
+                marginRight: 90,
+                display: "flex",
+                flexDirection: 'column',
+                justifyContent: "center",
             }}>
-                <ProgressBar></ProgressBar>
+                {/*<ProgressBar indexActive={activeIndex} onChange={()=>setActiveIndex((prevState)=>(prevState === 1 ? 0 : 1))}></ProgressBar>*/}
+                <ProgressBar indexActive={activeIndex} onChange={()=>setActiveIndex(activeIndex==0?1:0)}></ProgressBar>
+
             </div>
 
         </div>
@@ -71,17 +90,52 @@ const Slider: React.FC<{ indexActive: number }> = ({indexActive}) => {
     );
 }
 
-const ProgressBar: React.FC = () => {
+const ProgressBar: React.FC<{ indexActive: number, onChange: ()=>void}> = ({indexActive, onChange}) => {
     const [progress1, setProgress1] = useState(0);
+    const [progress2, setProgress2] = useState(0);
+    const [isAuto, setIsAuto] = useState(true)
 
     useEffect(() => {
-        const intervalId = setInterval(() => {
-            setProgress1(prevProgress1 => (prevProgress1 + 1) % 101);
-        }, 40);
 
-        // 清除定时器
+        const intervalId = setInterval(() => {
+            setProgress1(prevProgress1 => {
+                if (!isAuto){
+                    if (indexActive === 0){
+                        return 100
+                    }else{
+                        return 0
+                    }
+                }
+                if (prevProgress1 == 102){
+                    onChange()
+                    return 0;
+                }else if (indexActive == 0){
+                    return prevProgress1+2
+                }else {
+                    return prevProgress1
+                }
+            })
+            setProgress2(prevProgress2 => {
+                if (!isAuto){
+                    if (indexActive === 1){
+                        return 100
+                    }else{
+                        return 0
+                    }
+                }
+                if (prevProgress2 == 102){
+                    onChange()
+                    return 0;
+                }else if (indexActive == 1){
+                    return prevProgress2+2
+                }else {
+                    return prevProgress2
+                }
+            })
+        }, 80);
+
         return () => clearInterval(intervalId);
-    }, []); // 空数组表示只在组件挂载时运行一次
+    }, [indexActive, isAuto]);
 
     return (
         <div>
@@ -90,9 +144,11 @@ const ProgressBar: React.FC = () => {
                 borderRadius: 10,
                 overflow: "hidden",
                 height: '120px',
-                width: '4px'
+                width: '4px',
+                marginLeft: 7,
+                cursor: "pointer",
             }}>
-                <div style={{ width: '10px', height: `${progress1}%`, background: '#0064e0', transition: 'height 0.04s' }}></div>
+                <div style={{ width: '10px', height: `${progress1}%`, background: '#0064e0', transition: 'height 0.08s' }}></div>
             </div>
             <div style={{
                 backgroundColor: '#cbd2d9',
@@ -101,15 +157,27 @@ const ProgressBar: React.FC = () => {
                 height: '120px',
                 width: '4px',
                 marginTop: 10,
+                marginBottom: 12,
+                marginLeft: 7,
+                cursor: "pointer",
             }}>
-                <div style={{ width: '10px', height: `${progress1}%`, background: '#0064e0', transition: 'height 0.04s' }}></div>
+                <div style={{ width: '10px', height: `${progress2}%`, background: '#0064e0', transition: 'height 0.08s' }}></div>
+            </div>
+            <div onClick={()=>setIsAuto(!isAuto)} style={{cursor: "pointer"}}>
+                {isAuto ? <PauseCircleOutlined style={{color: '#666'}} /> : <PlayCircleOutlined style={{color: '#666'}} />}
             </div>
         </div>
 
     )
 }
 
-const Description: React.FC = () => {
+const Description: React.FC<{ indexActive: number }> = ({indexActive}) => {
+
+    const [isClient, setIsClient] = useState(false)
+    useEffect(() => {
+        setIsClient(true)
+    }, [])
+
     return (
         <div style={{
             display: 'flex',
@@ -117,16 +185,24 @@ const Description: React.FC = () => {
             justifyContent: "center",
             height: '100%'
         }}>
-            <div style={{
-                fontSize: 40,
-                fontWeight: 520
-            }}>九乡河文理学院</div>
-            <div style={{
-                fontSize: 14,
-                marginTop: 10,
-                marginBottom: 10
-            }}>九乡河文理学院是一所历史悠久、声誉卓著的高等学府。</div>
-            <Button style={{width: '46%', fontWeight: '600'}} type={"primary"} shape={"round"} size={"large"}>了解更多</Button>
+            {isClient ?
+                <QueueAnim>
+                    <div key={"img"}>
+                        {indexActive === 0 &&
+                            <QueueAnim type={['bottom', 'top']} key={"img1"}>
+                                <div key={'title'} style={{fontSize: 40, fontWeight: 520}}>九乡河文理学院</div>
+                                <div key={'content'} style={{fontSize: 14, marginTop: 10, marginBottom: 10}}>九乡河文理学院是一所历史悠久、声誉卓著的高等学府。</div>
+                                <div key={'button'}><Button style={{width: '28%', fontWeight: '600'}} type={"primary"} shape={"round"} size={"large"}>了解更多</Button></div>
+                            </QueueAnim>}
+                        {indexActive === 1 &&
+                            <QueueAnim type={['bottom', 'top']} key={"img2"}>
+                                <div key={'title'} style={{fontSize: 40, fontWeight: 520}}>南哪儿大学</div>
+                                <div key={'content'} style={{fontSize: 14, marginTop: 10, marginBottom: 10}}>“你是在南京哪个大学？”</div>
+                                <div key={'button'}><Button style={{width: '28%', fontWeight: '600'}} type={"primary"} shape={"round"} size={"large"}>了解更多</Button></div>
+                            </QueueAnim>}
+                    </div>
+                </QueueAnim>
+                : <></>}
         </div>
     )
 }

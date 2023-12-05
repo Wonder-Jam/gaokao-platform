@@ -5,14 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="313c75ac-819b-4824-9822-f057c6d6bea6" name="Changes" comment="Style: still header">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/HomePage/IndexHeader.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/HomePage/Intro.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/HomePage/CommonSense.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/HomePage/CommonSense.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/index.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/HomePage/IndexHeader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/HomePage/IndexHeader.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +93,7 @@
       <workItem from="1700130984199" duration="147000" />
       <workItem from="1700317657464" duration="2863000" />
       <workItem from="1700915266385" duration="29649000" />
-      <workItem from="1701685677074" duration="27493000" />
+      <workItem from="1701685677074" duration="37578000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor: header of homepage">
       <created>1700103405317</created>
