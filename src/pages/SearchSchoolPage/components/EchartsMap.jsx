@@ -282,7 +282,9 @@ function EChartsMap() {
           },
         ],
       }
-
+      window.addEventListener('resize', () => {
+        myChart.resize && myChart.resize()
+      })
       myChart.setOption(option)
       myChart.on('click', function (params) {
         // console.log(provinceMap.get(params.name))

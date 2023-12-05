@@ -3,7 +3,7 @@ export const HeaderContainer = styled.div`
   display: flex;
   z-index: 1;
   width: 100%;
-  height: 12%;
+  height: 8%;
   background-color: #fff;
   // align-items: center;
   // justify-content: space-between;
@@ -12,7 +12,7 @@ export const HeaderContainer = styled.div`
 `
 export const MainContainer = styled.div`
   // padding-top: 146px;
-  height: 88%;
+  height: 92%;
 `
 
 export const HeaderBarContainer = styled.div`

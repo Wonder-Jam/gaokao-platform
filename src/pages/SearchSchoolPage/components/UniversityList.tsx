@@ -154,7 +154,7 @@ const UniversityList: React.FC = () => {
       /> */}
       <Searchbar
         style={{
-          height: '7vh',
+          height: '5%',
           width: '97%',
           marginBottom: '10px',
           marginLeft: '5px',
@@ -169,7 +169,7 @@ const UniversityList: React.FC = () => {
         // bordered
         loadMore={loadMore}
         dataSource={list}
-        style={{ overflowY: 'auto', overflowX: 'hidden', height: '90vh' }}
+        style={{ overflowY: 'auto', overflowX: 'hidden', height: '93%' }}
         renderItem={item => (
           <List.Item
             style={{

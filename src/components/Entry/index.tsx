@@ -48,7 +48,7 @@ export default function Entry({ children }: { children: React.ReactNode }) {
       <div
         style={{
           width: '100vw',
-          height: '12%',
+          height: '8%',
         }}
       ></div>
       <MainContainer>{children}</MainContainer>
