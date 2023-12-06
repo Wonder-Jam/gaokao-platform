@@ -7,7 +7,7 @@ import {
 import type { MenuProps } from 'antd'
 import { Menu } from 'antd'
 import * as Enum from '../enum'
-import { MajorSearchContext } from '../index'
+import { MajorSearchContext } from '../index.page'
 import { majorCategories } from '../enum'
 import MajorCategoriesList from '@/pages/SearchMajorPage/components/MajorCategoriesList'
 
