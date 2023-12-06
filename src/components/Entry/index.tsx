@@ -1,4 +1,5 @@
 import { usePageNavigation } from '../../hooks/usePageNavigation'
+import logo from '../../static/logo.jpeg'
 import {
   Button,
   Menu,
@@ -16,22 +17,24 @@ import {
   MainContainer,
   HeaderBarContainer,
   ImageContainer,
+  TextContainer,
 } from './style'
+
 const items = [
   {
-    label: '首页',
+    label: <TextContainer>首页</TextContainer>,
     key: '/',
   },
   {
-    label: '查学校',
+    label: <TextContainer>查学校</TextContainer>,
     key: '/SearchSchoolPage',
   },
   {
-    label: '查专业',
+    label: <TextContainer>查专业</TextContainer>,
     key: '/SearchMajorPage',
   },
   {
-    label: '看一看',
+    label: <TextContainer>看一看</TextContainer>,
     key: '/VideoPlayPage',
   },
 ]
@@ -42,6 +45,12 @@ export default function Entry({ children }: { children: React.ReactNode }) {
       <HeaderContainer>
         <HeaderBar />
       </HeaderContainer>
+      <div
+        style={{
+          width: '100vw',
+          height: '8%',
+        }}
+      ></div>
       <MainContainer>{children}</MainContainer>
     </>
   )
@@ -63,8 +72,9 @@ function GaoKaoMenu() {
         mode="horizontal"
         style={{
           display: 'flex',
-          width: '40%',
-          justifyContent: 'space-between',
+          width: '60%',
+          height: '100%',
+          justifyContent: 'space-evenly',
         }}
       />
     </>
@@ -81,10 +91,13 @@ function HeaderBar() {
       <div>
         <ImageContainer>
           <Image
-            src={'https://files.lsmcloud.top/blog218cc985c57906433217d46ca1db1205.png'}
+            // src={
+            //   'https://files.lsmcloud.top/blog218cc985c57906433217d46ca1db1205.png'
+            // }
+            src={logo.src}
             preview={false}
-            width={'200px'}
-            style={{transform: 'scale(1.2)'}}
+            // style={{ transform: 'scale(0.6)' }}
+            height={'60px'}
             onClick={goToEolPage}
           />
         </ImageContainer>
@@ -99,7 +112,7 @@ function HeaderBar() {
         </ImageContainer> */}
       </div>
       <GaoKaoMenu />
-      <Input.Search
+      {/* <Input.Search
         style={{
           width: '15%',
           minWidth: 190,
@@ -107,8 +120,14 @@ function HeaderBar() {
         placeholder="查大学，查专业，搜问答"
         allowClear
         size="large"
-      />
-      <Button onClick={openLoginModal}>登录 | 注册</Button>
+      /> */}
+      <div
+        style={{
+          width: '15%',
+        }}
+      >
+        <Button onClick={openLoginModal}>登录 | 注册</Button>
+      </div>
       <LoginModal isModalOpen={isModalOpen} closeLoginModal={closeLoginModal} />
     </HeaderBarContainer>
   )

@@ -7,32 +7,44 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prettier": "prettier --write ./src"
+    "prettier": "prettier --write ./src",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@ant-design/icons": "^5.2.6",
+    "@dnd-kit/sortable": "^8.0.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@nivo/core": "^0.83.0",
     "@nivo/geo": "^0.83.0",
+    "@nivo/line": "^0.83.0",
+    "@svgr/webpack": "^8.1.0",
     "@types/node": "20.6.2",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
     "ahooks": "^3.7.8",
     "antd": "^5.9.1",
     "d3": "^7.8.5",
+    "dnd-kit": "^0.0.0-0",
     "echarts": "^5.4.3",
     "eslint-config-next": "13.4.19",
     "fs": "^0.0.1-security",
     "next": "13.4.19",
+    "rc-queue-anim": "^2.0.0",
+    "rc-texty": "^0.2.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "typescript": "5.2.2"
+    "typescript": "5.2.2",
+    "xgplayer": "^3.0.10"
   },
   "devDependencies": {
     "@emotion/babel-plugin": "^11.11.0",
-    "eslint": "^8.49.0",
-    "husky": "^8.0.3",
-    "prettier": "^3.0.3"
+    "@types/lodash": "^4.14.202",
+    "@vercel/node": "^3.0.11",
+    "eslint": "^8.54.0",
+    "eslint-config-prettier": "^9.0.0",
+    "husky": "^8.0.0",
+    "prettier": "^3.0.3",
+    "prettier-eslint": "^16.1.2"
   }
 }

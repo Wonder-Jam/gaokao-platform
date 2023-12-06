@@ -15,8 +15,8 @@ export const List = styled.ul`
 `
 
 export const ListItem = styled.li`
-    cursor: pointer;
-    margin-right: 5px;
+  cursor: pointer;
+  margin-right: 5px;
 `
 export const SelectedItem = styled.li`
   backgroundcolor: '#eee';
@@ -24,6 +24,13 @@ export const SelectedItem = styled.li`
 
 export const UniversityItem = styled.li`
   display: flex;
-  flex-direction: row;
+  padding: 0px;
+  flex-direction: column;
   font-family: PingFangSC-Regular, sans-serif;
+`
+
+export const Mask = styled.div`
+  height: 100%;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.7);
 `

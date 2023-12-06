@@ -1,38 +1,31 @@
 import React, { useEffect, useState } from 'react'
-import { Input, Button, List, Skeleton, Typography } from 'antd'
+import { Input, Button, List, Typography, Card, Tag, Space } from 'antd'
 import { UniversityItem } from './style'
-import { it } from 'node:test'
+import { eventBus } from '../utils/eventBus'
 import { SearchProps } from 'antd/es/input/Search'
+import { Searchbar } from './Searchbar'
 
 const { Text } = Typography
-
-const { Search } = Input;
 
 // TODO: UniversityList 太丑了，需要美化：1.太空了，资源利用不到位 2.List.Item.Meta限制太多了，要自定义内容
 
 interface DataType {
-  // gender?: string;
-  // name: {
-  //   title?: string;
-  //   first?: string;
-  //   last?: string;
-  // };
-  name?: string
-  // email?: string;
-  website?: string
+  name: string
+  website: string
   picture: {
-    large?: string
+    large: string
     medium?: string
     thumbnail?: string
   }
-  motto?: string
-  // nat?: string;
+  motto: string
   loading: boolean
-  description?: string
+  description: string
+  background: string
+  tags: string[]
 }
 
 const count = 3
-const fakeDataUrl = `/files/universities.json`
+const fakeDataUrl = 'api/universitylist'
 
 const UniversityList: React.FC = () => {
   const [initLoading, setInitLoading] = useState(true)
@@ -45,8 +38,9 @@ const UniversityList: React.FC = () => {
       .then(res => res.json())
       .then(res => {
         setInitLoading(false)
-        setData(res.results)
-        setList(res.results)
+        setData(res)
+        setList(res)
+        // console.log(res.results)
       })
       .catch(e => {
         console.log(e)
@@ -61,14 +55,19 @@ const UniversityList: React.FC = () => {
         [...new Array(count)].map(() => ({
           loading: true,
           name: '',
-          picture: {},
+          picture: { large: '' },
+          motto: '',
+          description: '',
+          website: '',
+          background: '',
+          tags: [],
         })),
       ),
     )
     fetch(fakeDataUrl)
       .then(res => res.json())
       .then(res => {
-        const newData = data.concat(res.results)
+        const newData = data.concat(res)
         setData(newData)
         setList(newData)
         setLoading(false)
@@ -83,14 +82,35 @@ const UniversityList: React.FC = () => {
       })
   }
 
+  const onItemClicked = (item: DataType) => {
+    // Access the properties of the item here
+    console.log(item)
+    eventBus.emit('universityClicked', item)
+  }
+
   const ListItem = (item: DataType) => {
     return (
       <UniversityItem>
-        <img src={item.picture.large} style={{ borderRadius: '3px', width: '80px', height: '80px' }} />
-        <div style={{ marginLeft: '10px' }}>
-          <h3 style={{ margin: '0px', marginTop: '6px' }}><a href={item.website}>{item.name}</a></h3>
-          <p style={{ margin: '0px', marginTop: '5px', color: 'gray' }}>{item.motto}</p>
-          <p style={{ margin: '0px', marginTop: '2px' }}>{item.description}</p>
+        <div style={{ display: 'flex', flexDirection: 'row' }}>
+          <img
+            src={item.picture.large}
+            style={{ borderRadius: '3px', width: '80px', height: '80px' }}
+          />
+          <div style={{ marginLeft: '10px' }}>
+            <h3 style={{ margin: '0px', marginTop: '3px' }}>{item.name}</h3>
+            <p style={{ margin: '0px', marginTop: '2px', color: 'gray' }}>
+              {item.motto}
+            </p>
+            {/* <div style={{ display: 'flex', justifyContent: 'center' }}> */}
+            <Space size={[0, 4]} wrap>
+              {item.tags[0] ? <Tag color="#f50">{item.tags[0]}</Tag> : null}
+              {item.tags[1] ? <Tag color="#2db7f5">{item.tags[1]}</Tag> : null}
+              {item.tags[2] ? <Tag color="#87d068">{item.tags[2]}</Tag> : null}
+              {item.tags[3] ? <Tag color="#108ee9">{item.tags[3]}</Tag> : null}
+            </Space>
+            {/* </div> */}
+            {/* <p style={{ margin: '0px', marginTop: '1px' }}>{item.description}</p> */}
+          </div>
         </div>
       </UniversityItem>
     )
@@ -119,31 +139,55 @@ const UniversityList: React.FC = () => {
     )
   }
 
-  const onSearch: SearchProps['onSearch'] = (value, _e, info) => console.log(info?.source, value);
+  const onSearch: SearchProps['onSearch'] = (value, _e, info) =>
+    console.log(info?.source, value)
 
   return (
     <>
-      <Search placeholder="搜索大学..." onSearch={onSearch} enterButton size="large" bordered={true}/>
+      {/* <Search
+        placeholder="搜索大学..."
+        onSearch={onSearch}
+        enterButton
+        size="large"
+        bordered={true}
+        style={{ position:'fixed', marginBottom: '10px', marginLeft: '5px', marginRight: '5px' }}
+      /> */}
+      <Searchbar
+        style={{
+          height: '5%',
+          width: '97%',
+          marginBottom: '10px',
+          marginLeft: '5px',
+          marginRight: '5px',
+        }}
+      />
       <List
         className="demo-loadmore-list"
         loading={initLoading}
+        grid={{ gutter: 16, column: 1 }}
         itemLayout="horizontal"
         // bordered
         loadMore={loadMore}
         dataSource={list}
+        style={{ overflowY: 'auto', overflowX: 'hidden', height: '93%' }}
         renderItem={item => (
           <List.Item
-          //   actions={[<a key="list-loadmore-edit">edit</a>, <a key="list-loadmore-more">more</a>]}
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              padding: '0px',
+            }}
           >
-            <Skeleton avatar title={false} loading={item.loading} active>
-              {/* <List.Item.Meta
-              avatar={<Avatar src={item.picture.large} />}
-              title={<a href={item.website}>{item.name}</a>}
-              description={info(item)}
-            /> */}
-              {/* <p>{item.description}</p> */}
+            <Card
+              loading={item.loading}
+              hoverable={true}
+              size="small"
+              style={{ width: '97%', height: '15%', padding: '0px' }}
+              onClick={() => onItemClicked(item)}
+            >
               <ListItem {...item} />
-            </Skeleton>
+            </Card>
           </List.Item>
         )}
       />

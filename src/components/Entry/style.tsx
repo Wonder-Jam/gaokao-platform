@@ -3,20 +3,21 @@ export const HeaderContainer = styled.div`
   display: flex;
   z-index: 1;
   width: 100%;
-  height: 12%;
+  height: 8%;
   background-color: #fff;
-  // align-items: center; 
+  // align-items: center;
   // justify-content: space-between;
   flex-direction: row;
+  position: fixed;
 `
 export const MainContainer = styled.div`
   // padding-top: 146px;
-  height: 88%;
+  height: 92%;
 `
 
 export const HeaderBarContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-direction: row;
   align-items: center;
   height: 100%;
@@ -26,6 +27,16 @@ export const HeaderBarContainer = styled.div`
 export const ImageContainer = styled.span`
   cursor: pointer;
   display: flex;
-  width: 169px;
+  // width: 169px;
   margin-right: 10px;
+  margin-left: 10px;
+  // margin-top: 16px;
+`
+
+export const TextContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-size: 16px;
 `

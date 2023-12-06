@@ -16,7 +16,10 @@ export function usePageNavigation() {
       window.location.href = 'https://gaokao.chsi.com.cn/'
     },
     goToEolPage() {
-      window.location.href = 'https://www.eol.cn/'
+      window.open('https://www.eol.cn/', '_blank')
+    },
+    goToSchoolDetailPage() {
+      router.push('/SchoolDetailPage')
     },
   }
 }

@@ -3,6 +3,7 @@ const nextConfig = {
     reactStrictMode: true,
     transpilePackages: ["@nivo"],
     experimental: { esmExternals: "loose", },
+    pageExtensions: ['page.tsx', 'page.ts', 'page.jsx', 'page.js'],
     async rewrites() {
         return [
             {
@@ -11,10 +12,16 @@ const nextConfig = {
             },
             {
               source: '/api/:path*', // 匹配所有以 /files 开头的路径
-              destination: 'https://api.lsmcloud.top/:path*', // 代理到的目标地址
-            }
+              destination: 'https://gaokaoapi.lsmcloud.top/api/:path*', // 代理到的目标地址
+            },
           ];
     },
+    webpack(config){
+      config.module.rules.push({
+        test:/\.svg$/,
+        use:["@svgr/webpack"]
+      });
+      return config;
+    }
 }
-
 module.exports = nextConfig

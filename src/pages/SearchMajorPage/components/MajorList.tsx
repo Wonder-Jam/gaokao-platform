@@ -3,11 +3,11 @@ import { Input, Button, List, Skeleton, Typography } from 'antd'
 import { MajorItem } from './style'
 import { it } from 'node:test'
 import { SearchProps } from 'antd/es/input/Search'
-import {router} from "next/client";
+import { router } from 'next/client'
 
 const { Text } = Typography
 
-const { Search } = Input;
+const { Search } = Input
 
 // TODO: MajorList 太丑了，需要美化：1.太空了，资源利用不到位 2.List.Item.Meta限制太多了，要自定义内容
 
@@ -18,7 +18,7 @@ interface DataType {
   //   first?: string;
   //   last?: string;
   // };
-    id?: number
+  id?: number
   name?: string
   // email?: string;
   website?: string
@@ -28,7 +28,7 @@ interface DataType {
     thumbnail?: string
   }
   motto?: string
-    salary?: number
+  salary?: number
   // nat?: string;
   loading: boolean
   description?: string
@@ -86,20 +86,27 @@ const MajorList: React.FC = () => {
       })
   }
 
-    const handleMajorItemClick = () => {
-// router.push('/majorDetailPage')
-      // router.push('/SearchSchoolPage');
-      //   router.push('/majorDetailPage')
-        window.open('/majorDetailPage', '_blank');
-    }
+  const handleMajorItemClick = () => {
+    // router.push('/majorDetailPage')
+    // router.push('/SearchSchoolPage');
+    //   router.push('/majorDetailPage')
+    window.open('/majorDetailPage', '_blank')
+  }
 
   const ListItem = (item: DataType) => {
     return (
       <MajorItem>
         {/*<img src={item.picture.large} style={{ borderRadius: '3px', width: '80px', height: '80px' }} />*/}
-        <div style={{ marginLeft: '10px', cursor: 'pointer' }} onClick={handleMajorItemClick}>
-          <h3 style={{ margin: '0px', marginTop: '6px', color: '#1677ff' }}>{item.name}</h3>
-          <p style={{ margin: '0px', marginTop: '5px', color: 'gray' }}>平均薪酬：￥{item.salary}</p>
+        <div
+          style={{ marginLeft: '10px', cursor: 'pointer' }}
+          onClick={handleMajorItemClick}
+        >
+          <h3 style={{ margin: '0px', marginTop: '6px', color: '#1677ff' }}>
+            {item.name}
+          </h3>
+          <p style={{ margin: '0px', marginTop: '5px', color: 'gray' }}>
+            平均薪酬：￥{item.salary}
+          </p>
           <p style={{ margin: '0px', marginTop: '2px' }}>{item.description}</p>
         </div>
       </MajorItem>
@@ -129,11 +136,18 @@ const MajorList: React.FC = () => {
     )
   }
 
-  const onSearch: SearchProps['onSearch'] = (value, _e, info) => console.log(info?.source, value);
+  const onSearch: SearchProps['onSearch'] = (value, _e, info) =>
+    console.log(info?.source, value)
 
   return (
     <>
-      <Search placeholder="搜索专业..." onSearch={onSearch} enterButton size="large" bordered={true}/>
+      <Search
+        placeholder="搜索专业..."
+        onSearch={onSearch}
+        enterButton
+        size="large"
+        bordered={true}
+      />
       <List
         className="demo-loadmore-list"
         loading={initLoading}
