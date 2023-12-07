@@ -1,14 +1,23 @@
 import React from 'react'
-import { Card, Image, Button, Avatar, List } from 'antd'
+import { Card, Image, Button, Avatar, List, Tabs, TabsProps } from 'antd'
 import Entry from '@/components/Entry'
 const { Meta } = Card
-import { ArrowLeftOutlined, DownOutlined, UpOutlined } from '@ant-design/icons'
+import {
+  ArrowLeftOutlined,
+  DownOutlined,
+  LeftOutlined,
+  RightOutlined,
+  UpOutlined,
+} from '@ant-design/icons'
 import {
   CardContainer,
   CardListContainer,
   ArrowLeftContainer,
   UpAndDownContainer,
   WxContanier,
+  RightBarContainer,
+  TabContainer,
+  ToggleContainer,
 } from './style'
 import Mask from '../../components/Mask'
 import { usePageContainer } from '../_app.page'
@@ -16,6 +25,7 @@ import { useSlideAnimation } from '@/hooks/useSlideAnimation'
 import { VideoSchoolType, VideoSchoolList, WeChatArticles } from './data'
 import Player from 'xgplayer'
 import 'xgplayer/dist/index.min.css'
+import { useToggle } from 'ahooks'
 
 function CardItem(props: VideoSchoolType) {
   const [show, setShow] = React.useState(false)
@@ -194,11 +204,46 @@ export default function VideoPlayPage() {
     <CardItem key={item.schoolName + '' + index} {...item} />
   ))
   const PageRef = React.useRef<HTMLDivElement>(null)
+  const [isShown, { toggle }] = useToggle(true)
   return (
     <div style={{ height: '100%', width: '100%' }} ref={PageRef}>
       <Entry>
-        <CardListContainer>{cardItems}</CardListContainer>
+        <div style={{ display: 'flex', height: '100%', width: '100%' }}>
+          <CardListContainer>{cardItems}</CardListContainer>
+          <ToggleContainer onClick={toggle} show={isShown}>
+            {isShown ? <RightOutlined /> : <LeftOutlined />}
+          </ToggleContainer>
+          <HotSpotTopicContainer show={isShown} />
+        </div>
       </Entry>
     </div>
+  )
+}
+
+const items: TabsProps['items'] = [
+  {
+    key: '1',
+    label: 'Tab 1',
+    children: 'Content of Tab Pane 1',
+  },
+  {
+    key: '2',
+    label: 'Tab 2',
+    children: 'Content of Tab Pane 2',
+  },
+  {
+    key: '3',
+    label: 'Tab 3',
+    children: 'Content of Tab Pane 3',
+  },
+]
+
+function HotSpotTopicContainer({ show }: { show: boolean }) {
+  return (
+    <RightBarContainer show={show}>
+      <TabContainer>
+        <Tabs defaultActiveKey="1" items={items} />
+      </TabContainer>
+    </RightBarContainer>
   )
 }
