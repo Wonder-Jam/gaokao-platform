@@ -13,6 +13,8 @@ export const HeaderContainer = styled.div`
 export const MainContainer = styled.div`
   // padding-top: 146px;
   height: 92%;
+  overflow-y: scroll;
+  overscroll-behavior: none;
 `
 
 export const HeaderBarContainer = styled.div`
