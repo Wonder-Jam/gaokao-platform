@@ -83,8 +83,9 @@ export const WxContanier = styled.div`
 
 export const RightBarContainer = styled.div<{ show: boolean }>`
   height: 100%;
-  width: 160px;
-  background-color: palegoldenrod;
+  width: 300px;
+  padding: 10px;
+  /* background-color: #fafafa; */
   transform: translateX(${({ show }) => (show ? 0 : '100%')});
   transition: all 0.3s;
 `
@@ -97,8 +98,8 @@ export const TabContainer = styled.div`
 export const ToggleContainer = styled.div<{ show: boolean }>`
   position: fixed;
   top: 50%;
-  right: 160px;
+  right: 300px;
   transform: translateY(-50%)
-    translateX(${({ show }) => (show ? '0' : '160px')});
+    translateX(${({ show }) => (show ? '0' : '300px')});
   transition: all 0.3s;
 `
