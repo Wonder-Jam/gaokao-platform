@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Input, Radio, Typography } from 'antd'
 import { EditOutlined } from '@ant-design/icons'
-import MyResponsiveLine from '@/pages/HomePage/LineChart'
+import MyResponsiveLine from '@/pages/HomePage/Abort/LineChart'
 
 const { Title } = Typography
 

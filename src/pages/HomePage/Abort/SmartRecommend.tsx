@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Radio, RadioChangeEvent } from 'antd'
-import RecommendArtContent from '@/pages/HomePage/ArtRecommendContent'
-import RecommendNormalContent from '@/pages/HomePage/NormalRecommendContent'
+import RecommendArtContent from '@/pages/HomePage/Abort/ArtRecommendContent'
+import RecommendNormalContent from '@/pages/HomePage/Abort/NormalRecommendContent'
 
 const SmartRecommend: React.FC = () => {
   const [value, setValue] = useState(1)
