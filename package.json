@@ -2,6 +2,7 @@
   "name": "gaokao-cas-platform",
   "version": "0.1.0",
   "private": true,
+  
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -32,6 +33,7 @@
     "next": "13.4.19",
     "rc-queue-anim": "^2.0.0",
     "rc-texty": "^0.2.0",
+    "rc-tween-one": "^3.0.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "typescript": "5.2.2",
