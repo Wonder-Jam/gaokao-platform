@@ -97,7 +97,7 @@ function HeaderBar() {
             src={logo.src}
             preview={false}
             // style={{ transform: 'scale(0.6)' }}
-            height={'60px'}
+            height={'50px'}
             onClick={goToEolPage}
           />
         </ImageContainer>
