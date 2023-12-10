@@ -1,10 +1,10 @@
 import React from 'react'
-import Entry from '@/components/Entry'
+import RootLayout from '@/app/layout'
 
 export default function SearchMajorPage() {
   return (
     <>
-      <Entry>this is the SearchMajorPage</Entry>
+      <RootLayout>this is the SearchMajorPage</RootLayout>
     </>
   )
 }

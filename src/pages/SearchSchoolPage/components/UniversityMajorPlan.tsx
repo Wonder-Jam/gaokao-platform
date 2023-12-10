@@ -30,6 +30,25 @@ const firstChoiceOptions: SelectProps['options'] = [
   { value: '理工/物理', label: '理工/物理' },
 ]
 
+const otherClasses = [
+  {
+    text: '化学',
+    value: 'chemistry',
+  },
+  {
+    text: '生物',
+    value: 'biology',
+  },
+  {
+    text: '政治',
+    value: 'politics',
+  },
+  {
+    text: '地理',
+    value: 'geography',
+  },
+]
+
 const columns: ColumnsType<MajorDataType> = [
   {
     title: '年份',
@@ -51,66 +70,19 @@ const columns: ColumnsType<MajorDataType> = [
     dataIndex: 'requirement',
     filters: [
       {
-        text: '物理',
-        value: 'pyhsics',
+        text: '首选物理',
+        value: 'firstChoicePhysics',
       },
       {
-        text: '历史',
-        value: 'history',
-      },
-      {
-        text: '化学',
-        value: 'chemistry',
-      },
-      {
-        text: '生物',
-        value: 'biology',
-      },
-      {
-        text: '政治',
-        value: 'politics',
-      },
-      {
-        text: '地理',
-        value: 'geography',
-      },
+        text: '首选历史',
+        value: 'firstChoiceHistory',
+      }
     ],
     onFilter: (value: string | number | boolean, record) => {
-      if (value === 'pyhsics') {
-        return (
-          record.requirement.includes('物理') ||
-          record.requirement.includes('不限')
-        )
-      }
-      if (value === 'history') {
-        return (
-          record.requirement.includes('历史') ||
-          record.requirement.includes('不限')
-        )
-      }
-      if (value === 'chemistry') {
-        return (
-          record.requirement.includes('化学') ||
-          record.requirement.includes('不限')
-        )
-      }
-      if (value === 'biology') {
-        return (
-          record.requirement.includes('生物') ||
-          record.requirement.includes('不限')
-        )
-      }
-      if (value === 'politics') {
-        return (
-          record.requirement.includes('政治') ||
-          record.requirement.includes('不限')
-        )
-      }
-      if (value === 'geography') {
-        return (
-          record.requirement.includes('地理') ||
-          record.requirement.includes('不限')
-        )
+      if (value === 'firstChoicePhysics') {
+        return record.requirement.includes('物理') || record.requirement.includes('首选不限')
+      } else if (value === 'firstChoiceHistory') {
+        return record.requirement.includes('历史') || record.requirement.includes('首选不限')
       }
       return false
     },

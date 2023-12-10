@@ -1,6 +1,6 @@
 import React from 'react'
 import { Card, Image, Button, Avatar, List, Tabs, TabsProps } from 'antd'
-import Entry from '@/components/Entry'
+import RootLayout from '@/app/layout'
 const { Meta } = Card
 import {
   ArrowLeftOutlined,
@@ -207,7 +207,7 @@ export default function VideoPlayPage() {
   const [isShown, { toggle }] = useToggle(true)
   return (
     <div style={{ height: '100%', width: '100%' }} ref={PageRef}>
-      <Entry>
+      <RootLayout>
         <div style={{ display: 'flex', height: '100%', width: '100%' }}>
           <CardListContainer>{cardItems}</CardListContainer>
           <ToggleContainer onClick={toggle} show={isShown}>
@@ -215,7 +215,7 @@ export default function VideoPlayPage() {
           </ToggleContainer>
           <HotSpotTopicContainer show={isShown} />
         </div>
-      </Entry>
+      </RootLayout>
     </div>
   )
 }

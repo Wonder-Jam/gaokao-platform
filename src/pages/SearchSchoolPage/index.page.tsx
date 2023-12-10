@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react'
-import Entry from '@/components/Entry'
+import RootLayout from '@/app/layout'
 import FilterMenu from './components/FilterMenu'
 import UniversityList from './components/UniversityList'
 import { MapContainer, Layer, CardListContainer } from './style'
@@ -27,7 +27,7 @@ export default function SearchSchoolPage() {
   return (
     <SearchContext.Provider value={{ ...choices, setChoices }}>
       <>
-        <Entry>
+        <RootLayout>
           <Layer>
             <FilterMenu />
             <MapContainer>
@@ -37,7 +37,7 @@ export default function SearchSchoolPage() {
               <UniversityList />
             </CardListContainer>
           </Layer>
-        </Entry>
+        </RootLayout>
       </>
     </SearchContext.Provider>
   )
