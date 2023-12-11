@@ -8,20 +8,30 @@ interface Props {
 }
 
 const FilterTag: React.FC<Props> = props => {
-    const { province, city, rank, setChoices } = useContext(SearchContext)
+    const { province, city, rank, setChoices, filterSchool } = useContext(SearchContext)
     const [tags, setTags] = useState([province as string]);
     useEffect(() => {
-        setTags([province as string]);
-    }, [province]);
+        setTags([province as string, ...filterSchool]);
+    }, [province, filterSchool]);
 
     const handleClose = (removedTag: string) => {
         const newTags = tags.filter((tag) => tag !== removedTag);
         console.log(newTags);
-        setChoices({
-            province: Enum.province.None,
-            city: city,
-            rank: rank,
-        })
+        if (removedTag === province) {
+            setChoices({
+                province: Enum.province.None,
+                city: city,
+                rank: rank,
+                filterSchool: filterSchool
+            })
+        } else {
+            setChoices({
+                province: province,
+                city: city,
+                rank: rank,
+                filterSchool: filterSchool.filter(item => item !== removedTag)
+            })
+        }
         setTags(newTags);
     };
 
@@ -54,7 +64,7 @@ const FilterTag: React.FC<Props> = props => {
     return (
         <>
             <div style={{ ...props.style }}>
-                    {tagChild}
+                {tagChild}
             </div>
         </>
     );
