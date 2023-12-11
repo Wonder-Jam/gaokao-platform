@@ -6,11 +6,7 @@ interface Props {
   selected: string[]
 }
 
-const filterList = [
-  '985',
-  '211',
-  '双一流',
-]
+const filterList = ['985', '211', '双一流']
 
 const SchoolFilterList: React.FC<Props> = ({ onSelect, selected }) => {
   const handleFilterClick = (filter: string) => {

@@ -76,13 +76,19 @@ const columns: ColumnsType<MajorDataType> = [
       {
         text: '首选历史',
         value: 'firstChoiceHistory',
-      }
+      },
     ],
     onFilter: (value: string | number | boolean, record) => {
       if (value === 'firstChoicePhysics') {
-        return record.requirement.includes('物理') || record.requirement.includes('首选不限')
+        return (
+          record.requirement.includes('物理') ||
+          record.requirement.includes('首选不限')
+        )
       } else if (value === 'firstChoiceHistory') {
-        return record.requirement.includes('历史') || record.requirement.includes('首选不限')
+        return (
+          record.requirement.includes('历史') ||
+          record.requirement.includes('首选不限')
+        )
       }
       return false
     },

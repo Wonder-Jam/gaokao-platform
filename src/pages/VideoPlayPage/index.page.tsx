@@ -27,23 +27,21 @@ import Player from 'xgplayer'
 import 'xgplayer/dist/index.min.css'
 import { useToggle } from 'ahooks'
 
-function CardItem(props: VideoSchoolType) {
-  const [show, setShow] = React.useState(false)
+function CardItem(props: VideoSchoolType & { index: number }) {
   const cardRef = React.useRef<HTMLDivElement>(null)
-  const PageRef = usePageContainer()
-  const Animation = useSlideAnimation({
-    targetRef: cardRef,
-    direction: show ? 'slide-in' : 'slide-out',
-    pageRef: PageRef,
-    contentNode: <CardDetail {...props} />,
-  })
+  const { toggle, setTargetIndex, setTargetRef } = useMaskContext()
+  const index = props.index
   return (
     <>
       <CardContainer>
         <Card
           style={{}}
           ref={cardRef}
-          onClick={() => setShow(true)}
+          onClick={() => {
+            toggle(true)
+            setTargetIndex(index)
+            setTargetRef(cardRef)
+          }}
           hoverable
           cover={
             <Image
@@ -67,9 +65,6 @@ function CardItem(props: VideoSchoolType) {
           />
         </Card>
       </CardContainer>
-      <MaskContainer isShown={show} setShow={setShow}>
-        {Animation}
-      </MaskContainer>
     </>
   )
 }
@@ -77,7 +72,7 @@ function CardItem(props: VideoSchoolType) {
 function MaskContainer(props: {
   isShown: boolean
   setShow: (value: React.SetStateAction<boolean>) => void
-  children: React.ReactNode
+  children?: React.ReactNode
 }) {
   const { isShown, setShow, children } = props
   return (
@@ -199,23 +194,61 @@ function CardDetail(props: VideoSchoolType) {
   )
 }
 
+const MaskContext = React.createContext<{
+  shown: boolean
+  toggle: React.Dispatch<React.SetStateAction<boolean>>
+  setTargetIndex: React.Dispatch<React.SetStateAction<number>>
+  setTargetRef: React.Dispatch<
+    React.SetStateAction<React.RefObject<HTMLDivElement>>
+  >
+}>({
+  shown: false,
+  toggle: () => {},
+  setTargetIndex: () => {},
+  setTargetRef: () => {},
+})
+const useMaskContext = () => React.useContext(MaskContext)
 export default function VideoPlayPage() {
   const cardItems = VideoSchoolList.map((item, index) => (
-    <CardItem key={item.schoolName + '' + index} {...item} />
+    <CardItem key={item.schoolName + '' + index} {...item} index={index} />
   ))
   const PageRef = React.useRef<HTMLDivElement>(null)
   const [isShown, { toggle }] = useToggle(true)
+  const [maskShown, setMaskShown] = React.useState<boolean>(false)
+  const [targetIndex, setTargetIndex] = React.useState(0)
+  const [targetRef, setTargetRef] = React.useState<
+    React.RefObject<HTMLDivElement>
+  >(React.createRef())
+  const Animation = useSlideAnimation({
+    targetRef: targetRef,
+    direction: maskShown ? 'slide-in' : 'slide-out',
+    pageRef: PageRef,
+    contentNode: <CardDetail {...VideoSchoolList[targetIndex]} />,
+  })
+
   return (
     <div style={{ height: '100%', width: '100%' }} ref={PageRef}>
-      <RootLayout>
-        <div style={{ display: 'flex', height: '100%', width: '100%' }}>
-          <CardListContainer>{cardItems}</CardListContainer>
-          <ToggleContainer onClick={toggle} show={isShown}>
-            {isShown ? <RightOutlined /> : <LeftOutlined />}
-          </ToggleContainer>
-          <HotSpotTopicContainer show={isShown} />
-        </div>
-      </RootLayout>
+      <MaskContext.Provider
+        value={{
+          shown: maskShown,
+          toggle: setMaskShown,
+          setTargetIndex,
+          setTargetRef,
+        }}
+      >
+        <RootLayout>
+          <div style={{ display: 'flex', height: '100%', width: '100%' }}>
+            <CardListContainer>{cardItems}</CardListContainer>
+            <ToggleContainer onClick={toggle} show={isShown}>
+              {isShown ? <RightOutlined /> : <LeftOutlined />}
+            </ToggleContainer>
+            <HotSpotTopicContainer show={isShown} />
+          </div>
+        </RootLayout>
+      </MaskContext.Provider>
+      <MaskContainer isShown={maskShown} setShow={setMaskShown}>
+        {Animation}
+      </MaskContainer>
     </div>
   )
 }
