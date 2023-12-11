@@ -148,6 +148,8 @@ const App: React.FC = () => {
         // <div style={{display: "flex", alignItems:"start", width:"100%", overflow:"auto"}}>
         <div>
           <DndContext sensors={[sensor]} onDragEnd={onDragEnd}>
+            {/* <div style={{position: 'fixed'}}> */}
+            {/* </div> */}
             <SortableContext
               items={items.map(i => i.key)}
               strategy={horizontalListSortingStrategy}

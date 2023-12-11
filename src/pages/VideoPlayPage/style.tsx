@@ -25,6 +25,7 @@ export const CardListContainer = styled.div`
   /* 设置容器的对齐方式为居中，让卡片在容器内居中显示 */
   align-items: center;
   padding: 24px 0 24px 24px;
+  overflow-y: auto;
 `
 
 export const ArrowLeftContainer = styled.div`
@@ -78,4 +79,27 @@ export const WxContanier = styled.div`
   &:active {
     background-color: #e5e5e5;
   }
+`
+
+export const RightBarContainer = styled.div<{ show: boolean }>`
+  height: 100%;
+  width: 300px;
+  padding: 10px;
+  /* background-color: #fafafa; */
+  transform: translateX(${({ show }) => (show ? 0 : '100%')});
+  transition: all 0.3s;
+`
+
+export const TabContainer = styled.div`
+  height: 100%;
+  width: 100%;
+`
+
+export const ToggleContainer = styled.div<{ show: boolean }>`
+  position: fixed;
+  top: 50%;
+  right: 300px;
+  transform: translateY(-50%)
+    translateX(${({ show }) => (show ? '0' : '300px')});
+  transition: all 0.3s;
 `

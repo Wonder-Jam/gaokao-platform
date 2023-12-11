@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { Input, Button, List, Typography, Card, Tag, Space } from 'antd'
 import { UniversityItem } from './style'
 import { eventBus } from '../utils/eventBus'
-import { SearchProps } from 'antd/es/input/Search'
 import { Searchbar } from './Searchbar'
+import FilterTag from './FilterTag'
 
 const { Text } = Typography
 
@@ -130,18 +130,6 @@ const UniversityList: React.FC = () => {
       </div>
     ) : null
 
-  const info = (item: DataType) => {
-    return (
-      <>
-        <p>{item.motto}</p>
-        <Text>{item.description}</Text>
-      </>
-    )
-  }
-
-  const onSearch: SearchProps['onSearch'] = (value, _e, info) =>
-    console.log(info?.source, value)
-
   return (
     <>
       {/* <Search
@@ -156,7 +144,15 @@ const UniversityList: React.FC = () => {
         style={{
           height: '5%',
           width: '97%',
-          marginBottom: '10px',
+          // marginBottom: '10px',
+          marginLeft: '5px',
+          marginRight: '5px',
+        }}
+      />
+      <FilterTag
+        style={{
+          width: '97%',
+          height: '5%',
           marginLeft: '5px',
           marginRight: '5px',
         }}
@@ -169,7 +165,7 @@ const UniversityList: React.FC = () => {
         // bordered
         loadMore={loadMore}
         dataSource={list}
-        style={{ overflowY: 'auto', overflowX: 'hidden', height: '93%' }}
+        style={{ overflowY: 'auto', overflowX: 'hidden', height: '90%' }}
         renderItem={item => (
           <List.Item
             style={{

@@ -8,6 +8,7 @@ import CommonSense from '@/pages/HomePage/CommonSense'
 import Intro from '@/pages/HomePage/Intro'
 import IndexHeader from '@/pages/HomePage/IndexHeader'
 import QueueAnim from 'rc-queue-anim'
+import RootLayout from '@/app/layout'
 
 const Mytest: React.FC = () => {
   const [isClient, setIsClient] = useState(false)
@@ -42,7 +43,8 @@ export default function Home() {
 
   return (
     <>
-      <Entry>
+      {/* <Entry> */}
+      <RootLayout>
         <div>
           {/*<Mytest></Mytest>*/}
           <IndexHeader></IndexHeader>
@@ -55,7 +57,8 @@ export default function Home() {
           <PolicyInformation></PolicyInformation>
           <CommonSense></CommonSense>
         </div>
-      </Entry>
+      </RootLayout>
+      {/* </Entry> */}
     </>
   )
 }
