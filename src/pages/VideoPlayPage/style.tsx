@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { Button } from 'antd'
 export const CardContainer = styled.div`
   min-width: 142px;
   max-width: 330px;
@@ -72,7 +73,7 @@ export const UpAndDownContainer = styled.div`
   }
 `
 
-export const WxContanier = styled.div`
+export const WxContainer = styled.div`
   cursor: pointer;
   padding-left: 10px;
   padding-right: 10px;
@@ -102,4 +103,54 @@ export const ToggleContainer = styled.div<{ show: boolean }>`
   transform: translateY(-50%)
     translateX(${({ show }) => (show ? '0' : '300px')});
   transition: all 0.3s;
+`
+
+export const CardDetailContainer = styled.div`
+  width: 75vw;
+  height: 90vh;
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: #f5f5f5;
+  display: flex;
+  position: relative;
+`
+
+export const InfoContainer = styled.div`
+  position: absolute;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  height: 150px;
+  width: 30%;
+  min-width: 300px;
+  background-color: #fff;
+  right: 0;
+`
+
+export const BadgeContainer = styled.div`
+  margin-top: 10px;
+`
+
+export const SchoolInfoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  text-align: center;
+`
+
+export const StyledButton = styled(Button)`
+  size: large;
+`
+
+export const ArticlesContainer = styled.div`
+  width: 30%;
+  height: 100%;
+  min-width: 300px;
+  overflow-y: auto;
+`
+
+export const EmptySpace = styled.div`
+  height: 150px;
+  width: 100%;
+  background-color: #fff;
 `
