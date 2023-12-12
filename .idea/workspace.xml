@@ -5,10 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="313c75ac-819b-4824-9822-f057c6d6bea6" name="Changes" comment="Style: still header">
+      <change afterPath="$PROJECT_DIR$/src/pages/majorDetailPage/components/GenderRatio.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/majorDetailPage/components/SubjectRatio.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/HomePage/IndexHeader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/HomePage/IndexHeader.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/data/majors.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/data/majors.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/SearchMajorPage.page.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/SearchMajorPage/components/MajorList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/SearchMajorPage/components/MajorList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/majorDetailPage/components/MajorInfo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/majorDetailPage/components/MajorInfo.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +24,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="2YDPpGqvLgrg6woEbui4wxTFsPd" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -38,7 +44,7 @@
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/JIAO/Desktop/tmp/zsgk/gaokao-cas-platform/public/images",
+    "last_opened_file_path": "E:/HCI/gao-kao-platform/src/pages/majorDetailPage/components",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -46,12 +52,13 @@
     "nodejs_package_manager_path": "npm",
     "prettier.import.notification.dismissed": "true",
     "prettierjs.PrettierConfiguration.Package": "C:\\Users\\JIAO\\Desktop\\tmp\\zsgk\\gaokao-cas-platform\\node_modules\\prettier",
-    "ts.external.directory.path": "C:\\Users\\JIAO\\Desktop\\tmp\\zsgk\\gaokao-cas-platform\\node_modules\\typescript\\lib",
+    "ts.external.directory.path": "D:\\JetBrains\\WebStorm 2023.2.2\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\HCI\gao-kao-platform\src\pages\majorDetailPage\components" />
       <recent name="C:\Users\JIAO\Desktop\tmp\zsgk\gaokao-cas-platform\public\images" />
       <recent name="C:\Users\JIAO\Desktop\tmp\zsgk\gaokao-cas-platform\src\pages" />
     </key>
@@ -74,6 +81,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="npm.dev" />
+        <item itemvalue="npm.dev" />
+        <item itemvalue="npm.dev" />
       </list>
     </recent_temporary>
   </component>
@@ -94,6 +103,8 @@
       <workItem from="1700317657464" duration="2863000" />
       <workItem from="1700915266385" duration="29649000" />
       <workItem from="1701685677074" duration="37578000" />
+      <workItem from="1702284989623" duration="9727000" />
+      <workItem from="1702376347636" duration="3299000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor: header of homepage">
       <created>1700103405317</created>
@@ -114,6 +125,29 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="zjq-major" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
