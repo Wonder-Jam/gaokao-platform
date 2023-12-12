@@ -90,7 +90,7 @@ const MajorList: React.FC = () => {
     // router.push('/majorDetailPage')
     // router.push('/SearchSchoolPage');
     //   router.push('/majorDetailPage')
-    window.open('/majorDetailPage', '_blank')
+    window.open('/majorDetailPage?id=1', '_blank')
   }
 
   const ListItem = (item: DataType) => {
