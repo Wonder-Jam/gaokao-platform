@@ -1,18 +1,19 @@
 import React from 'react'
-import { Button, Avatar, List } from 'antd'
-import { VideoSchoolType, WeChatArticles } from '.././data'
+import { Avatar, List } from 'antd'
+import { VideoSchoolType, WeChatArticles } from '../../data'
 import Player from 'xgplayer'
+
+import 'xgplayer/dist/index.min.css'
 import {
-  ArticlesContainer,
-  BadgeContainer,
   CardDetailContainer,
-  EmptySpace,
   InfoContainer,
+  BadgeContainer,
+  ArticlesContainer,
+  EmptySpace,
+  WxContainer,
   SchoolInfoContainer,
   StyledButton,
-  WxContainer,
-} from '../style'
-import 'xgplayer/dist/index.min.css'
+} from './style'
 export function CardDetail(props: VideoSchoolType) {
   const {
     videoUrl,

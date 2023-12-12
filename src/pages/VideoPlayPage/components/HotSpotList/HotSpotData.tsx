@@ -1,3 +1,7 @@
+import SchoolLogo from '@/static/school.svg'
+import MajorLogo from '@/static/major.svg'
+import PolicyLogo from '@/static/policy.svg'
+
 export interface HotSpot {
   title: string
   link: string
@@ -5,9 +9,9 @@ export interface HotSpot {
 
 export interface TabDataType {
   tabTitle: string
-  tabTextColor: string
   tabContentBackGroundColor: string
   dataSource: HotSpot[]
+  icon: React.ReactNode
 }
 
 const PolicyData: HotSpot[] = [
@@ -205,20 +209,23 @@ const popularMajors: HotSpot[] = [
 export const TabData: TabDataType[] = [
   {
     tabTitle: '政策分析',
-    tabTextColor: '#ff7875',
+    // tabTextColor: '#ff7875',
     tabContentBackGroundColor: '#fff1f0',
     dataSource: PolicyData,
+    icon: <PolicyLogo />,
   },
   {
     tabTitle: '院校热搜',
-    tabTextColor: '#5cdbd3',
+    // tabTextColor: '#5cdbd3',
     tabContentBackGroundColor: '#e6fffb',
     dataSource: popularUniversities,
+    icon: <SchoolLogo />,
   },
   {
     tabTitle: '专业热搜',
-    tabTextColor: '#95de64',
+    // tabTextColor: '#95de64',
     tabContentBackGroundColor: '#f6ffed',
     dataSource: popularMajors,
+    icon: <MajorLogo />,
   },
 ]

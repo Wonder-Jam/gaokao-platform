@@ -1,9 +1,9 @@
 import { Card, Image } from 'antd'
 const { Meta } = Card
 import React from 'react'
-import { useMaskContext } from '../context/MaskContext'
-import { VideoSchoolType } from '../data'
-import { CardContainer } from '../style'
+import { useMaskContext } from '../../context/MaskContext'
+import { VideoSchoolType } from '../../data'
+import { CardContainer } from './style'
 
 export function CardItem(props: VideoSchoolType & { index: number }) {
   const cardRef = React.useRef<HTMLDivElement>(null)

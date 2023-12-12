@@ -1,14 +1,14 @@
 import React from 'react'
 import RootLayout from '@/app/layout'
 import { LeftOutlined, RightOutlined } from '@ant-design/icons'
-import { CardListContainer, ToggleContainer } from './style'
+import { CardListContainer, IconContainer, ToggleContainer } from './style'
 import { useSlideAnimation } from '@/hooks/useSlideAnimation'
 import { VideoSchoolList } from './data'
 import { useToggle } from 'ahooks'
 import { HotSpotTopicContainer } from './components/HotSpotList'
 import { MaskContext } from './context/MaskContext'
-import { CardDetail } from './components/CardDetai'
-import { CardItem } from './components/CardItem'
+import { CardDetail } from './components/CardDetail'
+import { CardItem } from './components/CardDetail/CardItem'
 import { MaskContainer } from './components/MaskContainer'
 
 export default function VideoPlayPage() {
@@ -43,7 +43,9 @@ export default function VideoPlayPage() {
           <div style={{ display: 'flex', height: '100%', width: '100%' }}>
             <CardListContainer>{cardItems}</CardListContainer>
             <ToggleContainer onClick={toggle} show={isShown}>
-              {isShown ? <RightOutlined /> : <LeftOutlined />}
+              <IconContainer>
+                {isShown ? <RightOutlined /> : <LeftOutlined />}
+              </IconContainer>
             </ToggleContainer>
             <HotSpotTopicContainer show={isShown} />
           </div>
