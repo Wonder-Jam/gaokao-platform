@@ -99,7 +99,7 @@ const App: React.FC = () => {
     if (newPanes.length && targetKey === activeKey) {
       const { key } =
         newPanes[
-        targetIndex === newPanes.length ? targetIndex - 1 : targetIndex
+          targetIndex === newPanes.length ? targetIndex - 1 : targetIndex
         ]
       setActiveKey(key)
     }

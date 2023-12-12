@@ -1,21 +1,4 @@
 import styled from '@emotion/styled'
-export const CardContainer = styled.div`
-  min-width: 142px;
-  max-width: 330px;
-  margin: 10px;
-  @media screen and (max-width: 695px) {
-    width: 40%;
-  }
-  @media screen and (min-width: 695px) and (max-width: 1100px) {
-    width: 30%;
-  }
-  @media screen and (min-width: 1100px) and (max-width: 1425px) {
-    width: 20%;
-  }
-  @media screen and (min-width: 1425px) {
-    width: 17%;
-  }
-`
 
 export const CardListContainer = styled.div`
   display: flex;
@@ -72,18 +55,9 @@ export const UpAndDownContainer = styled.div`
   }
 `
 
-export const WxContanier = styled.div`
-  cursor: pointer;
-  padding-left: 10px;
-  padding-right: 10px;
-  &:active {
-    background-color: #e5e5e5;
-  }
-`
-
 export const RightBarContainer = styled.div<{ show: boolean }>`
   height: 100%;
-  width: 300px;
+  width: ${({ show }) => (show ? '300px' : '0px')};
   padding: 10px;
   /* background-color: #fafafa; */
   transform: translateX(${({ show }) => (show ? 0 : '100%')});
@@ -97,9 +71,18 @@ export const TabContainer = styled.div`
 
 export const ToggleContainer = styled.div<{ show: boolean }>`
   position: fixed;
+  cursor: pointer;
   top: 50%;
   right: 300px;
   transform: translateY(-50%)
     translateX(${({ show }) => (show ? '0' : '300px')});
   transition: all 0.3s;
+`
+
+export const IconContainer = styled.div`
+  color: #8c8c8c;
+  &:hover {
+    color: #1f1f1f;
+    transition: all 0.3s;
+  }
 `

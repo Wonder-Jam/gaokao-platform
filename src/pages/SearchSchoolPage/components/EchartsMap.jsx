@@ -194,7 +194,8 @@ const proviceDataMap = new Map([
 ])
 
 function EChartsMap() {
-  const { province, city, rank, filterSchool, setChoices } = useContext(SearchContext)
+  const { province, city, rank, filterSchool, setChoices } =
+    useContext(SearchContext)
   let myChart
   const [features, setFeatures] = useState(null)
   const [map, setMap] = useState(null)
@@ -293,7 +294,7 @@ function EChartsMap() {
             province: provinceMap.get(params.name),
             city: city,
             rank: rank,
-            filterSchool
+            filterSchool,
           })
         }
       })
@@ -764,27 +765,40 @@ function EChartsMap() {
           justifyContent: 'center',
         }}
       >
-        {
-          province !== Enum.province.None ?
-            <Button onClick={() => {
-              setChoices({ province: Enum.province.None, city, rank, filterSchool })
-            }}>返回全国地图</Button>
-            :
-            <Dropdown
-              menu={{
-                items,
-                selectable: true,
-                defaultSelectedKeys: ['6'],
-                onSelect: e => {
-                  setChoices({ province, city, rank: Number(e.key), filterSchool })
-                },
-              }}
-              placement="bottom"
-              arrow
-            >
-              <Button icon={<BarChartOutlined />}>为地区排序</Button>
-            </Dropdown>
-        }
+        {province !== Enum.province.None ? (
+          <Button
+            onClick={() => {
+              setChoices({
+                province: Enum.province.None,
+                city,
+                rank,
+                filterSchool,
+              })
+            }}
+          >
+            返回全国地图
+          </Button>
+        ) : (
+          <Dropdown
+            menu={{
+              items,
+              selectable: true,
+              defaultSelectedKeys: ['6'],
+              onSelect: e => {
+                setChoices({
+                  province,
+                  city,
+                  rank: Number(e.key),
+                  filterSchool,
+                })
+              },
+            }}
+            placement="bottom"
+            arrow
+          >
+            <Button icon={<BarChartOutlined />}>为地区排序</Button>
+          </Dropdown>
+        )}
       </div>
       <div ref={chartRef} style={{ height: '85vh', margin: 'auto' }}>
         Loading...

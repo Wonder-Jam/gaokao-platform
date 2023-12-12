@@ -71,7 +71,8 @@ const provinceAbbreviationMap: Map<string, Enum.province> = new Map([
 ])
 
 const FilterMenu: React.FC = () => {
-  const { province, city, rank, setChoices, filterSchool } = useContext(SearchContext)
+  const { province, city, rank, setChoices, filterSchool } =
+    useContext(SearchContext)
   const [collapsed, setCollapsed] = useState(false)
   const toggleCollapsed = () => {
     setCollapsed(!collapsed)
@@ -84,7 +85,7 @@ const FilterMenu: React.FC = () => {
         provinceAbbreviationMap.get(selectedProvince) ?? Enum.province.None,
       city,
       rank,
-      filterSchool
+      filterSchool,
     })
   }
 
@@ -95,7 +96,7 @@ const FilterMenu: React.FC = () => {
       province,
       city,
       rank,
-      filterSchool: selectedFilters
+      filterSchool: selectedFilters,
     })
   }
 
@@ -124,12 +125,15 @@ const FilterMenu: React.FC = () => {
       // getItem('双一流大学数量', Enum.rank.DoubleFristClass),
       // getItem('教育总经费', Enum.rank.EduFunds),
       getItem(
-        <SchoolFilterList onSelect={handleFilterSelect} selected={filterSchool} />,
+        <SchoolFilterList
+          onSelect={handleFilterSelect}
+          selected={filterSchool}
+        />,
         'g2',
         null,
         [],
         'group',
-      )
+      ),
     ]),
 
     { type: 'divider' },
@@ -146,7 +150,12 @@ const FilterMenu: React.FC = () => {
   ]
 
   const onClick: MenuProps['onClick'] = e => {
-    setChoices({ province, city, rank: Number(e.key) as Enum.rank, filterSchool })
+    setChoices({
+      province,
+      city,
+      rank: Number(e.key) as Enum.rank,
+      filterSchool,
+    })
     if (e.key === 'sub3') {
       toggleCollapsed()
     }

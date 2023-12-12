@@ -6,7 +6,6 @@ import { Searchbar } from './Searchbar'
 import FilterTag from './FilterTag'
 import { SearchContext } from '../Context/SearchContext'
 
-
 const { Text } = Typography
 
 // TODO: UniversityList 太丑了，需要美化：1.太空了，资源利用不到位 2.List.Item.Meta限制太多了，要自定义内容
@@ -51,20 +50,29 @@ const UniversityList: React.FC = () => {
       })
   }, [])
 
-  const { province, city, rank, setChoices, filterSchool } = useContext(SearchContext)
+  const { province, city, rank, setChoices, filterSchool } =
+    useContext(SearchContext)
 
   useEffect(() => {
     if (province === '全国' && filterSchool.length === 0) {
       setList(data)
     } else if (province === '全国' && filterSchool.length !== 0) {
-      setList(data.filter(item => {
-        console.log('阿啦啦啦！' + item.tags)
-        return item.tags.some(tag => filterSchool.includes(tag))
-      }))
+      setList(
+        data.filter(item => {
+          console.log('阿啦啦啦！' + item.tags)
+          return item.tags.some(tag => filterSchool.includes(tag))
+        }),
+      )
     } else if (province !== '全国' && filterSchool.length === 0) {
       setList(data.filter(item => item.province === province))
-    } else {  
-      setList(data.filter(item => item.province === province && item.tags.some(tag => filterSchool.includes(tag))))
+    } else {
+      setList(
+        data.filter(
+          item =>
+            item.province === province &&
+            item.tags.some(tag => filterSchool.includes(tag)),
+        ),
+      )
     }
   }, [data, filterSchool, province])
 
@@ -160,12 +168,14 @@ const UniversityList: React.FC = () => {
           marginRight: '5px',
         }}
       />
-      <FilterTag style={{
-        width: '97%',
-        height: '5%',
-        marginLeft: '5px',
-        marginRight: '5px',
-      }} />
+      <FilterTag
+        style={{
+          width: '97%',
+          height: '5%',
+          marginLeft: '5px',
+          marginRight: '5px',
+        }}
+      />
       <List
         className="demo-loadmore-list"
         loading={initLoading}
