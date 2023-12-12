@@ -97,28 +97,20 @@ const proviceDataMap = new Map([
 function EChartsMap() {
   const { province, city, rank, filterSchool, setChoices } =
     useContext(SearchContext)
-  let myChart
   const [features, setFeatures] = useState(null)
   const [map, setMap] = useState(null)
   const chartRef = useRef(null)
+  const myChart = useRef(null)
   const initEChart = () => {
-    if (chartRef.current) {
-      myChart = echarts.init(chartRef.current)
+    if (myChart.current) {
       echarts.registerMap(map, features)
       const option = {
         tooltip: {
-          // textStyle: {
-          //     color: "#B1D6F6",
-          //     fontSize: 8,
-          //     padding: 20,
-          //     align: "left"
-          // },
           backgroundColor: '#FFFFFFE6',
           borderWidth: 0,
 
           trigger: 'item',
           formatter: function (params) {
-            console.log(params)
             const name = params.name
             const gdp = gdpData.find(item => item.name === name) ?? {
               value: 'unkown',
@@ -185,10 +177,10 @@ function EChartsMap() {
         ],
       }
       window.addEventListener('resize', () => {
-        myChart.resize && myChart.resize()
+        myChart.current.resize && myChart.current.resize()
       })
-      myChart.setOption(option)
-      myChart.on('click', function (params) {
+      myChart.current.setOption(option)
+      myChart.current.on('click', function (params) {
         // console.log(provinceMap.get(params.name))
         if (provinceMap.get(params.name)) {
           setChoices({
@@ -205,28 +197,23 @@ function EChartsMap() {
   }
 
   useEffect(() => {
-    // fetch('https://geo.datav.aliyun.com/areas_v3/bound/100000_full.json')
-    fetch('files/china.json')
-      .then(response => response.json())
-      .then(data => {
-        setMap('china')
-        setFeatures(data)
-        console.log(data)
-      })
-      .catch(error => {
-        console.error(error)
-      })
-  }, [])
-
+    if (chartRef.current) {
+      myChart.current = echarts.init(chartRef.current)
+    }
+  }, [chartRef.current])
   useEffect(() => {
     console.log('something changed')
     setFeatures(null)
+    myChart.current.showLoading({
+      color: '#1677ff',
+    })
     fetch(proviceDataMap.get(province))
       .then(responce => responce.json())
       .then(data => {
         setMap('tmp')
         setFeatures(data)
         console.log(data)
+        myChart.current.hideLoading()
       })
       .catch(error => {
         console.error(error)
@@ -420,7 +407,7 @@ function EChartsMap() {
       switch (rank) {
         case Enum.rank.None:
           if (province === Enum.province.None) {
-            myChart.setOption({
+            myChart.current.setOption({
               visualMap: {
                 show: false,
               },
@@ -449,7 +436,7 @@ function EChartsMap() {
           // TODO: 后续展示不同的数据，可以将代码逻辑抽象
           if (province === Enum.province.None) {
             const max = getMax(gdpData)
-            myChart.setOption({
+            myChart.current.setOption({
               visualMap: {
                 show: true,
                 min: 0,
@@ -483,7 +470,7 @@ function EChartsMap() {
         case Enum.rank._985:
           if (province === Enum.province.None) {
             const max = getMax(universities985)
-            myChart.setOption({
+            myChart.current.setOption({
               visualMap: {
                 show: true,
                 min: 0,
@@ -518,7 +505,7 @@ function EChartsMap() {
           if (province === Enum.province.None) {
             const max = getMax(universities211)
             console.log(max)
-            myChart.setOption({
+            myChart.current.setOption({
               visualMap: {
                 show: true,
                 min: 0,
@@ -553,7 +540,7 @@ function EChartsMap() {
           if (province === Enum.province.None) {
             const max = getMax(universitiesDoubleFirstClass)
             console.log(max)
-            myChart.setOption({
+            myChart.current.setOption({
               visualMap: {
                 show: true,
                 min: 0,
@@ -588,7 +575,7 @@ function EChartsMap() {
           if (province === Enum.province.None) {
             const max = getMax(educationBudget)
             console.log(max)
-            myChart.setOption({
+            myChart.current.setOption({
               visualMap: {
                 show: true,
                 min: 0,
