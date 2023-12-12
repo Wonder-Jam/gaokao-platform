@@ -92,7 +92,7 @@ function HeaderBar() {
         <ImageContainer>
           <Image
             // src={
-            //   'https://files.lsmcloud.top/blog218cc985c57906433217d46ca1db1205.png'
+            //   'files/blog218cc985c57906433217d46ca1db1205.png'
             // }
             src={logo.src}
             preview={false}
