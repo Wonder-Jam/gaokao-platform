@@ -52,143 +52,143 @@ const provinceMap = new Map([
 const proviceDataMap = new Map([
   [
     Enum.province.Henan,
-    'https://geo.datav.aliyun.com/areas_v3/bound/410000_full.json',
+    'https://files.lsmcloud.top/bloge7c3ac71beb11bab2eec9d0b6b3478d9.json',
   ],
   [
     Enum.province.Hubei,
-    'https://geo.datav.aliyun.com/areas_v3/bound/420000_full.json',
+    'https://files.lsmcloud.top/blog0ff6bdf7e69aa8167205091a21348312.json',
   ],
   [
     Enum.province.Guangdong,
-    'https://geo.datav.aliyun.com/areas_v3/bound/440000_full.json',
+    'https://files.lsmcloud.top/blogb6618ef45ca26e3c66ab149ac5f1e8cc.json',
   ],
   [
     Enum.province.Beijing,
-    'https://geo.datav.aliyun.com/areas_v3/bound/110000_full.json',
+    'https://files.lsmcloud.top/blog762f35dcdfdb2454963ac17f30ed51b4.json',
   ],
   [
     Enum.province.Shanghai,
-    'https://geo.datav.aliyun.com/areas_v3/bound/310000_full.json',
+    'https://files.lsmcloud.top/bloga7b15c0ffeca18e230aaf71eaa071cba.json',
   ],
   [
     Enum.province.Zhejiang,
-    'https://geo.datav.aliyun.com/areas_v3/bound/330000_full.json',
+    'https://files.lsmcloud.top/blogad11cc78181310bfd9a264bdb4d7f923.json',
   ],
   [
     Enum.province.Fujian,
-    'https://geo.datav.aliyun.com/areas_v3/bound/350000_full.json',
+    'https://files.lsmcloud.top/blog0db4d0018493f0bdb1317f8f76494845.json',
   ],
   [
     Enum.province.Jiangxi,
-    'https://geo.datav.aliyun.com/areas_v3/bound/360000_full.json',
+    'https://files.lsmcloud.top/blog8a97e1df367a82b3a289fc2de0aa125a.json',
   ],
   [
     Enum.province.Shandong,
-    'https://geo.datav.aliyun.com/areas_v3/bound/370000_full.json',
+    'https://files.lsmcloud.top/blog63b614c2b64f91dc1af50e9249b9064d.json',
   ],
   [
     Enum.province.Tianjin,
-    'https://geo.datav.aliyun.com/areas_v3/bound/120000_full.json',
+    'https://files.lsmcloud.top/blogbf6820899f8b9097dd87e1787fa2483e.json',
   ],
   [
     Enum.province.Guangxi,
-    'https://geo.datav.aliyun.com/areas_v3/bound/450000_full.json',
+    'https://files.lsmcloud.top/blog98dbe4fff41f52086addf5d115236ea1.json',
   ],
   [
     Enum.province.Chongqing,
-    'https://geo.datav.aliyun.com/areas_v3/bound/500000_full.json',
+    'https://files.lsmcloud.top/blog94f10703705e3b9eddfc0fef076a08c9.json',
   ],
   [
     Enum.province.Sichuan,
-    'https://geo.datav.aliyun.com/areas_v3/bound/510000_full.json',
+    'https://files.lsmcloud.top/blog944fe675b05339e73b7319fd83c0bd7e.json',
   ],
   [
     Enum.province.Anhui,
-    'https://geo.datav.aliyun.com/areas_v3/bound/340000_full.json',
+    'https://files.lsmcloud.top/blogc533e0653f87cb54cea395d439899733.json',
   ],
   [
     Enum.province.Jiangsu,
-    'https://geo.datav.aliyun.com/areas_v3/bound/320000_full.json',
+    'https://files.lsmcloud.top/blog755fe42c7bd752e4639eb2c57aaa1f4b.json',
   ],
   [
     Enum.province.Hunan,
-    'https://geo.datav.aliyun.com/areas_v3/bound/430000_full.json',
+    'https://files.lsmcloud.top/blog4479ffc6ac8c1ae178c3acabaa2bb446.json',
   ],
   [
     Enum.province.Guizhou,
-    'https://geo.datav.aliyun.com/areas_v3/bound/520000_full.json',
+    'https://files.lsmcloud.top/blog536a05acaf3582afe0997f34354176c2.json',
   ],
   [
     Enum.province.Yunnan,
-    'https://geo.datav.aliyun.com/areas_v3/bound/530000_full.json',
+    'https://files.lsmcloud.top/blog7652fc7ad1ce040570021a1e098f221b.json',
   ],
   [
     Enum.province.Hainan,
-    'https://geo.datav.aliyun.com/areas_v3/bound/460000_full.json',
+    'https://files.lsmcloud.top/blog52e061459d5a515610bdddbaa278ae73.json',
   ],
   [
     Enum.province.Hebei,
-    'https://geo.datav.aliyun.com/areas_v3/bound/130000_full.json',
+    'https://files.lsmcloud.top/bloga33c1aeb72121cc9e4dd53900ad4499b.json',
   ],
   [
     Enum.province.Shanxi,
-    'https://geo.datav.aliyun.com/areas_v3/bound/140000_full.json',
+    'https://files.lsmcloud.top/bloge8c48e1efa44ea3e7209a212224eabfb.json',
   ],
   [
     Enum.province.Liaoning,
-    'https://geo.datav.aliyun.com/areas_v3/bound/210000_full.json',
+    'https://files.lsmcloud.top/blog6697e0b9c891555fa0861495c62295b0.json',
   ],
   [
     Enum.province.Jilin,
-    'https://geo.datav.aliyun.com/areas_v3/bound/220000_full.json',
+    'https://files.lsmcloud.top/blog23983de192c0e5d75ab8aae06d5f6417.json',
   ],
   [
     Enum.province.Heilongjiang,
-    'https://geo.datav.aliyun.com/areas_v3/bound/230000_full.json',
+    'https://files.lsmcloud.top/blogb7b6d1ec5b854b127f6038e914942bc6.json',
   ],
   [
     Enum.province.Qinghai,
-    'https://geo.datav.aliyun.com/areas_v3/bound/630000_full.json',
+    'https://files.lsmcloud.top/blog27f639a8114b36eb9d9815a16754d096.json',
   ],
   [
     Enum.province.Xinjiang,
-    'https://geo.datav.aliyun.com/areas_v3/bound/650000_full.json',
+    'https://files.lsmcloud.top/blog490643e90bc37480b48a350b9d2f8f78.json',
   ],
   [
     Enum.province.Ningxia,
-    'https://geo.datav.aliyun.com/areas_v3/bound/640000_full.json',
+    'https://files.lsmcloud.top/blog2f96ea15dfc02084b606e156a7ab34a9.json',
   ],
   [
     Enum.province.InnerMongolia,
-    'https://geo.datav.aliyun.com/areas_v3/bound/150000_full.json',
+    'https://files.lsmcloud.top/bloga9338e4013ef07ec7a3ac604b762e30f.json',
   ],
   [
     Enum.province.Gansu,
-    'https://geo.datav.aliyun.com/areas_v3/bound/620000_full.json',
+    'https://files.lsmcloud.top/bloged2fc1445e4c81551c01d0a70aa64935.json',
   ],
   [
     Enum.province.Shaanxi,
-    'https://geo.datav.aliyun.com/areas_v3/bound/610000_full.json',
+    'https://files.lsmcloud.top/blog371d3d77f07e61823959c18a09a0777e.json',
   ],
   [
     Enum.province.Taiwan,
-    'https://geo.datav.aliyun.com/areas_v3/bound/710000.json',
+    'https://files.lsmcloud.top/blogea0be0a0f85316d02cb0edc06468e45d.json',
   ],
   [
     Enum.province.Tibet,
-    'https://geo.datav.aliyun.com/areas_v3/bound/540000_full.json',
+    'https://files.lsmcloud.top/blogfea42f3e6b02803679d2df20bd91e2bd.json',
   ],
   [
     Enum.province.HongKong,
-    'https://geo.datav.aliyun.com/areas_v3/bound/810000_full.json',
+    'https://files.lsmcloud.top/bloga68ee7ce25ce905813b7bc1aba916e0c.json',
   ],
   [
     Enum.province.Macau,
-    'https://geo.datav.aliyun.com/areas_v3/bound/820000_full.json',
+    'https://files.lsmcloud.top/blog753d411b0690bb4d237ba60051fb4402.json',
   ],
   [
     Enum.province.None,
-    'https://geo.datav.aliyun.com/areas_v3/bound/100000_full.json',
+    'https://files.lsmcloud.top/blogcb2ba75ad5f4a65bb00b748889479f93.json',
   ],
   // 可根据需要继续添加其他省份
 ])
