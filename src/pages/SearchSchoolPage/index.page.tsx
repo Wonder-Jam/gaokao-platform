@@ -12,6 +12,7 @@ export default function SearchSchoolPage() {
     province: Enum.province.None,
     city: Enum.city.None,
     rank: Enum.rank.None,
+    filterSchool: [] as string[],
   })
 
   useEffect(() => {

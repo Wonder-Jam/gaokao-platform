@@ -4,6 +4,7 @@ import { UniversityItem } from './style'
 import { eventBus } from '../utils/eventBus'
 import { Searchbar } from './Searchbar'
 import FilterTag from './FilterTag'
+import { SearchContext } from '../Context/SearchContext'
 
 const { Text } = Typography
 
@@ -21,6 +22,7 @@ interface DataType {
   loading: boolean
   description: string
   background: string
+  province: string
   tags: string[]
 }
 
@@ -39,7 +41,7 @@ const UniversityList: React.FC = () => {
       .then(res => {
         setInitLoading(false)
         setData(res)
-        setList(res)
+        // setList(res)
         // console.log(res.results)
       })
       .catch(e => {
@@ -48,28 +50,53 @@ const UniversityList: React.FC = () => {
       })
   }, [])
 
+  const { province, city, rank, setChoices, filterSchool } =
+    useContext(SearchContext)
+
+  useEffect(() => {
+    if (province === '全国' && filterSchool.length === 0) {
+      setList(data)
+    } else if (province === '全国' && filterSchool.length !== 0) {
+      setList(
+        data.filter(item => {
+          console.log('阿啦啦啦！' + item.tags)
+          return item.tags.some(tag => filterSchool.includes(tag))
+        }),
+      )
+    } else if (province !== '全国' && filterSchool.length === 0) {
+      setList(data.filter(item => item.province === province))
+    } else {
+      setList(
+        data.filter(
+          item =>
+            item.province === province &&
+            item.tags.some(tag => filterSchool.includes(tag)),
+        ),
+      )
+    }
+  }, [data, filterSchool, province])
+
   const onLoadMore = () => {
     setLoading(true)
-    setList(
-      data.concat(
-        [...new Array(count)].map(() => ({
-          loading: true,
-          name: '',
-          picture: { large: '' },
-          motto: '',
-          description: '',
-          website: '',
-          background: '',
-          tags: [],
-        })),
-      ),
+    data.concat(
+      [...new Array(count)].map(() => ({
+        loading: true,
+        name: '',
+        picture: { large: '' },
+        motto: '',
+        description: '',
+        website: '',
+        background: '',
+        tags: [],
+        province: '',
+      })),
     )
     fetch(fakeDataUrl)
       .then(res => res.json())
       .then(res => {
         const newData = data.concat(res)
         setData(newData)
-        setList(newData)
+        // setList(newData)
         setLoading(false)
         // Resetting window's offsetTop so as to display react-virtualized demo underfloor.
         // In real scene, you can using public method of react-virtualized:
@@ -132,14 +159,6 @@ const UniversityList: React.FC = () => {
 
   return (
     <>
-      {/* <Search
-        placeholder="搜索大学..."
-        onSearch={onSearch}
-        enterButton
-        size="large"
-        bordered={true}
-        style={{ position:'fixed', marginBottom: '10px', marginLeft: '5px', marginRight: '5px' }}
-      /> */}
       <Searchbar
         style={{
           height: '5%',
