@@ -52,8 +52,8 @@ const DraggableTabNode = ({ className, ...props }: DraggableTabPaneProps) => {
   })
 }
 
-type NonNullable<T> = Exclude<T, null | undefined>; // 从T中移除null和undefined
-type Tabs = NonNullable<TabsProps['items']>; // 得到的类型是Tabs[]
+type NonNullable<T> = Exclude<T, null | undefined> // 从T中移除null和undefined
+type Tabs = NonNullable<TabsProps['items']> // 得到的类型是Tabs[]
 // Todo: 受不了了，typescript也太麻烦了，一直没法直接直接导入Tabs，晚上问问丁子
 
 const App: React.FC = () => {
@@ -66,40 +66,42 @@ const App: React.FC = () => {
     if (cachedTabs && cachedTabs !== '[]') {
       // console.log('还是进来了？！')
       initialItems = []
-      const tabInfos=JSON.parse(cachedTabs)
+      const tabInfos = JSON.parse(cachedTabs)
       // 复现一个自定义组件比较复杂，这里选择了一种比较愚蠢的写法
-      tabInfos.forEach((tabInfo: {label: string, children: any, key: string}) => {
-        if (tabInfo.label === '地图数据') {
-          initialItems.push({
-            label: tabInfo.label,
-            children: <EChartsMap />,
-            key: tabInfo.key,
-            closable: false,
-          })
-        } else {
-          initialItems.push({
-            label: tabInfo.label,
-            children: (
-              <UniversityDetail
-                name={tabInfo.children.props.name}
-                description={tabInfo.children.props.description}
-                motto={tabInfo.children.props.motto}
-                logoUrl={tabInfo.children.props.logoUrl}
-                backgroundUrl={tabInfo.children.props.backgroundUrl}
-                tags={tabInfo.children.props.tags}
-                website={tabInfo.children.props.website}
-              />
-            ),
-            key: tabInfo.key,
-            closable: true,
-          })
-        }
-      })
+      tabInfos.forEach(
+        (tabInfo: { label: string; children: any; key: string }) => {
+          if (tabInfo.label === '地图数据') {
+            initialItems.push({
+              label: tabInfo.label,
+              children: <EChartsMap />,
+              key: tabInfo.key,
+              closable: false,
+            })
+          } else {
+            initialItems.push({
+              label: tabInfo.label,
+              children: (
+                <UniversityDetail
+                  name={tabInfo.children.props.name}
+                  description={tabInfo.children.props.description}
+                  motto={tabInfo.children.props.motto}
+                  logoUrl={tabInfo.children.props.logoUrl}
+                  backgroundUrl={tabInfo.children.props.backgroundUrl}
+                  tags={tabInfo.children.props.tags}
+                  website={tabInfo.children.props.website}
+                />
+              ),
+              key: tabInfo.key,
+              closable: true,
+            })
+          }
+        },
+      )
     }
     setItems(initialItems)
     // console.log('cachedTabs', cachedTabs)
     // console.log('initialItems', initialItems)
-  },[])
+  }, [])
 
   useEffect(() => {
     const addTabListener = (data: any) => {

@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useContext } from 'react'
-import { Input, Button, List, Typography, Card, Tag, Space } from 'antd'
+import { List, Typography, Card, Tag, Space, Divider, Skeleton } from 'antd'
 import { UniversityItem } from './style'
 import { eventBus } from '../utils/eventBus'
 import { Searchbar } from './Searchbar'
 import FilterTag from './FilterTag'
 import { SearchContext } from '../Context/SearchContext'
-
+import InfiniteScroll from 'react-infinite-scroll-component'
 const { Text } = Typography
 
 // TODO: UniversityList 太丑了，需要美化：1.太空了，资源利用不到位 2.List.Item.Meta限制太多了，要自定义内容
@@ -143,19 +143,19 @@ const UniversityList: React.FC = () => {
     )
   }
 
-  const loadMore =
-    !initLoading && !loading ? (
-      <div
-        style={{
-          textAlign: 'center',
-          marginTop: 12,
-          height: 32,
-          lineHeight: '32px',
-        }}
-      >
-        <Button onClick={onLoadMore}>loading more</Button>
-      </div>
-    ) : null
+  // const loadMore =
+  //   !initLoading && !loading ? (
+  //     <div
+  //       style={{
+  //         textAlign: 'center',
+  //         marginTop: 12,
+  //         height: 32,
+  //         lineHeight: '32px',
+  //       }}
+  //     >
+  //       <Button onClick={onLoadMore}>loading more</Button>
+  //     </div>
+  //   ) : null
 
   return (
     <>
@@ -176,36 +176,52 @@ const UniversityList: React.FC = () => {
           marginRight: '5px',
         }}
       />
-      <List
-        className="demo-loadmore-list"
-        loading={initLoading}
-        grid={{ gutter: 16, column: 1 }}
-        itemLayout="horizontal"
-        // bordered
-        loadMore={loadMore}
-        dataSource={list}
-        style={{ overflowY: 'auto', overflowX: 'hidden', height: '90%' }}
-        renderItem={item => (
-          <List.Item
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              padding: '0px',
-            }}
-          >
-            <Card
-              loading={item.loading}
-              hoverable={true}
-              size="small"
-              style={{ width: '97%', height: '15%', padding: '0px' }}
-              onClick={() => onItemClicked(item)}
-            >
-              <ListItem {...item} />
-            </Card>
-          </List.Item>
-        )}
-      />
+      <div
+        id="scrollableDiv"
+        style={{
+          overflowY: 'auto',
+          overflowX: 'hidden',
+          height: '90%',
+        }}
+      >
+        <InfiniteScroll
+          dataLength={list.length}
+          hasMore={list.length < 50}
+          endMessage={<Divider plain>It is all, nothing more 🤐</Divider>}
+          next={onLoadMore}
+          loader={<Skeleton avatar paragraph={{ rows: 1 }} active />}
+          scrollableTarget="scrollableDiv"
+        >
+          <List
+            className="demo-loadmore-list"
+            loading={initLoading}
+            grid={{ gutter: 16, column: 1 }}
+            itemLayout="horizontal"
+            // bordered
+            dataSource={list}
+            renderItem={item => (
+              <List.Item
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  padding: '0px',
+                }}
+              >
+                <Card
+                  loading={item.loading}
+                  hoverable={true}
+                  size="small"
+                  style={{ width: '97%', height: '15%', padding: '0px' }}
+                  onClick={() => onItemClicked(item)}
+                >
+                  <ListItem {...item} />
+                </Card>
+              </List.Item>
+            )}
+          />
+        </InfiniteScroll>
+      </div>
     </>
   )
 }
