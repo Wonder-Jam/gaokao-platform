@@ -16,7 +16,15 @@ import MajorInfo from './MajorInfo'
 const initialItems = [
   {
     label: '哲学',
-    children: <MajorInfo id={1} />,
+    children: <MajorInfo id={1} picture={{
+      large: undefined,
+      medium: undefined,
+      thumbnail: undefined
+    }} introduction={{
+      what: '',
+      learn: undefined,
+      do: undefined
+    }} loading={false} />,
     key: '1',
     closable: false,
   },
@@ -127,8 +135,8 @@ const App: React.FC = () => {
             celebrity={item.celebrity}
             description={item.description}
             website={item.website}
-            background={item.background}
-            tags={item.tags}
+            // background={item.background}
+            // tags={item.tags}
           />
         ),
         key: newActiveKey,
