@@ -204,11 +204,11 @@ const MajorInfo: React.FC = props => {
         <Card id="专业简介" size="small" style={{ width: '100%' }} hoverable>
           <div>
             <p>是什么</p>
-            <p style={{ color: 'gray' }}>{majorDetail.introduction.what}</p>
+            <p style={{ color: 'gray' }}>{majorDetail.introduction?.what}</p>
             <p>学什么</p>
-            <p style={{ color: 'gray' }}>{majorDetail.introduction.learn}</p>
+            <p style={{ color: 'gray' }}>{majorDetail.introduction?.learn}</p>
             <p>干什么</p>
-            <p style={{ color: 'gray' }}>{majorDetail.introduction.do}</p>
+            <p style={{ color: 'gray' }}>{majorDetail.introduction?.do}</p>
           </div>
         </Card>
 
