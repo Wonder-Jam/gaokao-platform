@@ -98,6 +98,10 @@ const App: React.FC = () => {
         },
       )
     }
+    const newTabIndexString = sessionStorage.getItem('newTabIndex')
+    if (newTabIndexString) {
+      newTabIndex.current = parseInt(newTabIndexString)
+    }
     setItems(initialItems)
     // console.log('cachedTabs', cachedTabs)
     // console.log('initialItems', initialItems)
@@ -119,6 +123,7 @@ const App: React.FC = () => {
   useEffect(() => {
     console.log('tabItems stored', tabItems)
     sessionStorage.setItem('schoolTabs', JSON.stringify(tabItems))
+    sessionStorage.setItem('newTabIndex', newTabIndex.current.toString())
   }, [tabItems])
 
   const sensor = useSensor(PointerSensor, {
