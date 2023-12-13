@@ -4,6 +4,7 @@ import FilterMenu from './components/FilterMenu'
 import MajorList from './components/MajorList'
 import { MapContainer, Layer, CardListContainer } from './style'
 import * as Enum from './enum'
+import Tabs from './components/Tabs'
 
 export const MajorSearchContext = createContext<{
   majorCategories: Enum.majorCategories
@@ -40,6 +41,10 @@ export default function SearchSchoolPage() {
         <Entry>
           <Layer>
             <FilterMenu />
+
+            <MapContainer>
+              <Tabs />
+            </MapContainer>
 
             <CardListContainer>
               <MajorList />

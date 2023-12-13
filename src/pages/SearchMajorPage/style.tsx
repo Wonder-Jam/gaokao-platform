@@ -6,7 +6,9 @@ export const MapContainer = styled.div`
   align-items: center;
   width: 50%;
   height: 100%;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
+  //overflow: hidden;
   background-color: #f5f5f5;
 `
 
@@ -19,7 +21,7 @@ export const Layer = styled.div`
 `
 
 export const CardListContainer = styled.div`
-  width: 80%;
+  width: 30%;
   height: 100%;
   overflow-y: auto;
   // margin-right: 5px;

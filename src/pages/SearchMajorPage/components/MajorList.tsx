@@ -4,6 +4,7 @@ import { MajorItem } from './style'
 import { it } from 'node:test'
 import { SearchProps } from 'antd/es/input/Search'
 import { router } from 'next/client'
+import { eventBus } from '../utils/eventBus'
 
 const { Text } = Typography
 
@@ -86,11 +87,17 @@ const MajorList: React.FC = () => {
       })
   }
 
+  const onItemClicked = (item: DataType) => {
+    // Access the properties of the item here
+    console.log(item)
+    eventBus.emit('majorClicked', item)
+  }
+
   const handleMajorItemClick = () => {
     // router.push('/majorDetailPage')
     // router.push('/SearchSchoolPage');
     //   router.push('/majorDetailPage')
-    window.open('/majorDetailPage?id=1', '_blank')
+    // window.open('/majorDetailPage?id=1', '_blank')
   }
 
   const ListItem = (item: DataType) => {
@@ -99,7 +106,7 @@ const MajorList: React.FC = () => {
         {/*<img src={item.picture.large} style={{ borderRadius: '3px', width: '80px', height: '80px' }} />*/}
         <div
           style={{ marginLeft: '10px', cursor: 'pointer' }}
-          onClick={handleMajorItemClick}
+          onClick={() => onItemClicked(item)}
         >
           <h3 style={{ margin: '0px', marginTop: '6px', color: '#1677ff' }}>
             {item.name}
