@@ -58,7 +58,8 @@ type Tabs = NonNullable<TabsProps['items']> // 得到的类型是Tabs[]
 
 const App: React.FC = () => {
   const [activeKey, setActiveKey] = useState(initialItems[0].key)
-  const [tabItems, setItems] = useState<Tabs>([])
+  const [tabItems, setItems] = useState<Tabs>([]) //Todo: 这里的代码会在listener回调时执行，为啥？
+  console.log('executed!')
   const newTabIndex = useRef(0)
 
   useEffect(() => {
@@ -118,7 +119,7 @@ const App: React.FC = () => {
     return () => {
       eventBus.unsubscribe('universityClicked', addTabListener)
     }
-  }) //Todo: 这里有个问题，如果把这个useEffect改成只执行一次，就会失效
+  },[]) //Todo: 这里有个问题，如果把这个useEffect改成只执行一次，就会失效
 
   useEffect(() => {
     console.log('tabItems stored', tabItems)
@@ -163,25 +164,28 @@ const App: React.FC = () => {
 
   const add = (item: any) => {
     const newActiveKey = `newTab${newTabIndex.current++}`
-    setItems([
-      ...tabItems,
-      {
-        label: item.name,
-        children: (
-          <UniversityDetail
-            name={item.name}
-            description={item.description}
-            motto={item.mooto}
-            logoUrl={item.picture.large}
-            backgroundUrl={item.background}
-            tags={item.tags}
-            website={item.website}
-          />
-        ),
-        key: newActiveKey,
-        closable: true,
-      },
-    ])
+    console.log('tabItems', tabItems)
+    setItems(prev => {
+      return [
+        ...prev,
+        {
+          label: item.name,
+          children: (
+            <UniversityDetail
+              name={item.name}
+              description={item.description}
+              motto={item.mooto}
+              logoUrl={item.picture.large}
+              backgroundUrl={item.background}
+              tags={item.tags}
+              website={item.website}
+            />
+          ),
+          key: newActiveKey,
+          closable: true,
+        },
+      ]
+    })
     setActiveKey(newActiveKey)
   }
 
