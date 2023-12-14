@@ -1,4 +1,10 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, {
+  useEffect,
+  useState,
+  useContext,
+  useRef,
+  createRef,
+} from 'react'
 import { List, Typography, Card, Tag, Space, Divider, Skeleton } from 'antd'
 import { UniversityItem } from './style'
 import { eventBus } from '../utils/eventBus'
@@ -34,7 +40,7 @@ const UniversityList: React.FC = () => {
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState<DataType[]>([])
   const [list, setList] = useState<DataType[]>([])
-
+  const listItemRef = createRef<HTMLElement>()
   useEffect(() => {
     fetch(fakeDataUrl)
       .then(res => res.json())
@@ -48,6 +54,15 @@ const UniversityList: React.FC = () => {
         console.log(e)
         setInitLoading(false)
       })
+    const callback = () => {
+      if (listItemRef.current) {
+        const listItemHeight = listItemRef.current.clientHeight
+        console.log('ListItem height:', listItemHeight)
+      }
+    }
+    console.log('hiegh')
+    window.addEventListener('resize', callback)
+    callback()
   }, [])
 
   const { province, city, rank, setChoices, filterSchool } =
@@ -186,7 +201,7 @@ const UniversityList: React.FC = () => {
       >
         <InfiniteScroll
           dataLength={list.length}
-          hasMore={list.length < 50}
+          hasMore={false}
           endMessage={<Divider plain>It is all, nothing more 🤐</Divider>}
           next={onLoadMore}
           loader={<Skeleton avatar paragraph={{ rows: 1 }} active />}
