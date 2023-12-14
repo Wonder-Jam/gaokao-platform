@@ -1,12 +1,14 @@
 import { List, Tabs } from 'antd'
 import { RightBarContainer, TabContainer } from '../../style'
-import { TabData, TabDataType, HotSpot } from './HotSpotData'
+import { TabData, TabDataType, HotSpot, TabTitle } from './HotSpotData'
 import {
   HotSpotListContainer,
   ItemContainer,
   NumberContainer,
   TitleContainer,
 } from './style'
+import { usePageNavigation } from '@/hooks/usePageNavigation'
+import React from 'react'
 
 const items = TabData.map((value: TabDataType, index) => ({
   key: '' + index,
@@ -17,20 +19,18 @@ const items = TabData.map((value: TabDataType, index) => ({
     </div>
   ),
   children: (
-    <HotSpotList
-      list={value.dataSource}
-      tabContentBackGroundColor={value.tabContentBackGroundColor}
-    />
+    <HotSpotList list={value.dataSource} hotSpotType={value.tabTitle} />
   ),
 }))
-
 function HotSpotList({
   list,
-  tabContentBackGroundColor,
+  hotSpotType,
 }: {
   list: HotSpot[]
-  tabContentBackGroundColor: string
+  hotSpotType: TabTitle
 }) {
+  const { goToSearchSchoolPage } = usePageNavigation()
+  const targetSchool = React.useRef('')
   return (
     <HotSpotListContainer>
       <List
@@ -39,8 +39,16 @@ function HotSpotList({
         renderItem={(item: HotSpot, index) => (
           <ItemContainer>
             <List.Item
-              onClick={() => window.open(item.link, '_blank')}
-              style={{}}
+              onClick={() => {
+                if (hotSpotType === '政策分析' || hotSpotType === '专业热搜') {
+                  window.open(item.link, '_blank')
+                } else {
+                  targetSchool.current = item.title
+                  goToSearchSchoolPage({
+                    name: targetSchool.current,
+                  })
+                }
+              }}
             >
               <NumberContainer>{index + 1}</NumberContainer>
               <TitleContainer>{item.title}</TitleContainer>
@@ -51,7 +59,6 @@ function HotSpotList({
     </HotSpotListContainer>
   )
 }
-
 export function HotSpotTopicContainer({ show }: { show: boolean }) {
   return (
     <RightBarContainer show={show}>

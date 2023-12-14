@@ -10,7 +10,7 @@ import { CSS } from '@dnd-kit/utilities'
 import React, { useState, useRef, useEffect } from 'react'
 import { Tabs, Divider, TabPaneProps, TabsProps } from 'antd'
 import EChartsMap from './EchartsMap'
-import { eventBus } from '../utils/eventBus'
+import eventBus from '@/utils/eventBus'
 import UniversityDetail from './UniversityDetail'
 import type { UniversityDetailProps } from '../type'
 
@@ -104,22 +104,14 @@ const App: React.FC = () => {
       newTabIndex.current = parseInt(newTabIndexString)
     }
     setItems(initialItems)
-    // console.log('cachedTabs', cachedTabs)
-    // console.log('initialItems', initialItems)
   }, [])
 
   useEffect(() => {
-    const addTabListener = (data: any) => {
-      add(data)
-      // console.log('Received message in Tabs:', data)
-      // 例如，可以使用你的 Tabs 组件的状态来添加新的 Tab
-    }
-
-    eventBus.subscribe('universityClicked', addTabListener)
+    eventBus.subscribe('universityClicked', add)
     return () => {
-      eventBus.unsubscribe('universityClicked', addTabListener)
+      eventBus.unsubscribe('universityClicked', add)
     }
-  },[]) //Todo: 这里有个问题，如果把这个useEffect改成只执行一次，就会失效
+  }, []) //Todo: 这里有个问题，如果把这个useEffect改成只执行一次，就会失效
 
   useEffect(() => {
     console.log('tabItems stored', tabItems)
@@ -164,7 +156,6 @@ const App: React.FC = () => {
 
   const add = (item: any) => {
     const newActiveKey = `newTab${newTabIndex.current++}`
-    console.log('tabItems', tabItems)
     setItems(prev => {
       return [
         ...prev,
@@ -190,6 +181,7 @@ const App: React.FC = () => {
   }
 
   const onChange = (key: string) => {
+    console.log(key)
     setActiveKey(key)
   }
 

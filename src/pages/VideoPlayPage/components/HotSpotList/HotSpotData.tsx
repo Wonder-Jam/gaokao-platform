@@ -6,10 +6,26 @@ export interface HotSpot {
   title: string
   link: string
 }
+export interface SchoolDetail {
+  name: string
+  website: string
+  picture: {
+    large: string
+    medium?: string
+    thumbnail?: string
+  }
+  motto: string
+  loading: boolean
+  description: string
+  background: string
+  province: string
+  tags: string[]
+}
+
+export type TabTitle = '政策分析' | '院校热搜' | '专业热搜'
 
 export interface TabDataType {
-  tabTitle: string
-  tabContentBackGroundColor: string
+  tabTitle: TabTitle
   dataSource: HotSpot[]
   icon: React.ReactNode
 }
@@ -143,7 +159,6 @@ const popularUniversities: HotSpot[] = [
     link: 'https://www.xmu.edu.cn/',
   },
 ]
-
 const popularMajors: HotSpot[] = [
   {
     title: '计算机科学与技术',
@@ -209,22 +224,16 @@ const popularMajors: HotSpot[] = [
 export const TabData: TabDataType[] = [
   {
     tabTitle: '政策分析',
-    // tabTextColor: '#ff7875',
-    tabContentBackGroundColor: '#fff1f0',
     dataSource: PolicyData,
     icon: <PolicyLogo />,
   },
   {
     tabTitle: '院校热搜',
-    // tabTextColor: '#5cdbd3',
-    tabContentBackGroundColor: '#e6fffb',
     dataSource: popularUniversities,
     icon: <SchoolLogo />,
   },
   {
     tabTitle: '专业热搜',
-    // tabTextColor: '#95de64',
-    tabContentBackGroundColor: '#f6ffed',
     dataSource: popularMajors,
     icon: <MajorLogo />,
   },
