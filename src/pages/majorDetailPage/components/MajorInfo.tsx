@@ -23,7 +23,7 @@ interface DataType {
   //   first?: string;
   //   last?: string;
   // };
-  id?: number
+  id: number
   name?: string
   // email?: string;
   website?: string
@@ -107,6 +107,7 @@ const MajorInfo: React.FC = props => {
     setList(
       data.concat(
         [...new Array(count)].map(() => ({
+          id: 0,
           loading: true,
           name: '',
           picture: {},
