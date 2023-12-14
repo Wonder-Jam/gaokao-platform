@@ -10,7 +10,7 @@ import { CSS } from '@dnd-kit/utilities'
 import React, { useState, useRef, useEffect } from 'react'
 import { Tabs, Divider, TabPaneProps, TabsProps } from 'antd'
 import EChartsMap from './EchartsMap'
-import { eventBus } from '../utils/eventBus'
+import eventBus from '@/utils/eventBus'
 import UniversityDetail from './UniversityDetail'
 import type { UniversityDetailProps } from '../type'
 
@@ -108,17 +108,11 @@ const App: React.FC = () => {
   }, [])
 
   useEffect(() => {
-    const addTabListener = (data: any) => {
-      add(data)
-      // console.log('Received message in Tabs:', data)
-      // 例如，可以使用你的 Tabs 组件的状态来添加新的 Tab
-    }
-
-    eventBus.subscribe('universityClicked', addTabListener)
+    eventBus.subscribe('universityClicked', add)
     return () => {
-      eventBus.unsubscribe('universityClicked', addTabListener)
+      eventBus.unsubscribe('universityClicked', add)
     }
-  }) //Todo: 这里有个问题，如果把这个useEffect改成只执行一次，就会失效
+  }, []) //Todo: 这里有个问题，如果把这个useEffect改成只执行一次，就会失效
 
   useEffect(() => {
     console.log('tabItems stored', tabItems)
@@ -163,25 +157,27 @@ const App: React.FC = () => {
 
   const add = (item: any) => {
     const newActiveKey = `newTab${newTabIndex.current++}`
-    setItems([
-      ...tabItems,
-      {
-        label: item.name,
-        children: (
-          <UniversityDetail
-            name={item.name}
-            description={item.description}
-            motto={item.mooto}
-            logoUrl={item.picture.large}
-            backgroundUrl={item.background}
-            tags={item.tags}
-            website={item.website}
-          />
-        ),
-        key: newActiveKey,
-        closable: true,
-      },
-    ])
+    setItems(prev => {
+      return [
+        ...prev,
+        {
+          label: item.name,
+          children: (
+            <UniversityDetail
+              name={item.name}
+              description={item.description}
+              motto={item.mooto}
+              logoUrl={item.picture.large}
+              backgroundUrl={item.background}
+              tags={item.tags}
+              website={item.website}
+            />
+          ),
+          key: newActiveKey,
+          closable: true,
+        },
+      ]
+    })
     setActiveKey(newActiveKey)
   }
 
