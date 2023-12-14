@@ -6,7 +6,7 @@ interface EventBus {
   unsubscribe(event: string, callback: (data: any) => void): void
 }
 
-export const eventBus: EventBus = {
+const eventBus: EventBus = {
   listeners: {},
   subscribe(event, callback) {
     if (!this.listeners[event]) {
@@ -20,17 +20,22 @@ export const eventBus: EventBus = {
     }
   },
   emit(event, data) {
+    // console.log(event, this.listeners, this.listeners[event])
     if (this.listeners[event]) {
+      // console.log(this.listeners[event],this.listeners[event].length,this.listeners[event][0])
       this.listeners[event].forEach(callback => {
+        console.log('lalal')
         callback(data)
       })
     }
   },
   unsubscribe(event, callback) {
     if (this.listeners[event]) {
+      console.log('un')
       this.listeners[event] = this.listeners[event].filter(
         cb => cb !== callback,
       )
     }
   },
 }
+export default eventBus
