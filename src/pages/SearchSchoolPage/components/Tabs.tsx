@@ -103,8 +103,6 @@ const App: React.FC = () => {
       newTabIndex.current = parseInt(newTabIndexString)
     }
     setItems(initialItems)
-    // console.log('cachedTabs', cachedTabs)
-    // console.log('initialItems', initialItems)
   }, [])
 
   useEffect(() => {
@@ -182,6 +180,7 @@ const App: React.FC = () => {
   }
 
   const onChange = (key: string) => {
+    console.log(key)
     setActiveKey(key)
   }
 

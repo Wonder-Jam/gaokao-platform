@@ -1,12 +1,6 @@
 import { List, Tabs } from 'antd'
 import { RightBarContainer, TabContainer } from '../../style'
-import {
-  TabData,
-  TabDataType,
-  HotSpot,
-  TabTitle,
-  SchoolDetail,
-} from './HotSpotData'
+import { TabData, TabDataType, HotSpot, TabTitle } from './HotSpotData'
 import {
   HotSpotListContainer,
   ItemContainer,
@@ -15,8 +9,6 @@ import {
 } from './style'
 import { usePageNavigation } from '@/hooks/usePageNavigation'
 import React from 'react'
-import eventBus from '@/utils/eventBus'
-import UniversityDetail from '@/pages/SearchSchoolPage/components/UniversityDetail'
 
 const items = TabData.map((value: TabDataType, index) => ({
   key: '' + index,
@@ -30,7 +22,6 @@ const items = TabData.map((value: TabDataType, index) => ({
     <HotSpotList list={value.dataSource} hotSpotType={value.tabTitle} />
   ),
 }))
-const fakeDataUrl = 'api/universitylist'
 function HotSpotList({
   list,
   hotSpotType,
@@ -53,41 +44,9 @@ function HotSpotList({
                   window.open(item.link, '_blank')
                 } else {
                   targetSchool.current = item.title
-                  console.log(targetSchool)
-                  fetch(fakeDataUrl)
-                    .then(res => res.json())
-                    .then((schoolList: SchoolDetail[]) => {
-                      const school = schoolList.find(
-                        value => value.name === targetSchool.current,
-                      )
-                      if (school) {
-                        const cachedTabs = sessionStorage.getItem('schoolTabs')
-                        const newTabIndexString = sessionStorage.getItem('newTabIndex')
-                        sessionStorage.setItem('newTabIndex',String(Number(newTabIndexString) + 1))
-                        if (cachedTabs && cachedTabs !== '[]') {
-                          const tabInfos = JSON.parse(cachedTabs)
-                          tabInfos.push({
-                            label: school.name,
-                            children: (
-                              <UniversityDetail
-                                name={school.name}
-                                description={school.description}
-                                motto={school.motto}
-                                logoUrl={school.picture.large}
-                                backgroundUrl={school.background}
-                                tags={school.tags}
-                                website={school.website}
-                              />
-                            ),
-                          })
-                          sessionStorage.setItem('schoolTabs',JSON.stringify(tabInfos))
-                        }
-
-                        goToSearchSchoolPage()
-                      } else {
-                        window.open(item.link, '_blank')
-                      }
-                    })
+                  goToSearchSchoolPage({
+                    name: targetSchool.current,
+                  })
                 }
               }}
             >

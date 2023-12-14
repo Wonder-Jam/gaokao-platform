@@ -24,7 +24,6 @@ const eventBus: EventBus = {
     if (this.listeners[event]) {
       // console.log(this.listeners[event],this.listeners[event].length,this.listeners[event][0])
       this.listeners[event].forEach(callback => {
-        console.log('lalal')
         callback(data)
       })
     }

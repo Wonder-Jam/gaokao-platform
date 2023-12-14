@@ -16,15 +16,22 @@ import MajorInfo from './MajorInfo'
 const initialItems = [
   {
     label: '哲学',
-    children: <MajorInfo id={1} picture={{
-      large: undefined,
-      medium: undefined,
-      thumbnail: undefined
-    }} introduction={{
-      what: '',
-      learn: undefined,
-      do: undefined
-    }} loading={false} />,
+    children: (
+      <MajorInfo
+        id={1}
+        picture={{
+          large: undefined,
+          medium: undefined,
+          thumbnail: undefined,
+        }}
+        introduction={{
+          what: '',
+          learn: undefined,
+          do: undefined,
+        }}
+        loading={false}
+      />
+    ),
     key: '1',
     closable: false,
   },

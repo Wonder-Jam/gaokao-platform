@@ -3,15 +3,18 @@ import React, {
   useState,
   useContext,
   useRef,
-  createRef,
+  useCallback,
 } from 'react'
 import { List, Typography, Card, Tag, Space, Divider, Skeleton } from 'antd'
 import { UniversityItem } from './style'
-import { eventBus } from '../utils/eventBus'
+import eventBus from '@/utils/eventBus'
 import { Searchbar } from './Searchbar'
 import FilterTag from './FilterTag'
 import { SearchContext } from '../Context/SearchContext'
 import InfiniteScroll from 'react-infinite-scroll-component'
+import { useDebounceFn } from 'ahooks'
+import { useRouter } from 'next/router'
+import { on } from 'events'
 const { Text } = Typography
 
 // TODO: UniversityList 太丑了，需要美化：1.太空了，资源利用不到位 2.List.Item.Meta限制太多了，要自定义内容
@@ -40,29 +43,40 @@ const UniversityList: React.FC = () => {
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState<DataType[]>([])
   const [list, setList] = useState<DataType[]>([])
-  const listItemRef = createRef<HTMLElement>()
+  const listItemRef = useRef<HTMLDivElement>(null)
+  const hasInitialPage = useRef(false)
+  const router = useRouter()
+  // TODO: 待使用修复
+  const useItemHeight = useCallback(() => {
+    if (listItemRef.current) {
+      const listItemHeight = listItemRef.current.clientHeight
+    }
+  }, [listItemRef.current])
+  const { run: useDebounceItemHeight } = useDebounceFn(useItemHeight, {
+    wait: 500,
+  })
   useEffect(() => {
     fetch(fakeDataUrl)
       .then(res => res.json())
-      .then(res => {
+      .then((res: DataType[]) => {
         setInitLoading(false)
         setData(res)
-        // setList(res)
-        // console.log(res.results)
+        if (router.query.name && !hasInitialPage.current) {
+          const target = res.find(value => value.name === router.query.name)
+          if (target) {
+            onItemClicked(target)
+          }
+        }
+        hasInitialPage.current = true
       })
       .catch(e => {
         console.log(e)
         setInitLoading(false)
       })
-    const callback = () => {
-      if (listItemRef.current) {
-        const listItemHeight = listItemRef.current.clientHeight
-        console.log('ListItem height:', listItemHeight)
-      }
+    window.addEventListener('resize', useDebounceItemHeight)
+    return () => {
+      window.removeEventListener('resize', useDebounceItemHeight)
     }
-    console.log('hiegh')
-    window.addEventListener('resize', callback)
-    callback()
   }, [])
 
   const { province, city, rank, setChoices, filterSchool } =
@@ -125,7 +139,6 @@ const UniversityList: React.FC = () => {
   }
 
   const onItemClicked = (item: DataType) => {
-    // Access the properties of the item here
     console.log(item)
     eventBus.emit('universityClicked', item)
   }
@@ -143,34 +156,17 @@ const UniversityList: React.FC = () => {
             <p style={{ margin: '0px', marginTop: '2px', color: 'gray' }}>
               {item.motto}
             </p>
-            {/* <div style={{ display: 'flex', justifyContent: 'center' }}> */}
             <Space size={[0, 4]} wrap>
               {item.tags[0] ? <Tag color="#f50">{item.tags[0]}</Tag> : null}
               {item.tags[1] ? <Tag color="#2db7f5">{item.tags[1]}</Tag> : null}
               {item.tags[2] ? <Tag color="#87d068">{item.tags[2]}</Tag> : null}
               {item.tags[3] ? <Tag color="#108ee9">{item.tags[3]}</Tag> : null}
             </Space>
-            {/* </div> */}
-            {/* <p style={{ margin: '0px', marginTop: '1px' }}>{item.description}</p> */}
           </div>
         </div>
       </UniversityItem>
     )
   }
-
-  // const loadMore =
-  //   !initLoading && !loading ? (
-  //     <div
-  //       style={{
-  //         textAlign: 'center',
-  //         marginTop: 12,
-  //         height: 32,
-  //         lineHeight: '32px',
-  //       }}
-  //     >
-  //       <Button onClick={onLoadMore}>loading more</Button>
-  //     </div>
-  //   ) : null
 
   return (
     <>
@@ -178,7 +174,6 @@ const UniversityList: React.FC = () => {
         style={{
           height: '5%',
           width: '97%',
-          // marginBottom: '10px',
           marginLeft: '5px',
           marginRight: '5px',
         }}
@@ -212,9 +207,8 @@ const UniversityList: React.FC = () => {
             loading={initLoading}
             grid={{ gutter: 16, column: 1 }}
             itemLayout="horizontal"
-            // bordered
             dataSource={list}
-            renderItem={item => (
+            renderItem={(item, index) => (
               <List.Item
                 style={{
                   display: 'flex',
@@ -222,6 +216,7 @@ const UniversityList: React.FC = () => {
                   alignItems: 'center',
                   padding: '0px',
                 }}
+                ref={index === 0 ? listItemRef : null}
               >
                 <Card
                   loading={item.loading}
