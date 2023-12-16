@@ -1,7 +1,11 @@
+"use client"
+
 import React, {useEffect, useState} from 'react'
 import TweenOne, {TweenOneGroup} from 'rc-tween-one'
 import QueueAnim from 'rc-queue-anim'
-import Icon from "antd/es/icon"
+import './IndexSearchSchool.css'
+import {CloseOutlined} from "@ant-design/icons";
+
 
 const PicDetails: React.FC = () => {
     const textData = {
@@ -28,33 +32,48 @@ const PicDetails: React.FC = () => {
     let newDataArray = dataArray.map(item => ({ ...item, ...textData }))
     const [picOpen, setPicOpen] = useState({})
 
+
+    // @ts-ignore
     let onTweenEnd = (i) => {
         let tmp = {...picOpen}
+        // @ts-ignore
         delete tmp[i]
         setPicOpen(tmp)
     };
 
+    // @ts-ignore
     let onImgClick = (e, i) => {
         let tmp = {...picOpen}
         Object.keys(tmp).forEach((key) => {
+            // @ts-ignore
             if (key !== i && tmp[key]) {
+                // @ts-ignore
                 tmp[key] = false
             }
         });
+        // @ts-ignore
         tmp[i] = true;
         setPicOpen(tmp)
     }
 
+    // @ts-ignore
     let onClose = (e, i) => {
         let tmp = {...picOpen}
+        // @ts-ignore
         tmp[i] = false;
         setPicOpen(tmp)
     }
 
+    // @ts-ignore
     let getDelay = (e) => {
         const i = e.index + dataArray.length % 4;
         return (i % 4) * 100 + Math.floor(i / 4) * 100 + 200;
     }
+
+    const [isClient, setIsClient] = useState(false)
+    useEffect(() => {
+        setIsClient(true)
+    }, [])
 
     let getLiChildren = () => {
         const imgWidth = 110;
@@ -63,7 +82,9 @@ const PicDetails: React.FC = () => {
         const imgBoxHeight = 96;
         return newDataArray.map((item, i) => {
             const {image, title, content} = item;
+            // @ts-ignore
             const isEnter = typeof picOpen[i] === 'boolean';
+            // @ts-ignore
             const isOpen = picOpen[i];
 
             const left = isEnter ? 0 : imgBoxWidth * (i % 4);
@@ -89,6 +110,7 @@ const PicDetails: React.FC = () => {
                     left: imgBoxWidth * (i % 4),
                     top: isTop ? imgBoxHeight : 0,
                 }) : null;
+            // @ts-ignore
             aAnimation = isOpen ?
                 ({
                     ease: 'easeInOutCubic',
@@ -100,81 +122,72 @@ const PicDetails: React.FC = () => {
 
             // 位置 js 控制；
             return (
-                <TweenOne
-                    key={i}
-                    style={{
-                        left,
-                        top,
-                        ...liStyle,
-                    }}
-                    component="li"
-                    className={isOpen ? 'open' : ''}
-                    animation={liAnimation}
-                >
-                    <TweenOne
-                        component="a"
-                        onClick={(e) => onImgClick(e, i)}
-                        style={{
-                            left: imgLeft,
-                            top: imgTop,
-                        }}
-                        animation={aAnimation}
-                    >
-                        <img src={image} width="100%" height="100%"/>
-                    </TweenOne>
-                    <TweenOneGroup
-                        enter={[
-                            {
-                                opacity: 0, duration: 0, type: 'from', delay: 400,
-                            },
-                            {ease: 'easeOutCubic', type: 'from', left: isRight ? '50%' : '0%'},
-                        ]}
-                        leave={{ease: 'easeInOutCubic', left: isRight ? '50%' : '0%'}}
-                        component=""
-                    >
-                        {isOpen && (
-                            <div
-                                className={`pic-details-demo-text-wrapper`}
-                                key="text"
+                <>
+                    {isClient ?
+                        <TweenOne
+                            key={i}
+                            style={{
+                                left,
+                                top,
+                                ...liStyle,
+                            }}
+                            component="li"
+                            className={isOpen ? 'open' : ''}
+                            animation={liAnimation}
+                        >
+
+                            <TweenOne
+                                component="a"
+                                onClick={(e) => onImgClick(e, i)}
                                 style={{
-                                    left: isRight ? '0%' : '50%',
+                                    left: imgLeft,
+                                    top: imgTop,
                                 }}
+                                // @ts-ignore
+                                animation={aAnimation}
                             >
-                                <h1>{title}</h1>
-                                <Icon type="cross" onClick={(e) => onClose(e, i)}/>
-                                <em/>
-                                <p>{content}</p>
-                            </div>
-                        )}
-                    </TweenOneGroup>
-                </TweenOne>
+                                <img src={image} width="100%" height="100%"/>
+                            </TweenOne>
+                            <TweenOneGroup
+                                enter={[
+                                    {
+                                        opacity: 0, duration: 0, type: 'from', delay: 400,
+                                    },
+                                    {ease: 'easeOutCubic', type: 'from', left: isRight ? '50%' : '0%'},
+                                ]}
+                                leave={{ease: 'easeInOutCubic', left: isRight ? '50%' : '0%'}}
+                                component=""
+                            >
+                                {isOpen && (
+                                    <div
+                                        className={`pic-details-demo-text-wrapper`}
+                                        key="text"
+                                        style={{
+                                            left: isRight ? '0%' : '50%',
+                                        }}
+                                    >
+                                        <h1>{title}</h1>
+                                        <i><CloseOutlined onClick={(e) => onClose(e, i)} /></i>
+                                        <em/>
+                                        <p>{content}</p>
+                                    </div>
+                                )}
+                            </TweenOneGroup>
+                        </TweenOne> : <></>
+                    }
+                </>
+
             );
         });
     };
 
-    const [isClient, setIsClient] = useState(false)
-    useEffect(() => {
-        setIsClient(true)
-    }, [])
+
 
     return (
         <>
             {isClient ? <div>
                 <div className={`pic-details-demo-wrapper`}>
                     <div className={'pic-details-demo'}>
-                        <div className={`pic-details-demo-header`}>
-                            <ul>
-                                <li />
-                                <li />
-                                <li />
-                                <li />
-                                <li />
-                            </ul>
-                        </div>
-                        <QueueAnim type="bottom" className={`pic-details-demo-title`}>
-                            <h1 key="h1">Motion Design</h1>
-                            <p key="p">The react animation solution</p>
-                        </QueueAnim>
                         <QueueAnim
                             delay={getDelay}
                             component="ul"
@@ -183,6 +196,7 @@ const PicDetails: React.FC = () => {
                             type="bottom"
                         >
                             {getLiChildren()}
+                            {/*<p>dtest</p>*/}
                         </QueueAnim>
                     </div>
                 </div>
