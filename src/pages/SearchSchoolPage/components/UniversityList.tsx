@@ -4,6 +4,7 @@ import React, {
   useContext,
   useRef,
   useCallback,
+  useMemo,
 } from 'react'
 import { List, Typography, Card, Tag, Space, Divider, Skeleton } from 'antd'
 import { UniversityItem } from './style'
@@ -14,7 +15,6 @@ import { SearchContext } from '../Context/SearchContext'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { useDebounceFn } from 'ahooks'
 import { useRouter } from 'next/router'
-import { on } from 'events'
 const { Text } = Typography
 
 // TODO: UniversityList 太丑了，需要美化：1.太空了，资源利用不到位 2.List.Item.Meta限制太多了，要自定义内容
@@ -37,32 +37,50 @@ interface DataType {
 
 const count = 3
 const fakeDataUrl = 'api/universitylist'
-
+interface responseData {
+  contentSize: number
+  page: DataType[]
+}
 const UniversityList: React.FC = () => {
   const [initLoading, setInitLoading] = useState(true)
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState<DataType[]>([])
   const [list, setList] = useState<DataType[]>([])
   const listItemRef = useRef<HTMLDivElement>(null)
+  const listRef = useRef<HTMLDivElement>(null)
   const hasInitialPage = useRef(false)
   const router = useRouter()
+  const contentSize = useRef(0)
   // TODO: 待使用修复
   const useItemHeight = useCallback(() => {
-    if (listItemRef.current) {
+    if (listItemRef.current && listRef.current) {
       const listItemHeight = listItemRef.current.clientHeight
+      const listHeight = listRef.current.clientHeight
+      if (
+        listItemHeight * list.length < listHeight &&
+        list.length < contentSize.current
+      ) {
+        onLoadMore()
+      }
     }
-  }, [listItemRef.current])
+  }, [listItemRef.current, listRef.current, list.length, contentSize.current])
   const { run: useDebounceItemHeight } = useDebounceFn(useItemHeight, {
     wait: 500,
   })
+  const needLoadMore = useMemo(() => {
+    return list.length < contentSize.current
+  }, [contentSize.current, list.length])
+  useEffect(useDebounceItemHeight, [list.length])
   useEffect(() => {
     fetch(fakeDataUrl)
       .then(res => res.json())
-      .then((res: DataType[]) => {
+      .then((res: responseData) => {
         setInitLoading(false)
-        setData(res)
+        const { page } = res
+        contentSize.current = res.contentSize
+        setData(page)
         if (router.query.name && !hasInitialPage.current) {
-          const target = res.find(value => value.name === router.query.name)
+          const target = page.find(value => value.name === router.query.name)
           if (target) {
             onItemClicked(target)
           }
@@ -123,7 +141,8 @@ const UniversityList: React.FC = () => {
     fetch(fakeDataUrl)
       .then(res => res.json())
       .then(res => {
-        const newData = data.concat(res)
+        const { page } = res
+        const newData = data.concat(page)
         setData(newData)
         // setList(newData)
         setLoading(false)
@@ -187,6 +206,7 @@ const UniversityList: React.FC = () => {
         }}
       />
       <div
+        ref={listRef}
         id="scrollableDiv"
         style={{
           overflowY: 'auto',
@@ -196,7 +216,7 @@ const UniversityList: React.FC = () => {
       >
         <InfiniteScroll
           dataLength={list.length}
-          hasMore={false}
+          hasMore={needLoadMore}
           endMessage={<Divider plain>It is all, nothing more 🤐</Divider>}
           next={onLoadMore}
           loader={<Skeleton avatar paragraph={{ rows: 1 }} active />}
