@@ -5,10 +5,11 @@ import CommonSense from '@/pages/HomePage/CommonSense'
 import Intro from "@/pages/HomePage/Intro"
 import IndexHeader from "@/pages/HomePage/IndexHeader"
 import IndexSearchSchool from "@/pages/HomePage/IndexSearchSchool";
+import IndexSearchMajor from "@/pages/HomePage/IndexSearchMajor";
+import IndexVideoPlay from "@/pages/HomePage/IndexVideoPlay";
 
 export default function Home() {
   let headerContainer: React.CSSProperties = {
-    // backgroundColor: "#ff0000",
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -22,8 +23,11 @@ export default function Home() {
             <IndexHeader></IndexHeader>
           <Intro></Intro>
           {/*<IndexSearchSchool></IndexSearchSchool>*/}
+          <IndexSearchMajor></IndexSearchMajor>
+          <IndexVideoPlay></IndexVideoPlay>
           <PolicyInformation></PolicyInformation>
           <CommonSense></CommonSense>
+
         </div>
       </Entry>
     </>

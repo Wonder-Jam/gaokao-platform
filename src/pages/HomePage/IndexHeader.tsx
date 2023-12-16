@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {Button, Carousel, Image} from "antd";
+import {Button, Image} from "antd";
 import QueueAnim from 'rc-queue-anim'
 import {PauseCircleOutlined, PlayCircleOutlined} from "@ant-design/icons";
 
@@ -39,7 +39,6 @@ const IndexHeader: React.FC = () => {
                 justifyContent: "center",
             }}>
                 <ProgressBar indexActive={activeIndex} onChange={()=>setActiveIndex(activeIndex==0?1:0)}></ProgressBar>
-
             </div>
 
         </div>

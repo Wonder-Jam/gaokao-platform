@@ -5,24 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="313c75ac-819b-4824-9822-f057c6d6bea6" name="Changes" comment="Style: still header">
-      <change afterPath="$PROJECT_DIR$/src/pages/HomePage/IndexSearchMajor.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/HomePage/IndexSearchSchool.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/cat.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/love.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/quick.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/xjy.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/HomePage/IndexVideoPlay.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/HomePage/ArtRecommendContent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/HomePage/Abort/ArtRecommendContent.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/HomePage/IndexHeader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/HomePage/IndexHeader.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/HomePage/LineChart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/HomePage/Abort/LineChart.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/HomePage/MonthCalendar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/HomePage/Abort/MonthCalendar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/HomePage/NormalRecommendContent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/HomePage/Abort/NormalRecommendContent.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/HomePage/Slider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/HomePage/Abort/Slider.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/HomePage/SmartRecommend.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/HomePage/Abort/SmartRecommend.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/HomePage/IndexSearchMajor.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/HomePage/IndexSearchMajor.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/HomePage/IndexSearchSchool.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/HomePage/IndexSearchSchool.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/index.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.page.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -38,29 +43,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/JIAO/Desktop/tmp/zsgk/gaokao-cas-platform/public/images&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;prettier.import.notification.dismissed&quot;: &quot;true&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;C:\\Users\\JIAO\\Desktop\\tmp\\zsgk\\gaokao-cas-platform\\node_modules\\prettier&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\JIAO\\Desktop\\tmp\\zsgk\\gaokao-cas-platform\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/JIAO/Desktop/tmp/zsgk/gaokao-cas-platform/public",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "prettier.import.notification.dismissed": "true",
+    "prettierjs.PrettierConfiguration.Package": "C:\\Users\\JIAO\\Desktop\\tmp\\zsgk\\gaokao-cas-platform\\node_modules\\prettier",
+    "ts.external.directory.path": "C:\\Users\\JIAO\\Desktop\\tmp\\zsgk\\gaokao-cas-platform\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\JIAO\Desktop\tmp\zsgk\gaokao-cas-platform\public" />
+      <recent name="C:\Users\JIAO\Desktop\tmp\zsgk\gaokao-cas-platform\src\pages\HomePage" />
       <recent name="C:\Users\JIAO\Desktop\tmp\zsgk\gaokao-cas-platform\public\images" />
       <recent name="C:\Users\JIAO\Desktop\tmp\zsgk\gaokao-cas-platform\src\pages" />
     </key>
@@ -106,6 +115,13 @@
       <workItem from="1701685677074" duration="53055000" />
       <workItem from="1701873603606" duration="1020000" />
       <workItem from="1702053527352" duration="1395000" />
+      <workItem from="1702156603177" duration="665000" />
+      <workItem from="1702188513130" duration="4698000" />
+      <workItem from="1702194819467" duration="318000" />
+      <workItem from="1702202721388" duration="1431000" />
+      <workItem from="1702207779474" duration="1643000" />
+      <workItem from="1702390301050" duration="2093000" />
+      <workItem from="1702732164986" duration="12584000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor: header of homepage">
       <created>1700103405317</created>

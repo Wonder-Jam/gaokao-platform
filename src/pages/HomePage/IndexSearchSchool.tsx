@@ -1,4 +1,4 @@
-"use client"
+// "use client"
 
 import React, {useEffect, useState} from 'react'
 import TweenOne, {TweenOneGroup} from 'rc-tween-one'
@@ -124,14 +124,13 @@ const PicDetails: React.FC = () => {
             return (
                 <>
                     {isClient ?
-                        <TweenOne
+                        <li
                             key={i}
                             style={{
                                 left,
                                 top,
                                 ...liStyle,
                             }}
-                            component="li"
                             className={isOpen ? 'open' : ''}
                             animation={liAnimation}
                         >
@@ -173,7 +172,7 @@ const PicDetails: React.FC = () => {
                                     </div>
                                 )}
                             </TweenOneGroup>
-                        </TweenOne> : <></>
+                        </li> : <></>
                     }
                 </>
 
@@ -218,38 +217,42 @@ const IndexSearchSchool: React.FC = () => {
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
-                // alignItems: "center",
-                backgroundColor: '#f00',
+                alignItems: "center",
+                // backgroundColor: '#f00',
                 height: '100%',
                 width: '40%',
                 paddingLeft: 50
             }}>
-                <p style={{
-                    lineHeight: 1.15,
-                    // color: '#000',
-                    fontFamily: 'Gilroy-regular,-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Helvetica Neue,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol',
-                    margin: 0,
-                    padding: 0,
-                    fontWeight: 'bold',
-                    fontSize: '25.344px',
-                    letterSpacing: '.02em',
-                    marginBottom: '6.72px',
-                }}>查学校</p>
-                <div style={{
-                    lineHeight: 1.15,
-                    fontFamily: 'Gilroy-regular,-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Helvetica Neue,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol',
-                    margin: 0,
-                    padding: 0,
-                    fontSize: '16.032px',
-                    letterSpacing: '.02em',
-                    color: '#777e87',
-                }}>猜猜它们都是哪个大学的？</div>
+                <div>
+                    <p style={{
+                        lineHeight: 1.15,
+                        // color: '#000',
+                        fontFamily: 'Gilroy-regular,-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Helvetica Neue,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol',
+                        margin: 0,
+                        padding: 0,
+                        fontWeight: 'bold',
+                        fontSize: '38px',
+                        letterSpacing: '.02em',
+                        marginBottom: '10px',
+                    }}>查学校</p>
+                    <div style={{
+                        lineHeight: 1.15,
+                        fontFamily: 'Gilroy-regular,-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Helvetica Neue,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol',
+                        margin: 0,
+                        padding: 0,
+                        fontSize: '20px',
+                        letterSpacing: '.02em',
+                        color: '#777e87',
+                    }}>猜猜它们都是哪个大学的？</div>
+                </div>
+
             </div>
+
             <div style={{
                 backgroundColor: '#0f0',
                 width: '60%'
             }}>
-                <PicDetails></PicDetails>
+                {/*<PicDetails></PicDetails>*/}
             </div>
         </div>
         )
