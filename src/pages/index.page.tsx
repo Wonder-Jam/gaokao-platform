@@ -23,7 +23,7 @@ export default function Home() {
         <div>
             <IndexHeader></IndexHeader>
           <Intro></Intro>
-          {/*<IndexSearchSchool></IndexSearchSchool>*/}
+          <IndexSearchSchool></IndexSearchSchool>
           <IndexSearchMajor></IndexSearchMajor>
           <IndexVideoPlay></IndexVideoPlay>
           {/*<PolicyInformation></PolicyInformation>*/}

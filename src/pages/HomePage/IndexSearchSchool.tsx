@@ -1,7 +1,6 @@
 // "use client"
 
 import React, {useEffect, useState} from 'react'
-import TweenOne, {TweenOneGroup} from 'rc-tween-one'
 import QueueAnim from 'rc-queue-anim'
 import './IndexSearchSchool.css'
 import {CloseOutlined} from "@ant-design/icons";
@@ -132,31 +131,30 @@ const PicDetails: React.FC = () => {
                                 ...liStyle,
                             }}
                             className={isOpen ? 'open' : ''}
-                            animation={liAnimation}
+                            // animation={liAnimation}
                         >
 
-                            <TweenOne
-                                component="a"
+                            <a
                                 onClick={(e) => onImgClick(e, i)}
                                 style={{
                                     left: imgLeft,
                                     top: imgTop,
                                 }}
                                 // @ts-ignore
-                                animation={aAnimation}
+                                // animation={aAnimation}
                             >
                                 <img src={image} width="100%" height="100%"/>
-                            </TweenOne>
-                            <TweenOneGroup
-                                enter={[
-                                    {
-                                        opacity: 0, duration: 0, type: 'from', delay: 400,
-                                    },
-                                    {ease: 'easeOutCubic', type: 'from', left: isRight ? '50%' : '0%'},
-                                ]}
-                                leave={{ease: 'easeInOutCubic', left: isRight ? '50%' : '0%'}}
-                                component=""
-                            >
+                            </a>
+                            {/*<TweenOneGroup*/}
+                            {/*    enter={[*/}
+                            {/*        {*/}
+                            {/*            opacity: 0, duration: 0, type: 'from', delay: 400,*/}
+                            {/*        },*/}
+                            {/*        {ease: 'easeOutCubic', type: 'from', left: isRight ? '50%' : '0%'},*/}
+                            {/*    ]}*/}
+                            {/*    leave={{ease: 'easeInOutCubic', left: isRight ? '50%' : '0%'}}*/}
+                            {/*    component=""*/}
+                            {/*>*/}
                                 {isOpen && (
                                     <div
                                         className={`pic-details-demo-text-wrapper`}
@@ -171,7 +169,7 @@ const PicDetails: React.FC = () => {
                                         <p>{content}</p>
                                     </div>
                                 )}
-                            </TweenOneGroup>
+                            {/*</TweenOneGroup>*/}
                         </li> : <></>
                     }
                 </>
@@ -205,13 +203,11 @@ const PicDetails: React.FC = () => {
 }
 
 const IndexSearchSchool: React.FC = () => {
-
     return(
         <div style={{
             height: 500,
             marginTop: 100,
             display: "flex",
-
         }}>
             <div style={{
                 display: "flex",
@@ -221,9 +217,10 @@ const IndexSearchSchool: React.FC = () => {
                 // backgroundColor: '#f00',
                 height: '100%',
                 width: '40%',
-                paddingLeft: 50
+                paddingLeft: 50,
+                position: "relative"
             }}>
-                <div>
+                <div style={{position: "absolute", right: "30px"}}>
                     <p style={{
                         lineHeight: 1.15,
                         // color: '#000',
@@ -249,10 +246,10 @@ const IndexSearchSchool: React.FC = () => {
             </div>
 
             <div style={{
-                backgroundColor: '#0f0',
+                // backgroundColor: '#0f0',
                 width: '60%'
             }}>
-                {/*<PicDetails></PicDetails>*/}
+                <PicDetails></PicDetails>
             </div>
         </div>
         )

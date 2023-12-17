@@ -4,7 +4,7 @@ const IndexSearchMajor: React.FC = () => {
     return (
         <div style={{
             height: 500,
-            marginTop: 200,
+            marginTop: 50,
             display: "flex",
 
         }}>
@@ -19,7 +19,6 @@ const IndexSearchMajor: React.FC = () => {
                 <div style={{height: '60%', width: '70%', backgroundColor: '#efefef', borderRadius: '24px'}}>
                     <img src={'/images/major1.jpg'}/>
                 </div>
-
             </div>
 
             <div style={{
