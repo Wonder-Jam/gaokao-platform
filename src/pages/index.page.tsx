@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import Entry from '../components/Entry'
-import PolicyInformation from '@/pages/HomePage/PolicyInformation'
 import CommonSense from '@/pages/HomePage/CommonSense'
 import Intro from '@/pages/HomePage/Intro'
-import IndexHeader from '@/pages/HomePage/IndexHeader'
 import IndexSearchSchool from '@/pages/HomePage/IndexSearchSchool'
 import IndexSearchMajor from '@/pages/HomePage/IndexSearchMajor'
 import IndexVideoPlay from '@/pages/HomePage/IndexVideoPlay'
 import Footer from '@/pages/HomePage/Footer'
+import RootLayout from '@/app/layout'
+import IndexHeader from "@/pages/HomePage/IndexHeader";
 
 export default function Home() {
   let headerContainer: React.CSSProperties = {
@@ -18,7 +17,8 @@ export default function Home() {
 
   return (
     <>
-      <Entry>
+      {/* <Entry> */}
+      <RootLayout>
         <div>
           <IndexHeader></IndexHeader>
           <Intro></Intro>
@@ -28,7 +28,8 @@ export default function Home() {
           <CommonSense></CommonSense>
           <Footer></Footer>
         </div>
-      </Entry>
+      </RootLayout>
+      {/* </Entry> */}
     </>
   )
 }

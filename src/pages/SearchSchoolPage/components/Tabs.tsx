@@ -8,13 +8,13 @@ import {
 } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 import React, { useState, useRef, useEffect } from 'react'
-import { Tabs, Divider } from 'antd'
+import { Tabs, Divider, TabPaneProps, TabsProps } from 'antd'
 import EChartsMap from './EchartsMap'
-import { eventBus } from '../utils/eventBus'
+import eventBus from '@/utils/eventBus'
 import UniversityDetail from './UniversityDetail'
 import type { UniversityDetailProps } from '../type'
 
-const initialItems = [
+let initialItems = [
   {
     label: '地图数据',
     children: <EChartsMap />,
@@ -52,24 +52,71 @@ const DraggableTabNode = ({ className, ...props }: DraggableTabPaneProps) => {
   })
 }
 
+type NonNullable<T> = Exclude<T, null | undefined> // 从T中移除null和undefined
+type Tabs = NonNullable<TabsProps['items']> // 得到的类型是Tabs[]
+// Todo: 受不了了，typescript也太麻烦了，一直没法直接直接导入Tabs，晚上问问丁子
+
 const App: React.FC = () => {
   const [activeKey, setActiveKey] = useState(initialItems[0].key)
-  const [items, setItems] = useState(initialItems)
+  const [tabItems, setItems] = useState<Tabs>([])
   const newTabIndex = useRef(0)
 
   useEffect(() => {
-    const addTabListener = (data: any) => {
-      add(data)
-      console.log('Received message in Tabs:', data)
-      // 例如，可以使用你的 Tabs 组件的状态来添加新的 Tab
+    const cachedTabs = sessionStorage.getItem('schoolTabs') // 注意这得到的是个字符串，需要转换
+    if (cachedTabs && cachedTabs !== '[]') {
+      // console.log('还是进来了？！')
+      initialItems = []
+      const tabInfos = JSON.parse(cachedTabs)
+      // 复现一个自定义组件比较复杂，这里选择了一种比较愚蠢的写法
+      tabInfos.forEach(
+        (tabInfo: { label: string; children: any; key: string }) => {
+          if (tabInfo.label === '地图数据') {
+            initialItems.push({
+              label: tabInfo.label,
+              children: <EChartsMap />,
+              key: tabInfo.key,
+              closable: false,
+            })
+          } else {
+            initialItems.push({
+              label: tabInfo.label,
+              children: (
+                <UniversityDetail
+                  name={tabInfo.children.props.name}
+                  description={tabInfo.children.props.description}
+                  motto={tabInfo.children.props.motto}
+                  logoUrl={tabInfo.children.props.logoUrl}
+                  backgroundUrl={tabInfo.children.props.backgroundUrl}
+                  tags={tabInfo.children.props.tags}
+                  website={tabInfo.children.props.website}
+                />
+              ),
+              key: tabInfo.key,
+              closable: true,
+            })
+          }
+        },
+      )
     }
+    const newTabIndexString = sessionStorage.getItem('newTabIndex')
+    if (newTabIndexString) {
+      newTabIndex.current = parseInt(newTabIndexString)
+    }
+    setItems(initialItems)
+  }, [])
 
-    eventBus.subscribe('universityClicked', addTabListener)
-
+  useEffect(() => {
+    eventBus.subscribe('universityClicked', add)
     return () => {
-      eventBus.unsubscribe('universityClicked', addTabListener)
+      eventBus.unsubscribe('universityClicked', add)
     }
-  })
+  }, []) //Todo: 这里有个问题，如果把这个useEffect改成只执行一次，就会失效
+
+  useEffect(() => {
+    console.log('tabItems stored', tabItems)
+    sessionStorage.setItem('schoolTabs', JSON.stringify(tabItems))
+    sessionStorage.setItem('newTabIndex', newTabIndex.current.toString())
+  }, [tabItems])
 
   const sensor = useSensor(PointerSensor, {
     activationConstraint: { distance: 10 },
@@ -94,8 +141,8 @@ const App: React.FC = () => {
   }
 
   const remove = (targetKey: TargetKey) => {
-    const targetIndex = items.findIndex(pane => pane.key === targetKey)
-    const newPanes = items.filter(pane => pane.key !== targetKey)
+    const targetIndex = tabItems.findIndex(pane => pane.key === targetKey)
+    const newPanes = tabItems.filter(pane => pane.key !== targetKey)
     if (newPanes.length && targetKey === activeKey) {
       const { key } =
         newPanes[
@@ -108,29 +155,32 @@ const App: React.FC = () => {
 
   const add = (item: any) => {
     const newActiveKey = `newTab${newTabIndex.current++}`
-    setItems([
-      ...items,
-      {
-        label: item.name,
-        children: (
-          <UniversityDetail
-            name={item.name}
-            description={item.description}
-            motto={item.mooto}
-            logoUrl={item.picture.large}
-            backgroundUrl={item.background}
-            tags={item.tags}
-            website={item.website}
-          />
-        ),
-        key: newActiveKey,
-        closable: true,
-      },
-    ])
+    setItems(prev => {
+      return [
+        ...prev,
+        {
+          label: item.name,
+          children: (
+            <UniversityDetail
+              name={item.name}
+              description={item.description}
+              motto={item.mooto}
+              logoUrl={item.picture.large}
+              backgroundUrl={item.background}
+              tags={item.tags}
+              website={item.website}
+            />
+          ),
+          key: newActiveKey,
+          closable: true,
+        },
+      ]
+    })
     setActiveKey(newActiveKey)
   }
 
   const onChange = (key: string) => {
+    console.log(key)
     setActiveKey(key)
   }
 
@@ -140,7 +190,7 @@ const App: React.FC = () => {
       onChange={onChange}
       onEdit={onEdit}
       activeKey={activeKey}
-      items={items}
+      items={tabItems}
       type="editable-card"
       // style={{ width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
       style={{ height: '100%' }}
@@ -148,8 +198,10 @@ const App: React.FC = () => {
         // <div style={{display: "flex", alignItems:"start", width:"100%", overflow:"auto"}}>
         <div>
           <DndContext sensors={[sensor]} onDragEnd={onDragEnd}>
+            {/* <div style={{position: 'fixed'}}> */}
+            {/* </div> */}
             <SortableContext
-              items={items.map(i => i.key)}
+              items={tabItems.map(i => i.key)}
               strategy={horizontalListSortingStrategy}
             >
               <DefaultTabBar {...tabBarProps}>

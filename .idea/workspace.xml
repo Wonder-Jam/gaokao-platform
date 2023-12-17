@@ -5,7 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="313c75ac-819b-4824-9822-f057c6d6bea6" name="Changes" comment="Style: still header">
+      <change afterPath="$PROJECT_DIR$/src/pages/SearchMajorPage/components/EchartsMap.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/SearchMajorPage/components/GenderRatio.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/SearchMajorPage/components/MajorInfo.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/SearchMajorPage/components/SubjectRatio.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/SearchMajorPage/components/Tabs.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/SearchMajorPage/utils/eventBus.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/globals.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/page.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.module.css" afterDir="false" />
@@ -60,6 +67,11 @@
       <change beforePath="$PROJECT_DIR$/src/pages/index.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/styles/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/global.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/styles/utils.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/utils.module.css" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/src/pages/SearchMajorPage/components/MajorList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/SearchMajorPage/components/MajorList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/SearchMajorPage/index.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/SearchMajorPage/index.page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/SearchMajorPage/style.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/SearchMajorPage/style.tsx" afterDir="false" />
+>>>>>>> de8c947948fa3ded9b18286b87db2cd29ecdf075
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,6 +86,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -96,7 +113,7 @@
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/JIAO/Desktop/tmp/zsgk/gaokao-cas-platform/public/images",
+    "last_opened_file_path": "E:/HCI/gao-kao-platform/src/pages/SearchMajorPage/components",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
     "node.js.detected.package.tslint": "true",
@@ -106,12 +123,14 @@
     "nodejs_package_manager_path": "npm",
     "prettier.import.notification.dismissed": "true",
     "prettierjs.PrettierConfiguration.Package": "C:\\Users\\JIAO\\Desktop\\tmp\\zsgk\\gaokao-cas-platform\\node_modules\\prettier",
-    "ts.external.directory.path": "C:\\Users\\JIAO\\Desktop\\tmp\\zsgk\\gaokao-cas-platform\\node_modules\\typescript\\lib",
+    "ts.external.directory.path": "D:\\JetBrains\\WebStorm 2023.2.2\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\HCI\gao-kao-platform\src\pages\SearchMajorPage\components" />
+      <recent name="E:\HCI\gao-kao-platform\src\pages\SearchMajorPage" />
       <recent name="C:\Users\JIAO\Desktop\tmp\zsgk\gaokao-cas-platform\public\images" />
       <recent name="C:\Users\JIAO\Desktop\tmp\zsgk\gaokao-cas-platform\public" />
       <recent name="C:\Users\JIAO\Desktop\tmp\zsgk\gaokao-cas-platform\src\pages\HomePage" />
@@ -147,6 +166,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="npm.prettier" />
+        <item itemvalue="npm.dev" />
         <item itemvalue="npm.dev" />
       </list>
     </recent_temporary>

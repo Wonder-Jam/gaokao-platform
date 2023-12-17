@@ -70,7 +70,7 @@ const MajorData = [
     major: ['新闻传播学', '广告学', '汉语言文学', '历史学'],
     majorGroup: '专业组1',
     admissionType: '提前批',
-    requirement: '首选历史，再选不限',
+    requirement: '首选历史，再选政治',
     year: 2022,
     scoreLine: 688,
     category: '文史/历史',
@@ -328,9 +328,10 @@ export default function UniversityDetail(data: UniversityDetailProps) {
   return (
     <div
       style={{
-        overflow: 'auto',
+        overflowY: 'auto',
+        overflowX: 'hidden',
         marginTop: '-13px',
-        height: '80vh',
+        height: '85vh',
         paddingBottom: '100px',
       }}
     >

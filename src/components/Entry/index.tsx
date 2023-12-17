@@ -48,7 +48,7 @@ export default function Entry({ children }: { children: React.ReactNode }) {
       <div
         style={{
           width: '100vw',
-          height: '12%',
+          height: '8%',
         }}
       ></div>
       <MainContainer>{children}</MainContainer>
@@ -92,12 +92,12 @@ function HeaderBar() {
         <ImageContainer>
           <Image
             // src={
-            //   'https://files.lsmcloud.top/blog218cc985c57906433217d46ca1db1205.png'
+            //   'files/blog218cc985c57906433217d46ca1db1205.png'
             // }
             src={logo.src}
             preview={false}
             // style={{ transform: 'scale(0.6)' }}
-            height={'60px'}
+            height={'50px'}
             onClick={goToEolPage}
           />
         </ImageContainer>

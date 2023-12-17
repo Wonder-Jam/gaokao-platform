@@ -6,8 +6,11 @@ export function usePageNavigation() {
     goToMainPage() {
       router.push('/MainPage')
     },
-    goToSearchSchoolPage() {
-      router.push('/SearchSchoolPage')
+    goToSearchSchoolPage(params: any = null) {
+      router.push({
+        pathname: '/SearchSchoolPage',
+        query: params,
+      })
     },
     goToSearchMajorPage() {
       router.push('/SearchMajorPage')
