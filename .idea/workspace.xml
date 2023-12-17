@@ -6,10 +6,60 @@
   <component name="ChangeListManager">
     <list default="true" id="313c75ac-819b-4824-9822-f057c6d6bea6" name="Changes" comment="Style: still header">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/globals.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/page.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Entry/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Entry/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Entry/style.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Entry/style.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Mask.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Mask.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ReactECharts.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ReactECharts.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/usePageNavigation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/usePageNavigation.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/useSlideAnimation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/useSlideAnimation.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/HomePage/Abort/ArtRecommendContent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/HomePage/Abort/ArtRecommendContent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/HomePage/Abort/LineChart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/HomePage/Abort/LineChart.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/HomePage/Abort/MonthCalendar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/HomePage/Abort/MonthCalendar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/HomePage/Abort/NormalRecommendContent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/HomePage/Abort/NormalRecommendContent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/HomePage/Abort/Slider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/HomePage/Abort/Slider.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/HomePage/Abort/SmartRecommend.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/HomePage/Abort/SmartRecommend.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/HomePage/CommonSense.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/HomePage/CommonSense.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/HomePage/Footer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/HomePage/Footer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/HomePage/IndexHeader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/HomePage/IndexHeader.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/HomePage/IndexSearchMajor.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/HomePage/IndexSearchMajor.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/HomePage/IndexSearchSchool.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/HomePage/IndexSearchSchool.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/HomePage/IndexSearchSchool.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/HomePage/IndexSearchSchool.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/HomePage/IndexVideoPlay.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/HomePage/IndexVideoPlay.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/HomePage/Intro.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/HomePage/Intro.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/HomePage/PolicyInformation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/HomePage/PolicyInformation.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/SearchMajorPage.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/SearchMajorPage.page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/SearchSchoolPage/Context/SearchContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/SearchSchoolPage/Context/SearchContext.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/SearchSchoolPage/components/EchartsMap.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/SearchSchoolPage/components/EchartsMap.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/SearchSchoolPage/components/FilterMenu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/SearchSchoolPage/components/FilterMenu.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/SearchSchoolPage/components/ProvinceList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/SearchSchoolPage/components/ProvinceList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/SearchSchoolPage/components/Searchbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/SearchSchoolPage/components/Searchbar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/SearchSchoolPage/components/Tabs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/SearchSchoolPage/components/Tabs.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/SearchSchoolPage/components/UniversityBasicInfo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/SearchSchoolPage/components/UniversityBasicInfo.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/SearchSchoolPage/components/UniversityDetail.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/SearchSchoolPage/components/UniversityDetail.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/SearchSchoolPage/components/UniversityEvironment.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/SearchSchoolPage/components/UniversityEvironment.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/SearchSchoolPage/components/UniversityGenderRatio.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/SearchSchoolPage/components/UniversityGenderRatio.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/SearchSchoolPage/components/UniversityList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/SearchSchoolPage/components/UniversityList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/SearchSchoolPage/components/UniversityMajorPlan.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/SearchSchoolPage/components/UniversityMajorPlan.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/SearchSchoolPage/components/UniversityOverview.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/SearchSchoolPage/components/UniversityOverview.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/SearchSchoolPage/components/UniversityRank.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/SearchSchoolPage/components/UniversityRank.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/SearchSchoolPage/components/UniversityScoreLine.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/SearchSchoolPage/components/UniversityScoreLine.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/SearchSchoolPage/components/UniversityScoreLineTable.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/SearchSchoolPage/components/UniversityScoreLineTable.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/SearchSchoolPage/components/style.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/SearchSchoolPage/components/style.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/SearchSchoolPage/enum.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/SearchSchoolPage/enum.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/SearchSchoolPage/index.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/SearchSchoolPage/index.page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/SearchSchoolPage/style.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/SearchSchoolPage/style.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/SearchSchoolPage/type.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/SearchSchoolPage/type.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/SearchSchoolPage/utils/eventBus.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/SearchSchoolPage/utils/eventBus.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/VideoPlayPage/data.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/VideoPlayPage/data.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/VideoPlayPage/index.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/VideoPlayPage/index.page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/VideoPlayPage/style.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/VideoPlayPage/style.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/_app.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/_app.page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/index.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/global.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/utils.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/utils.module.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +123,7 @@
       <recent name="C:\Users\JIAO\Desktop\tmp\zsgk\gaokao-cas-platform\src\pages\HomePage" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="npm.prettier">
     <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -84,8 +134,19 @@
       <envs />
       <method v="2" />
     </configuration>
+    <configuration name="prettier" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="prettier" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.prettier" />
         <item itemvalue="npm.dev" />
       </list>
     </recent_temporary>
@@ -115,7 +176,7 @@
       <workItem from="1702202721388" duration="1431000" />
       <workItem from="1702207779474" duration="1643000" />
       <workItem from="1702390301050" duration="2093000" />
-      <workItem from="1702732164986" duration="21542000" />
+      <workItem from="1702732164986" duration="22514000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor: header of homepage">
       <created>1700103405317</created>
