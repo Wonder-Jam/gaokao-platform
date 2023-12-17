@@ -1,23 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Carousel, Image } from 'antd'
+import { Button, Image } from 'antd'
 import QueueAnim from 'rc-queue-anim'
 import { PauseCircleOutlined, PlayCircleOutlined } from '@ant-design/icons'
 
 const IndexHeader: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0)
-
-  // useEffect(() => {
-  //     const intervalId = setInterval(() => {
-  //         if (activeIndex === 1){
-  //             setActiveIndex(0)
-  //         }else{
-  //             setActiveIndex(1)
-  //         }
-  //         console.log(activeIndex)
-  //     }, 4000);
-  //
-  //     return () => clearInterval(intervalId);
-  // }, [activeIndex]);
 
   return (
     <div
@@ -43,7 +30,6 @@ const IndexHeader: React.FC = () => {
 
       <div
         style={{
-          // backgroundColor: "#f00",
           width: '30%',
         }}
       >
@@ -58,7 +44,6 @@ const IndexHeader: React.FC = () => {
           justifyContent: 'center',
         }}
       >
-        {/*<ProgressBar indexActive={activeIndex} onChange={()=>setActiveIndex((prevState)=>(prevState === 1 ? 0 : 1))}></ProgressBar>*/}
         <ProgressBar
           indexActive={activeIndex}
           onChange={() => setActiveIndex(activeIndex == 0 ? 1 : 0)}
@@ -88,7 +73,7 @@ const Slider: React.FC<{ indexActive: number }> = ({ indexActive }) => {
         <QueueAnim>
           <div key={'img'}>
             {indexActive === 0 && (
-              <QueueAnim type={'bottom'} key={'img0'}>
+              <QueueAnim type={['bottom', 'top']} duration={2000} key={'img0'}>
                 <div key={'img1'}>
                   <Image
                     height={'500px'}
@@ -101,7 +86,7 @@ const Slider: React.FC<{ indexActive: number }> = ({ indexActive }) => {
               </QueueAnim>
             )}
             {indexActive === 1 && (
-              <QueueAnim type={'bottom'} key={'img1'}>
+              <QueueAnim type={['bottom', 'top']} duration={2000} key={'img1'}>
                 <div key={'img2'}>
                   <Image
                     height={'500px'}
@@ -183,6 +168,9 @@ const ProgressBar: React.FC<{ indexActive: number; onChange: () => void }> = ({
           marginLeft: 7,
           cursor: 'pointer',
         }}
+        onClick={() => {
+          setIsAuto(!isAuto)
+        }}
       >
         <div
           style={{
@@ -204,6 +192,9 @@ const ProgressBar: React.FC<{ indexActive: number; onChange: () => void }> = ({
           marginBottom: 12,
           marginLeft: 7,
           cursor: 'pointer',
+        }}
+        onClick={() => {
+          setIsAuto(!isAuto)
         }}
       >
         <div
@@ -236,65 +227,92 @@ const Description: React.FC<{ indexActive: number }> = ({ indexActive }) => {
     <div
       style={{
         display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
+        // flexDirection: 'column',
+        // justifyContent: "center",
+        alignItems: 'center',
         height: '100%',
+        // backgroundColor: '#0f0'
       }}
     >
-      {isClient ? (
-        <QueueAnim>
-          <div key={'img'}>
-            {indexActive === 0 && (
-              <QueueAnim type={['bottom', 'top']} key={'img1'}>
-                <div key={'title'} style={{ fontSize: 40, fontWeight: 520 }}>
-                  九乡河文理学院
-                </div>
-                <div
-                  key={'content'}
-                  style={{ fontSize: 14, marginTop: 10, marginBottom: 10 }}
+      <div>
+        {isClient ? (
+          <QueueAnim>
+            <div key={'img'}>
+              {indexActive === 0 && (
+                <QueueAnim
+                  type={['right', 'left']}
+                  duration={3000}
+                  key={'img1'}
                 >
-                  九乡河文理学院是一所历史悠久、声誉卓著的高等学府。
-                </div>
-                <div key={'button'}>
-                  <Button
-                    style={{ width: '28%', fontWeight: '600' }}
-                    type={'primary'}
-                    shape={'round'}
-                    size={'large'}
-                  >
-                    了解更多
-                  </Button>
-                </div>
-              </QueueAnim>
-            )}
-            {indexActive === 1 && (
-              <QueueAnim type={['bottom', 'top']} key={'img2'}>
-                <div key={'title'} style={{ fontSize: 40, fontWeight: 520 }}>
-                  南哪儿大学
-                </div>
-                <div
-                  key={'content'}
-                  style={{ fontSize: 14, marginTop: 10, marginBottom: 10 }}
+                  <div key={'1'}>
+                    <div
+                      key={'title'}
+                      style={{ fontSize: 40, fontWeight: 520 }}
+                    >
+                      九乡河文理学院
+                    </div>
+                    <div
+                      key={'content'}
+                      style={{ fontSize: 14, marginTop: 10, marginBottom: 10 }}
+                    >
+                      九乡河文理学院是一所历史悠久、声誉卓著的高等学府。
+                    </div>
+                    <div key={'button'}>
+                      <Button
+                        style={{ width: '102px', fontWeight: '600' }}
+                        type={'primary'}
+                        shape={'round'}
+                        size={'large'}
+                      >
+                        了解更多
+                      </Button>
+                    </div>
+                  </div>
+                </QueueAnim>
+              )}
+              {indexActive === 1 && (
+                <QueueAnim
+                  type={['right', 'left']}
+                  duration={3000}
+                  key={'img2'}
                 >
-                  “你是在南京哪个大学？”
-                </div>
-                <div key={'button'}>
-                  <Button
-                    style={{ width: '28%', fontWeight: '600' }}
-                    type={'primary'}
-                    shape={'round'}
-                    size={'large'}
-                  >
-                    了解更多
-                  </Button>
-                </div>
-              </QueueAnim>
-            )}
-          </div>
-        </QueueAnim>
-      ) : (
-        <></>
-      )}
+                  <div key={'2'}>
+                    <div
+                      key={'title'}
+                      style={{ fontSize: 40, fontWeight: 520 }}
+                    >
+                      南哪儿大学
+                    </div>
+                    <div
+                      key={'content'}
+                      style={{ fontSize: 14, marginTop: 10, marginBottom: 10 }}
+                    >
+                      “你是在南京哪个大学？”
+                    </div>
+                    <div key={'button'}>
+                      <Button
+                        style={{ width: '104px', fontWeight: '600' }}
+                        type={'primary'}
+                        shape={'round'}
+                        size={'large'}
+                      >
+                        了解更多
+                      </Button>
+                    </div>
+                  </div>
+
+                  {/*<div key="a">Queue Demo</div>*/}
+                  {/*<div key="b">Queue Demo</div>*/}
+                  {/*<div key="c">Queue Demo</div>*/}
+                  {/*<div key="d">Queue Demo</div>*/}
+                </QueueAnim>
+              )}
+            </div>
+          </QueueAnim>
+        ) : (
+          <></>
+        )}
+      </div>
     </div>
   )
 }
