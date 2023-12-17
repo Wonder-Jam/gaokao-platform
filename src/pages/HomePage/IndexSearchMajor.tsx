@@ -4,28 +4,36 @@ const IndexSearchMajor: React.FC = () => {
     return (
         <div style={{
             height: 500,
-            marginTop: 100,
+            marginTop: 200,
             display: "flex",
 
         }}>
             <div style={{
                 // backgroundColor: '#0f0',
-                width: '60%'
+                width: '55%',
+                marginLeft: '30px',
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center"
             }}>
+                <div style={{height: '60%', width: '70%', backgroundColor: '#efefef', borderRadius: '24px'}}>
+                    <img src={'/images/major1.jpg'}/>
+                </div>
 
             </div>
 
             <div style={{
+                position: "relative",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center",
                 // backgroundColor: '#f00',
                 height: '100%',
-                width: '40%',
+                width: '45%',
                 // paddingLeft: 50
             }}>
-                <div>
+                <div style={{position: "absolute", left: '10px', marginLeft: '30px'}}>
                     <p style={{
                         lineHeight: 1.15,
                         // color: '#000',

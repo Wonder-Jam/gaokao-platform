@@ -7,6 +7,7 @@ import IndexHeader from "@/pages/HomePage/IndexHeader"
 import IndexSearchSchool from "@/pages/HomePage/IndexSearchSchool";
 import IndexSearchMajor from "@/pages/HomePage/IndexSearchMajor";
 import IndexVideoPlay from "@/pages/HomePage/IndexVideoPlay";
+import Footer from "@/pages/HomePage/Footer";
 
 export default function Home() {
   let headerContainer: React.CSSProperties = {
@@ -25,9 +26,9 @@ export default function Home() {
           {/*<IndexSearchSchool></IndexSearchSchool>*/}
           <IndexSearchMajor></IndexSearchMajor>
           <IndexVideoPlay></IndexVideoPlay>
-          <PolicyInformation></PolicyInformation>
+          {/*<PolicyInformation></PolicyInformation>*/}
           <CommonSense></CommonSense>
-
+          <Footer></Footer>
         </div>
       </Entry>
     </>

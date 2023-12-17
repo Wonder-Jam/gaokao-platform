@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="313c75ac-819b-4824-9822-f057c6d6bea6" name="Changes" comment="Style: still header">
+      <change afterPath="$PROJECT_DIR$/public/images/major1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/HomePage/Footer.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/HomePage/IndexVideoPlay.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/HomePage/IndexVideoPlay.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/HomePage/IndexSearchMajor.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/HomePage/IndexSearchMajor.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/index.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.page.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +46,7 @@
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/JIAO/Desktop/tmp/zsgk/gaokao-cas-platform/public",
+    "last_opened_file_path": "C:/Users/JIAO/Desktop/tmp/zsgk/gaokao-cas-platform/public/images",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
     "node.js.detected.package.tslint": "true",
@@ -59,9 +62,9 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\JIAO\Desktop\tmp\zsgk\gaokao-cas-platform\public\images" />
       <recent name="C:\Users\JIAO\Desktop\tmp\zsgk\gaokao-cas-platform\public" />
       <recent name="C:\Users\JIAO\Desktop\tmp\zsgk\gaokao-cas-platform\src\pages\HomePage" />
-      <recent name="C:\Users\JIAO\Desktop\tmp\zsgk\gaokao-cas-platform\public\images" />
       <recent name="C:\Users\JIAO\Desktop\tmp\zsgk\gaokao-cas-platform\src\pages" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -112,7 +115,7 @@
       <workItem from="1702202721388" duration="1431000" />
       <workItem from="1702207779474" duration="1643000" />
       <workItem from="1702390301050" duration="2093000" />
-      <workItem from="1702732164986" duration="14815000" />
+      <workItem from="1702732164986" duration="19314000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor: header of homepage">
       <created>1700103405317</created>
