@@ -18,15 +18,15 @@ const Footer: React.FC = () => {
           textAlign: 'center',
           opacity: '0.4',
           colorScheme: 'light',
-          lineHeight: '26px',
-          fontSize: '10px',
+          lineHeight: '28px',
+          fontSize: '13px',
         }}
       >
         Made with <span style={{ color: '#fff' }}>&#129505;</span> for
       </div>
       <div
         style={{
-          fontSize: '12px',
+          fontSize: '14px',
           opacity: '0.7',
         }}
       >
