@@ -6,7 +6,7 @@ import React, {
   useCallback,
   useMemo,
 } from 'react'
-import { List, Typography, Card, Tag, Space, Divider, Skeleton } from 'antd'
+import { List, Card, Tag, Space, Divider, Skeleton } from 'antd'
 import { UniversityItem } from './style'
 import eventBus from '@/utils/eventBus'
 import { Searchbar } from './Searchbar'
@@ -15,7 +15,6 @@ import { SearchContext } from '../Context/SearchContext'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { useDebounceFn } from 'ahooks'
 import { useRouter } from 'next/router'
-const { Text } = Typography
 
 // TODO: UniversityList 太丑了，需要美化：1.太空了，资源利用不到位 2.List.Item.Meta限制太多了，要自定义内容
 
@@ -43,7 +42,6 @@ interface responseData {
 }
 const UniversityList: React.FC = () => {
   const [initLoading, setInitLoading] = useState(true)
-  const [loading, setLoading] = useState(false)
   const [data, setData] = useState<DataType[]>([])
   const [list, setList] = useState<DataType[]>([])
   const listItemRef = useRef<HTMLDivElement>(null)
@@ -51,7 +49,6 @@ const UniversityList: React.FC = () => {
   const hasInitialPage = useRef(false)
   const router = useRouter()
   const contentSize = useRef(0)
-  // TODO: 待使用修复
   const useItemHeight = useCallback(() => {
     if (listItemRef.current && listRef.current) {
       const listItemHeight = listItemRef.current.clientHeight
@@ -97,9 +94,7 @@ const UniversityList: React.FC = () => {
     }
   }, [])
 
-  const { province, city, rank, setChoices, filterSchool } =
-    useContext(SearchContext)
-
+  const { province, filterSchool } = useContext(SearchContext)
   useEffect(() => {
     if (province === '全国' && filterSchool.length === 0) {
       setList(data)
@@ -124,28 +119,11 @@ const UniversityList: React.FC = () => {
   }, [data, filterSchool, province])
 
   const onLoadMore = () => {
-    setLoading(true)
-    data.concat(
-      [...new Array(count)].map(() => ({
-        loading: true,
-        name: '',
-        picture: { large: '' },
-        motto: '',
-        description: '',
-        website: '',
-        background: '',
-        tags: [],
-        province: '',
-      })),
-    )
     fetch(fakeDataUrl)
       .then(res => res.json())
       .then(res => {
         const { page } = res
-        const newData = data.concat(page)
-        setData(newData)
-        // setList(newData)
-        setLoading(false)
+        setData(prev => [...prev, ...page])
         // Resetting window's offsetTop so as to display react-virtualized demo underfloor.
         // In real scene, you can using public method of react-virtualized:
         // https://stackoverflow.com/questions/46700726/how-to-use-public-method-updateposition-of-react-virtualized
@@ -153,14 +131,12 @@ const UniversityList: React.FC = () => {
       })
       .catch(e => {
         console.log(e)
-        setLoading(false)
       })
   }
 
-  const onItemClicked = (item: DataType) => {
-    console.log(item)
+  const onItemClicked = useCallback((item: DataType) => {
     eventBus.emit('universityClicked', item)
-  }
+  }, [])
 
   const ListItem = (item: DataType) => {
     return (
