@@ -44,40 +44,42 @@ const IndexVideoPlay: React.FC = () => {
                     }}>嚼得菜根，做得大事</div>
                 </div>
             </div>
+
             <div style={{
                 // backgroundColor: '#0f0',
-                height: '70%',
+                height: '69%',
                 width: '84%',
                 margin: '0 auto',
                 display: "flex",
                 justifyContent: "space-between",
             }}>
-                <div className={'video-1'} style={{backgroundColor: '#efefef', overflow: "hidden", width: '38%', borderRadius: '20px'}}>
-                    <video autoPlay loop muted height={'100%'}>
+                <div className={'video-1'} style={{position: "relative", backgroundColor: '#efefef', overflow: "hidden", width: '38%', borderRadius: '20px'}}>
+                    <video autoPlay loop muted height={'100%'} >
                         <source src="/love.mp4" type="video/mp4" />
                         Net error
                     </video>
                 </div>
-                <div className={'video-2'} style={{backgroundColor: '#efefef', overflow: "hidden", width: '24%', borderRadius: '20px'}}>
-                    <video autoPlay loop muted width={'100%'}>
+                <div className={'video-2'} style={{position: "relative", backgroundColor: '#efefef', overflow: "hidden", width: '24%', borderRadius: '20px'}}>
+                    <video autoPlay loop muted width={'100%'} style={{position: "absolute", top: '-54px'}}>
                         <source src="/cat.mp4" type="video/mp4" />
                         Net error
                     </video>
                 </div>
                 <div className={'video-group'} style={{width: '35%', display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
-                    <div style={{backgroundColor: '#efefef', overflow: "hidden", height: '48%', borderRadius: '20px'}}>
-                        <video autoPlay loop muted width={'100%'}>
-                            <source src="/quick.mp4" type="video/mp4" />
-                            Net error
-                        </video>
-                    </div>
-                    <div style={{backgroundColor: '#efefef', overflow: "hidden", height: '48%', borderRadius: '20px'}}>
-                        <video autoPlay loop muted width={'100%'}>
+                    <div style={{position: "relative", backgroundColor: '#efefef', overflow: "hidden", height: '48%', borderRadius: '20px'}}>
+                        <video autoPlay loop muted width={'104%'} style={{position: "absolute", top: '-26px'}}>
                             <source src="/xjy.mp4" type="video/mp4" />
                             Net error
                         </video>
                     </div>
+                    <div style={{position: "relative", backgroundColor: '#efefef', overflow: "hidden", height: '48%', borderRadius: '20px'}}>
+                        <video autoPlay loop muted width={'104%'} style={{position: "absolute", top: '-26px'}}>
+                            <source src="/quick.mp4" type="video/mp4" />
+                            Net error
+                        </video>
+                    </div>
                 </div>
+
             </div>
         </div>
     )
