@@ -6,7 +6,7 @@ import IndexSearchMajor from '@/pages/HomePage/IndexSearchMajor'
 import IndexVideoPlay from '@/pages/HomePage/IndexVideoPlay'
 import Footer from '@/pages/HomePage/Footer'
 import RootLayout from '@/app/layout'
-import IndexHeader from "@/pages/HomePage/IndexHeader";
+import IndexHeader from '@/pages/HomePage/IndexHeader'
 
 export default function Home() {
   let headerContainer: React.CSSProperties = {
@@ -25,7 +25,6 @@ export default function Home() {
           <IndexSearchSchool></IndexSearchSchool>
           <IndexSearchMajor></IndexSearchMajor>
           <IndexVideoPlay></IndexVideoPlay>
-          <CommonSense></CommonSense>
           <Footer></Footer>
         </div>
       </RootLayout>
