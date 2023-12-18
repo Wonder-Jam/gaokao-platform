@@ -24,4 +24,12 @@ export interface UniversityDetailProps {
   backgroundUrl: string
   logoUrl: string
   motto: string
+  created: string
+  dominant: string
+  location: [
+    {
+      name: string
+      place: string
+    }
+  ]
 }

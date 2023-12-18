@@ -58,7 +58,8 @@ type Tabs = NonNullable<TabsProps['items']> // 得到的类型是Tabs[]
 
 const App: React.FC = () => {
   const [activeKey, setActiveKey] = useState(initialItems[0].key)
-  const [tabItems, setItems] = useState<Tabs>([])
+  const [tabItems, setItems] = useState<Tabs>([]) //Todo: 这里的代码会在listener回调时执行，为啥？
+  console.log('executed!')
   const newTabIndex = useRef(0)
 
   useEffect(() => {
@@ -89,6 +90,9 @@ const App: React.FC = () => {
                   backgroundUrl={tabInfo.children.props.backgroundUrl}
                   tags={tabInfo.children.props.tags}
                   website={tabInfo.children.props.website}
+                  dominant={tabInfo.children.props.dominant}
+                  created={tabInfo.children.props.created}
+                  location={tabInfo.children.props.location}
                 />
               ),
               key: tabInfo.key,
@@ -169,6 +173,9 @@ const App: React.FC = () => {
               backgroundUrl={item.background}
               tags={item.tags}
               website={item.website}
+              dominant={item.dominant}
+              created={item.created}
+              location={item.location}
             />
           ),
           key: newActiveKey,

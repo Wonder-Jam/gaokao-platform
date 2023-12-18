@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+import './IndexSearchMajor.css'
 
 const IndexSearchMajor: React.FC = () => {
   return (
@@ -6,28 +7,59 @@ const IndexSearchMajor: React.FC = () => {
       style={{
         height: 500,
         marginTop: 50,
+        marginLeft: 80,
         display: 'flex',
       }}
     >
-      <div
-        style={{
-          // backgroundColor: '#0f0',
-          width: '55%',
-          marginLeft: '30px',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <div
-          style={{
-            height: '60%',
-            width: '70%',
-            backgroundColor: '#efefef',
-            borderRadius: '24px',
-          }}
-        >
-          <img src={'/images/major1.jpg'} />
+      <div className={'major-des'}>
+        {/*  气泡  */}
+        {/*  <div className={'bubble'}>*/}
+        {/*        <div className={'content'}>test</div>*/}
+        {/*  </div>*/}
+        {/*  翻转卡片  */}
+        <div className={'cards'}>
+          <div className={'card-wrapper'}>
+            <div className={'card'}>
+              <div className={'card-content is-front'}>
+                <img
+                  src="/images/machine.jpg"
+                  loading="lazy"
+                  alt="Magic Image icon"
+                  style={{ width: '200px', opacity: 1 }}
+                />
+              </div>
+              <div className={'card-content is-back'}></div>
+            </div>
+          </div>
+          <div className={'card-wrapper'}>
+            <div className={'card'}>
+              <div className={'card-content is-front'}>
+                <img
+                  src="/images/dna.jpg"
+                  loading="lazy"
+                  alt="Magic Image icon"
+                  style={{ width: '200px', opacity: 1 }}
+                />
+              </div>
+              <div className={'card-content is-back'}></div>
+            </div>
+          </div>
+          <div className={'card-wrapper'}>
+            <div className={'card'}>
+              <div className={'card-content is-front'}>
+                <img
+                  src="/images/chemistry.jpg"
+                  loading="lazy"
+                  alt="Magic Image icon"
+                  style={{ width: '200px', opacity: 1 }}
+                />
+              </div>
+              <div className={'card-content is-back'}>
+                <p style={{ zIndex: 10 }}>化学</p>
+                <div>dfasfds</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
