@@ -98,47 +98,16 @@ function EChartsMap() {
   const { province, city, rank, filterSchool, setChoices } =
     useContext(SearchContext)
   const [features, setFeatures] = useState(null)
-  const [map, setMap] = useState(null)
+  const [map, setMap] = useState('china')
+  // const map = 'china'
   const chartRef = useRef(null)
   const myChart = useRef(null)
   const initEChart = () => {
     if (myChart.current) {
       echarts.registerMap(map, features)
       const option = {
-        tooltip: {
-          backgroundColor: '#FFFFFFE6',
-          borderWidth: 0,
 
-          trigger: 'item',
-          formatter: function (params) {
-            const name = params.name
-            const gdp = gdpData.find(item => item.name === name) ?? {
-              value: 'unkown',
-            }
-            const _985 = universities985.find(item => item.name === name) ?? {
-              value: 'unkown',
-            }
-            const _211 = universities211.find(item => item.name === name) ?? {
-              value: 'unkown',
-            }
-            const doubleFirstClass = universitiesDoubleFirstClass.find(
-              item => item.name === name,
-            ) ?? { value: 'unkown' }
-            const eduFunds = educationBudget.find(
-              item => item.name === name,
-            ) ?? { value: 'unkown' }
-            return `
-                        <div style="font-size: 16; font-weight: bold">${name}</div>
-                        <div style="font-size: 10">GDP: ${gdp.value} (亿)</div>
-                        <div style="font-size: 10">985: ${_985.value} (所)</div>
-                        <div style="font-size: 10">211: ${_211.value} (所)</div>
-                        <div style="font-size: 10">双一流: ${doubleFirstClass.value} (所)</div>
-                        <div style="font-size: 10">教育经费: ${eduFunds.value} (亿)</div>
-                    `
-          },
-        },
-        series: [
-          {
+        geo: {
             type: 'map',
             map: map,
             name: 'map',
@@ -173,8 +142,50 @@ function EChartsMap() {
                 borderColor: '#ADD8E6',
               },
             },
-          },
-        ],
+            tooltip: {
+              backgroundColor: '#FFFFFFE6',
+              borderWidth: 0,
+    
+              trigger: 'item',
+              formatter: function (params) {
+                const name = params.name
+                const gdp = gdpData.find(item => item.name === name) ?? {
+                  value: 'unkown',
+                }
+                const _985 = universities985.find(item => item.name === name) ?? {
+                  value: 'unkown',
+                }
+                const _211 = universities211.find(item => item.name === name) ?? {
+                  value: 'unkown',
+                }
+                const doubleFirstClass = universitiesDoubleFirstClass.find(
+                  item => item.name === name,
+                ) ?? { value: 'unkown' }
+                const eduFunds = educationBudget.find(
+                  item => item.name === name,
+                ) ?? { value: 'unkown' }
+                return `
+                            <div style="font-size: 16; font-weight: bold">${name}</div>
+                            <div style="font-size: 10">GDP: ${gdp.value} (亿)</div>
+                            <div style="font-size: 10">985: ${_985.value} (所)</div>
+                            <div style="font-size: 10">211: ${_211.value} (所)</div>
+                            <div style="font-size: 10">双一流: ${doubleFirstClass.value} (所)</div>
+                            <div style="font-size: 10">教育经费: ${eduFunds.value} (亿)</div>
+                        `
+              },
+            },
+        },
+        // series: [
+        //   {
+        //     type: 'effectScatter',
+        //     coordinateSystem: 'geo',
+        //     data: [
+        //       [121.47,31.23, 55],
+        //       [116.40,39.90, 110],
+        //       [106.55,29.56, 32]   
+        //     ]
+        //   }
+        // ]
       }
       window.addEventListener('resize', () => {
         myChart.current.resize && myChart.current.resize()
@@ -202,7 +213,7 @@ function EChartsMap() {
     }
   }, [chartRef.current])
   useEffect(() => {
-    console.log('something changed')
+    // console.log('something changed')
     setFeatures(null)
     myChart.current.showLoading({
       color: '#1677ff',
@@ -210,7 +221,12 @@ function EChartsMap() {
     fetch(proviceDataMap.get(province))
       .then(responce => responce.json())
       .then(data => {
-        setMap('tmp')
+        // setMap('tmp')
+        if (province !== Enum.province.None) {
+          setMap('tmp')
+        } else {
+          setMap('china')
+        }
         setFeatures(data)
         console.log(data)
         myChart.current.hideLoading()
@@ -407,6 +423,7 @@ function EChartsMap() {
       switch (rank) {
         case Enum.rank.None:
           if (province === Enum.province.None) {
+            setMap('tmp')
             myChart.current.setOption({
               visualMap: {
                 show: false,

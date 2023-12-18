@@ -14,6 +14,10 @@ const nextConfig = {
               source: '/api/:path*', // 匹配所有以 /files 开头的路径
               destination: 'https://gaokaoapi.lsmcloud.top/api/:path*', // 代理到的目标地址
             },
+            {
+              source: '/dev/:path*', // 匹配所有以 /files 开头的路径
+              destination: 'https://localhost:3000/:path*', // 代理到的目标地址
+            }
           ];
     },
     webpack(config){

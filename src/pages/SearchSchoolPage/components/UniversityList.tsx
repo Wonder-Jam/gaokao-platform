@@ -31,6 +31,12 @@ interface DataType {
   description: string
   background: string
   province: string
+  created: string
+  dominant: string
+  location: {
+    name: string
+    place: string
+  }
   tags: string[]
 }
 
