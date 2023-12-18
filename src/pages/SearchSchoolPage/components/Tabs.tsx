@@ -90,6 +90,9 @@ const App: React.FC = () => {
                   backgroundUrl={tabInfo.children.props.backgroundUrl}
                   tags={tabInfo.children.props.tags}
                   website={tabInfo.children.props.website}
+                  dominant={tabInfo.children.props.dominant}
+                  created={tabInfo.children.props.created}
+                  location={tabInfo.children.props.location}
                 />
               ),
               key: tabInfo.key,
@@ -170,6 +173,9 @@ const App: React.FC = () => {
               backgroundUrl={item.background}
               tags={item.tags}
               website={item.website}
+              dominant={item.dominant}
+              created={item.created}
+              location={item.location}
             />
           ),
           key: newActiveKey,
