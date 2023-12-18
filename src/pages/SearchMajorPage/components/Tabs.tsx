@@ -19,6 +19,31 @@ const initialItems = [
     children: (
       <MajorInfo
         id={1}
+        name={'哲学'}
+        description={
+          '专业代码：010101  |  修业年限：四年  |  授予学位：哲学学士  |  男女比例：40:60'
+        }
+        detailed_introduction={
+          '培养目标：本专业培养具有一定马克思主义哲学理论素养和系统的专业基础知识，有进一步 培养潜质的哲学专门人才，以及能在国家机关、文教事业、新闻出版、企业等部门从事实际工作的 应用型、复合型高级专门人才。\n\n培养要求：本专业学生主要学习马克思主义的基本理论与历史，以及社会科学、自然科学和 思维科学的基础知识，接受中西方哲学的基本理论和发展线索的系统教育，以及创造性思维的培 养和业务能力的训练。\n\n毕业生应获得以下几方面的知识和能力：\n\n1．比较系统地掌握马克思主义哲学、中国哲学和西方哲学的理论和历史；\n\n2．具有一定的社会科学、人文科学、自然科学、思维科学的相关知识；\n\n3．掌握哲学学科的基本研究方法、治学方法和相应的社会调查能力；\n\n4．了解国内外哲学界最重要的理论前沿和发展动态；\n\n5．了解国内外最重大的实践问题和发展动态；\n\n6．具有分析和解决社会现实问题的初步能力。\n\n主干学科：哲学。\n\n核心课程：哲学概论、马克思主义哲学原理、马克思主义哲学史、中国哲学史、西方哲学史、现 代西方哲学、科学技术哲学、伦理学、宗教学、美学、逻辑学、心理学、中外哲学原著导读、马克思主 义哲学原著导读等。\n\n主要实践性教学环节：社会实习、社会调查、社会公益活动等，一般安排10周左右。\n\n修业年限：四年。\n\n授予学位：哲学学士。\n\n'
+        }
+        subject={'不限/物理/历史/思政/思政+历史'}
+        direction={'马克思主义哲学、中国哲学、外国哲学、哲学'}
+        course={
+          '哲学概论、马克思主义哲学原理、中国哲学史、西方哲学史、科学技术哲学、伦理学、宗教学、美学、逻辑学、心理学、中外哲学原著导读等。'
+        }
+        celebrity={'老子、庄子、孔子、苏格拉底、柏拉图、歌德等。'}
+        // picture={item.picture}
+        // motto={item.motto}
+        // loading={item.loading}
+        // introduction={item.introduction}
+        // detailed_introduction={item.detailed_introduction}
+        // subject={item.subject}
+        // ratio={item.ratio}
+        // direction={item.direction}
+        // course={item.course}
+        // celebrity={item.celebrity}
+        // description={item.description}
+
         picture={{
           large: undefined,
           medium: undefined,
