@@ -10,6 +10,7 @@ import {
   ImageContainer,
   TextContainer,
 } from './style'
+import { useScroll, useThrottle } from 'ahooks'
 
 const items = [
   {
@@ -31,19 +32,56 @@ const items = [
 ]
 
 export default function Entry({ children }: { children: React.ReactNode }) {
+  const MainRef = React.useRef(null)
+  const HeaderRef = React.useRef<HTMLDivElement>(null)
+  const prevScrollY = React.useRef(0)
+  const isScrollingDown = React.useRef(false)
+  const scroll = useThrottle(useScroll(MainRef), { wait: 200 })
+  const hidden = React.useMemo(() => {
+    if (HeaderRef.current && scroll?.top) {
+      console.log(HeaderRef.current.clientHeight)
+      return scroll.top > HeaderRef.current.clientHeight
+    }
+    return false // 如果 HeaderRef.current 为 null，则返回默认值
+  }, [scroll?.top])
+  const headerStyle = React.useMemo(() => {
+    console.log(isScrollingDown.current)
+    if (hidden && isScrollingDown.current) {
+      // Scroll down, hide header
+      return { transform: 'translateY(-100%)' }
+    } else {
+      // Scroll up, show header
+      return { transform: 'translateY(0)' }
+    }
+  }, [hidden, isScrollingDown.current])
+  React.useEffect(() => {
+    if (scroll?.top !== undefined && prevScrollY.current !== undefined) {
+      isScrollingDown.current = scroll.top > prevScrollY.current
+      prevScrollY.current = scroll.top
+    }
+  }, [scroll?.top])
   return (
-    <>
-      <HeaderContainer>
+    <div style={{ width: '100%', height: '100%' }}>
+      <HeaderContainer ref={HeaderRef} style={headerStyle}>
         <HeaderBar />
       </HeaderContainer>
-      <div
-        style={{
-          width: '100vw',
-          height: '8%',
-        }}
-      ></div>
-      <MainContainer>{children}</MainContainer>
-    </>
+      <MainContainer ref={MainRef}>
+        <div
+          style={{
+            width: '100vw',
+            height: '8%',
+          }}
+        ></div>
+        <div
+          style={{
+            width: '100vw',
+            height: '92%',
+          }}
+        >
+          {children}
+        </div>
+      </MainContainer>
+    </div>
   )
 }
 
