@@ -71,7 +71,7 @@ const UniversityList: React.FC = () => {
     wait: 500,
   })
   const needLoadMore = useMemo(() => {
-    if(list.length === 0 && contentSize.current !==0) return false
+    if (list.length === 0 && contentSize.current !== 0) return false
     return list.length < contentSize.current
   }, [contentSize.current, list.length])
   useEffect(useDebounceItemHeight, [list.length])
