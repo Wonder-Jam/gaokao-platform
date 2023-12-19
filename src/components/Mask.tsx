@@ -19,7 +19,7 @@ export const MaskStyle = styled.div<{
   position: fixed;
   left: 0;
   top: 0;
-  z-index: 20;
+  z-index: 999;
   background-color: hsla(0, 0%, 100%, 0.98); // rgba(0, 0, 0, 0.88)
   transition:
     opacity 0.3s,
