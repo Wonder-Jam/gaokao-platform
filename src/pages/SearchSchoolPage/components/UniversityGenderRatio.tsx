@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { ReactECharts } from '@/components/ReactECharts' // 确保你已经安装了echarts-for-react
 
-const GenderRatioChart: React.FC = () => {
+interface AppProps {
+  female: number
+  male: number
+}
+
+const GenderRatioChart: React.FC<AppProps> = props => {
   const [option, setOption] = useState({})
 
   useEffect(() => {
@@ -23,8 +28,8 @@ const GenderRatioChart: React.FC = () => {
           type: 'pie',
           radius: '50%',
           data: [
-            { value: 55, name: '男' },
-            { value: 45, name: '女' },
+            { value: props.male*100, name: '男' },
+            { value: props.female*100, name: '女' },
           ],
           emphasis: {
             itemStyle: {
