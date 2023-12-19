@@ -11,6 +11,8 @@ import { BarChartOutlined } from '@ant-design/icons'
 
 import * as Enum from '../enum' // 假设你的枚举文件在 '../enum' 中
 
+
+
 const provinceMap = new Map([
   ['新疆维吾尔自治区', Enum.province.Xinjiang],
   ['广西壮族自治区', Enum.province.Guangxi],
@@ -106,30 +108,89 @@ function EChartsMap() {
     if (myChart.current) {
       echarts.registerMap(map, features)
       const option = {
-
+        tooltip: {
+          backgroundColor: '#FFFFFFE6',
+          borderWidth: 0,
+          trigger: 'item',
+          formatter: function (params) {
+            // console.log('params', params)
+            const name = params.name
+            const gdp = gdpData.find(item => item.name === name) ?? {
+              value: 'unkown',
+            }
+            const _985 = universities985.find(item => item.name === name) ?? {
+              value: 'unkown',
+            }
+            const _211 = universities211.find(item => item.name === name) ?? {
+              value: 'unkown',
+            }
+            const doubleFirstClass = universitiesDoubleFirstClass.find(
+              item => item.name === name,
+            ) ?? { value: 'unkown' }
+            const eduFunds = educationBudget.find(
+              item => item.name === name,
+            ) ?? { value: 'unkown' }
+            return `
+                        <div style="font-size: 16; font-weight: bold">${name}</div>
+                        <div style="font-size: 10">GDP: ${gdp.value} (亿)</div>
+                        <div style="font-size: 10">985: ${_985.value} (所)</div>
+                        <div style="font-size: 10">211: ${_211.value} (所)</div>
+                        <div style="font-size: 10">双一流: ${doubleFirstClass.value} (所)</div>
+                        <div style="font-size: 10">教育经费: ${eduFunds.value} (亿)</div>
+                    `
+          },
+          // formatter: '呼啦呼啦'
+        },
         geo: {
+          type: 'map',
+          map: map,
+          // name: 'map',
+          roam: false, // 一定要关闭拖拽
+          zoom: 1.0,
+          // center: [105, 35], // 调整地图位置
+        },
+        series: [
+          // {
+          //   type: 'map',
+          //   // map: map,
+          //   name: 'map',
+          //   roam: false, // 一定要关闭拖拽
+          //   zoom: 1.0,
+          // },
+          {
+            name: 'school',
+            type: 'effectScatter',
+            coordinateSystem: 'geo',
+            rippleEffect: {
+              color: '#1677FF',
+            },
+            // data: scatter
+            // data: [
+            //   [121.47,31.23, 0],
+            //   [116.40,39.90, 0],
+            //   [106.55,29.56, 0]  
+            // ]
+          },
+          {
             type: 'map',
             map: map,
             name: 'map',
-            roam: false, // 一定要关闭拖拽
-            zoom: 1.0,
-            // center: [105, 35], // 调整地图位置
             showLegendSymbol: false, // 存在legend时显示
             selectedMode: 'single',
             itemStyle: {
               areaColor: '#F0F8FF',
               borderColor: '#1677FF',
-              borderWidth: 1, //设置外层边框
-              shadowBlur: 8,
-              shadowOffsetY: 8,
-              shadowOffsetX: 0,
+              borderWidth: 0.7, //设置外层边框
+              shadowBlur: 4,
+              // shadowOffsetY: 8,
+              // shadowOffsetX: 0,
               shadowColor: '#87CEFA',
             },
             emphasis: {
               itemStyle: {
                 areaColor: '#F5FFFA',
-                shadowOffsetX: 0,
-                shadowOffsetY: 0,
+                // shadowOffsetX: 0,
+                // shadowOffsetY: 0,
                 shadowBlur: 5,
                 borderWidth: 0,
                 shadowColor: 'rgba(0, 0, 0, 0.5)',
@@ -142,66 +203,27 @@ function EChartsMap() {
                 borderColor: '#ADD8E6',
               },
             },
-            tooltip: {
-              backgroundColor: '#FFFFFFE6',
-              borderWidth: 0,
-    
-              trigger: 'item',
-              formatter: function (params) {
-                const name = params.name
-                const gdp = gdpData.find(item => item.name === name) ?? {
-                  value: 'unkown',
-                }
-                const _985 = universities985.find(item => item.name === name) ?? {
-                  value: 'unkown',
-                }
-                const _211 = universities211.find(item => item.name === name) ?? {
-                  value: 'unkown',
-                }
-                const doubleFirstClass = universitiesDoubleFirstClass.find(
-                  item => item.name === name,
-                ) ?? { value: 'unkown' }
-                const eduFunds = educationBudget.find(
-                  item => item.name === name,
-                ) ?? { value: 'unkown' }
-                return `
-                            <div style="font-size: 16; font-weight: bold">${name}</div>
-                            <div style="font-size: 10">GDP: ${gdp.value} (亿)</div>
-                            <div style="font-size: 10">985: ${_985.value} (所)</div>
-                            <div style="font-size: 10">211: ${_211.value} (所)</div>
-                            <div style="font-size: 10">双一流: ${doubleFirstClass.value} (所)</div>
-                            <div style="font-size: 10">教育经费: ${eduFunds.value} (亿)</div>
-                        `
-              },
-            },
-        },
-        // series: [
-        //   {
-        //     type: 'effectScatter',
-        //     coordinateSystem: 'geo',
-        //     data: [
-        //       [121.47,31.23, 55],
-        //       [116.40,39.90, 110],
-        //       [106.55,29.56, 32]   
-        //     ]
-        //   }
-        // ]
+          }
+
+        ]
       }
-      window.addEventListener('resize', () => {
-        myChart.current.resize && myChart.current.resize()
-      })
-      myChart.current.setOption(option)
-      myChart.current.on('click', function (params) {
-        // console.log(provinceMap.get(params.name))
-        if (provinceMap.get(params.name)) {
-          setChoices({
-            province: provinceMap.get(params.name),
-            city: city,
-            rank: rank,
-            filterSchool,
-          })
-        }
-      })
+      if (window !== undefined) {
+        window.addEventListener('resize', () => {
+          myChart.current.resize && myChart.current.resize()
+        })
+        myChart.current.setOption(option)
+        myChart.current.on('click', function (params) {
+          // console.log(provinceMap.get(params.name))
+          if (provinceMap.get(params.name)) {
+            setChoices({
+              province: provinceMap.get(params.name),
+              city: city,
+              rank: rank,
+              filterSchool,
+            })
+          }
+        })
+      }
     } else {
       console.log('faild to init chartRef')
     }
@@ -230,6 +252,55 @@ function EChartsMap() {
         setFeatures(data)
         console.log(data)
         myChart.current.hideLoading()
+        if (province === Enum.province.None) {
+          fetch('api/locateUniversityRandomly').then(res => res.json()).then(data => {
+            console.log(data)
+            const tmpScatter = data.map(item => [
+              item.location.lng,
+              item.location.lat,
+              // { name: item.name }
+              100
+            ]);
+            console.log(tmpScatter)
+            // setScatter(tmpScatter)
+            myChart.current.setOption({
+              series: [
+                {
+                  name: 'school',
+                  data: tmpScatter
+                  // data: [
+                  //   [121.474444, 31.23444444, 0],
+                  //   [116.444444, 39.90444444, 0],
+                  //   [106.554444, 29.56444444, 0]
+                  // ]
+                },
+              ],
+            })
+          }).catch(err => {
+            console.log(err)
+          })
+        } else {
+          fetch(`api/locateUniversityByProvince?province=${province}`).then(res => res.json()).then(data => {
+            const tmpScatter = data.map(item => [
+              item.location.lat,
+              item.location.lng,
+              // { name: item.name }
+              100
+            ]);
+            // setScatter(tmpScatter)
+            myChart.current.setOption({
+              series: [
+                {
+                  name: 'school',
+                  // data: [[32,114]]
+                  data: tmpScatter
+                },
+              ],
+            })
+          }).catch(err => {
+            console.log(err)
+          })
+        }
       })
       .catch(error => {
         console.error(error)
@@ -430,15 +501,16 @@ function EChartsMap() {
               },
               series: [
                 {
+                  name: 'map',
                   data: [],
                   itemStyle: {
                     areaColor: '#F0F8FF',
                     borderColor: '#1677FF',
                     borderWidth: 1, //设置外层边框
-                    shadowBlur: 8,
-                    shadowOffsetY: 8,
-                    shadowOffsetX: 0,
-                    shadowColor: '#87CEFA',
+                    shadowBlur: 4,
+                    // shadowOffsetY: 8,
+                    // shadowOffsetX: 0,
+                    // shadowColor: '#87CEFA',
                   },
                 },
               ],
@@ -474,9 +546,9 @@ function EChartsMap() {
                     borderColor: '#1677FF',
                     borderWidth: 0.7, //设置外层边框
                     shadowBlur: 4,
-                    shadowOffsetY: 1,
-                    shadowOffsetX: 0,
-                    shadowColor: '#87CEFA',
+                    // shadowOffsetY: 1,
+                    // shadowOffsetX: 0,
+                    // shadowColor: '#87CEFA',
                   },
                 },
               ],
@@ -508,9 +580,9 @@ function EChartsMap() {
                     borderColor: '#1677FF',
                     borderWidth: 0.7, //设置外层边框
                     shadowBlur: 4,
-                    shadowOffsetY: 1,
-                    shadowOffsetX: 0,
-                    shadowColor: '#87CEFA',
+                    // shadowOffsetY: 1,
+                    // shadowOffsetX: 0,
+                    // shadowColor: '#87CEFA',
                   },
                 },
               ],
@@ -543,9 +615,9 @@ function EChartsMap() {
                     borderColor: '#1677FF',
                     borderWidth: 0.7, //设置外层边框
                     shadowBlur: 4,
-                    shadowOffsetY: 1,
-                    shadowOffsetX: 0,
-                    shadowColor: '#87CEFA',
+                    // shadowOffsetY: 1,
+                    // shadowOffsetX: 0,
+                    // shadowColor: '#87CEFA',
                   },
                 },
               ],
@@ -578,9 +650,9 @@ function EChartsMap() {
                     borderColor: '#1677FF',
                     borderWidth: 0.7, //设置外层边框
                     shadowBlur: 4,
-                    shadowOffsetY: 1,
-                    shadowOffsetX: 0,
-                    shadowColor: '#87CEFA',
+                    // shadowOffsetY: 1,
+                    // shadowOffsetX: 0,
+                    // shadowColor: '#87CEFA',
                   },
                 },
               ],
@@ -613,9 +685,9 @@ function EChartsMap() {
                     borderColor: '#1677FF',
                     borderWidth: 0.7, //设置外层边框
                     shadowBlur: 4,
-                    shadowOffsetY: 1,
-                    shadowOffsetX: 0,
-                    shadowColor: '#87CEFA',
+                    // shadowOffsetY: 1,
+                    // shadowOffsetX: 0,
+                    // shadowColor: '#87CEFA',
                   },
                 },
               ],
@@ -705,9 +777,11 @@ function EChartsMap() {
           </Dropdown>
         )}
       </div>
+      {(typeof window !== 'undefined') &&
       <div ref={chartRef} style={{ height: '85vh', margin: 'auto' }}>
         Loading...
       </div>
+      }
     </>
   )
 }
