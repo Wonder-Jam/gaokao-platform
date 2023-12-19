@@ -29,12 +29,8 @@ interface DetailData {
     scoreLine: number
     category: string
   }[]
-  rankData: {
-    year: number
-    rank: number
-    type: 'USNews' | 'QS' | 'THE' | 'ARWU'
-  }[]
-  genderRatio: { ratio: number }
+  rankData: { year: number, rank: number, type: 'USNews' | 'QS' | 'THE' | 'ARWU' }[]
+  genderRatio: { female: number, male: number }
 }
 export default function UniversityDetail(data: UniversityDetailProps) {
   const [tableData, setTableData] = useState<ScorelineDataType[]>([]) // 提取唯一年份
@@ -259,9 +255,18 @@ export default function UniversityDetail(data: UniversityDetailProps) {
                 }
               />
             </Card>
-            <div style={{ width: '49.5%', height: '50vh' }}>
-              <UniversityScoreLineTable data={tableData.reverse()} />
-            </div>
+            <Card size="small" style={{ width: '49.5%', height: '300px' }}>
+            <UniversityScoreLineTable
+              data={
+                // scorelineData as {
+                //   year: number
+                //   score: number
+                //   type: '文史' | '理工'
+                // }[]
+                tableData
+              }
+            />
+          </Card>
           </div>
           <div id="专业组分数"></div>
           <Divider orientation="left">专业组分数</Divider>
@@ -291,7 +296,7 @@ export default function UniversityDetail(data: UniversityDetailProps) {
             }}
           >
             <Card size="small" style={{ height: '300px', width: '49.5%' }}>
-              <GenderRatioChart />
+              <GenderRatioChart male={detailData.genderRatio.male} female={detailData.genderRatio.female} />
             </Card>
             <UniversityEnvironment style={{ width: '49.5%' }} />
           </div>
