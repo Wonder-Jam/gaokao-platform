@@ -1,3 +1,5 @@
+import { tagsType } from './components/UniversityList'
+
 export interface ScorelineDataType {
   key: React.Key
   arts: number
@@ -19,7 +21,7 @@ export interface MajorDataType {
 export interface UniversityDetailProps {
   name: string
   description: string
-  tags: string[]
+  tags: tagsType[]
   website: string
   backgroundUrl: string
   logoUrl: string

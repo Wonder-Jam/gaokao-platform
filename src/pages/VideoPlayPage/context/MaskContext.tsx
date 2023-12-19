@@ -7,7 +7,7 @@ export const MaskContext = React.createContext<{
   setTargetRef: React.Dispatch<
     React.SetStateAction<React.RefObject<HTMLDivElement>>
   >
-  onSearch: (value:string) => void
+  onSearch: (value: string) => void
 }>({
   shown: false,
   toggle: () => {},
