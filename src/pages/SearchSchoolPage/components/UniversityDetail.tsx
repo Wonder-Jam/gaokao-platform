@@ -253,21 +253,18 @@ export default function UniversityDetail(data: UniversityDetailProps) {
                 }
               />
             </Card>
-            <div id="校园情况"></div>
-            <Divider orientation="left">校园情况</Divider>
-            <div
-              style={{
-                height: '300px',
-                display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-              }}
-            >
-              <Card size="small" style={{ height: '300px', width: '49.5%' }}>
-                <GenderRatioChart male={detailData.genderRatio.male} female={detailData.genderRatio.female}/>
-              </Card>
-              <UniversityEnvironment style={{ width: '49.5%' }} />
-            </div>
+            <Card size="small" style={{ width: '49.5%', height: '300px' }}>
+            <UniversityScoreLineTable
+              data={
+                // scorelineData as {
+                //   year: number
+                //   score: number
+                //   type: '文史' | '理工'
+                // }[]
+                tableData
+              }
+            />
+          </Card>
           </div>
           <div id="专业组分数"></div>
           <Divider orientation="left">专业组分数</Divider>
