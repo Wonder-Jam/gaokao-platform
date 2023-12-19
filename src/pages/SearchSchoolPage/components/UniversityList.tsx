@@ -18,7 +18,7 @@ import { useRouter } from 'next/router'
 
 // TODO: UniversityList 太丑了，需要美化：1.太空了，资源利用不到位 2.List.Item.Meta限制太多了，要自定义内容
 
-interface DataType {
+export interface DataType {
   name: string
   website: string
   picture: {
@@ -42,7 +42,7 @@ interface DataType {
 
 const count = 3
 const fakeDataUrl = 'api/universitylist'
-interface responseData {
+export interface responseData {
   contentSize: number
   page: DataType[]
 }
@@ -71,6 +71,7 @@ const UniversityList: React.FC = () => {
     wait: 500,
   })
   const needLoadMore = useMemo(() => {
+    if (list.length === 0 && contentSize.current !== 0) return false
     return list.length < contentSize.current
   }, [contentSize.current, list.length])
   useEffect(useDebounceItemHeight, [list.length])

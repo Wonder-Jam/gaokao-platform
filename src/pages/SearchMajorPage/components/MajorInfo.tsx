@@ -195,7 +195,7 @@ const MajorInfo: React.FC<DataType> = (majorData: DataType) => {
       <div style={{ backgroundColor: 'whitesmoke' }}>
         {/*<Divider orientation="left"></Divider>*/}
 
-        <Card id="专业简介" size="small" style={{ width: '100%' }} hoverable>
+        <Card id="专业简介" size="small" style={{ width: '100%' }}>
           <h1>{majorData.name}</h1>
           {/*灰色的字*/}
           <p style={{ color: 'gray' }}>{majorData.description}</p>
@@ -206,7 +206,7 @@ const MajorInfo: React.FC<DataType> = (majorData: DataType) => {
           专业简介
         </Divider>
 
-        <Card id="专业简介" size="small" style={{ width: '100%' }} hoverable>
+        <Card id="专业简介" size="small" style={{ width: '100%' }}>
           <div>
             <p>是什么</p>
             <p style={{ color: 'gray' }}>{majorDetail.introduction.what}</p>
@@ -222,7 +222,7 @@ const MajorInfo: React.FC<DataType> = (majorData: DataType) => {
           详解
         </Divider>
 
-        <Card id="专业详解" size="small" style={{ width: '100%' }} hoverable>
+        <Card id="专业详解" size="small" style={{ width: '100%' }}>
           <p style={{ color: 'gray' }}>{majorData.detailed_introduction}</p>
         </Card>
 
@@ -231,12 +231,7 @@ const MajorInfo: React.FC<DataType> = (majorData: DataType) => {
           学科
         </Divider>
 
-        <Card
-          id="选考学科建议"
-          size="small"
-          style={{ width: '100%' }}
-          hoverable
-        >
+        <Card id="选考学科建议" size="small" style={{ width: '100%' }}>
           <h3>选考学科建议:{majorData.subject}</h3>
         </Card>
 
@@ -266,21 +261,21 @@ const MajorInfo: React.FC<DataType> = (majorData: DataType) => {
           考研方向
         </Divider>
 
-        <Card id="考研方向" size="small" style={{ width: '100%' }} hoverable>
+        <Card id="考研方向" size="small" style={{ width: '100%' }}>
           {/*<h3>考研方向</h3>*/}
           <p style={{ color: 'gray' }}>{majorData.direction}</p>
         </Card>
 
         <Divider orientation="left">开设课程</Divider>
 
-        <Card id="开设课程" size="small" style={{ width: '100%' }} hoverable>
+        <Card id="开设课程" size="small" style={{ width: '100%' }}>
           {/*<h3>开设课程</h3>*/}
           <p style={{ color: 'gray' }}>{majorData.course}</p>
         </Card>
 
         <Divider orientation="left">社会名人</Divider>
 
-        <Card id="社会名人" size="small" style={{ width: '100%' }} hoverable>
+        <Card id="社会名人" size="small" style={{ width: '100%' }}>
           {/*<h3>社会名人</h3>*/}
           <p style={{ color: 'gray' }}>{majorData.celebrity}</p>
         </Card>

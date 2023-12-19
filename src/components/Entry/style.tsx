@@ -1,10 +1,11 @@
 import styled from '@emotion/styled'
 export const HeaderContainer = styled.div`
   display: flex;
-  z-index: 1;
+  z-index: 99;
   width: 100%;
   height: 8%;
   background-color: #fff;
+  transition: all 0.3s;
   // align-items: center;
   // justify-content: space-between;
   flex-direction: row;
@@ -12,7 +13,7 @@ export const HeaderContainer = styled.div`
 `
 export const MainContainer = styled.div`
   // padding-top: 146px;
-  height: 92%;
+  height: 100%;
   overflow-y: scroll;
   overscroll-behavior: auto;
 `

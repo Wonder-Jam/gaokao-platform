@@ -34,26 +34,26 @@ export const ArrowLeftContainer = styled.div`
   }
 `
 
-export const UpAndDownContainer = styled.div`
-  position: fixed;
-  top: 50%;
-  right: 8px;
-  transform: translatex(-50%);
-  height: 88px;
-  width: 44px;
-  background-color: #bfbfbf;
-  z-index: 101;
-  border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  transition: all 0.3s;
-  &:hover {
-    background-color: #d9d9d9;
-    cursor: pointer;
-  }
-`
+// export const UpAndDownContainer = styled.div`
+//   position: fixed;
+//   top: 50%;
+//   right: 8px;
+//   transform: translatex(-50%);
+//   height: 88px;
+//   width: 44px;
+//   background-color: #bfbfbf;
+//   z-index: 101;
+//   border-radius: 20px;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-around;
+//   align-items: center;
+//   transition: all 0.3s;
+//   &:hover {
+//     background-color: #d9d9d9;
+//     cursor: pointer;
+//   }
+// `
 
 export const RightBarContainer = styled.div<{ show: boolean }>`
   height: 100%;
@@ -65,7 +65,7 @@ export const RightBarContainer = styled.div<{ show: boolean }>`
 `
 
 export const TabContainer = styled.div`
-  height: 100%;
+  height: 90%;
   width: 100%;
 `
 

@@ -33,8 +33,7 @@ export const VideoSchoolList: VideoSchoolType[] = [
     videoUrl:
       'https://bkzs.nju.edu.cn/upload/cms/video/3dc16732de844d53b73f1c60f319cfbe.mp4',
     schoolBdage: <NJU_LOGO />,
-    schoolCover:
-      'https://wx2.sinaimg.cn/mw690/6967c9b3ly1hjtms2gsrbj23401r0qv6.jpg',
+    schoolCover: '/video-image/nju1.jpg',
   },
   {
     schoolName: '南京大学',
@@ -45,8 +44,7 @@ export const VideoSchoolList: VideoSchoolType[] = [
       'https://bkzs.nju.edu.cn/upload/cms/video/92bec00c5c144aa1a8a34aa3a052be5d.mp4',
 
     schoolBdage: <NJU_LOGO />,
-    schoolCover:
-      'https://wx4.sinaimg.cn/mw690/6967c9b3gy1hji2zpmwzjj23401r0kjm.jpg',
+    schoolCover: '/video-image/nju2.jpg',
   },
   {
     schoolName: '南京大学',
@@ -56,8 +54,7 @@ export const VideoSchoolList: VideoSchoolType[] = [
     videoUrl:
       'https://bkzs.nju.edu.cn/upload/cms/video/e5663e84db014278a4ca59ba3f33ae00.mp4',
     schoolBdage: <NJU_LOGO />,
-    schoolCover:
-      'https://wx3.sinaimg.cn/orj360/6967c9b3ly1hjtlm7tcnqj20zk0qoqjx.jpg',
+    schoolCover: '/video-image/nju3.jpg',
   },
   {
     schoolName: '南京大学',
@@ -67,8 +64,7 @@ export const VideoSchoolList: VideoSchoolType[] = [
     videoUrl:
       'https://bkzs.nju.edu.cn/upload/cms/video/fce8244248b145eeae89ee16a5fb49ce.mp4',
     schoolBdage: <NJU_LOGO />,
-    schoolCover:
-      'https://wx3.sinaimg.cn/orj360/6967c9b3gy1hib08wmj09j20sg0j078v.jpg',
+    schoolCover: '/video-image/nju4.jpg',
   },
   {
     schoolName: '浙江大学',
@@ -79,8 +75,7 @@ export const VideoSchoolList: VideoSchoolType[] = [
     videoUrl:
       'https://zdzsc.zju.edu.cn/_upload/article/videos/f9/ad/97e15ccf4a619d9f0fb1ceca1c30/48686922-7e4c-48e3-945e-6e5a60b5f6ab-B.mp4',
     schoolBdage: <ZJU_LOGO />,
-    schoolCover:
-      'https://wx2.sinaimg.cn/mw690/6e5f8ad9ly1hk9hs5xxpyj20zk1hc1kx.jpg',
+    schoolCover: '/video-image/zju.jpg',
   },
   {
     schoolName: '浙江大学',
@@ -91,48 +86,47 @@ export const VideoSchoolList: VideoSchoolType[] = [
     videoUrl:
       'https://zdzsc.zju.edu.cn/_upload/article/videos/13/3a/c74ace004db59744c4134e092c5e/08e0e213-098b-4e30-aa12-c8513c4eedd3.mp4',
     schoolBdage: <ZJU_LOGO />,
-    schoolCover:
-      'https://wx4.sinaimg.cn/mw690/6e5f8ad9ly1hk7hobje25j20zk1hcwod.jpg',
+    schoolCover: '/video-image/zju2.jpg',
   },
   {
     schoolName: '复旦大学',
     schoolLogo: 'https://www.fudan.edu.cn/new_/site1/public/images/logo.png',
     schoolSiteUrl: 'https://www.fudan.edu.cn/',
     schoolRecuritmentUrl: 'https://ao.fudan.edu.cn/',
-    videoUrl: 'xxx',
+    videoUrl:
+      'https://ao.fudan.edu.cn/_upload/article/videos/9d/c1/df6cb8fa4728864e0f1672e08ee0/99b200b7-ff63-430b-83ad-b7f0b57ebdf6-B.mp4',
     schoolBdage: <FDU_LOGO />,
-    schoolCover:
-      'https://wx3.sinaimg.cn/mw690/671386f7ly1hkfhx9gbi6j20zk0d5aj6.jpg',
+    schoolCover: '/video-image/fdu.jpg',
   },
   {
     schoolName: '上海交通大学',
     schoolLogo: 'https://www.sjtu.edu.cn/images/sjtu_logo.png',
     schoolSiteUrl: 'https://www.sjtu.edu.cn/',
     schoolRecuritmentUrl: 'https://zsb.sjtu.edu.cn/web/jdzsb/3810001.htm',
-    videoUrl: 'xxx',
+    videoUrl:
+      'https://file.hntv.tv/attachment/dxnum/1668147323975700481/2023/47f207d2a7de1f2870988640d36553e2.mp4',
     schoolBdage: <SJTU_LOGO />,
-    schoolCover:
-      'https://wx2.sinaimg.cn/orj360/67b26d89ly1hkb4pmiprjj21jk111e82.jpg',
+    schoolCover: '/video-image/SJTU.jpg',
   },
   {
     schoolName: '中国科学技术大学',
     schoolLogo: 'https://www.ustc.edu.cn/_static/image/logo.png',
     schoolSiteUrl: 'https://www.ustc.edu.cn/',
     schoolRecuritmentUrl: 'https://zsb.ustc.edu.cn/main.htm',
-    videoUrl: 'xxx',
+    videoUrl:
+      'https://zsb.ustc.edu.cn/_upload/article/videos/d1/ad/646006954f7aa9bf726770c65667/ed522026-7e73-4b9f-a734-2a7b8f1ba5d6.mp4',
     schoolBdage: <USTC_LOGO />,
-    schoolCover:
-      'https://wx1.sinaimg.cn/orj360/6cb650f5ly1hkfbogo5llj221w2qk7wn.jpg',
+    schoolCover: '/video-image/USTC.jpg',
   },
   {
     schoolName: '清华大学',
     schoolLogo: 'https://www.tsinghua.edu.cn/publish/th/images/logo.png',
     schoolSiteUrl: 'https://www.tsinghua.edu.cn/',
     schoolRecuritmentUrl: 'https://join-tsinghua.edu.cn/',
-    videoUrl: '',
+    videoUrl:
+      'https://join-tsinghua.edu.cn/__local/B/FE/07/9CD9395EB7467061A47B20A4256_2A8DCC2C_2B26AB85.mp4?e=.mp4',
     schoolBdage: <THU_LOGO />,
-    schoolCover:
-      'https://wx2.sinaimg.cn/orj360/63ea9369ly1hk5y3m3sa1j22wc4ci4qu.jpg',
+    schoolCover: '/video-image/thu.jpg',
   },
   {
     schoolName: '北京大学',
@@ -140,10 +134,9 @@ export const VideoSchoolList: VideoSchoolType[] = [
       '	https://www.pku.edu.cn/Uploads/Picture/2019/12/26/s5e04147ee4a83.png',
     schoolSiteUrl: 'https://www.pku.edu.cn/',
     schoolRecuritmentUrl: 'https://www.gotopku.cn/',
-    videoUrl: '',
+    videoUrl: 'https://www.gotopku.cn/uploads/movie/202007/06/nddxzf.mp4',
     schoolBdage: <PKU_LOGO />,
-    schoolCover:
-      'https://th.bing.com/th/id/R.138a0904328ed1c46e3030d962b02c03?rik=Sz6HHBJDO7lSdQ&riu=http%3a%2f%2fpic.ntimg.cn%2ffile%2f20170718%2f25615956_130341020030_2.jpg&ehk=nvLE8VkVHYRgkoWospLMhoFtbxklKMUaFpikhj4iMu0%3d&risl=&pid=ImgRaw&r=0',
+    schoolCover: '/video-image/pku.jpg',
   },
 ]
 

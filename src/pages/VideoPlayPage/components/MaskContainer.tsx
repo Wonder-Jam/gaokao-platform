@@ -1,6 +1,6 @@
 import React from 'react'
-import { ArrowLeftOutlined, DownOutlined, UpOutlined } from '@ant-design/icons'
-import { ArrowLeftContainer, UpAndDownContainer } from '../style'
+import { ArrowLeftOutlined } from '@ant-design/icons'
+import { ArrowLeftContainer } from '../style'
 import Mask from '@/components/Mask'
 
 export function MaskContainer(props: {
@@ -14,10 +14,6 @@ export function MaskContainer(props: {
       <ArrowLeftContainer onClick={() => setShow(false)}>
         <ArrowLeftOutlined />
       </ArrowLeftContainer>
-      <UpAndDownContainer>
-        <UpOutlined />
-        <DownOutlined />
-      </UpAndDownContainer>
       {children}
     </Mask>
   )

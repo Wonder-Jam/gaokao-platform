@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 
 export const HotSpotListContainer = styled.div`
-  height: 80vh;
+  height: 75vh;
   overflow-y: auto;
   background-color: #f5f5f5;
   border-radius: 10px;
