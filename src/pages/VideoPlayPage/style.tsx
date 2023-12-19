@@ -65,7 +65,7 @@ export const RightBarContainer = styled.div<{ show: boolean }>`
 `
 
 export const TabContainer = styled.div`
-  height: 100%;
+  height: 90%;
   width: 100%;
 `
 

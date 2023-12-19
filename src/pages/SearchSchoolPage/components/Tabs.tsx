@@ -8,11 +8,10 @@ import {
 } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 import React, { useState, useRef, useEffect } from 'react'
-import { Tabs, Divider, TabPaneProps, TabsProps } from 'antd'
+import { Tabs, TabsProps } from 'antd'
 import EChartsMap from './EchartsMap'
 import eventBus from '@/utils/eventBus'
 import UniversityDetail from './UniversityDetail'
-import type { UniversityDetailProps } from '../type'
 
 let initialItems = [
   {
