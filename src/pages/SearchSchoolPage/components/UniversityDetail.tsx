@@ -17,7 +17,7 @@ import UniversityEnvironment from './UniversityEvironment'
 import { useEffect, useState } from 'react'
 
 interface DetailData {
-  scorelineData: { year: number; score: number; type: '文史' | '理工' }[]
+  scorelineData: { year: number, score: number, type: '文史' | '理工' }[]
   majorData: {
     key: number
     major: string[]
@@ -28,15 +28,11 @@ interface DetailData {
     scoreLine: number
     category: string
   }[]
-  rankData: {
-    year: number
-    rank: number
-    type: 'USNews' | 'QS' | 'THE' | 'ARWU'
-  }[]
+  rankData: { year: number, rank: number, type: 'USNews' | 'QS' | 'THE' | 'ARWU' }[]
   genderRatio: { ratio: number }
 }
 export default function UniversityDetail(data: UniversityDetailProps) {
-  const [tableData, setTableData] = useState<ScorelineDataType[]>([]) // 提取唯一年份
+  const [tableData,setTableData] = useState<ScorelineDataType[]>([]) // 提取唯一年份
   const [detailData, setDetailData] = useState<DetailData>({} as DetailData)
 
   useEffect(() => {
@@ -44,7 +40,7 @@ export default function UniversityDetail(data: UniversityDetailProps) {
       method: 'POST',
       body: JSON.stringify({
         // Add parameters here
-        tags: data.tags,
+        'tags': data.tags,
       }),
       headers: {
         'Content-Type': 'application/json; charset=UTF-8',
@@ -53,21 +49,17 @@ export default function UniversityDetail(data: UniversityDetailProps) {
       .then(res => res.json())
       .then((res: DetailData) => {
         console.log(res)
-        let data: ScorelineDataType[] = []
-        const years = Array.from(
-          new Set(res.scorelineData.map(item => item.year)),
-        )
+        let data:ScorelineDataType[] = []
+        const years = Array.from(new Set(res.scorelineData.map(item => item.year)))
         years.forEach((year, index) => {
           const newDataItem: ScorelineDataType = {
             key: `${index + 1}`,
             arts:
-              res.scorelineData.find(
-                item => item.year === year && item.type === '文史',
-              )?.score || 0,
+              res.scorelineData.find(item => item.year === year && item.type === '文史')
+                ?.score || 0,
             science:
-              res.scorelineData.find(
-                item => item.year === year && item.type === '理工',
-              )?.score || 0,
+              res.scorelineData.find(item => item.year === year && item.type === '理工')
+                ?.score || 0,
             year: year,
           }
           data.push(newDataItem)
@@ -79,6 +71,7 @@ export default function UniversityDetail(data: UniversityDetailProps) {
         console.log(e)
       })
   }, [])
+
 
   const content = (
     <div
@@ -217,96 +210,90 @@ export default function UniversityDetail(data: UniversityDetailProps) {
             />
             <p style={{ marginRight: '5px' }}>学校地址:</p>
             <div style={{ flexDirection: 'column' }}>
-              {data.location.map((item, index) => {
-                return (
-                  <>
-                    <p style={{ margin: '0' }} key={index}>
-                      {item.name}: {item.place}
-                    </p>
-                  </>
-                )
-              })}
+              {
+                data.location.map((item, index) => {
+                  return (
+                    <>
+                      <p style={{ margin: '0' }} key={index}>{item.name}: {item.place}</p>
+                    </>
+                  )
+                })
+              }
             </div>
           </div>
         </div>
       </Card>
-      {detailData.scorelineData ? (
-        <>
-          <div id="学校概况"></div>
-          <Divider orientation="left">学校概况</Divider>
-          <UniersityOverview />
-          <div id="历年分数"></div>
-          <Divider orientation="left">历年分数</Divider>
-          <div
-            style={{
-              height: '300px',
-              display: 'flex',
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-            }}
-          >
-            <Card size="small" style={{ width: '49.5%', height: '300px' }}>
-              <UniversityScoreLine
+      {
+        detailData.scorelineData
+          ?
+          <>
+            <div id="学校概况"></div>
+            <Divider orientation="left">学校概况</Divider>
+            <UniersityOverview />
+            <div id="历年分数"></div>
+            <Divider orientation="left">历年分数</Divider>
+            <div
+              style={{
+                height: '300px',
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+              }}
+            >
+              <Card size="small" style={{ width: '49.5%', height: '300px' }}>
+                <UniversityScoreLine
+                  data={
+                    // scorelineData as {
+                    //   year: number
+                    //   score: number
+                    //   type: '文史' | '理工'
+                    // }[]
+                    detailData.scorelineData
+                  }
+                />
+              </Card>
+              <div style={{ width: '49.5%', height: '50vh' }}>
+                <UniversityScoreLineTable data={tableData.reverse()} />
+              </div>
+            </div>
+            <div id="专业组分数"></div>
+            <Divider orientation="left">专业组分数</Divider>
+            <UniversityMajorPlan data={detailData.majorData} />
+            <div id="大学排名"></div>
+            <Divider orientation="left">大学排名</Divider>
+            <Card size="small" style={{ height: '300px' }}>
+              <UniversityRank
                 data={
-                  // scorelineData as {
+                  // rankData as {
                   //   year: number
-                  //   score: number
-                  //   type: '文史' | '理工'
+                  //   rank: number
+                  //   type: 'USNews' | 'QS' | 'THE' | 'ARWU'
                   // }[]
-                  detailData.scorelineData
+                  detailData.rankData
                 }
               />
             </Card>
-            <div style={{ width: '49.5%', height: '50vh' }}>
-              <UniversityScoreLineTable data={tableData.reverse()} />
+            <div id="校园情况"></div>
+            <Divider orientation="left">校园情况</Divider>
+            <div
+              style={{
+                height: '300px',
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+              }}
+            >
+              <Card size="small" style={{ height: '300px', width: '49.5%' }}>
+                <GenderRatioChart />
+              </Card>
+              <UniversityEnvironment style={{ width: '49.5%' }} />
             </div>
+          </>
+          :
+          <div style={{width: '100%', height: '300px', display:'flex', justifyContent: 'center', alignItems: 'center'}}>
+            <Spin style={{ margin: 'auto' }} />
           </div>
-          <div id="专业组分数"></div>
-          <Divider orientation="left">专业组分数</Divider>
-          <UniversityMajorPlan data={detailData.majorData} />
-          <div id="大学排名"></div>
-          <Divider orientation="left">大学排名</Divider>
-          <Card size="small" style={{ height: '300px' }}>
-            <UniversityRank
-              data={
-                // rankData as {
-                //   year: number
-                //   rank: number
-                //   type: 'USNews' | 'QS' | 'THE' | 'ARWU'
-                // }[]
-                detailData.rankData
-              }
-            />
-          </Card>
-          <div id="校园情况"></div>
-          <Divider orientation="left">校园情况</Divider>
-          <div
-            style={{
-              height: '300px',
-              display: 'flex',
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-            }}
-          >
-            <Card size="small" style={{ height: '300px', width: '49.5%' }}>
-              <GenderRatioChart />
-            </Card>
-            <UniversityEnvironment style={{ width: '49.5%' }} />
-          </div>
-        </>
-      ) : (
-        <div
-          style={{
-            width: '100%',
-            height: '300px',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <Spin style={{ margin: 'auto' }} />
-        </div>
-      )}
+      }
     </div>
   )
 }

@@ -106,64 +106,65 @@ function EChartsMap() {
     if (myChart.current) {
       echarts.registerMap(map, features)
       const option = {
-        geo: {
-          type: 'map',
-          map: map,
-          name: 'map',
-          roam: false, // 一定要关闭拖拽
-          zoom: 1.0,
-          // center: [105, 35], // 调整地图位置
-          showLegendSymbol: false, // 存在legend时显示
-          selectedMode: 'single',
-          itemStyle: {
-            areaColor: '#F0F8FF',
-            borderColor: '#1677FF',
-            borderWidth: 1, //设置外层边框
-            shadowBlur: 8,
-            shadowOffsetY: 8,
-            shadowOffsetX: 0,
-            shadowColor: '#87CEFA',
-          },
-          emphasis: {
-            itemStyle: {
-              areaColor: '#F5FFFA',
-              shadowOffsetX: 0,
-              shadowOffsetY: 0,
-              shadowBlur: 5,
-              borderWidth: 0,
-              shadowColor: 'rgba(0, 0, 0, 0.5)',
-            },
-          },
-          select: {
-            itemStyle: {
-              areaColor: '#F0FFFF',
-              borderWidth: 1,
-              borderColor: '#ADD8E6',
-            },
-          },
-          tooltip: {
-            backgroundColor: '#FFFFFFE6',
-            borderWidth: 0,
 
-            trigger: 'item',
-            formatter: function (params) {
-              const name = params.name
-              const gdp = gdpData.find(item => item.name === name) ?? {
-                value: 'unkown',
-              }
-              const _985 = universities985.find(item => item.name === name) ?? {
-                value: 'unkown',
-              }
-              const _211 = universities211.find(item => item.name === name) ?? {
-                value: 'unkown',
-              }
-              const doubleFirstClass = universitiesDoubleFirstClass.find(
-                item => item.name === name,
-              ) ?? { value: 'unkown' }
-              const eduFunds = educationBudget.find(
-                item => item.name === name,
-              ) ?? { value: 'unkown' }
-              return `
+        geo: {
+            type: 'map',
+            map: map,
+            name: 'map',
+            roam: false, // 一定要关闭拖拽
+            zoom: 1.0,
+            // center: [105, 35], // 调整地图位置
+            showLegendSymbol: false, // 存在legend时显示
+            selectedMode: 'single',
+            itemStyle: {
+              areaColor: '#F0F8FF',
+              borderColor: '#1677FF',
+              borderWidth: 1, //设置外层边框
+              shadowBlur: 8,
+              shadowOffsetY: 8,
+              shadowOffsetX: 0,
+              shadowColor: '#87CEFA',
+            },
+            emphasis: {
+              itemStyle: {
+                areaColor: '#F5FFFA',
+                shadowOffsetX: 0,
+                shadowOffsetY: 0,
+                shadowBlur: 5,
+                borderWidth: 0,
+                shadowColor: 'rgba(0, 0, 0, 0.5)',
+              },
+            },
+            select: {
+              itemStyle: {
+                areaColor: '#F0FFFF',
+                borderWidth: 1,
+                borderColor: '#ADD8E6',
+              },
+            },
+            tooltip: {
+              backgroundColor: '#FFFFFFE6',
+              borderWidth: 0,
+    
+              trigger: 'item',
+              formatter: function (params) {
+                const name = params.name
+                const gdp = gdpData.find(item => item.name === name) ?? {
+                  value: 'unkown',
+                }
+                const _985 = universities985.find(item => item.name === name) ?? {
+                  value: 'unkown',
+                }
+                const _211 = universities211.find(item => item.name === name) ?? {
+                  value: 'unkown',
+                }
+                const doubleFirstClass = universitiesDoubleFirstClass.find(
+                  item => item.name === name,
+                ) ?? { value: 'unkown' }
+                const eduFunds = educationBudget.find(
+                  item => item.name === name,
+                ) ?? { value: 'unkown' }
+                return `
                             <div style="font-size: 16; font-weight: bold">${name}</div>
                             <div style="font-size: 10">GDP: ${gdp.value} (亿)</div>
                             <div style="font-size: 10">985: ${_985.value} (所)</div>
@@ -171,8 +172,8 @@ function EChartsMap() {
                             <div style="font-size: 10">双一流: ${doubleFirstClass.value} (所)</div>
                             <div style="font-size: 10">教育经费: ${eduFunds.value} (亿)</div>
                         `
+              },
             },
-          },
         },
         // series: [
         //   {
@@ -181,7 +182,7 @@ function EChartsMap() {
         //     data: [
         //       [121.47,31.23, 55],
         //       [116.40,39.90, 110],
-        //       [106.55,29.56, 32]
+        //       [106.55,29.56, 32]   
         //     ]
         //   }
         // ]
