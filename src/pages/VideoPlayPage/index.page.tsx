@@ -37,6 +37,11 @@ export default function VideoPlayPage() {
     contentNode: <CardDetail {...VideoSchoolList[targetIndex]} />,
   })
 
+  const searchTargetSchoolVideo = React.useCallback((targetName: string) => {
+    const filter = data.filter(value => value.schoolName === targetName)
+    setData([...filter])
+  }, [])
+
   return (
     <div style={{ height: '100%', width: '100%' }} ref={PageRef}>
       <MaskContext.Provider
@@ -45,6 +50,7 @@ export default function VideoPlayPage() {
           toggle: setMaskShown,
           setTargetIndex,
           setTargetRef,
+          onSearch: searchTargetSchoolVideo,
         }}
       >
         <RootLayout>

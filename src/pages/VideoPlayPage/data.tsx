@@ -32,7 +32,9 @@ export const VideoSchoolList: VideoSchoolType[] = [
     schoolRecuritmentUrl: 'https://bkzs.nju.edu.cn',
     videoUrl:
       'https://bkzs.nju.edu.cn/upload/cms/video/3dc16732de844d53b73f1c60f319cfbe.mp4',
-    schoolBdage: <NJU_LOGO />,
+    schoolBdage: (
+      <img src="https://files.lsmcloud.top/blog049ee3d1eb59c42ad5daa5ad08c21c01.svg" />
+    ),
     schoolCover: '/video-image/nju1.jpg',
   },
   {
@@ -43,7 +45,9 @@ export const VideoSchoolList: VideoSchoolType[] = [
     videoUrl:
       'https://bkzs.nju.edu.cn/upload/cms/video/92bec00c5c144aa1a8a34aa3a052be5d.mp4',
 
-    schoolBdage: <NJU_LOGO />,
+    schoolBdage: (
+      <img src="https://files.lsmcloud.top/blog049ee3d1eb59c42ad5daa5ad08c21c01.svg" />
+    ),
     schoolCover: '/video-image/nju2.jpg',
   },
   {
@@ -53,7 +57,9 @@ export const VideoSchoolList: VideoSchoolType[] = [
     schoolRecuritmentUrl: 'https://bkzs.nju.edu.cn/',
     videoUrl:
       'https://bkzs.nju.edu.cn/upload/cms/video/e5663e84db014278a4ca59ba3f33ae00.mp4',
-    schoolBdage: <NJU_LOGO />,
+    schoolBdage: (
+      <img src="https://files.lsmcloud.top/blog049ee3d1eb59c42ad5daa5ad08c21c01.svg" />
+    ),
     schoolCover: '/video-image/nju3.jpg',
   },
   {
