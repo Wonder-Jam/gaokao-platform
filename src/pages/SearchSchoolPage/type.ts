@@ -30,6 +30,6 @@ export interface UniversityDetailProps {
     {
       name: string
       place: string
-    }
+    },
   ]
 }

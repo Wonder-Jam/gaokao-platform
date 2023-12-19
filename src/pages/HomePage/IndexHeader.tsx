@@ -15,7 +15,9 @@ const IndexHeader: React.FC = () => {
         width: '100%',
         flexWrap: 'wrap',
         paddingLeft: 74,
-        paddingTop: 66,
+        marginTop: '26.5vh',
+        backgroundColor: '#0f0',
+        height: '99vh',
       }}
     >
       <div
@@ -23,16 +25,13 @@ const IndexHeader: React.FC = () => {
           width: '40%',
           borderRadius: 30,
           overflow: 'hidden',
+          backgroundColor: '#00f',
         }}
       >
         <Slider indexActive={activeIndex}></Slider>
       </div>
 
-      <div
-        style={{
-          width: '30%',
-        }}
-      >
+      <div style={{ width: '30%', backgroundColor: '#efefef' }}>
         <Description indexActive={activeIndex}></Description>
       </div>
 
@@ -42,6 +41,7 @@ const IndexHeader: React.FC = () => {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
+          backgroundColor: '#f00',
         }}
       >
         <ProgressBar
