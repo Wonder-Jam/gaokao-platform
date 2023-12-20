@@ -107,7 +107,7 @@ export function HotSpotTopicContainer({ show }: { show: boolean }) {
       />
       <TabContainer>
         {isLoading ? (
-          <Skeleton />
+          <Skeleton style={{ width: '300px' }} />
         ) : (
           <Tabs type="card" defaultActiveKey="1" items={items} />
         )}

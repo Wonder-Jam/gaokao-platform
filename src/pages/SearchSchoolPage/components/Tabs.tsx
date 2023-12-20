@@ -12,7 +12,7 @@ import { Tabs, TabsProps } from 'antd'
 // import EChartsMap from './EchartsMap'
 import dynamic from 'next/dynamic'
 
-const EChartsMap = dynamic(() => import('./EchartsMap'),   { ssr: false })
+const EChartsMap = dynamic(() => import('./EchartsMap'), { ssr: false })
 import eventBus from '@/utils/eventBus'
 import UniversityDetail from './UniversityDetail'
 

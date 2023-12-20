@@ -28,8 +28,8 @@ const GenderRatioChart: React.FC<AppProps> = props => {
           type: 'pie',
           radius: '50%',
           data: [
-            { value: props.male*100, name: '男' },
-            { value: props.female*100, name: '女' },
+            { value: props.male * 100, name: '男' },
+            { value: props.female * 100, name: '女' },
           ],
           emphasis: {
             itemStyle: {

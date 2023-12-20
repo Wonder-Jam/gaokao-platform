@@ -3,7 +3,13 @@ import * as echarts from 'echarts'
 import { SearchContext } from '../Context/SearchContext'
 import { Dropdown, Button } from 'antd'
 import { BarChartOutlined } from '@ant-design/icons'
-import { gdpData, universities211, universities985, universitiesDoubleFirstClass, educationBudget } from '../mockedData'
+import {
+  gdpData,
+  universities211,
+  universities985,
+  universitiesDoubleFirstClass,
+  educationBudget,
+} from '../mockedData'
 // import * as Enum from '../enum'
 
 // import china from "../data/china"; // 假设你有中国地图数据
@@ -15,7 +21,7 @@ import { provinceMap, proviceDataMap, reverseProvinceMap } from '../maps'
 
 // 在代码的开始处定义一个标志变量
 // let locationFetch = 'api/locateUniversityRandomly'
-let locationInterval = null;
+let locationInterval = null
 
 function EChartsMap() {
   const { province, city, rank, filterSchool, setChoices } =
@@ -29,42 +35,43 @@ function EChartsMap() {
   function startInterval(locationFetch) {
     console.log('start interval!')
     if (locationInterval) {
-      clearInterval(locationInterval);
+      clearInterval(locationInterval)
     }
-    const task = () => {fetch(locationFetch)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        const tmpScatter = data.map((item) => [
-          item.location.lng,
-          item.location.lat,
-          100,
-        ]);
-        console.log(tmpScatter);
-        myChart.current.setOption({
-          series: [
-            {
-              name: 'school',
-              data: tmpScatter,
-            },
-          ],
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });}
-    task();
-    locationInterval = setInterval(task, 10000);
+    const task = () => {
+      fetch(locationFetch)
+        .then(res => res.json())
+        .then(data => {
+          console.log(data)
+          const tmpScatter = data.map(item => [
+            item.location.lng,
+            item.location.lat,
+            100,
+          ])
+          console.log(tmpScatter)
+          myChart.current.setOption({
+            series: [
+              {
+                name: 'school',
+                data: tmpScatter,
+              },
+            ],
+          })
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    }
+    task()
+    locationInterval = setInterval(task, 10000)
   }
 
   useEffect(() => {
     return () => {
       if (locationInterval) {
-        clearInterval(locationInterval);
+        clearInterval(locationInterval)
       }
-    };
+    }
   }, [])
-
 
   const initEChart = () => {
     if (myChart.current) {
@@ -130,7 +137,7 @@ function EChartsMap() {
             // data: [
             //   [121.47,31.23, 0],
             //   [116.40,39.90, 0],
-            //   [106.55,29.56, 0]  
+            //   [106.55,29.56, 0]
             // ]
           },
           {
@@ -165,9 +172,8 @@ function EChartsMap() {
                 borderColor: '#ADD8E6',
               },
             },
-          }
-
-        ]
+          },
+        ],
       }
       if (window !== undefined) {
         window.addEventListener('resize', () => {
@@ -217,7 +223,11 @@ function EChartsMap() {
         if (province === Enum.province.None) {
           startInterval('api/locateUniversityRandomly')
         } else {
-          startInterval(`api/locateUniversityByProvince?province=${reverseProvinceMap.get(province)}`)
+          startInterval(
+            `api/locateUniversityByProvince?province=${reverseProvinceMap.get(
+              province,
+            )}`,
+          )
         }
       })
       .catch(error => {
@@ -232,7 +242,6 @@ function EChartsMap() {
       return value > prevMax ? value : prevMax
     }, 0)
   }
-
 
   useEffect(() => {
     if (features) {
@@ -522,11 +531,11 @@ function EChartsMap() {
           </Dropdown>
         )}
       </div>
-      {(typeof window !== 'undefined') &&
+      {typeof window !== 'undefined' && (
         <div ref={chartRef} style={{ height: '85vh', margin: 'auto' }}>
           Loading...
         </div>
-      }
+      )}
     </>
   )
 }
