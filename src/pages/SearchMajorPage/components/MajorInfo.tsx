@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { Card, Divider, Input, Button, List, Skeleton, Typography } from 'antd'
 import { MajorItem } from './style'
 import dynamic from 'next/dynamic'
-const GenderRatioChart = dynamic(() => import('./GenderRatio'),   { ssr: false })
+const GenderRatioChart = dynamic(() => import('./GenderRatio'), { ssr: false })
 // import GenderRatioChart from './GenderRatio'
-const SubjectRatioChart = dynamic(() => import('./SubjectRatio'),   { ssr: false })
+const SubjectRatioChart = dynamic(() => import('./SubjectRatio'), {
+  ssr: false,
+})
 // import SubjectRatioChart from './SubjectRatio'
 
 import { it } from 'node:test'
