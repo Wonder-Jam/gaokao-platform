@@ -121,7 +121,7 @@ function EChartsMap() {
           // },
           {
             name: 'school',
-            type: 'effectScatter',
+            type: 'scatter',
             coordinateSystem: 'geo',
             rippleEffect: {
               color: '#1677FF',
