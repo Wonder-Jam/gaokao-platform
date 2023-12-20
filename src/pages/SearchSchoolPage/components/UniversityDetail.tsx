@@ -1,8 +1,11 @@
+import dynamic from 'next/dynamic'
 import { Mask } from './style'
 import { Card, Divider, Tag, Space, Popover, Button, Spin } from 'antd'
-import UniversityScoreLine from './UniversityScoreLine'
+const UniversityScoreLine = dynamic(() => import('./UniversityScoreLine'),   { ssr: false })
+// import UniversityScoreLine from './UniversityScoreLine'
+const UniversityMajorPlan = dynamic(() => import('./UniversityMajorPlan'),   { ssr: false })
 import UniversityScoreLineTable from './UniversityScoreLineTable'
-import UniversityMajorPlan from './UniversityMajorPlan'
+// import UniversityMajorPlan from './UniversityMajorPlan'
 import type { ScorelineDataType, UniversityDetailProps } from '../type'
 import UniersityOverview from './UniversityOverview'
 import {
@@ -11,8 +14,10 @@ import {
   EnvironmentOutlined,
   NodeIndexOutlined,
 } from '@ant-design/icons'
-import UniversityRank from './UniversityRank'
-import GenderRatioChart from './UniversityGenderRatio'
+const UniversityRank = dynamic(() => import('./UniversityRank'),   { ssr: false })
+// import UniversityRank from './UniversityRank'
+const GenderRatioChart = dynamic(() => import('./UniversityGenderRatio'),   { ssr: false })
+// import GenderRatioChart from './UniversityGenderRatio'
 import UniversityEnvironment from './UniversityEvironment'
 import { useEffect, useState } from 'react'
 
