@@ -20,6 +20,7 @@ const GenderRatioChart = dynamic(() => import('./UniversityGenderRatio'),   { ss
 // import GenderRatioChart from './UniversityGenderRatio'
 import UniversityEnvironment from './UniversityEvironment'
 import { useEffect, useState } from 'react'
+import { TagColorMap, tagsType } from './UniversityList'
 
 interface DetailData {
   scorelineData: { year: number; score: number; type: '文史' | '理工' }[]
@@ -166,10 +167,11 @@ export default function UniversityDetail(data: UniversityDetailProps) {
         <h1 style={{ marginTop: '85px' }}>
           {data.name}
           <Space style={{ marginLeft: '10px' }} size={[0, 4]} wrap>
-            {data.tags[0] ? <Tag color="#f50">{data.tags[0]}</Tag> : null}
-            {data.tags[1] ? <Tag color="#2db7f5">{data.tags[1]}</Tag> : null}
-            {data.tags[2] ? <Tag color="#87d068">{data.tags[2]}</Tag> : null}
-            {data.tags[3] ? <Tag color="#108ee9">{data.tags[3]}</Tag> : null}
+            {data.tags.map((value: tagsType) => {
+              return TagColorMap[value] ? (
+                <Tag color={TagColorMap[value]}>{value}</Tag>
+              ) : null
+            })}
           </Space>
         </h1>
       </div>
