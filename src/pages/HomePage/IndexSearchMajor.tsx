@@ -13,48 +13,57 @@ const IndexSearchMajor: React.FC = () => {
       }}
     >
       <div className={'major-des'}>
-        {/*  气泡  */}
-        {/*  <div className={'bubble'}>*/}
-        {/*        <div className={'content'}>test</div>*/}
-        {/*  </div>*/}
-        {/*  翻转卡片  */}
-        <div className={'cards'}>
-          <div className={'card-wrapper'}>
-            <div className={'card'}>
-              <div className={'card-content is-front'}>
-                <img
-                  src="/images/machine.jpg"
-                  alt="Magic Image icon"
-                  style={{ width: '200px', opacity: 1 }}
-                />
+        <div className={'cards-container'}>
+          <div className={'cards'}>
+            <div className={'card-wrapper'}>
+              <div className={'card'}>
+                <div className={'card-content is-front'}>
+                  <img
+                    src="/images/machine.jpg"
+                    alt="Magic Image icon"
+                    style={{ width: '200px', opacity: 1, borderRadius: 32 }}
+                  />
+                </div>
+                <div className={'card-content is-back'}></div>
               </div>
-              <div className={'card-content is-back'}></div>
             </div>
-          </div>
-          <div className={'card-wrapper'}>
-            <div className={'card'}>
-              <div className={'card-content is-front'}>
-                <img
-                  src="/images/dna.jpg"
-                  alt="Magic Image icon"
-                  style={{ width: '200px', opacity: 1 }}
-                />
+
+            <div className={'card-wrapper'}>
+              <div className={'card'}>
+                <div className={'card-content is-front'}>
+                  <img
+                    src="/images/dna.jpg"
+                    alt="Magic Image icon"
+                    style={{ width: '200px', opacity: 1 }}
+                  />
+                </div>
+                <div className={'card-content is-back'}></div>
               </div>
-              <div className={'card-content is-back'}></div>
             </div>
-          </div>
-          <div className={'card-wrapper'}>
-            <div className={'card'}>
-              <div className={'card-content is-front'}>
-                <img
-                  src="/images/chemistry.jpg"
-                  alt="Loading"
-                  style={{ width: '200px', opacity: 1 }}
-                />
+
+            <div className={'card-wrapper'}>
+              <div className={'card'}>
+                <div className={'card-content is-front'}>
+                  <img
+                    src="/images/chemistry.jpg"
+                    alt="Loading"
+                    style={{ width: '200px', opacity: 1 }}
+                  />
+                </div>
+                <div className={'card-content is-back'}></div>
               </div>
-              <div className={'card-content is-back'}>
-                <p style={{ zIndex: 10 }}>化学</p>
-                <div></div>
+            </div>
+
+            <div className={'card-wrapper'}>
+              <div className={'card'}>
+                <div className={'card-content is-front'}>
+                  <img
+                    src="/images/chemistry.jpg"
+                    alt="Loading"
+                    style={{ width: '200px', opacity: 1 }}
+                  />
+                </div>
+                <div className={'card-content is-back'}></div>
               </div>
             </div>
           </div>
