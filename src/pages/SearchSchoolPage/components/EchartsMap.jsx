@@ -26,43 +26,74 @@ let locationInterval = null
 function EChartsMap() {
   const { province, city, rank, filterSchool, setChoices } =
     useContext(SearchContext)
-  const [features, setFeatures] = useState(null)
-  const [map, setMap] = useState('china')
+  // const [features, setFeatures] = useState(null)
+  // const [map, setMap] = useState('china')
   // const map = 'china'
   const chartRef = useRef(null)
   const myChart = useRef(null)
+  const task = (locationFetch) => {
+    // if (province === Enum.province.None) {
+    //   myChart.current.setOption({
+    //     geo: {
+    //       roam: false,
+    //     },
+    //     series: [
+    //       {
+    //         name: 'map',
+    //         roam: false,
+    //       }
+    //     ]
+    //   })
+    // } else {
+    //   myChart.current.setOption({
+    //     geo: {
+    //       roam: true,
+    //     },
+    //     series: [
+    //       {
+    //         name: 'map',
+    //         roam: true,
+    //       }
+    //     ]
+    //   })
+    // }
+    fetch(locationFetch)
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+        const tmpScatter = data.map(item => { 
+          return {          
+          value: [item.lon, item.lat],
+          name: item.name,
+          symbol: 'image://'+item.logo,
+          symbolSize: 20,
+          }
+        })
+        console.log(tmpScatter)
+        myChart.current.setOption({
+          series: [
+            {
+              name: 'school',
+              data: tmpScatter,
+              colorBy: 'data',
+            },
+          ],
+        })
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
 
   function startInterval(locationFetch) {
     console.log('start interval!')
     if (locationInterval) {
       clearInterval(locationInterval)
     }
-    const task = () => {
-      fetch(locationFetch)
-        .then(res => res.json())
-        .then(data => {
-          console.log(data)
-          const tmpScatter = data.map(item => [
-            item.location.lng,
-            item.location.lat,
-            100,
-          ])
-          console.log(tmpScatter)
-          myChart.current.setOption({
-            series: [
-              {
-                name: 'school',
-                data: tmpScatter,
-              },
-            ],
-          })
-        })
-        .catch(err => {
-          console.log(err)
-        })
-    }
-    task()
-    locationInterval = setInterval(task, 10000)
+    task(locationFetch)
+    locationInterval = setInterval(()=>{
+      task(locationFetch)
+    }, 10000)
   }
 
   useEffect(() => {
@@ -73,7 +104,7 @@ function EChartsMap() {
     }
   }, [])
 
-  const initEChart = () => {
+  const initEChart = (map,features) => {
     if (myChart.current) {
       echarts.registerMap(map, features)
       const option = {
@@ -114,37 +145,10 @@ function EChartsMap() {
           type: 'map',
           map: map,
           // name: 'map',
-          roam: false, // 一定要关闭拖拽
+          roam: true, // 一定要关闭拖拽
+          center: province === Enum.province.None?'':features.features[0].properties.center,
           zoom: 1.0,
-          // center: [105, 35], // 调整地图位置
-        },
-        series: [
-          // {
-          //   type: 'map',
-          //   // map: map,
-          //   name: 'map',
-          //   roam: false, // 一定要关闭拖拽
-          //   zoom: 1.0,
-          // },
-          {
-            name: 'school',
-            type: 'scatter',
-            coordinateSystem: 'geo',
-            rippleEffect: {
-              color: '#1677FF',
-            },
-            // data: scatter
-            // data: [
-            //   [121.47,31.23, 0],
-            //   [116.40,39.90, 0],
-            //   [106.55,29.56, 0]
-            // ]
-          },
-          {
-            type: 'map',
-            map: map,
-            name: 'map',
-            showLegendSymbol: false, // 存在legend时显示
+          showLegendSymbol: false, // 存在legend时显示
             selectedMode: 'single',
             itemStyle: {
               areaColor: '#F0F8FF',
@@ -172,6 +176,34 @@ function EChartsMap() {
                 borderColor: '#ADD8E6',
               },
             },
+          // center: [105, 35], // 调整地图位置
+        },
+        series: [
+          // {
+          //   type: 'map',
+          //   // map: map,
+          //   name: 'map',
+          //   roam: false, // 一定要关闭拖拽
+          //   zoom: 1.0,
+          // },
+          {
+            name: 'school',
+            type: 'scatter',
+            coordinateSystem: 'geo',
+            geoIndex: 0,
+            // data: scatter
+            // data: [
+            //   [121.47,31.23, 0],
+            //   [116.40,39.90, 0],
+            //   [106.55,29.56, 0]
+            // ]
+          },
+          {
+            type: 'map',
+            map: map,
+            name: 'map',
+            geoIndex:0,
+            // roam: true,
           },
         ],
       }
@@ -204,7 +236,7 @@ function EChartsMap() {
   }, [chartRef.current])
   useEffect(() => {
     // console.log('something changed')
-    setFeatures(null)
+    // setFeatures(null)
     myChart.current.showLoading({
       color: '#1677ff',
     })
@@ -213,20 +245,22 @@ function EChartsMap() {
       .then(data => {
         // setMap('tmp')
         if (province !== Enum.province.None) {
-          setMap('tmp')
+          initEChart('tmp',data)
         } else {
-          setMap('china')
+          initEChart('china',data)
         }
-        setFeatures(data)
+        // setFeatures(data)
         console.log(data)
         myChart.current.hideLoading()
         if (province === Enum.province.None) {
-          startInterval('api/locateUniversityRandomly')
+          // startInterval('api/locateUniversityRandomly_v2')
+          task('api/locateUniversityRandomly_v2')
         } else {
-          startInterval(
-            `api/locateUniversityByProvince?province=${reverseProvinceMap.get(
-              province,
-            )}`,
+          clearInterval(locationInterval)
+          task(
+            `api/locateUniversityByProvince_v2?location=${
+              province
+            }`,
           )
         }
       })
@@ -244,11 +278,11 @@ function EChartsMap() {
   }
 
   useEffect(() => {
-    if (features) {
+    // if (features) {
       switch (rank) {
         case Enum.rank.None:
           if (province === Enum.province.None) {
-            setMap('tmp')
+            // setMap('tmp')
             myChart.current.setOption({
               visualMap: {
                 show: false,
@@ -450,12 +484,12 @@ function EChartsMap() {
           }
           break
       }
-    }
+    // }
   }, [rank])
 
-  if (features) {
-    initEChart()
-  }
+  // if (features) {
+  //   initEChart()
+  // }
 
   const items = [
     {
@@ -532,7 +566,7 @@ function EChartsMap() {
         )}
       </div>
       {typeof window !== 'undefined' && (
-        <div ref={chartRef} style={{ height: '85vh', margin: 'auto' }}>
+        <div ref={chartRef} style={{ height: '90vh', margin: 'auto' }}>
           Loading...
         </div>
       )}
