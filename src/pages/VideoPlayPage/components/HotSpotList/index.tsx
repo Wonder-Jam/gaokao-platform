@@ -9,8 +9,9 @@ import {
 } from './style'
 import { usePageNavigation } from '@/hooks/usePageNavigation'
 import React from 'react'
-import Searchbar from '../Searchbar'
+import Searchbar from '@/components/Searchbar'
 import { responseData } from '@/pages/SearchSchoolPage/components/UniversityList'
+import { useMaskContext } from '../../context/MaskContext'
 
 const fakeDataUrl = 'api/universitylist'
 function HotSpotList({
@@ -89,12 +90,24 @@ export function HotSpotTopicContainer({ show }: { show: boolean }) {
         setIsLoading(false)
       })
   }, [])
+  const options = React.useMemo(() => {
+    if (data.length > 1 && data[1].dataSource) {
+      return data[1].dataSource.map(value => value.title)
+    }
+    return []
+  }, [data])
+  const onSearch = useMaskContext().onSearch
   return (
     <RightBarContainer show={show}>
-      <Searchbar style={{ width: '100%', marginBottom: '5px' }} />
+      <Searchbar
+        onSearch={onSearch}
+        style={{ width: '100%', marginBottom: '5px' }}
+        optionsData={options}
+        placeholder={'快搜索你感兴趣的学校吧！'}
+      />
       <TabContainer>
         {isLoading ? (
-          <Skeleton />
+          <Skeleton style={{ width: '300px' }} />
         ) : (
           <Tabs type="card" defaultActiveKey="1" items={items} />
         )}

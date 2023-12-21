@@ -41,7 +41,9 @@ export function CardDetail(props: VideoSchoolType) {
     <CardDetailContainer>
       <div id={videoUrl + 'video'}></div>
       <InfoContainer>
-        <BadgeContainer>{schoolBdage}</BadgeContainer>
+        <BadgeContainer>
+          <img src={schoolBdage} />
+        </BadgeContainer>
         <SchoolInfoContainer>
           <div style={{ color: '#0070f3' }}>{schoolName}</div>
           <StyledButton size="large" target="_blank" href={schoolSiteUrl}>

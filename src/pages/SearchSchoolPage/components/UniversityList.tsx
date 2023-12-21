@@ -18,6 +18,14 @@ import { useRouter } from 'next/router'
 
 // TODO: UniversityList 太丑了，需要美化：1.太空了，资源利用不到位 2.List.Item.Meta限制太多了，要自定义内容
 
+export const TagColorMap = {
+  '985': 'cyan',
+  '211': 'green',
+  双一流: 'orange',
+  华东五校: 'red',
+}
+
+export type tagsType = keyof typeof TagColorMap
 export interface DataType {
   name: string
   website: string
@@ -37,7 +45,7 @@ export interface DataType {
     name: string
     place: string
   }
-  tags: string[]
+  tags: tagsType[]
 }
 
 const count = 3
@@ -159,10 +167,11 @@ const UniversityList: React.FC = () => {
               {item.motto}
             </p>
             <Space size={[0, 4]} wrap>
-              {item.tags[0] ? <Tag color="#f50">{item.tags[0]}</Tag> : null}
-              {item.tags[1] ? <Tag color="#2db7f5">{item.tags[1]}</Tag> : null}
-              {item.tags[2] ? <Tag color="#87d068">{item.tags[2]}</Tag> : null}
-              {item.tags[3] ? <Tag color="#108ee9">{item.tags[3]}</Tag> : null}
+              {item.tags.map((value: tagsType) => {
+                return TagColorMap[value] ? (
+                  <Tag color={TagColorMap[value]}>{value}</Tag>
+                ) : null
+              })}
             </Space>
           </div>
         </div>

@@ -1,8 +1,15 @@
+import dynamic from 'next/dynamic'
 import { Mask } from './style'
 import { Card, Divider, Tag, Space, Popover, Button, Spin } from 'antd'
-import UniversityScoreLine from './UniversityScoreLine'
+const UniversityScoreLine = dynamic(() => import('./UniversityScoreLine'), {
+  ssr: false,
+})
+// import UniversityScoreLine from './UniversityScoreLine'
+const UniversityMajorPlan = dynamic(() => import('./UniversityMajorPlan'), {
+  ssr: false,
+})
 import UniversityScoreLineTable from './UniversityScoreLineTable'
-import UniversityMajorPlan from './UniversityMajorPlan'
+// import UniversityMajorPlan from './UniversityMajorPlan'
 import type { ScorelineDataType, UniversityDetailProps } from '../type'
 import UniersityOverview from './UniversityOverview'
 import {
@@ -11,10 +18,15 @@ import {
   EnvironmentOutlined,
   NodeIndexOutlined,
 } from '@ant-design/icons'
-import UniversityRank from './UniversityRank'
-import GenderRatioChart from './UniversityGenderRatio'
+const UniversityRank = dynamic(() => import('./UniversityRank'), { ssr: false })
+// import UniversityRank from './UniversityRank'
+const GenderRatioChart = dynamic(() => import('./UniversityGenderRatio'), {
+  ssr: false,
+})
+// import GenderRatioChart from './UniversityGenderRatio'
 import UniversityEnvironment from './UniversityEvironment'
 import { useEffect, useState } from 'react'
+import { TagColorMap, tagsType } from './UniversityList'
 
 interface DetailData {
   scorelineData: { year: number; score: number; type: '文史' | '理工' }[]
@@ -33,7 +45,7 @@ interface DetailData {
     rank: number
     type: 'USNews' | 'QS' | 'THE' | 'ARWU'
   }[]
-  genderRatio: { ratio: number }
+  genderRatio: { female: number; male: number }
 }
 export default function UniversityDetail(data: UniversityDetailProps) {
   const [tableData, setTableData] = useState<ScorelineDataType[]>([]) // 提取唯一年份
@@ -165,10 +177,11 @@ export default function UniversityDetail(data: UniversityDetailProps) {
         <h1 style={{ marginTop: '85px' }}>
           {data.name}
           <Space style={{ marginLeft: '10px' }} size={[0, 4]} wrap>
-            {data.tags[0] ? <Tag color="#f50">{data.tags[0]}</Tag> : null}
-            {data.tags[1] ? <Tag color="#2db7f5">{data.tags[1]}</Tag> : null}
-            {data.tags[2] ? <Tag color="#87d068">{data.tags[2]}</Tag> : null}
-            {data.tags[3] ? <Tag color="#108ee9">{data.tags[3]}</Tag> : null}
+            {data.tags.map((value: tagsType) => {
+              return TagColorMap[value] ? (
+                <Tag color={TagColorMap[value]}>{value}</Tag>
+              ) : null
+            })}
           </Space>
         </h1>
       </div>
@@ -257,9 +270,18 @@ export default function UniversityDetail(data: UniversityDetailProps) {
                 }
               />
             </Card>
-            <div style={{ width: '49.5%', height: '50vh' }}>
-              <UniversityScoreLineTable data={tableData.reverse()} />
-            </div>
+            <Card size="small" style={{ width: '49.5%', height: '300px' }}>
+              <UniversityScoreLineTable
+                data={
+                  // scorelineData as {
+                  //   year: number
+                  //   score: number
+                  //   type: '文史' | '理工'
+                  // }[]
+                  tableData
+                }
+              />
+            </Card>
           </div>
           <div id="专业组分数"></div>
           <Divider orientation="left">专业组分数</Divider>
@@ -289,7 +311,10 @@ export default function UniversityDetail(data: UniversityDetailProps) {
             }}
           >
             <Card size="small" style={{ height: '300px', width: '49.5%' }}>
-              <GenderRatioChart />
+              <GenderRatioChart
+                male={detailData.genderRatio.male}
+                female={detailData.genderRatio.female}
+              />
             </Card>
             <UniversityEnvironment style={{ width: '49.5%' }} />
           </div>

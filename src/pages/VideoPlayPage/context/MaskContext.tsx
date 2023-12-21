@@ -7,10 +7,12 @@ export const MaskContext = React.createContext<{
   setTargetRef: React.Dispatch<
     React.SetStateAction<React.RefObject<HTMLDivElement>>
   >
+  onSearch: (value: string) => void
 }>({
   shown: false,
   toggle: () => {},
   setTargetIndex: () => {},
   setTargetRef: () => {},
+  onSearch: () => {},
 })
 export const useMaskContext = () => React.useContext(MaskContext)
