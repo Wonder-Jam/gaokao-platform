@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 import { Mask } from './style'
-import { Card, Divider, Tag, Space, Popover, Button, Spin } from 'antd'
+import { Card, Divider, Tag, Space, Popover, Button, Spin, Select } from 'antd'
 const UniversityScoreLine = dynamic(() => import('./UniversityScoreLine'), {
   ssr: false,
 })
@@ -25,8 +25,9 @@ const GenderRatioChart = dynamic(() => import('./UniversityGenderRatio'), {
 })
 // import GenderRatioChart from './UniversityGenderRatio'
 import UniversityEnvironment from './UniversityEvironment'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { TagColorMap, tagsType } from './UniversityList'
+import { province } from '../enum'
 
 interface DetailData {
   scorelineData: { year: number; score: number; type: '文史' | '理工' }[]
@@ -50,8 +51,31 @@ interface DetailData {
 export default function UniversityDetail(data: UniversityDetailProps) {
   const [tableData, setTableData] = useState<ScorelineDataType[]>([]) // 提取唯一年份
   const [detailData, setDetailData] = useState<DetailData>({} as DetailData)
-
-  useEffect(() => {
+  const linkRefs = useRef<(HTMLDivElement | null)[]>([])
+  const dataChange = useRef<'' | 'scoreLineData' | 'majorData'>('') // 很蹩脚的手段 - 用于区分历年分数和专业组分数数据更新的区别
+  const [scoreLineIsLoading, setScoreLineIsLoading] = useState(false)
+  const [majorIsLoading, setMajorIsLoading] = useState(false)
+  const provinces = Object.values(province)
+    .filter(value => value !== province.None)
+    .map(province => ({
+      label: province,
+      value: province,
+    }))
+  const scrollInToSection = useCallback(
+    (index: number) => {
+      linkRefs.current[index]?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      })
+    },
+    [linkRefs.current],
+  )
+  const LoadData = useCallback(() => {
+    if (dataChange.current === 'scoreLineData') {
+      setScoreLineIsLoading(true)
+    } else {
+      setMajorIsLoading(true)
+    }
     fetch(`api/universityDetail?target=${data.name}`, {
       method: 'POST',
       body: JSON.stringify({
@@ -64,7 +88,6 @@ export default function UniversityDetail(data: UniversityDetailProps) {
     })
       .then(res => res.json())
       .then((res: DetailData) => {
-        console.log(res)
         let data: ScorelineDataType[] = []
         const years = Array.from(
           new Set(res.scorelineData.map(item => item.year)),
@@ -84,36 +107,51 @@ export default function UniversityDetail(data: UniversityDetailProps) {
           }
           data.push(newDataItem)
         })
-        setTableData(data)
-        setDetailData(res)
+        if (dataChange.current !== 'majorData') {
+          setTableData(data)
+        }
+        setDetailData(prev => {
+          if (dataChange.current === 'scoreLineData') {
+            return {
+              ...res,
+              majorData: prev.majorData, // 如果是scoreLineData，不修改的应该是majorData
+            }
+          } else if (dataChange.current === 'majorData') {
+            return {
+              ...res,
+              scorelineData: prev.scorelineData,
+            }
+          } else {
+            return res
+          }
+        })
       })
       .catch(e => {
         console.log(e)
       })
+      .finally(() => {
+        setMajorIsLoading(false)
+        setScoreLineIsLoading(false)
+      })
   }, [])
+  useEffect(LoadData, [])
 
   const content = (
     <div
       style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
     >
-      <div>
-        <a href="#学校简介">学校简介</a>
-      </div>
-      <div>
-        <a href="#学校概况">学校概况</a>
-      </div>
-      <div>
-        <a href="#历年分数">历年分数</a>
-      </div>
-      <div>
-        <a href="#专业组分数">专业组分数</a>
-      </div>
-      <div>
-        <a href="#大学排名">大学排名</a>
-      </div>
-      <div>
-        <a href="#校园情况">校园情况</a>
-      </div>
+      {[
+        '学校简介',
+        '学校概况',
+        '历年分数',
+        '专业组分数',
+        '大学排名',
+        '校园情况',
+      ].map((value, index) => (
+        <div>
+          <a onClick={() => scrollInToSection(index)}>{value}</a>
+        </div>
+      ))}
     </div>
   )
 
@@ -136,15 +174,17 @@ export default function UniversityDetail(data: UniversityDetailProps) {
         }}
       >
         <Popover
-          title=<h1
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              fontSize: '18px',
-            }}
-          >
-            页内导航
-          </h1>
+          title={
+            <h1
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                fontSize: '18px',
+              }}
+            >
+              页内导航
+            </h1>
+          }
           trigger="click"
           content={content}
         >
@@ -166,6 +206,7 @@ export default function UniversityDetail(data: UniversityDetailProps) {
         <Mask />
       </div>
       <div
+        ref={el => (linkRefs.current[0] = el)}
         style={{
           marginTop: '-75px',
           display: 'flex',
@@ -185,7 +226,7 @@ export default function UniversityDetail(data: UniversityDetailProps) {
           </Space>
         </h1>
       </div>
-      <Card id="学校简介" size="small" style={{ width: '100%' }}>
+      <Card size="small" style={{ width: '100%' }}>
         <p>{data.description}</p>
         <div
           style={{
@@ -245,62 +286,64 @@ export default function UniversityDetail(data: UniversityDetailProps) {
       </Card>
       {detailData.scorelineData ? (
         <>
-          <div id="学校概况"></div>
+          <div ref={el => (linkRefs.current[1] = el)}></div>
           <Divider orientation="left">学校概况</Divider>
           <UniersityOverview />
-          <div id="历年分数"></div>
-          <Divider orientation="left">历年分数</Divider>
-          <div
-            style={{
-              height: '300px',
-              display: 'flex',
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-            }}
-          >
-            <Card size="small" style={{ width: '49.5%', height: '300px' }}>
-              <UniversityScoreLine
-                data={
-                  // scorelineData as {
-                  //   year: number
-                  //   score: number
-                  //   type: '文史' | '理工'
-                  // }[]
-                  detailData.scorelineData
-                }
-              />
-            </Card>
-            <Card size="small" style={{ width: '49.5%', height: '300px' }}>
-              <UniversityScoreLineTable
-                data={
-                  // scorelineData as {
-                  //   year: number
-                  //   score: number
-                  //   type: '文史' | '理工'
-                  // }[]
-                  tableData
-                }
-              />
-            </Card>
-          </div>
-          <div id="专业组分数"></div>
-          <Divider orientation="left">专业组分数</Divider>
-          <UniversityMajorPlan data={detailData.majorData} />
-          <div id="大学排名"></div>
+          <div ref={el => (linkRefs.current[2] = el)}></div>
+          <Divider orientation="left">
+            历年分数
+            <Select
+              style={{ marginLeft: '5px', width: '85px' }}
+              options={provinces}
+              defaultValue={'江苏'}
+              placement="bottomLeft"
+              onSelect={() => {
+                dataChange.current = 'scoreLineData'
+                LoadData()
+              }}
+            />
+          </Divider>
+          <Spin spinning={scoreLineIsLoading}>
+            <div
+              style={{
+                height: '300px',
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+              }}
+            >
+              <Card size="small" style={{ width: '49.5%', height: '300px' }}>
+                <UniversityScoreLine data={detailData.scorelineData} />
+              </Card>
+              <Card size="small" style={{ width: '49.5%', height: '300px' }}>
+                <UniversityScoreLineTable data={tableData} />
+              </Card>
+            </div>
+          </Spin>
+
+          <div ref={el => (linkRefs.current[3] = el)}></div>
+          <Divider orientation="left">
+            专业组分数
+            <Select
+              style={{ marginLeft: '5px', width: '85px' }}
+              options={provinces}
+              defaultValue={'江苏'}
+              placement="bottomLeft"
+              onSelect={() => {
+                dataChange.current = 'majorData'
+                LoadData()
+              }}
+            />
+          </Divider>
+          <Spin spinning={majorIsLoading}>
+            <UniversityMajorPlan data={detailData.majorData} />
+          </Spin>
+          <div ref={el => (linkRefs.current[4] = el)}></div>
           <Divider orientation="left">大学排名</Divider>
           <Card size="small" style={{ height: '300px' }}>
-            <UniversityRank
-              data={
-                // rankData as {
-                //   year: number
-                //   rank: number
-                //   type: 'USNews' | 'QS' | 'THE' | 'ARWU'
-                // }[]
-                detailData.rankData
-              }
-            />
+            <UniversityRank data={detailData.rankData} />
           </Card>
-          <div id="校园情况"></div>
+          <div ref={el => (linkRefs.current[5] = el)}></div>
           <Divider orientation="left">校园情况</Divider>
           <div
             style={{

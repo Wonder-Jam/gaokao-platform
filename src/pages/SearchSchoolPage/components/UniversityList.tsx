@@ -161,7 +161,17 @@ const UniversityList: React.FC<AppPorps> = (props) => {
   const onItemClicked = useCallback((item: DataType) => {
     eventBus.emit('universityClicked', item)
   }, [])
+  const options = useMemo(() => {
+    return list.map(value => value.name)
+  }, [list]) // TODO:数据有可能重复，待修复
 
+  const searshTargetSchool = useCallback(
+    (targetName: string) => {
+      const item = list.find(value => value.name === targetName)
+      if (item) onItemClicked(item)
+    },
+    [list],
+  )
   const ListItem = (item: DataType) => {
     return (
       <UniversityItem>
@@ -211,6 +221,17 @@ const UniversityList: React.FC<AppPorps> = (props) => {
         />}
       </div>
       {isFolded ? null : <FilterTag
+      <Searchbar
+        optionsData={options}
+        onSearch={searshTargetSchool}
+        style={{
+          height: '5%',
+          width: '97%',
+          marginLeft: '5px',
+          marginRight: '5px',
+        }}
+      />
+      <FilterTag
         style={{
           width: '97%',
           height: '5%',

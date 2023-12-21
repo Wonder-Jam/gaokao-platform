@@ -35,7 +35,6 @@ export default function VideoPlayPage() {
           res = res.filter(value => value.schoolName === filterTarget.current)
         }
         setData(prev => [...prev, ...res])
-        console.log(res, isLoading)
         if (isLoading) {
           setIsLoading(false)
         }
