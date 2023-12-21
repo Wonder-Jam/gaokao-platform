@@ -9,7 +9,7 @@ const IndexSearchMajor: React.FC = () => {
         height: 500,
         display: 'flex',
         // backgroundColor: '#0f0',
-        margin: '0px auto',
+        margin: '50px auto',
       }}
     >
       <div className={'major-des'}>
@@ -48,7 +48,7 @@ const IndexSearchMajor: React.FC = () => {
               <div className={'card-content is-front'}>
                 <img
                   src="/images/chemistry.jpg"
-                  alt="Magic Image icon"
+                  alt="Loading"
                   style={{ width: '200px', opacity: 1 }}
                 />
               </div>
@@ -67,14 +67,21 @@ const IndexSearchMajor: React.FC = () => {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
-          alignItems: 'center',
           // backgroundColor: '#f00',
           height: '100%',
           width: '45%',
-          // paddingLeft: 50
+          paddingLeft: 100,
         }}
       >
-        <div style={{ position: 'absolute', left: '10px', marginLeft: '30px' }}>
+        <div
+          style={
+            {
+              // position: 'absolute',
+              // left: '10px',
+              // marginLeft: '30px'
+            }
+          }
+        >
           <p
             style={{
               lineHeight: 1.15,
@@ -86,7 +93,7 @@ const IndexSearchMajor: React.FC = () => {
               fontWeight: 'bold',
               fontSize: '38px',
               letterSpacing: '.02em',
-              marginBottom: '10px',
+              marginBottom: '12px',
             }}
           >
             查专业
@@ -105,6 +112,12 @@ const IndexSearchMajor: React.FC = () => {
           >
             喜欢土木工程怎么办？稳啦！
           </div>
+
+          <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+          </ul>
         </div>
       </div>
     </div>

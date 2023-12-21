@@ -6,7 +6,8 @@ const IndexVideoPlay: React.FC = () => {
       style={{
         width: 1280,
         height: 500,
-        margin: '100px auto',
+        margin: '0px auto',
+        marginBottom: '100px',
         display: 'flex',
         flexDirection: 'column',
       }}
