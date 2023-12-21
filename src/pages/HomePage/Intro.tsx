@@ -6,9 +6,9 @@ const Intro: React.FC = () => {
     <div
       style={{
         boxSizing: 'border-box',
-        backgroundColor: '#fff',
-        marginTop: 100,
-        marginBottom: 100,
+        // backgroundColor: '#efefef',
+        width: '1280px',
+        margin: '200px auto 130px',
       }}
     >
       <div
