@@ -1,0 +1,18 @@
+.header-wrapper {
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+  width: 1280px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  padding: 4% 5% 0;
+  /*background-color: #0f0;*/
+  height: 600px;
+  position: relative;
+}
+
+/*@media only screen and (min-width: 1700px) and (max-width: 2600px){*/
+/*    .header-wrapper{*/
+/*        width: 1700px;*/
+/*    }*/
+/*}*/

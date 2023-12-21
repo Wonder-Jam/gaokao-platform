@@ -6,82 +6,63 @@ const Intro: React.FC = () => {
     <div
       style={{
         boxSizing: 'border-box',
-        backgroundColor: '#fff',
-        marginTop: 100,
-        marginBottom: 100,
+        // backgroundColor: '#efefef',
+        width: '1280px',
+        margin: '200px auto 130px',
       }}
     >
       <div
         style={{
-          boxSizing: 'border-box',
+          // margin: '0 auto',
           width: '100%',
-          paddingTop: '64px',
-        }}
-      ></div>
-      <div
-        style={{
-          margin: '0 auto',
-          width: '100%',
-          fontSize: 30,
+          fontSize: 40,
           fontWeight: 700,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
+          textAlign: 'center',
         }}
       >
         Go School
       </div>
+
       <div
         style={{
-          boxSizing: 'border-box',
           margin: '0 auto',
           width: '100%',
-          maxWidth: '1349px',
+          maxWidth: '1400px',
           padding: '0 24px',
         }}
       >
         <div
           style={{
-            width: '91%',
             display: 'flex',
             position: 'relative',
             alignItems: 'center',
             flexDirection: 'column',
-            flexWrap: 'wrap',
-            paddingLeft: '32px',
           }}
         >
           <h1
             style={{
-              direction: 'ltr',
               paddingTop: 30,
-              paddingLeft: 30,
               width: '56%',
               fontFamily: 'Helvetica, Arial, sans-serif',
-              fontWeight: 'normal',
+              fontWeight: 500,
               lineHeight: '120%',
               margin: 0,
-              textRendering: 'optimizeLegibility',
-              color: '#1c2b33',
               fontSize: '24px',
-              letterSpacing: '.005em',
+              letterSpacing: '.06em',
               textAlign: 'center',
-              marginBottom: '16px',
             }}
           >
-            GoSchool provides high school graduates with a search function for
-            universities and their majors across China, as well as a style
-            display.
+            {/*GoSchool provides high school graduates with a search function for*/}
+            {/*universities and their majors <br />across China, as well as <br/>a style*/}
+            {/*display.*/}
+            GoSchool 平台提供便利的大学及专业信息检索功能
+            <br />
+            若你在面对众多选择时仍暂无头绪
+            <br />
+            不妨去“看一看”吧！
           </h1>
         </div>
       </div>
-      <div
-        style={{
-          boxSizing: 'border-box',
-          width: '100%',
-          paddingTop: '80px',
-        }}
-      ></div>
     </div>
   )
 }

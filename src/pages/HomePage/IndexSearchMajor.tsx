@@ -5,10 +5,11 @@ const IndexSearchMajor: React.FC = () => {
   return (
     <div
       style={{
+        width: 1280,
         height: 500,
-        marginTop: 50,
-        marginLeft: 80,
         display: 'flex',
+        // backgroundColor: '#0f0',
+        margin: '0px auto',
       }}
     >
       <div className={'major-des'}>
@@ -23,7 +24,6 @@ const IndexSearchMajor: React.FC = () => {
               <div className={'card-content is-front'}>
                 <img
                   src="/images/machine.jpg"
-                  loading="lazy"
                   alt="Magic Image icon"
                   style={{ width: '200px', opacity: 1 }}
                 />
@@ -36,7 +36,6 @@ const IndexSearchMajor: React.FC = () => {
               <div className={'card-content is-front'}>
                 <img
                   src="/images/dna.jpg"
-                  loading="lazy"
                   alt="Magic Image icon"
                   style={{ width: '200px', opacity: 1 }}
                 />
@@ -49,14 +48,13 @@ const IndexSearchMajor: React.FC = () => {
               <div className={'card-content is-front'}>
                 <img
                   src="/images/chemistry.jpg"
-                  loading="lazy"
                   alt="Magic Image icon"
                   style={{ width: '200px', opacity: 1 }}
                 />
               </div>
               <div className={'card-content is-back'}>
                 <p style={{ zIndex: 10 }}>化学</p>
-                <div>dfasfds</div>
+                <div></div>
               </div>
             </div>
           </div>

@@ -211,9 +211,11 @@ const IndexSearchSchool: React.FC = () => {
   return (
     <div
       style={{
+        width: '1280px',
         height: 500,
-        marginTop: 100,
+        // backgroundColor: '#f00',
         display: 'flex',
+        margin: '0 auto',
       }}
     >
       <div
