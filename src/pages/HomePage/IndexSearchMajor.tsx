@@ -56,7 +56,7 @@ const IndexSearchMajor: React.FC = () => {
               </div>
               <div className={'card-content is-back'}>
                 <p style={{ zIndex: 10 }}>化学</p>
-                <div>dfasfds</div>
+                <div></div>
               </div>
             </div>
           </div>

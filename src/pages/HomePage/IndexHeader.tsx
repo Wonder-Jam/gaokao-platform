@@ -2,27 +2,20 @@ import React, { useEffect, useState } from 'react'
 import { Button, Image } from 'antd'
 import QueueAnim from 'rc-queue-anim'
 import { PauseCircleOutlined, PlayCircleOutlined } from '@ant-design/icons'
+import './IndexHeader.css'
 
 const IndexHeader: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0)
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        overflow: 'hidden',
-        width: '100%',
-        flexWrap: 'wrap',
-        paddingLeft: 74,
-        paddingTop: 66,
-      }}
-    >
+    <div className={'header-wrapper'}>
       <div
         style={{
           width: '40%',
+          height: '100%',
           borderRadius: 30,
           overflow: 'hidden',
+          // backgroundColor: '#00f',
         }}
       >
         <Slider indexActive={activeIndex}></Slider>
@@ -31,6 +24,7 @@ const IndexHeader: React.FC = () => {
       <div
         style={{
           width: '30%',
+          // backgroundColor: '#efefef'
         }}
       >
         <Description indexActive={activeIndex}></Description>
@@ -38,10 +32,14 @@ const IndexHeader: React.FC = () => {
 
       <div
         style={{
-          marginRight: 90,
+          position: 'relative',
+          left: '-5%',
           display: 'flex',
+          width: '40px',
           flexDirection: 'column',
           justifyContent: 'center',
+          alignItems: 'center',
+          // backgroundColor: '#f00',
         }}
       >
         <ProgressBar
@@ -59,14 +57,6 @@ const Slider: React.FC<{ indexActive: number }> = ({ indexActive }) => {
     setIsClient(true)
   }, [])
 
-  let contentStyle: React.CSSProperties = {
-    height: '160px',
-    color: '#fff',
-    lineHeight: '160px',
-    textAlign: 'center',
-    background: '#364d79',
-  }
-
   return (
     <>
       {isClient ? (
@@ -74,26 +64,28 @@ const Slider: React.FC<{ indexActive: number }> = ({ indexActive }) => {
           <div key={'img'}>
             {indexActive === 0 && (
               <QueueAnim type={['bottom', 'top']} duration={2000} key={'img0'}>
-                <div key={'img1'}>
+                <div
+                  key={'img1'}
+                  style={{ borderRadius: 30, overflow: 'hidden' }}
+                >
                   <Image
-                    height={'500px'}
+                    height={'100%'}
                     width={'100%'}
-                    src={
-                      'https://glb.nju.edu.cn/_upload/article/images/22/93/25a086814e7ab6e9650c3af237d2/9b5c5bc5-96de-4cc2-9961-2d7cb35717ed.jpg'
-                    }
+                    src={'/images/slider1.jpg'}
                   ></Image>
                 </div>
               </QueueAnim>
             )}
             {indexActive === 1 && (
               <QueueAnim type={['bottom', 'top']} duration={2000} key={'img1'}>
-                <div key={'img2'}>
+                <div
+                  key={'img2'}
+                  style={{ borderRadius: 30, overflow: 'hidden' }}
+                >
                   <Image
-                    height={'500px'}
+                    height={'100%'}
                     width={'100%'}
-                    src={
-                      'https://glb.nju.edu.cn/_upload/article/images/22/93/25a086814e7ab6e9650c3af237d2/872c4a04-e69e-4974-ba0c-af3869b6858e.jpg'
-                    }
+                    src={'/images/slider2.jpg'}
                   ></Image>
                 </div>
               </QueueAnim>
@@ -157,55 +149,83 @@ const ProgressBar: React.FC<{ indexActive: number; onChange: () => void }> = ({
   }, [indexActive, isAuto])
 
   return (
-    <div>
+    <>
       <div
         style={{
-          backgroundColor: '#cbd2d9',
-          borderRadius: 10,
           overflow: 'hidden',
           height: '120px',
-          width: '4px',
-          marginLeft: 7,
+          width: '100%',
           cursor: 'pointer',
         }}
         onClick={() => {
+          if (indexActive == 1) {
+            onChange()
+            setProgress2(0)
+          }
           setIsAuto(!isAuto)
         }}
       >
         <div
           style={{
-            width: '10px',
-            height: `${progress1}%`,
-            background: '#0064e0',
-            transition: 'height 0.08s',
+            backgroundColor: '#cbd2d9',
+            width: '4px',
+            height: '100%',
+            margin: '0 auto',
+            borderRadius: '10px',
           }}
-        ></div>
+        >
+          <div
+            style={{
+              borderRadius: '10px',
+              width: '4px',
+              margin: '0 auto',
+              height: `${progress1}%`,
+              background: '#0064e0',
+              transition: 'height 0.08s',
+            }}
+          ></div>
+        </div>
       </div>
+
       <div
         style={{
-          backgroundColor: '#cbd2d9',
-          borderRadius: 10,
           overflow: 'hidden',
           height: '120px',
-          width: '4px',
           marginTop: 10,
           marginBottom: 12,
-          marginLeft: 7,
           cursor: 'pointer',
+          width: '100%',
         }}
         onClick={() => {
+          if (indexActive == 0) {
+            onChange()
+            setProgress1(0)
+          }
           setIsAuto(!isAuto)
         }}
       >
         <div
           style={{
-            width: '10px',
-            height: `${progress2}%`,
-            background: '#0064e0',
-            transition: 'height 0.08s',
+            backgroundColor: '#cbd2d9',
+            width: '4px',
+            height: '100%',
+            margin: '0 auto',
+            borderRadius: '10px',
           }}
-        ></div>
+        >
+          <div
+            style={{
+              borderRadius: '10px',
+              margin: '0 auto',
+              width: '4px',
+              height: `${progress2}%`,
+              background: '#0064e0',
+              transition: 'height 0.08s',
+            }}
+          ></div>
+        </div>
       </div>
+
       <div onClick={() => setIsAuto(!isAuto)} style={{ cursor: 'pointer' }}>
         {isAuto ? (
           <PauseCircleOutlined style={{ color: '#666' }} />
@@ -213,7 +233,7 @@ const ProgressBar: React.FC<{ indexActive: number; onChange: () => void }> = ({
           <PlayCircleOutlined style={{ color: '#666' }} />
         )}
       </div>
-    </div>
+    </>
   )
 }
 
