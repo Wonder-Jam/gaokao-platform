@@ -8,6 +8,7 @@ import Tabs from './components/Tabs'
 import { SearchContext } from './Context/SearchContext'
 
 export default function SearchSchoolPage() {
+  const [universityListWidth, setUniversityListWidth] = useState('30%')
   const [choices, setChoices] = useState({
     province: Enum.province.None,
     city: Enum.city.None,
@@ -34,8 +35,8 @@ export default function SearchSchoolPage() {
             <MapContainer>
               <Tabs />
             </MapContainer>
-            <CardListContainer>
-              <UniversityList />
+            <CardListContainer width={universityListWidth}>
+              <UniversityList setUniversityListWidth={setUniversityListWidth} />
             </CardListContainer>
           </Layer>
         </RootLayout>

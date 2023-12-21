@@ -6,7 +6,11 @@ import React, {
   useCallback,
   useMemo,
 } from 'react'
-import { List, Card, Tag, Space, Divider, Skeleton } from 'antd'
+import {
+  MenuFoldOutlined,
+  MenuUnfoldOutlined
+} from '@ant-design/icons'
+import { List, Card, Tag, Space, Divider, Skeleton, Button } from 'antd'
 import { UniversityItem } from './style'
 import eventBus from '@/utils/eventBus'
 import { Searchbar } from './Searchbar'
@@ -23,6 +27,10 @@ export const TagColorMap = {
   '211': 'green',
   双一流: 'orange',
   华东五校: 'red',
+}
+
+interface AppPorps {
+  setUniversityListWidth: React.Dispatch<React.SetStateAction<string>>
 }
 
 export type tagsType = keyof typeof TagColorMap
@@ -54,10 +62,11 @@ export interface responseData {
   contentSize: number
   page: DataType[]
 }
-const UniversityList: React.FC = () => {
+const UniversityList: React.FC<AppPorps> = (props) => {
   const [initLoading, setInitLoading] = useState(true)
   const [data, setData] = useState<DataType[]>([])
   const [list, setList] = useState<DataType[]>([])
+  const [isFolded, setIsFolded] = useState(false)
   const listItemRef = useRef<HTMLDivElement>(null)
   const listRef = useRef<HTMLDivElement>(null)
   const hasInitialPage = useRef(false)
@@ -181,23 +190,35 @@ const UniversityList: React.FC = () => {
 
   return (
     <>
-      <Searchbar
+      <div style={{
+        display: 'flex', flexDirection: 'row', height: '5%',
+        width: '97%',
+        marginLeft: '5px',
+        marginRight: '5px',
+      }}>
+        <Button icon={isFolded ? <MenuFoldOutlined /> : <MenuUnfoldOutlined />} onClick={() => {
+          setIsFolded(prev => {
+            props.setUniversityListWidth(!prev ? '4%' : '30%');
+            return !prev
+          })
+          console.log(isFolded)
+        }} />
+        {isFolded ? null : <Searchbar
+          style={{
+            width: '90%',
+            marginLeft: '5px',
+          }}
+        />}
+      </div>
+      {isFolded ? null : <FilterTag
         style={{
-          height: '5%',
           width: '97%',
+          height: '5%',
           marginLeft: '5px',
           marginRight: '5px',
         }}
-      />
-      <FilterTag
-        style={{
-          width: '97%',
-          height: '5%',
-          marginLeft: '5px',
-          marginRight: '5px',
-        }}
-      />
-      <div
+      />}
+      {isFolded ? null : <div
         ref={listRef}
         id="scrollableDiv"
         style={{
@@ -243,7 +264,7 @@ const UniversityList: React.FC = () => {
             )}
           />
         </InfiniteScroll>
-      </div>
+      </div>}
     </>
   )
 }
