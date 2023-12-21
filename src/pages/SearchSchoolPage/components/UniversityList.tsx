@@ -5,11 +5,12 @@ import React, {
   useRef,
   useCallback,
   useMemo,
+  MutableRefObject,
 } from 'react'
 import { List, Card, Tag, Space, Divider, Skeleton } from 'antd'
 import { UniversityItem } from './style'
 import eventBus from '@/utils/eventBus'
-import { Searchbar } from './Searchbar'
+import Searchbar from '@/components/Searchbar'
 import FilterTag from './FilterTag'
 import { SearchContext } from '../Context/SearchContext'
 import InfiniteScroll from 'react-infinite-scroll-component'
@@ -50,7 +51,7 @@ export interface DataType {
 
 const count = 3
 const fakeDataUrl = 'api/universitylist'
-export interface responseData {
+interface responseData {
   contentSize: number
   page: DataType[]
 }
@@ -136,7 +137,7 @@ const UniversityList: React.FC = () => {
   const onLoadMore = () => {
     fetch(fakeDataUrl)
       .then(res => res.json())
-      .then(res => {
+      .then((res: responseData) => {
         const { page } = res
         setData(prev => [...prev, ...page])
         // Resetting window's offsetTop so as to display react-virtualized demo underfloor.
@@ -152,7 +153,17 @@ const UniversityList: React.FC = () => {
   const onItemClicked = useCallback((item: DataType) => {
     eventBus.emit('universityClicked', item)
   }, [])
+  const options = useMemo(() => {
+    return list.map(value => value.name)
+  }, [list])
 
+  const searshTargetSchool = useCallback(
+    (targetName: string) => {
+      const item = list.find(value => value.name === targetName)
+      if (item) onItemClicked(item)
+    },
+    [list],
+  )
   const ListItem = (item: DataType) => {
     return (
       <UniversityItem>
@@ -182,6 +193,8 @@ const UniversityList: React.FC = () => {
   return (
     <>
       <Searchbar
+        optionsData={options}
+        onSearch={searshTargetSchool}
         style={{
           height: '5%',
           width: '97%',
