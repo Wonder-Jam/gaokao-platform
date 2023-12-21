@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react'
+import React, { MutableRefObject } from 'react'
 import RootLayout from '@/app/layout'
 import { LeftOutlined, RightOutlined } from '@ant-design/icons'
 import { CardListContainer, IconContainer, ToggleContainer } from './style'
@@ -11,7 +11,7 @@ import { CardDetail } from './components/CardDetail'
 import { CardItem } from './components/CardDetail/CardItem'
 import { MaskContainer } from './components/MaskContainer'
 import InfiniteScroll from 'react-infinite-scroll-component'
-import { Skeleton } from 'antd'
+import { Empty, Skeleton } from 'antd'
 
 const fakeUrl = 'api/videoList'
 export default function VideoPlayPage() {
@@ -25,14 +25,17 @@ export default function VideoPlayPage() {
     React.RefObject<HTMLDivElement>
   >(React.createRef())
   const [data, setData] = React.useState<VideoSchoolType[]>([])
+  const allDataList: MutableRefObject<VideoSchoolType[]> = React.useRef([])
   const LoadData = React.useCallback(() => {
     fetch(fakeUrl)
       .then(res => res.json())
-      .then((data: VideoSchoolType[]) => {
+      .then((res: VideoSchoolType[]) => {
+        allDataList.current.push(...res)
         if (filterTarget.current !== '') {
-          data = data.filter(value => value.schoolName === filterTarget.current)
+          res = res.filter(value => value.schoolName === filterTarget.current)
         }
-        setData(prev => [...prev, ...data])
+        setData(prev => [...prev, ...res])
+        console.log(res, isLoading)
         if (isLoading) {
           setIsLoading(false)
         }
@@ -49,12 +52,18 @@ export default function VideoPlayPage() {
     contentNode: <CardDetail {...data[targetIndex]} />,
   })
 
-  const searchTargetSchoolVideo = React.useCallback((targetName: string) => {
-    filterTarget.current = targetName
-    const filter = data.filter(value => value.schoolName === targetName)
-    console.log(filter)
-    setData([...filter])
-  }, [])
+  const searchTargetSchoolVideo = React.useCallback(
+    (targetName: string) => {
+      setIsLoading(true)
+      filterTarget.current = targetName
+      const filter = allDataList.current.filter(
+        value => value.schoolName === targetName,
+      )
+      setData([...filter])
+      LoadData()
+    },
+    [data],
+  )
 
   return (
     <div style={{ height: '100%', width: '100%' }} ref={PageRef}>
@@ -71,6 +80,17 @@ export default function VideoPlayPage() {
           <div style={{ display: 'flex', height: '100%', width: '100%' }}>
             {isLoading ? (
               <Skeleton active paragraph={{ rows: 10 }} />
+            ) : !isLoading && data.length === 0 ? (
+              <div
+                style={{
+                  width: '100%',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <Empty />
+              </div>
             ) : (
               <InfiniteScroll
                 dataLength={data.length}
