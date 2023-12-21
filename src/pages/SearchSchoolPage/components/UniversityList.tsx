@@ -155,7 +155,7 @@ const UniversityList: React.FC = () => {
   }, [])
   const options = useMemo(() => {
     return list.map(value => value.name)
-  }, [list])
+  }, [list]) // TODO:数据有可能重复，待修复
 
   const searshTargetSchool = useCallback(
     (targetName: string) => {
