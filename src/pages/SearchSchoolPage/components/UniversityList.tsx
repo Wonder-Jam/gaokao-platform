@@ -51,7 +51,7 @@ export interface DataType {
 
 const count = 3
 const fakeDataUrl = 'api/universitylist'
-interface responseData {
+export interface responseData {
   contentSize: number
   page: DataType[]
 }
