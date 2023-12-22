@@ -42,9 +42,10 @@ const majorCategoriesMap: Map<string, Enum.majorCategories> = new Map([
   ['法学', majorCategories.Law],
   ['哲学', majorCategories.Philosophy],
   ['医学', majorCategories.Medicine],
-  ['艺术学', majorCategories.Arts],
+  // ['艺术学', majorCategories.Arts],
   ['理学', majorCategories.Science],
   ['农学', majorCategories.Agriculture],
+  ['军事学', majorCategories.Military],
   ['全部', majorCategories.ALL],
 ])
 

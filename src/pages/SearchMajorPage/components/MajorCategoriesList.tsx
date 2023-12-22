@@ -21,7 +21,7 @@ const majorCategories = [
   '医学',
   '军事学',
   '管理学',
-  '艺术学',
+  // '艺术学',
 ]
 
 const MajorCategoriesList: React.FC<MajorCategoriesListProps> = ({
