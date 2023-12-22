@@ -2,10 +2,40 @@
 
 import React, { useEffect, useRef, useState } from 'react'
 import './IndexSearchSchool.css'
+import '../../styles/enterMotion.css'
 import { SearchOutlined } from '@ant-design/icons'
 import Typed from 'typed.js'
 
 const IndexSearchSchool: React.FC = () => {
+  const eltitle = useRef(null)
+  const elintro = useRef(null)
+  const eldes1 = useRef(null)
+  const eldes2 = useRef(null)
+  const eldes3 = useRef(null)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // @ts-ignore
+      const rect = eldes3.current?.getBoundingClientRect()
+      if (rect.top < window.innerHeight && rect.bottom >= 0) {
+        // @ts-ignore
+        eltitle.current.classList.add('slideBottom')
+        // @ts-ignore
+        elintro.current.classList.add('slideTop')
+        // @ts-ignore
+        eldes1.current.classList.add('slideList1')
+        // @ts-ignore
+        eldes2.current.classList.add('slideList2')
+        // @ts-ignore
+        eldes3.current.classList.add('slideList3')
+      }
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
   return (
     <div
       style={{
@@ -29,15 +59,9 @@ const IndexSearchSchool: React.FC = () => {
           position: 'relative',
         }}
       >
-        <div
-          style={
-            {
-              // position: 'absolute',
-              // right: '30px'
-            }
-          }
-        >
+        <div>
           <p
+            ref={eltitle}
             style={{
               lineHeight: 1.15,
               // color: '#000',
@@ -49,12 +73,15 @@ const IndexSearchSchool: React.FC = () => {
               fontSize: '38px',
               letterSpacing: '.02em',
               marginBottom: '10px',
+              opacity: 0,
+              animationDelay: '3.3s',
             }}
           >
             查学校
           </p>
 
           <div
+            ref={elintro}
             style={{
               lineHeight: 1.15,
               fontFamily:
@@ -64,15 +91,35 @@ const IndexSearchSchool: React.FC = () => {
               fontSize: '20px',
               letterSpacing: '.02em',
               color: '#777e87',
+              opacity: 0,
+              animationDelay: '3.3s',
             }}
           >
             猜猜它们都是哪个大学的？
           </div>
 
           <ul>
-            <li className={'desList'}>独特交互式地图指引，了解大学地理全貌</li>
-            <li className={'desList'}>从GDP、教育经费等筛选，增加择校维度</li>
-            <li className={'desList'}>全面精炼信息展示，迅速掌握大学概况</li>
+            <li
+              ref={eldes1}
+              className={'desList'}
+              style={{ animationDelay: '4.3s' }}
+            >
+              独特交互式地图指引，了解大学地理全貌
+            </li>
+            <li
+              ref={eldes2}
+              className={'desList'}
+              style={{ animationDelay: '4.8s' }}
+            >
+              从GDP、教育经费等筛选，增加择校维度
+            </li>
+            <li
+              ref={eldes3}
+              className={'desList'}
+              style={{ animationDelay: '5.3s' }}
+            >
+              全面精炼信息展示，迅速掌握大学概况
+            </li>
           </ul>
         </div>
       </div>
@@ -107,6 +154,39 @@ const ImgIntro: React.FC = () => {
       typed.destroy()
     }
   }, [])
+
+  const elImg1 = useRef(null)
+  const elImg2 = useRef(null)
+  const elImg3 = useRef(null)
+  const elImg0 = useRef(null)
+  const elSearch = useRef(null)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // @ts-ignore
+      const rect = elImg3.current?.getBoundingClientRect()
+      console.log('width&height: ', rect.top, rect.bottom)
+      if (rect.top < window.innerHeight && rect.bottom >= 0) {
+        console.log('schoolenter !')
+        // @ts-ignore
+        elImg0.current.classList.add('occur')
+        // @ts-ignore
+        elImg1.current.classList.add('slide1')
+        // @ts-ignore
+        elImg2.current.classList.add('slide2')
+        // @ts-ignore
+        elImg3.current.classList.add('slide3')
+        // @ts-ignore
+        elSearch.current.classList.add('occurSearch')
+      }
+    }
+    window.addEventListener('scroll', handleScroll)
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
   return (
     <div
       style={{
@@ -118,7 +198,7 @@ const ImgIntro: React.FC = () => {
         margin: '0 auto',
       }}
     >
-      <div className={'img0'} style={{ zIndex: 9 }}>
+      <div ref={elImg0} className={'img0'} style={{ zIndex: 9, opacity: 0 }}>
         <img
           src="/images/c3.jpg"
           alt="loading"
@@ -129,11 +209,14 @@ const ImgIntro: React.FC = () => {
           }}
         />
       </div>
-      <div className={'img1'}></div>
-      <div className={'img2'}></div>
-      <div className={'img3'}></div>
+      <div ref={elImg1} className={'img1'}></div>
+      <div ref={elImg2} className={'img2'}></div>
+      <div ref={elImg3} className={'img3'}></div>
       <div
+        ref={elSearch}
+        onClick={() => (window.location.href = 'https://software.nju.edu.cn/')}
         style={{
+          opacity: 0,
           position: 'absolute',
           zIndex: 100,
           width: 180,
@@ -144,6 +227,7 @@ const ImgIntro: React.FC = () => {
           alignItems: 'center',
           left: 150,
           top: 120,
+          cursor: 'pointer',
         }}
       >
         <div style={{ position: 'relative', left: 15 }}>

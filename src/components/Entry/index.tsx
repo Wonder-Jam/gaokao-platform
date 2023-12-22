@@ -39,13 +39,13 @@ export default function Entry({ children }: { children: React.ReactNode }) {
   const scroll = useThrottle(useScroll(MainRef), { wait: 200 })
   const hidden = React.useMemo(() => {
     if (HeaderRef.current && scroll?.top) {
-      console.log(HeaderRef.current.clientHeight)
+      // console.log(HeaderRef.current.clientHeight)
       return scroll.top > HeaderRef.current.clientHeight
     }
     return false // 如果 HeaderRef.current 为 null，则返回默认值
   }, [scroll?.top])
   const headerStyle = React.useMemo(() => {
-    console.log(isScrollingDown.current)
+    // console.log(isScrollingDown.current)
     if (hidden && isScrollingDown.current) {
       // Scroll down, hide header
       return { transform: 'translateY(-100%)' }
@@ -73,10 +73,12 @@ export default function Entry({ children }: { children: React.ReactNode }) {
           }}
         ></div>
         <div
-          style={{
-            width: '100vw',
-            height: '92%',
-          }}
+          style={
+            {
+              // width: '100vw',
+              // height: '92%',
+            }
+          }
         >
           {children}
         </div>

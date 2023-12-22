@@ -21,9 +21,10 @@ export default function App({
       window.addEventListener('resize', setInnerHeight)
     })()
     ref.current = document.getElementById('__next')
-    if (ref.current) {
-      ref.current.style.height = 'calc(100 * var(--innerHeight))'
-    }
+    // 12.22修改
+    // if (ref.current) {
+    //   ref.current.style.height = 'calc(100 * var(--innerHeight))'
+    // }
   }, [])
   return (
     <ContainerContext.Provider value={{ container: ref }}>

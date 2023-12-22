@@ -1,0 +1,25 @@
+.container {
+  position: relative;
+}
+
+.progress {
+  height: 1rem;
+  position: fixed;
+  background: blue;
+  top: 0;
+  left: 0;
+  width: 100%;
+  transform-origin: 0 50%;
+  animation: scaleProgress auto linear;
+  z-index: 100;
+  animation-timeline: scroll(nearest y);
+}
+
+@keyframes scaleProgress {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}

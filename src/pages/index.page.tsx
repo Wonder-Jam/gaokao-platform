@@ -7,6 +7,7 @@ import Footer from '@/pages/HomePage/Footer'
 import RootLayout from '@/app/layout'
 import IndexHeader from '@/pages/HomePage/IndexHeader'
 import { VerticalAlignTopOutlined } from '@ant-design/icons'
+import './index.css'
 
 export default function Home() {
   let headerContainer: React.CSSProperties = {
@@ -18,16 +19,16 @@ export default function Home() {
   return (
     <>
       <RootLayout>
-        <div>
-          <IndexHeader></IndexHeader>
-          <Intro></Intro>
-          <IndexSearchSchool></IndexSearchSchool>
-          <IndexSearchMajor></IndexSearchMajor>
-          <IndexVideoPlay></IndexVideoPlay>
-          <Footer></Footer>
-          <ToTop></ToTop>
-        </div>
+        <div className={'container'}></div>
+        {/*<div className={'progress'}></div>*/}
       </RootLayout>
+      <IndexHeader></IndexHeader>
+      <Intro></Intro>
+      <IndexSearchSchool></IndexSearchSchool>
+      <IndexSearchMajor></IndexSearchMajor>
+      <IndexVideoPlay></IndexVideoPlay>
+      <Footer></Footer>
+      <ToTop></ToTop>
     </>
   )
 }
