@@ -13,7 +13,7 @@ import {
 import { List, Card, Tag, Space, Divider, Skeleton, Button } from 'antd'
 import { UniversityItem } from './style'
 import eventBus from '@/utils/eventBus'
-import { Searchbar } from './Searchbar'
+import  Searchbar  from '@/components/Searchbar'
 import FilterTag from './FilterTag'
 import { SearchContext } from '../Context/SearchContext'
 import InfiniteScroll from 'react-infinite-scroll-component'
@@ -213,15 +213,7 @@ const UniversityList: React.FC<AppPorps> = (props) => {
           })
           console.log(isFolded)
         }} />
-        {isFolded ? null : <Searchbar
-          style={{
-            width: '90%',
-            marginLeft: '5px',
-          }}
-        />}
-      </div>
-      {isFolded ? null : <FilterTag
-      <Searchbar
+        {isFolded ? null :       <Searchbar
         optionsData={options}
         onSearch={searshTargetSchool}
         style={{
@@ -230,8 +222,9 @@ const UniversityList: React.FC<AppPorps> = (props) => {
           marginLeft: '5px',
           marginRight: '5px',
         }}
-      />
-      <FilterTag
+      />}
+      </div>
+      {isFolded ? null : <FilterTag
         style={{
           width: '97%',
           height: '5%',
