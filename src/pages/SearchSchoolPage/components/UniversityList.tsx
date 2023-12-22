@@ -6,14 +6,11 @@ import React, {
   useCallback,
   useMemo,
 } from 'react'
-import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined
-} from '@ant-design/icons'
+import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons'
 import { List, Card, Tag, Space, Divider, Skeleton, Button } from 'antd'
 import { UniversityItem } from './style'
 import eventBus from '@/utils/eventBus'
-import { Searchbar } from './Searchbar'
+import Searchbar from '@/components/Searchbar'
 import FilterTag from './FilterTag'
 import { SearchContext } from '../Context/SearchContext'
 import InfiniteScroll from 'react-infinite-scroll-component'
@@ -62,7 +59,7 @@ export interface responseData {
   contentSize: number
   page: DataType[]
 }
-const UniversityList: React.FC<AppPorps> = (props) => {
+const UniversityList: React.FC<AppPorps> = props => {
   const [initLoading, setInitLoading] = useState(true)
   const [data, setData] = useState<DataType[]>([])
   const [list, setList] = useState<DataType[]>([])
@@ -200,92 +197,98 @@ const UniversityList: React.FC<AppPorps> = (props) => {
 
   return (
     <>
-      <div style={{
-        display: 'flex', flexDirection: 'row', height: '5%',
-        width: '97%',
-        marginLeft: '5px',
-        marginRight: '5px',
-      }}>
-        <Button icon={isFolded ? <MenuFoldOutlined /> : <MenuUnfoldOutlined />} onClick={() => {
-          setIsFolded(prev => {
-            props.setUniversityListWidth(!prev ? '4%' : '30%');
-            return !prev
-          })
-          console.log(isFolded)
-        }} />
-        {isFolded ? null : <Searchbar
-          style={{
-            width: '90%',
-            marginLeft: '5px',
-          }}
-        />}
-      </div>
-      {isFolded ? null : <FilterTag
-      <Searchbar
-        optionsData={options}
-        onSearch={searshTargetSchool}
+      <div
         style={{
+          display: 'flex',
+          flexDirection: 'row',
           height: '5%',
           width: '97%',
           marginLeft: '5px',
           marginRight: '5px',
-        }}
-      />
-      <FilterTag
-        style={{
-          width: '97%',
-          height: '5%',
-          marginLeft: '5px',
-          marginRight: '5px',
-        }}
-      />}
-      {isFolded ? null : <div
-        ref={listRef}
-        id="scrollableDiv"
-        style={{
-          overflowY: 'auto',
-          overflowX: 'hidden',
-          height: '90%',
         }}
       >
-        <InfiniteScroll
-          dataLength={list.length}
-          hasMore={needLoadMore}
-          endMessage={<Divider plain>It is all, nothing more 🤐</Divider>}
-          next={onLoadMore}
-          loader={<Skeleton avatar paragraph={{ rows: 1 }} active />}
-          scrollableTarget="scrollableDiv"
-        >
-          <List
-            className="demo-loadmore-list"
-            loading={initLoading}
-            grid={{ gutter: 16, column: 1 }}
-            itemLayout="horizontal"
-            dataSource={list}
-            renderItem={(item, index) => (
-              <List.Item
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  padding: '0px',
-                }}
-                ref={index === 0 ? listItemRef : null}
-              >
-                <Card
-                  loading={item.loading}
-                  hoverable={true}
-                  size="small"
-                  style={{ width: '97%', height: '15%', padding: '0px' }}
-                  onClick={() => onItemClicked(item)}
-                >
-                  <ListItem {...item} />
-                </Card>
-              </List.Item>
-            )}
+        <Button
+          icon={isFolded ? <MenuFoldOutlined /> : <MenuUnfoldOutlined />}
+          onClick={() => {
+            setIsFolded(prev => {
+              props.setUniversityListWidth(!prev ? '4%' : '30%')
+              return !prev
+            })
+            console.log(isFolded)
+          }}
+        />
+        {isFolded ? null : (
+          <Searchbar
+            optionsData={options}
+            onSearch={searshTargetSchool}
+            style={{
+              height: '5%',
+              width: '97%',
+              marginLeft: '5px',
+              marginRight: '5px',
+            }}
           />
-        </InfiniteScroll>
-      </div>}
+        )}
+      </div>
+      {isFolded ? null : (
+        <FilterTag
+          style={{
+            width: '97%',
+            height: '5%',
+            marginLeft: '5px',
+            marginRight: '5px',
+          }}
+        />
+      )}
+      {isFolded ? null : (
+        <div
+          ref={listRef}
+          id="scrollableDiv"
+          style={{
+            overflowY: 'auto',
+            overflowX: 'hidden',
+            height: '90%',
+          }}
+        >
+          <InfiniteScroll
+            dataLength={list.length}
+            hasMore={needLoadMore}
+            endMessage={<Divider plain>It is all, nothing more 🤐</Divider>}
+            next={onLoadMore}
+            loader={<Skeleton avatar paragraph={{ rows: 1 }} active />}
+            scrollableTarget="scrollableDiv"
+          >
+            <List
+              className="demo-loadmore-list"
+              loading={initLoading}
+              grid={{ gutter: 16, column: 1 }}
+              itemLayout="horizontal"
+              dataSource={list}
+              renderItem={(item, index) => (
+                <List.Item
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    padding: '0px',
+                  }}
+                  ref={index === 0 ? listItemRef : null}
+                >
+                  <Card
+                    loading={item.loading}
+                    hoverable={true}
+                    size="small"
+                    style={{ width: '97%', height: '15%', padding: '0px' }}
+                    onClick={() => onItemClicked(item)}
+                  >
+                    <ListItem {...item} />
+                  </Card>
+                </List.Item>
+              )}
+            />
+          </InfiniteScroll>
+        </div>
+      )}
     </>
   )
 }

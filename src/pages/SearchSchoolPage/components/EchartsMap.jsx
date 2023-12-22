@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef, useContext } from 'react'
 import * as echarts from 'echarts'
 import { SearchContext } from '../Context/SearchContext'
-import { Dropdown, Button } from 'antd'
+import { Dropdown, Button, Spin } from 'antd'
 import { BarChartOutlined } from '@ant-design/icons'
 import {
   gdpData,
@@ -31,6 +31,7 @@ function EChartsMap() {
   // const map = 'china'
   const chartRef = useRef(null)
   const myChart = useRef(null)
+  const [isLoadingScatter, setIsLoadingScatter] = useState(false)
   const task = locationFetch => {
     // if (province === Enum.province.None) {
     //   myChart.current.setOption({
@@ -57,6 +58,7 @@ function EChartsMap() {
     //     ]
     //   })
     // }
+    setIsLoadingScatter(true)
     fetch(locationFetch)
       .then(res => res.json())
       .then(data => {
@@ -83,6 +85,7 @@ function EChartsMap() {
       .catch(err => {
         console.log(err)
       })
+      .finally(() => setIsLoadingScatter(false))
   }
 
   function startInterval(locationFetch) {
@@ -240,9 +243,13 @@ function EChartsMap() {
   useEffect(() => {
     // console.log('something changed')
     // setFeatures(null)
-    myChart.current.showLoading({
-      color: '#1677ff',
-    })
+    if (province === Enum.province.None) {
+      // startInterval('api/locateUniversityRandomly_v2')
+      task('api/locateUniversityRandomly_v2')
+    } else {
+      clearInterval(locationInterval)
+      task(`api/locateUniversityByProvince_v2?location=${province}`)
+    }
     fetch(proviceDataMap.get(province))
       .then(responce => responce.json())
       .then(data => {
@@ -254,14 +261,6 @@ function EChartsMap() {
         }
         // setFeatures(data)
         console.log(data)
-        myChart.current.hideLoading()
-        if (province === Enum.province.None) {
-          // startInterval('api/locateUniversityRandomly_v2')
-          task('api/locateUniversityRandomly_v2')
-        } else {
-          clearInterval(locationInterval)
-          task(`api/locateUniversityByProvince_v2?location=${province}`)
-        }
       })
       .catch(error => {
         console.error(error)
@@ -565,9 +564,11 @@ function EChartsMap() {
         )}
       </div>
       {typeof window !== 'undefined' && (
-        <div ref={chartRef} style={{ height: '90vh', margin: 'auto' }}>
-          Loading...
-        </div>
+        <Spin spinning={isLoadingScatter}>
+          <div ref={chartRef} style={{ height: '90vh', margin: 'auto' }}>
+            Loading...
+          </div>
+        </Spin>
       )}
     </>
   )

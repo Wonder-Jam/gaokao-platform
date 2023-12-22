@@ -19,8 +19,8 @@ export const Layer = styled.div`
   overflow: hidden;
 `
 
-export const CardListContainer = styled.div<{width: string}>`
-  width: ${({width})=>(width)};
+export const CardListContainer = styled.div<{ width: string }>`
+  width: ${({ width }) => width};
   height: 100%;
   overflow-y: hidden;
   overflow-x: hidden;
