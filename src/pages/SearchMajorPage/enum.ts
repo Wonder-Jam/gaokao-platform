@@ -11,7 +11,8 @@ export enum majorCategories {
   Agriculture = '农学',
   Medicine = '医学',
   Management = '管理学',
-  Arts = '艺术学',
+  // Arts = '艺术学',
+  Military = '军事学',
 }
 
 export enum rank {
