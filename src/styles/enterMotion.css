@@ -1,5 +1,5 @@
 .slideRight {
-  animation: slideRight 1s ease forwards infinite;
+  animation: slideRight 1s ease forwards;
 }
 
 @keyframes slideRight {
@@ -14,7 +14,7 @@
 }
 
 .slideLeft {
-  animation: slideLeft 1s ease forwards infinite;
+  animation: slideLeft 1s ease forwards;
 }
 
 @keyframes slideLeft {

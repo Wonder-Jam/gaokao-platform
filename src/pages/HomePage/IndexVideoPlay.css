@@ -1,0 +1,97 @@
+.video-1 {
+  position: relative;
+  background-color: #efefef;
+  overflow: hidden;
+  width: 38%;
+  border-radius: 20px;
+  opacity: 0;
+}
+
+.video-2 {
+  position: relative;
+  background-color: #efefef;
+  overflow: hidden;
+  width: 24%;
+  border-radius: 20px;
+  opacity: 0;
+}
+
+.video-group {
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.video-3 {
+  position: relative;
+  background-color: #efefef;
+  overflow: hidden;
+  height: 48%;
+  border-radius: 20px;
+  opacity: 0;
+}
+
+.video-4 {
+  position: relative;
+  background-color: #efefef;
+  overflow: hidden;
+  height: 48%;
+  border-radius: 20px;
+  opacity: 0;
+}
+
+.mot-1 {
+  animation: mot-1 0.5s ease forwards;
+}
+@keyframes mot-1 {
+  0% {
+    transform: translateX(-100px);
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.mot-2 {
+  animation: mot-2 0.5s ease forwards;
+  animation-delay: 0.5s;
+}
+@keyframes mot-2 {
+  0% {
+    transform: translateY(100px);
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.mot-3 {
+  animation: mot-3 0.5s ease forwards;
+  animation-delay: 1s;
+}
+@keyframes mot-3 {
+  0% {
+    transform: translateY(-100px);
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.mot-4 {
+  animation: mot-4 0.5s ease forwards;
+  animation-delay: 1s;
+}
+@keyframes mot-4 {
+  0% {
+    transform: translateY(100px);
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

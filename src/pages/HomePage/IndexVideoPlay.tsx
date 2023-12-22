@@ -1,6 +1,42 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
+import './IndexVideoPlay.css'
+import '../../styles/enterMotion.css'
 
 const IndexVideoPlay: React.FC = () => {
+  const elVideo1 = useRef(null)
+  const elVideo2 = useRef(null)
+  const elVideo3 = useRef(null)
+  const elVideo4 = useRef(null)
+
+  const eltitle = useRef(null)
+  const elintro = useRef(null)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // @ts-ignore
+      const rect = elVideo4.current?.getBoundingClientRect()
+      if (rect.top < window.innerHeight && rect.bottom >= 0) {
+        // @ts-ignore
+        eltitle.current.classList.add('slideLeft')
+        // @ts-ignore
+        elintro.current.classList.add('slideLeft')
+
+        // @ts-ignore
+        elVideo1.current.classList.add('mot-1')
+        // @ts-ignore
+        elVideo2.current.classList.add('mot-2')
+        // @ts-ignore
+        elVideo3.current.classList.add('mot-3')
+        // @ts-ignore
+        elVideo4.current.classList.add('mot-4')
+      }
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
   return (
     <div
       style={{
@@ -27,8 +63,9 @@ const IndexVideoPlay: React.FC = () => {
           // paddingLeft: 50
         }}
       >
-        <div style={{}}>
+        <div>
           <p
+            ref={eltitle}
             style={{
               lineHeight: 1.15,
               // color: '#000',
@@ -40,11 +77,14 @@ const IndexVideoPlay: React.FC = () => {
               fontSize: '38px',
               letterSpacing: '.02em',
               marginBottom: '10px',
+              animationDelay: '1.5s',
+              opacity: 0,
             }}
           >
             看一看
           </p>
           <div
+            ref={elintro}
             style={{
               lineHeight: 1.15,
               fontFamily:
@@ -54,9 +94,11 @@ const IndexVideoPlay: React.FC = () => {
               fontSize: '20px',
               letterSpacing: '.02em',
               color: '#777e87',
+              animationDelay: '2.5s',
+              opacity: 0,
             }}
           >
-            嚼得菜根，做得大事
+            大学宣传资讯，应有尽有!
           </div>
         </div>
       </div>
@@ -71,31 +113,14 @@ const IndexVideoPlay: React.FC = () => {
           justifyContent: 'space-between',
         }}
       >
-        <div
-          className={'video-1'}
-          style={{
-            position: 'relative',
-            backgroundColor: '#efefef',
-            overflow: 'hidden',
-            width: '38%',
-            borderRadius: '20px',
-          }}
-        >
+        <div ref={elVideo1} className={'video-1'}>
           <video autoPlay loop muted height={'100%'}>
             <source src="/love.mp4" type="video/mp4" />
             Net error
           </video>
         </div>
-        <div
-          className={'video-2'}
-          style={{
-            position: 'relative',
-            backgroundColor: '#efefef',
-            overflow: 'hidden',
-            width: '24%',
-            borderRadius: '20px',
-          }}
-        >
+
+        <div ref={elVideo2} className={'video-2'}>
           <video
             autoPlay
             loop
@@ -107,24 +132,9 @@ const IndexVideoPlay: React.FC = () => {
             Net error
           </video>
         </div>
-        <div
-          className={'video-group'}
-          style={{
-            width: '35%',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-          }}
-        >
-          <div
-            style={{
-              position: 'relative',
-              backgroundColor: '#efefef',
-              overflow: 'hidden',
-              height: '48%',
-              borderRadius: '20px',
-            }}
-          >
+
+        <div className={'video-group'}>
+          <div ref={elVideo3} className={'video-3'}>
             <video
               autoPlay
               loop
@@ -136,15 +146,8 @@ const IndexVideoPlay: React.FC = () => {
               Net error
             </video>
           </div>
-          <div
-            style={{
-              position: 'relative',
-              backgroundColor: '#efefef',
-              overflow: 'hidden',
-              height: '48%',
-              borderRadius: '20px',
-            }}
-          >
+
+          <div ref={elVideo4} className={'video-4'}>
             <video
               autoPlay
               loop
