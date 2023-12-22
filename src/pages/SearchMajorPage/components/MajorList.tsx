@@ -67,6 +67,7 @@ const MajorList: React.FC = () => {
           loading: true,
           name: '',
           picture: {},
+          tags: [] // Add the 'tags' property with an empty array
         })),
       ),
     )
