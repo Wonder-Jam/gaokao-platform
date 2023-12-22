@@ -8,7 +8,7 @@ const Intro: React.FC = () => {
         boxSizing: 'border-box',
         // backgroundColor: '#efefef',
         width: '1280px',
-        margin: '200px auto 200px',
+        margin: '200px auto 230px',
       }}
     >
       <div

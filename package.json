@@ -36,6 +36,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-infinite-scroll-component": "^6.1.0",
+    "typed.js": "^2.1.0",
     "typescript": "5.2.2",
     "xgplayer": "^3.0.10"
   },

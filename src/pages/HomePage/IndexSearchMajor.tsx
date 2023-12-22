@@ -123,9 +123,9 @@ const IndexSearchMajor: React.FC = () => {
           </div>
 
           <ul>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
+            <li className={'desList'}>独特交互式地图指引，了解大学地理全貌</li>
+            <li className={'desList'}>从GDP、教育经费等筛选，增加择校维度</li>
+            <li className={'desList'}>全面精炼信息展示，迅速掌握大学概况</li>
           </ul>
         </div>
       </div>

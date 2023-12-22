@@ -1,8 +1,9 @@
 // "use client"
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './IndexSearchSchool.css'
 import { SearchOutlined } from '@ant-design/icons'
+import Typed from 'typed.js'
 
 const IndexSearchSchool: React.FC = () => {
   return (
@@ -69,9 +70,9 @@ const IndexSearchSchool: React.FC = () => {
           </div>
 
           <ul>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
+            <li className={'desList'}>独特交互式地图指引，了解大学地理全貌</li>
+            <li className={'desList'}>从GDP、教育经费等筛选，增加择校维度</li>
+            <li className={'desList'}>全面精炼信息展示，迅速掌握大学概况</li>
           </ul>
         </div>
       </div>
@@ -92,6 +93,20 @@ const IndexSearchSchool: React.FC = () => {
 }
 
 const ImgIntro: React.FC = () => {
+  const el = useRef(null)
+  useEffect(() => {
+    const typed = new Typed(el.current, {
+      strings: ['世界第一', '全国第二'],
+      typeSpeed: 100,
+      backSpeed: 100,
+      backDelay: 1000,
+      loop: true,
+    })
+
+    return () => {
+      typed.destroy()
+    }
+  }, [])
   return (
     <div
       style={{
@@ -105,7 +120,7 @@ const ImgIntro: React.FC = () => {
     >
       <div className={'img0'} style={{ zIndex: 9 }}>
         <img
-          src="/images/slider3.jpg"
+          src="/images/c3.jpg"
           alt="loading"
           style={{
             width: '280px',
@@ -126,15 +141,17 @@ const ImgIntro: React.FC = () => {
           borderRadius: 32,
           backgroundColor: '#efefef',
           display: 'flex',
-          justifyContent: 'center',
           alignItems: 'center',
           left: 150,
           top: 120,
         }}
       >
-        <SearchOutlined />
-        <span>&ensp;南京带学</span>
-        <span className={'flicker'}>__</span>
+        <div style={{ position: 'relative', left: 15 }}>
+          <SearchOutlined />
+          <span>&ensp;&ensp;&ensp;</span>
+        </div>
+
+        <span ref={el} style={{ color: '#777e87' }}></span>
       </div>
     </div>
   )

@@ -85,7 +85,7 @@ const Slider: React.FC<{ indexActive: number }> = ({ indexActive }) => {
                   <Image
                     height={'100%'}
                     width={'100%'}
-                    src={'/images/slider2.jpg'}
+                    src={'/images/slider3.jpg'}
                   ></Image>
                 </div>
               </QueueAnim>
