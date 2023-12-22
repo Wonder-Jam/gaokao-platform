@@ -96,6 +96,7 @@
     grid-column 3s,
     grid-row 3s;
   /*display: inline-block;*/
+  opacity: 0;
 }
 
 .card {
@@ -195,4 +196,56 @@
 .desList {
   color: #777e87;
   font-size: 16px;
+}
+
+.motionImg1 {
+  animation: motionImg1 1s ease-in forwards;
+}
+@keyframes motionImg1 {
+  0% {
+    transform: translate(90px, 90px);
+  }
+  100% {
+    transform: translate(0px, 0px);
+    opacity: 1;
+  }
+}
+
+.motionImg2 {
+  animation: motionImg2 1s ease-in forwards;
+}
+@keyframes motionImg2 {
+  0% {
+    transform: translate(-90px, 90px);
+  }
+  100% {
+    transform: translate(0px, 0px);
+    opacity: 1;
+  }
+}
+
+.motionImg3 {
+  animation: motionImg3 1s ease-in forwards;
+}
+@keyframes motionImg3 {
+  0% {
+    transform: translate(90px, -90px);
+  }
+  100% {
+    transform: translate(0px, 0px);
+    opacity: 1;
+  }
+}
+
+.motionImg4 {
+  animation: motionImg4 1s ease-in forwards;
+}
+@keyframes motionImg4 {
+  0% {
+    transform: translate(-90px, -90px);
+  }
+  100% {
+    transform: translate(0px, 0px);
+    opacity: 1;
+  }
 }
