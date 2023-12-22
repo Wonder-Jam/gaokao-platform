@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef, useContext } from 'react'
 import * as echarts from 'echarts'
 import { SearchContext } from '../Context/SearchContext'
-import { Dropdown, Button } from 'antd'
+import { Dropdown, Button, Spin } from 'antd'
 import { BarChartOutlined } from '@ant-design/icons'
 import {
   gdpData,
@@ -26,43 +26,77 @@ let locationInterval = null
 function EChartsMap() {
   const { province, city, rank, filterSchool, setChoices } =
     useContext(SearchContext)
-  const [features, setFeatures] = useState(null)
-  const [map, setMap] = useState('china')
+  // const [features, setFeatures] = useState(null)
+  // const [map, setMap] = useState('china')
   // const map = 'china'
   const chartRef = useRef(null)
   const myChart = useRef(null)
+  const [isLoadingScatter, setIsLoadingScatter] = useState(false)
+  const task = locationFetch => {
+    // if (province === Enum.province.None) {
+    //   myChart.current.setOption({
+    //     geo: {
+    //       roam: false,
+    //     },
+    //     series: [
+    //       {
+    //         name: 'map',
+    //         roam: false,
+    //       }
+    //     ]
+    //   })
+    // } else {
+    //   myChart.current.setOption({
+    //     geo: {
+    //       roam: true,
+    //     },
+    //     series: [
+    //       {
+    //         name: 'map',
+    //         roam: true,
+    //       }
+    //     ]
+    //   })
+    // }
+    setIsLoadingScatter(true)
+    fetch(locationFetch)
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+        const tmpScatter = data.map(item => {
+          return {
+            value: [item.lon, item.lat],
+            name: item.name,
+            symbol: 'image://' + item.logo,
+            symbolSize: 20,
+          }
+        })
+        console.log(tmpScatter)
+        myChart.current.setOption({
+          series: [
+            {
+              name: 'school',
+              data: tmpScatter,
+              colorBy: 'data',
+            },
+          ],
+        })
+      })
+      .catch(err => {
+        console.log(err)
+      })
+      .finally(() => setIsLoadingScatter(false))
+  }
 
   function startInterval(locationFetch) {
     console.log('start interval!')
     if (locationInterval) {
       clearInterval(locationInterval)
     }
-    const task = () => {
-      fetch(locationFetch)
-        .then(res => res.json())
-        .then(data => {
-          console.log(data)
-          const tmpScatter = data.map(item => [
-            item.location.lng,
-            item.location.lat,
-            100,
-          ])
-          console.log(tmpScatter)
-          myChart.current.setOption({
-            series: [
-              {
-                name: 'school',
-                data: tmpScatter,
-              },
-            ],
-          })
-        })
-        .catch(err => {
-          console.log(err)
-        })
-    }
-    task()
-    locationInterval = setInterval(task, 10000)
+    task(locationFetch)
+    locationInterval = setInterval(() => {
+      task(locationFetch)
+    }, 10000)
   }
 
   useEffect(() => {
@@ -73,7 +107,7 @@ function EChartsMap() {
     }
   }, [])
 
-  const initEChart = () => {
+  const initEChart = (map, features) => {
     if (myChart.current) {
       echarts.registerMap(map, features)
       const option = {
@@ -114,8 +148,40 @@ function EChartsMap() {
           type: 'map',
           map: map,
           // name: 'map',
-          roam: false, // 一定要关闭拖拽
+          roam: true, // 一定要关闭拖拽
+          center:
+            province === Enum.province.None
+              ? ''
+              : features.features[0].properties.center,
           zoom: 1.0,
+          showLegendSymbol: false, // 存在legend时显示
+          selectedMode: 'single',
+          itemStyle: {
+            areaColor: '#F0F8FF',
+            borderColor: '#1677FF',
+            borderWidth: 0.7, //设置外层边框
+            shadowBlur: 4,
+            // shadowOffsetY: 8,
+            // shadowOffsetX: 0,
+            shadowColor: '#87CEFA',
+          },
+          emphasis: {
+            itemStyle: {
+              areaColor: '#F5FFFA',
+              // shadowOffsetX: 0,
+              // shadowOffsetY: 0,
+              shadowBlur: 5,
+              borderWidth: 0,
+              shadowColor: 'rgba(0, 0, 0, 0.5)',
+            },
+          },
+          select: {
+            itemStyle: {
+              areaColor: '#F0FFFF',
+              borderWidth: 1,
+              borderColor: '#ADD8E6',
+            },
+          },
           // center: [105, 35], // 调整地图位置
         },
         series: [
@@ -130,9 +196,7 @@ function EChartsMap() {
             name: 'school',
             type: 'scatter',
             coordinateSystem: 'geo',
-            rippleEffect: {
-              color: '#1677FF',
-            },
+            geoIndex: 0,
             // data: scatter
             // data: [
             //   [121.47,31.23, 0],
@@ -144,34 +208,8 @@ function EChartsMap() {
             type: 'map',
             map: map,
             name: 'map',
-            showLegendSymbol: false, // 存在legend时显示
-            selectedMode: 'single',
-            itemStyle: {
-              areaColor: '#F0F8FF',
-              borderColor: '#1677FF',
-              borderWidth: 0.7, //设置外层边框
-              shadowBlur: 4,
-              // shadowOffsetY: 8,
-              // shadowOffsetX: 0,
-              shadowColor: '#87CEFA',
-            },
-            emphasis: {
-              itemStyle: {
-                areaColor: '#F5FFFA',
-                // shadowOffsetX: 0,
-                // shadowOffsetY: 0,
-                shadowBlur: 5,
-                borderWidth: 0,
-                shadowColor: 'rgba(0, 0, 0, 0.5)',
-              },
-            },
-            select: {
-              itemStyle: {
-                areaColor: '#F0FFFF',
-                borderWidth: 1,
-                borderColor: '#ADD8E6',
-              },
-            },
+            geoIndex: 0,
+            // roam: true,
           },
         ],
       }
@@ -204,31 +242,25 @@ function EChartsMap() {
   }, [chartRef.current])
   useEffect(() => {
     // console.log('something changed')
-    setFeatures(null)
-    myChart.current.showLoading({
-      color: '#1677ff',
-    })
+    // setFeatures(null)
+    if (province === Enum.province.None) {
+      // startInterval('api/locateUniversityRandomly_v2')
+      task('api/locateUniversityRandomly_v2')
+    } else {
+      clearInterval(locationInterval)
+      task(`api/locateUniversityByProvince_v2?location=${province}`)
+    }
     fetch(proviceDataMap.get(province))
       .then(responce => responce.json())
       .then(data => {
         // setMap('tmp')
         if (province !== Enum.province.None) {
-          setMap('tmp')
+          initEChart('tmp', data)
         } else {
-          setMap('china')
+          initEChart('china', data)
         }
-        setFeatures(data)
+        // setFeatures(data)
         console.log(data)
-        myChart.current.hideLoading()
-        if (province === Enum.province.None) {
-          startInterval('api/locateUniversityRandomly')
-        } else {
-          startInterval(
-            `api/locateUniversityByProvince?province=${reverseProvinceMap.get(
-              province,
-            )}`,
-          )
-        }
       })
       .catch(error => {
         console.error(error)
@@ -244,218 +276,218 @@ function EChartsMap() {
   }
 
   useEffect(() => {
-    if (features) {
-      switch (rank) {
-        case Enum.rank.None:
-          if (province === Enum.province.None) {
-            setMap('tmp')
-            myChart.current.setOption({
-              visualMap: {
-                show: false,
-              },
-              series: [
-                {
-                  name: 'map',
-                  data: [],
-                  itemStyle: {
-                    areaColor: '#F0F8FF',
-                    borderColor: '#1677FF',
-                    borderWidth: 1, //设置外层边框
-                    shadowBlur: 4,
-                    // shadowOffsetY: 8,
-                    // shadowOffsetX: 0,
-                    // shadowColor: '#87CEFA',
-                  },
-                },
-              ],
-              // legend: {
-              //     // Try 'horizontal'
-              //     show: false,
-              // },
-            })
-          }
-          break
-        case Enum.rank.GDP:
-          // TODO: 后续展示不同的数据，可以将代码逻辑抽象
-          if (province === Enum.province.None) {
-            const max = getMax(gdpData)
-            myChart.current.setOption({
-              visualMap: {
-                show: true,
-                min: 0,
-                max: max,
-                text: ['高', '低'],
-                realtime: false,
-                calculable: true,
-                inRange: {
-                  color: ['#F0FFFF', '#0000CD'],
+    // if (features) {
+    switch (rank) {
+      case Enum.rank.None:
+        if (province === Enum.province.None) {
+          // setMap('tmp')
+          myChart.current.setOption({
+            visualMap: {
+              show: false,
+            },
+            series: [
+              {
+                name: 'map',
+                data: [],
+                itemStyle: {
+                  areaColor: '#F0F8FF',
+                  borderColor: '#1677FF',
+                  borderWidth: 1, //设置外层边框
+                  shadowBlur: 4,
+                  // shadowOffsetY: 8,
+                  // shadowOffsetX: 0,
+                  // shadowColor: '#87CEFA',
                 },
               },
-              series: [
-                {
-                  name: 'map',
-                  data: gdpData,
-                  itemStyle: {
-                    areaColor: '#F0F8FF',
-                    borderColor: '#1677FF',
-                    borderWidth: 0.7, //设置外层边框
-                    shadowBlur: 4,
-                    // shadowOffsetY: 1,
-                    // shadowOffsetX: 0,
-                    // shadowColor: '#87CEFA',
-                  },
-                },
-              ],
-            })
-            console.log('set gdp')
-          }
-          break
-        case Enum.rank._985:
-          if (province === Enum.province.None) {
-            const max = getMax(universities985)
-            myChart.current.setOption({
-              visualMap: {
-                show: true,
-                min: 0,
-                max: max,
-                text: ['高', '低'],
-                realtime: false,
-                calculable: true,
-                inRange: {
-                  color: ['#FFF0F5', '#FF4500'],
+            ],
+            // legend: {
+            //     // Try 'horizontal'
+            //     show: false,
+            // },
+          })
+        }
+        break
+      case Enum.rank.GDP:
+        // TODO: 后续展示不同的数据，可以将代码逻辑抽象
+        if (province === Enum.province.None) {
+          const max = getMax(gdpData)
+          myChart.current.setOption({
+            visualMap: {
+              show: true,
+              min: 0,
+              max: max,
+              text: ['高', '低'],
+              realtime: false,
+              calculable: true,
+              inRange: {
+                color: ['#F0FFFF', '#0000CD'],
+              },
+            },
+            series: [
+              {
+                name: 'map',
+                data: gdpData,
+                itemStyle: {
+                  areaColor: '#F0F8FF',
+                  borderColor: '#1677FF',
+                  borderWidth: 0.7, //设置外层边框
+                  shadowBlur: 4,
+                  // shadowOffsetY: 1,
+                  // shadowOffsetX: 0,
+                  // shadowColor: '#87CEFA',
                 },
               },
-              series: [
-                {
-                  name: 'map',
-                  data: universities985,
-                  itemStyle: {
-                    areaColor: '#F0F8FF',
-                    borderColor: '#1677FF',
-                    borderWidth: 0.7, //设置外层边框
-                    shadowBlur: 4,
-                    // shadowOffsetY: 1,
-                    // shadowOffsetX: 0,
-                    // shadowColor: '#87CEFA',
-                  },
-                },
-              ],
-            })
-            console.log('set 985')
-          }
-          break
-        case Enum.rank._211:
-          if (province === Enum.province.None) {
-            const max = getMax(universities211)
-            console.log(max)
-            myChart.current.setOption({
-              visualMap: {
-                show: true,
-                min: 0,
-                max: max,
-                text: ['高', '低'],
-                realtime: false,
-                calculable: true,
-                inRange: {
-                  color: ['#E0FFFF', '#228B22'],
+            ],
+          })
+          console.log('set gdp')
+        }
+        break
+      case Enum.rank._985:
+        if (province === Enum.province.None) {
+          const max = getMax(universities985)
+          myChart.current.setOption({
+            visualMap: {
+              show: true,
+              min: 0,
+              max: max,
+              text: ['高', '低'],
+              realtime: false,
+              calculable: true,
+              inRange: {
+                color: ['#FFF0F5', '#FF4500'],
+              },
+            },
+            series: [
+              {
+                name: 'map',
+                data: universities985,
+                itemStyle: {
+                  areaColor: '#F0F8FF',
+                  borderColor: '#1677FF',
+                  borderWidth: 0.7, //设置外层边框
+                  shadowBlur: 4,
+                  // shadowOffsetY: 1,
+                  // shadowOffsetX: 0,
+                  // shadowColor: '#87CEFA',
                 },
               },
-              series: [
-                {
-                  name: 'map',
-                  data: universities211,
-                  itemStyle: {
-                    areaColor: '#F0F8FF',
-                    borderColor: '#1677FF',
-                    borderWidth: 0.7, //设置外层边框
-                    shadowBlur: 4,
-                    // shadowOffsetY: 1,
-                    // shadowOffsetX: 0,
-                    // shadowColor: '#87CEFA',
-                  },
-                },
-              ],
-            })
-            console.log('set 211')
-          }
-          break
-        case Enum.rank.DoubleFristClass:
-          if (province === Enum.province.None) {
-            const max = getMax(universitiesDoubleFirstClass)
-            console.log(max)
-            myChart.current.setOption({
-              visualMap: {
-                show: true,
-                min: 0,
-                max: max,
-                text: ['高', '低'],
-                realtime: false,
-                calculable: true,
-                inRange: {
-                  color: ['#FFFFE0', '#CD9B1D'],
+            ],
+          })
+          console.log('set 985')
+        }
+        break
+      case Enum.rank._211:
+        if (province === Enum.province.None) {
+          const max = getMax(universities211)
+          console.log(max)
+          myChart.current.setOption({
+            visualMap: {
+              show: true,
+              min: 0,
+              max: max,
+              text: ['高', '低'],
+              realtime: false,
+              calculable: true,
+              inRange: {
+                color: ['#E0FFFF', '#228B22'],
+              },
+            },
+            series: [
+              {
+                name: 'map',
+                data: universities211,
+                itemStyle: {
+                  areaColor: '#F0F8FF',
+                  borderColor: '#1677FF',
+                  borderWidth: 0.7, //设置外层边框
+                  shadowBlur: 4,
+                  // shadowOffsetY: 1,
+                  // shadowOffsetX: 0,
+                  // shadowColor: '#87CEFA',
                 },
               },
-              series: [
-                {
-                  name: 'map',
-                  data: universitiesDoubleFirstClass,
-                  itemStyle: {
-                    areaColor: '#F0F8FF',
-                    borderColor: '#1677FF',
-                    borderWidth: 0.7, //设置外层边框
-                    shadowBlur: 4,
-                    // shadowOffsetY: 1,
-                    // shadowOffsetX: 0,
-                    // shadowColor: '#87CEFA',
-                  },
-                },
-              ],
-            })
-            console.log('set double first class')
-          }
-          break
-        case Enum.rank.EduFunds:
-          if (province === Enum.province.None) {
-            const max = getMax(educationBudget)
-            console.log(max)
-            myChart.current.setOption({
-              visualMap: {
-                show: true,
-                min: 0,
-                max: max,
-                text: ['高', '低'],
-                realtime: false,
-                calculable: true,
-                inRange: {
-                  color: ['#FFFAFA', '#8B8378'],
+            ],
+          })
+          console.log('set 211')
+        }
+        break
+      case Enum.rank.DoubleFristClass:
+        if (province === Enum.province.None) {
+          const max = getMax(universitiesDoubleFirstClass)
+          console.log(max)
+          myChart.current.setOption({
+            visualMap: {
+              show: true,
+              min: 0,
+              max: max,
+              text: ['高', '低'],
+              realtime: false,
+              calculable: true,
+              inRange: {
+                color: ['#FFFFE0', '#CD9B1D'],
+              },
+            },
+            series: [
+              {
+                name: 'map',
+                data: universitiesDoubleFirstClass,
+                itemStyle: {
+                  areaColor: '#F0F8FF',
+                  borderColor: '#1677FF',
+                  borderWidth: 0.7, //设置外层边框
+                  shadowBlur: 4,
+                  // shadowOffsetY: 1,
+                  // shadowOffsetX: 0,
+                  // shadowColor: '#87CEFA',
                 },
               },
-              series: [
-                {
-                  name: 'map',
-                  data: educationBudget,
-                  itemStyle: {
-                    areaColor: '#F0F8FF',
-                    borderColor: '#1677FF',
-                    borderWidth: 0.7, //设置外层边框
-                    shadowBlur: 4,
-                    // shadowOffsetY: 1,
-                    // shadowOffsetX: 0,
-                    // shadowColor: '#87CEFA',
-                  },
+            ],
+          })
+          console.log('set double first class')
+        }
+        break
+      case Enum.rank.EduFunds:
+        if (province === Enum.province.None) {
+          const max = getMax(educationBudget)
+          console.log(max)
+          myChart.current.setOption({
+            visualMap: {
+              show: true,
+              min: 0,
+              max: max,
+              text: ['高', '低'],
+              realtime: false,
+              calculable: true,
+              inRange: {
+                color: ['#FFFAFA', '#8B8378'],
+              },
+            },
+            series: [
+              {
+                name: 'map',
+                data: educationBudget,
+                itemStyle: {
+                  areaColor: '#F0F8FF',
+                  borderColor: '#1677FF',
+                  borderWidth: 0.7, //设置外层边框
+                  shadowBlur: 4,
+                  // shadowOffsetY: 1,
+                  // shadowOffsetX: 0,
+                  // shadowColor: '#87CEFA',
                 },
-              ],
-            })
-            console.log('set edu funds')
-          }
-          break
-      }
+              },
+            ],
+          })
+          console.log('set edu funds')
+        }
+        break
     }
+    // }
   }, [rank])
 
-  if (features) {
-    initEChart()
-  }
+  // if (features) {
+  //   initEChart()
+  // }
 
   const items = [
     {
@@ -532,9 +564,11 @@ function EChartsMap() {
         )}
       </div>
       {typeof window !== 'undefined' && (
-        <div ref={chartRef} style={{ height: '85vh', margin: 'auto' }}>
-          Loading...
-        </div>
+        <Spin spinning={isLoadingScatter}>
+          <div ref={chartRef} style={{ height: '90vh', margin: 'auto' }}>
+            Loading...
+          </div>
+        </Spin>
       )}
     </>
   )

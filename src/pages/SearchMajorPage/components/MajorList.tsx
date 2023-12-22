@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Input, Button, List, Skeleton, Typography } from 'antd'
+import { Input, Button, List, Skeleton, Typography, Space, Tag } from 'antd'
 import { MajorItem } from './style'
 import { it } from 'node:test'
 import { SearchProps } from 'antd/es/input/Search'
@@ -33,6 +33,7 @@ interface DataType {
   // nat?: string;
   loading: boolean
   description?: string
+  tags: string[]
 }
 
 const count = 3
@@ -66,6 +67,7 @@ const MajorList: React.FC = () => {
           loading: true,
           name: '',
           picture: {},
+          tags: [], // Add the 'tags' property with an empty array
         })),
       ),
     )
@@ -114,7 +116,13 @@ const MajorList: React.FC = () => {
           <p style={{ margin: '0px', marginTop: '5px', color: 'gray' }}>
             平均薪酬：￥{item.salary}
           </p>
-          <p style={{ margin: '0px', marginTop: '2px' }}>{item.description}</p>
+          <Space size={[0, 4]} wrap>
+            {item.tags[0] ? <Tag color="#f50">{item.tags[0]}</Tag> : null}
+            {item.tags[1] ? <Tag color="#2db7f5">{item.tags[1]}</Tag> : null}
+            {item.tags[2] ? <Tag color="#87d068">{item.tags[2]}</Tag> : null}
+            {item.tags[3] ? <Tag color="#108ee9">{item.tags[3]}</Tag> : null}
+          </Space>
+          {/*<p style={{ margin: '0px', marginTop: '2px' }}>{item.description}</p>*/}
         </div>
       </MajorItem>
     )
