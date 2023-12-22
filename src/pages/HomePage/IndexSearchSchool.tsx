@@ -104,21 +104,21 @@ const IndexSearchSchool: React.FC = () => {
               className={'desList'}
               style={{ animationDelay: '4.3s' }}
             >
-              独特交互式地图指引，了解大学地理全貌
+              独特交互式地图，轻松了解大学地理全貌
             </li>
             <li
               ref={eldes2}
               className={'desList'}
               style={{ animationDelay: '4.8s' }}
             >
-              从GDP、教育经费等筛选，增加择校维度
+              从GDP开始筛选，增加择校考虑条件维度
             </li>
             <li
               ref={eldes3}
               className={'desList'}
               style={{ animationDelay: '5.3s' }}
             >
-              全面精炼信息展示，迅速掌握大学概况
+              精而全信息展示，从此不再担心有信息差
             </li>
           </ul>
         </div>

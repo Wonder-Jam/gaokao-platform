@@ -170,7 +170,7 @@ const IndexSearchMajor: React.FC = () => {
               className={'desList'}
               style={{ opacity: 0, animationDelay: '2s' }}
             >
-              探索小众专业，发现你的兴趣
+              小众专业，尽情探索你的兴趣
             </li>
             <li
               ref={eldes2}
@@ -184,7 +184,7 @@ const IndexSearchMajor: React.FC = () => {
               className={'desList'}
               style={{ opacity: 0, animationDelay: '3s' }}
             >
-              深度专业解析，选择不再迷茫
+              深度解析，从此选择不再迷茫
             </li>
           </ul>
         </div>
