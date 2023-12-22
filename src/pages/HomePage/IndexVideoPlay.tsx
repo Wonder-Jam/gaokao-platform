@@ -94,7 +94,7 @@ const IndexVideoPlay: React.FC = () => {
               fontSize: '20px',
               letterSpacing: '.02em',
               color: '#777e87',
-              animationDelay: '2.5s',
+              animationDelay: '2s',
               opacity: 0,
             }}
           >
