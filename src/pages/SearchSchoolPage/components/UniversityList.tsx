@@ -213,7 +213,8 @@ const UniversityList: React.FC<AppPorps> = props => {
             setIsFolded(prev => {
               props.setUniversityListWidth(!prev ? '4%' : '30%')
               if(typeof window !== 'undefined'){
-                window.dispatchEvent(new Event('resize'))
+                setTimeout(()=>{window.dispatchEvent(new Event('resize'))},
+                30)
               }
               return !prev
             })
