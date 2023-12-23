@@ -22,9 +22,9 @@ export default function App({
     })()
     ref.current = document.getElementById('__next')
     // 12.22修改
-    // if (ref.current) {
-    //   ref.current.style.height = 'calc(100 * var(--innerHeight))'
-    // }
+    if (ref.current) {
+      ref.current.style.height = '100%'
+    }
   }, [])
   return (
     <ContainerContext.Provider value={{ container: ref }}>

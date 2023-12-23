@@ -1,21 +1,27 @@
 import React, { useEffect, useRef } from 'react'
 import './IndexVideoPlay.css'
 import '../../styles/enterMotion.css'
+import { useContainerRef } from '../index.page'
 
 const IndexVideoPlay: React.FC = () => {
-  const elVideo1 = useRef(null)
-  const elVideo2 = useRef(null)
-  const elVideo3 = useRef(null)
-  const elVideo4 = useRef(null)
+  const elVideo1 = useRef<HTMLDivElement>(null)
+  const elVideo2 = useRef<HTMLDivElement>(null)
+  const elVideo3 = useRef<HTMLDivElement>(null)
+  const elVideo4 = useRef<HTMLDivElement>(null)
 
   const eltitle = useRef(null)
   const elintro = useRef(null)
+  const containerRef = useContainerRef()
 
   useEffect(() => {
+    if (!containerRef.current) return
+
     const handleScroll = () => {
       // @ts-ignore
       const rect = elVideo4.current?.getBoundingClientRect()
-      if (rect.top < window.innerHeight && rect.bottom >= 0) {
+      if (!containerRef.current) return
+      // @ts-ignore
+      if (rect.top < containerRef.current.clientHeight && rect.bottom >= 0) {
         // @ts-ignore
         eltitle.current.classList.add('slideLeft')
         // @ts-ignore
@@ -31,9 +37,11 @@ const IndexVideoPlay: React.FC = () => {
         elVideo4.current.classList.add('mot-4')
       }
     }
-    window.addEventListener('scroll', handleScroll)
+    containerRef.current.addEventListener('scroll', handleScroll)
     return () => {
-      window.removeEventListener('scroll', handleScroll)
+      if (containerRef.current) {
+        containerRef.current.removeEventListener('scroll', handleScroll)
+      }
     }
   }, [])
 

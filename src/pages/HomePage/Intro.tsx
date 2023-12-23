@@ -1,21 +1,27 @@
 import React, { useEffect, useRef } from 'react'
 import './Intro.css'
 import '../../styles/enterMotion.css'
+import { useContainerRef } from '../index.page'
 
 const Intro: React.FC = () => {
   const el = useRef(null)
   const elContent1 = useRef(null)
   const elContent2 = useRef(null)
   const elContent3 = useRef(null)
-
+  const containerRef = useContainerRef()
   useEffect(() => {
+    if (!containerRef?.current) return
     const handleScroll = () => {
-      const scrollPosition = window.scrollY
+      if (!containerRef?.current) return
+      const scrollPosition = containerRef?.current?.scrollTop
       // @ts-ignore
       const elementPosition = elContent3.current?.offsetTop || 0
       // console.log('scrollY: ', scrollPosition)
       // console.log('offsetTop: ', elementPosition)
-      if (scrollPosition > elementPosition - window.innerHeight) {
+      if (
+        scrollPosition >
+        elementPosition - containerRef.current.clientHeight
+      ) {
         // @ts-ignore
         el.current.classList.add('slideTopTitle')
         // @ts-ignore
@@ -27,12 +33,14 @@ const Intro: React.FC = () => {
       }
     }
     console.log('ref success')
-    window.addEventListener('scroll', handleScroll)
+    containerRef.current.addEventListener('scroll', handleScroll)
 
     return () => {
-      window.removeEventListener('scroll', handleScroll)
+      if (containerRef.current) {
+        containerRef.current.removeEventListener('scroll', handleScroll)
+      }
     }
-  }, [])
+  }, [containerRef])
 
   return (
     <div

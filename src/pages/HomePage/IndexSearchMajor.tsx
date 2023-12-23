@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import './IndexSearchMajor.css'
 import '../../styles/enterMotion.css'
+import { useContainerRef } from '../index.page'
 
 const IndexSearchMajor: React.FC = () => {
   const elImg1 = useRef(null)
@@ -13,12 +14,15 @@ const IndexSearchMajor: React.FC = () => {
   const eldes1 = useRef(null)
   const eldes2 = useRef(null)
   const eldes3 = useRef(null)
+  const containerRef = useContainerRef()
 
   useEffect(() => {
+    if (!containerRef.current) return
     const handleScroll = () => {
       // @ts-ignore
       const rect = eldes3.current?.getBoundingClientRect()
-      if (rect.top < window.innerHeight && rect.bottom >= 0) {
+      if (!containerRef.current) return
+      if (rect.top < containerRef.current.clientHeight && rect.bottom >= 0) {
         // @ts-ignore
         eltitle.current.classList.add('slideBottom')
         // @ts-ignore
@@ -40,9 +44,11 @@ const IndexSearchMajor: React.FC = () => {
         elImg4.current.classList.add('motionImg4')
       }
     }
-    window.addEventListener('scroll', handleScroll)
+    containerRef.current.addEventListener('scroll', handleScroll)
     return () => {
-      window.removeEventListener('scroll', handleScroll)
+      if (containerRef.current) {
+        containerRef.current.removeEventListener('scroll', handleScroll)
+      }
     }
   }, [])
 

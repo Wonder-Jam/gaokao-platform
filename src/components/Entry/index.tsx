@@ -73,12 +73,10 @@ export default function Entry({ children }: { children: React.ReactNode }) {
           }}
         ></div>
         <div
-          style={
-            {
-              // width: '100vw',
-              // height: '92%',
-            }
-          }
+          style={{
+            width: '100vw',
+            height: '92%',
+          }}
         >
           {children}
         </div>

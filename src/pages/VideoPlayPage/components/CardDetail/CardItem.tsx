@@ -16,7 +16,6 @@ export function CardItem(props: VideoSchoolType & { index: number }) {
   const cardRef = React.useRef<HTMLDivElement>(null)
   const { toggle, setTargetIndex, setTargetRef } = useMaskContext()
   const option = TagOptions[Math.floor(Math.random() * 3)]
-  console.log(option)
   const TagItem = (
     <span>
       <Tag color={TagColorMap['招生宣传']}>{'招生宣传'}</Tag>

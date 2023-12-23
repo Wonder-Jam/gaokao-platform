@@ -5,6 +5,7 @@ import './IndexSearchSchool.css'
 import '../../styles/enterMotion.css'
 import { SearchOutlined } from '@ant-design/icons'
 import Typed from 'typed.js'
+import { useContainerRef } from '../index.page'
 
 const IndexSearchSchool: React.FC = () => {
   const eltitle = useRef(null)
@@ -12,12 +13,15 @@ const IndexSearchSchool: React.FC = () => {
   const eldes1 = useRef(null)
   const eldes2 = useRef(null)
   const eldes3 = useRef(null)
+  const containerRef = useContainerRef()
 
   useEffect(() => {
+    if (!containerRef.current) return
     const handleScroll = () => {
+      if (!containerRef.current) return
       // @ts-ignore
       const rect = eldes3.current?.getBoundingClientRect()
-      if (rect.top < window.innerHeight && rect.bottom >= 0) {
+      if (rect.top < containerRef.current.clientHeight && rect.bottom >= 0) {
         // @ts-ignore
         eltitle.current.classList.add('slideBottom')
         // @ts-ignore
@@ -30,11 +34,13 @@ const IndexSearchSchool: React.FC = () => {
         eldes3.current.classList.add('slideList3')
       }
     }
-    window.addEventListener('scroll', handleScroll)
+    containerRef.current.addEventListener('scroll', handleScroll)
     return () => {
-      window.removeEventListener('scroll', handleScroll)
+      if (containerRef.current) {
+        containerRef.current.removeEventListener('scroll', handleScroll)
+      }
     }
-  }, [])
+  }, [containerRef])
 
   return (
     <div
@@ -160,13 +166,17 @@ const ImgIntro: React.FC = () => {
   const elImg3 = useRef(null)
   const elImg0 = useRef(null)
   const elSearch = useRef(null)
+  const containerRef = useContainerRef()
 
   useEffect(() => {
+    if (!containerRef?.current) return
     const handleScroll = () => {
+      if (!containerRef?.current) return
+
       // @ts-ignore
       const rect = elImg3.current?.getBoundingClientRect()
       console.log('width&height: ', rect.top, rect.bottom)
-      if (rect.top < window.innerHeight && rect.bottom >= 0) {
+      if (rect.top < containerRef.current.clientHeight && rect.bottom >= 0) {
         console.log('schoolenter !')
         // @ts-ignore
         elImg0.current.classList.add('occur')
@@ -180,12 +190,14 @@ const ImgIntro: React.FC = () => {
         elSearch.current.classList.add('occurSearch')
       }
     }
-    window.addEventListener('scroll', handleScroll)
+    containerRef.current.addEventListener('scroll', handleScroll)
 
     return () => {
-      window.removeEventListener('scroll', handleScroll)
+      if (containerRef.current) {
+        containerRef.current.removeEventListener('scroll', handleScroll)
+      }
     }
-  }, [])
+  }, [containerRef])
 
   return (
     <div

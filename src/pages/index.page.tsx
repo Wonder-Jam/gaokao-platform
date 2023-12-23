@@ -1,4 +1,11 @@
-import React from 'react'
+import React, {
+  RefObject,
+  createContext,
+  createRef,
+  useContext,
+  useEffect,
+  useRef,
+} from 'react'
 import Intro from '@/pages/HomePage/Intro'
 import IndexSearchSchool from '@/pages/HomePage/IndexSearchSchool'
 import IndexSearchMajor from '@/pages/HomePage/IndexSearchMajor'
@@ -9,26 +16,34 @@ import IndexHeader from '@/pages/HomePage/IndexHeader'
 import { VerticalAlignTopOutlined } from '@ant-design/icons'
 import './index.css'
 
+export const ContainerContext = createContext<{
+  containerRef: RefObject<HTMLDivElement>
+}>({ containerRef: createRef() })
+export const useContainerRef = () => useContext(ContainerContext).containerRef
 export default function Home() {
-  let headerContainer: React.CSSProperties = {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  }
-
+  const containerRef = useRef<HTMLDivElement>(null)
   return (
     <>
       <RootLayout>
-        <div className={'container'}></div>
-        {/*<div className={'progress'}></div>*/}
+        <div
+          ref={containerRef}
+          style={{ width: '100%', height: '100%', overflow: 'auto' }}
+        >
+          <ContainerContext.Provider
+            value={{
+              containerRef: containerRef,
+            }}
+          >
+            <IndexHeader></IndexHeader>
+            <Intro></Intro>
+            <IndexSearchSchool></IndexSearchSchool>
+            <IndexSearchMajor></IndexSearchMajor>
+            <IndexVideoPlay></IndexVideoPlay>
+            <Footer></Footer>
+            <ToTop></ToTop>
+          </ContainerContext.Provider>
+        </div>
       </RootLayout>
-      <IndexHeader></IndexHeader>
-      <Intro></Intro>
-      <IndexSearchSchool></IndexSearchSchool>
-      <IndexSearchMajor></IndexSearchMajor>
-      <IndexVideoPlay></IndexVideoPlay>
-      <Footer></Footer>
-      <ToTop></ToTop>
     </>
   )
 }
