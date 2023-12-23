@@ -1,16 +1,19 @@
 import React, { useContext, useState } from 'react'
 import {
   BarChartOutlined,
+  FundProjectionScreenOutlined,
   GlobalOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
+  PartitionOutlined,
 } from '@ant-design/icons'
 import type { MenuProps } from 'antd'
-import { Menu, Button } from 'antd'
+import { Menu, Button, InputNumber } from 'antd'
 import ProvinceList from './ProvinceList'
 import SchoolFilterList from './SchoolFilterList'
 import * as Enum from '../enum'
 import { SearchContext } from '../Context/SearchContext'
+import ClassSelector from './ClassSelector'
 
 // TODO: 1. 这个Menu也是信息密度太低了，目前计划改成三个antd中的select组件（但是感觉也不合适）2. 使用context
 
@@ -137,6 +140,38 @@ const FilterMenu: React.FC = () => {
     ]),
 
     { type: 'divider' },
+
+    getItem('您的选科组合', 'sub3', <PartitionOutlined />, [
+      // getItem('无', Enum.rank.None),
+      // getItem('全省GDP总值', Enum.rank.GDP),
+      // getItem('985大学数量', Enum.rank._985),
+      // getItem('211大学数量', Enum.rank._211),
+      // getItem('双一流大学数量', Enum.rank.DoubleFristClass),
+      // getItem('教育总经费', Enum.rank.EduFunds),
+      getItem(
+        <ClassSelector/>,
+        'g2',
+        null,
+        [],
+        'group',
+      ),
+    ]),
+    getItem('您的预估分数', 'sub4', <FundProjectionScreenOutlined />, [
+      // getItem('无', Enum.rank.None),
+      // getItem('全省GDP总值', Enum.rank.GDP),
+      // getItem('985大学数量', Enum.rank._985),
+      // getItem('211大学数量', Enum.rank._211),
+      // getItem('双一流大学数量', Enum.rank.DoubleFristClass),
+      // getItem('教育总经费', Enum.rank.EduFunds),
+      getItem(
+        <InputNumber min={0} max={750} value={700} />,
+        'g2',
+        null,
+        [],
+        'group',
+      ),
+    ]),
+
 
     // getItem('等级', 'sub4', <SettingOutlined />, [
     //   getItem('Option 9', '9'),

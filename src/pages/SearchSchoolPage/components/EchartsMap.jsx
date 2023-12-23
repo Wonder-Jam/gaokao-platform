@@ -215,6 +215,7 @@ function EChartsMap() {
       }
       if (window !== undefined) {
         window.addEventListener('resize', () => {
+          console.log('window resize received!')
           myChart.current.resize && myChart.current.resize()
         })
         myChart.current.setOption(option)
@@ -565,7 +566,7 @@ function EChartsMap() {
       </div>
       {typeof window !== 'undefined' && (
         <Spin spinning={isLoadingScatter}>
-          <div ref={chartRef} style={{ height: '90vh', margin: 'auto' }}>
+          <div ref={chartRef} style={{ width: '100%', height: '90vh', margin: 'auto' }}>
             Loading...
           </div>
         </Spin>
