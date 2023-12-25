@@ -225,11 +225,12 @@ const UniversityList: React.FC<AppPorps> = props => {
           <Searchbar
             optionsData={options}
             onSearch={searshTargetSchool}
+            size='middle'
             style={{
               height: '5%',
               width: '97%',
               marginLeft: '5px',
-              marginRight: '5px',
+              // marginRight: '5px',
             }}
           />
         )}

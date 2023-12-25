@@ -16,17 +16,17 @@ const EChartsMap = dynamic(() => import('./EchartsMap'), { ssr: false })
 import eventBus from '@/utils/eventBus'
 import UniversityDetail from './UniversityDetail'
 
-let initialItems = [
-  {
-    label: '地图数据',
-    children: <EChartsMap />,
-    key: '1',
-    closable: false,
-  },
-  // { label: 'Tab 1', children: 'Content of Tab 1', key: '2' },
-  // { label: 'Tab 2', children: 'Content of Tab 2', key: '3' },
-]
-
+  // const EchartsMapRef = useRef(null)
+  let initialItems = [
+    {
+      label: '地图数据',
+      children: <EChartsMap />,
+      key: '1',
+      closable: false,
+    },
+    // { label: 'Tab 1', children: 'Content of Tab 1', key: '2' },
+    // { label: 'Tab 2', children: 'Content of Tab 2', key: '3' },
+  ]
 type TargetKey = React.MouseEvent | React.KeyboardEvent | string
 
 interface DraggableTabPaneProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -57,12 +57,12 @@ const DraggableTabNode = ({ className, ...props }: DraggableTabPaneProps) => {
 type NonNullable<T> = Exclude<T, null | undefined> // 从T中移除null和undefined
 type Tabs = NonNullable<TabsProps['items']> // 得到的类型是Tabs[]
 // Todo: 受不了了，typescript也太麻烦了，一直没法直接直接导入Tabs，晚上问问丁子
-
 const App: React.FC = () => {
   const [activeKey, setActiveKey] = useState(initialItems[0].key)
   const [tabItems, setItems] = useState<Tabs>([]) //Todo: 这里的代码会在listener回调时执行，为啥？
   console.log('executed!')
   const newTabIndex = useRef(0)
+
 
   useEffect(() => {
     const cachedTabs = sessionStorage.getItem('schoolTabs') // 注意这得到的是个字符串，需要转换
@@ -76,7 +76,7 @@ const App: React.FC = () => {
           if (tabInfo.label === '地图数据') {
             initialItems.push({
               label: tabInfo.label,
-              children: <EChartsMap />,
+              children: <EChartsMap  />,
               key: tabInfo.key,
               closable: false,
             })
@@ -152,7 +152,7 @@ const App: React.FC = () => {
     if (newPanes.length && targetKey === activeKey) {
       const { key } =
         newPanes[
-          targetIndex === newPanes.length ? targetIndex - 1 : targetIndex
+        targetIndex === newPanes.length ? targetIndex - 1 : targetIndex
         ]
       setActiveKey(key)
     }
@@ -191,6 +191,10 @@ const App: React.FC = () => {
   const onChange = (key: string) => {
     console.log(key)
     setActiveKey(key)
+    if (typeof window !== 'undefined') {
+      setTimeout(() => { window.dispatchEvent(new Event('resize')) },
+        30)
+    }
   }
 
   return (

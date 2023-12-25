@@ -1,10 +1,12 @@
 import React, { CSSProperties, useState } from 'react'
 import { AutoComplete, Input } from 'antd'
+import { SizeType } from 'antd/es/config-provider/SizeContext'
 
 interface SearchBarProps {
   optionsData: string[]
   style?: CSSProperties
   placeholder?: string
+  size?: SizeType
   onSearch: (value: string) => void
 }
 function SearchBar({
@@ -12,6 +14,7 @@ function SearchBar({
   style,
   onSearch,
   placeholder = '请输入',
+  size = 'large',
 }: SearchBarProps) {
   const [options, setOptions] = useState<{ value: string }[]>([])
   const [text, setText] = useState<string>('')
@@ -37,10 +40,10 @@ function SearchBar({
       options={options}
       onSelect={onSelect}
       onSearch={handleSearch}
-      size="large"
+      size={size}
     >
       <Input.Search
-        size="large"
+        size={size}
         onChange={event => setText(event.target.value)}
         onSearch={() => {
           if (options.length === 0 && text.length !== 0) {

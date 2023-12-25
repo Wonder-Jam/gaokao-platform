@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef, useContext } from 'react'
 import * as echarts from 'echarts'
 import { SearchContext } from '../Context/SearchContext'
-import { Dropdown, Button, Spin } from 'antd'
+import { Dropdown, Button, Spin, message, Alert } from 'antd'
 import { BarChartOutlined } from '@ant-design/icons'
 import {
   gdpData,
@@ -10,6 +10,7 @@ import {
   universitiesDoubleFirstClass,
   educationBudget,
 } from '../mockedData'
+import { LoadingOutlined, CheckCircleOutlined } from '@ant-design/icons'
 // import * as Enum from '../enum'
 
 // import china from "../data/china"; // 假设你有中国地图数据
@@ -23,41 +24,32 @@ import { provinceMap, proviceDataMap, reverseProvinceMap } from '../maps'
 // let locationFetch = 'api/locateUniversityRandomly'
 let locationInterval = null
 
-function EChartsMap() {
+const EChartsMap = React.forwardRef((ref) => {
   const { province, city, rank, filterSchool, setChoices } =
     useContext(SearchContext)
-  // const [features, setFeatures] = useState(null)
-  // const [map, setMap] = useState('china')
-  // const map = 'china'
   const chartRef = useRef(null)
   const myChart = useRef(null)
+  // const [queryMessqge, queryContextHolder] = message.useMessage()
+  const queryResId = 'queryid'
   const [isLoadingScatter, setIsLoadingScatter] = useState(false)
+  const [isRecommending, setIsRecommending] = useState(false)
+  // const openMessage = () => {
+  //   console.log('open message')
+  //   queryMessqge.open({
+  //     queryResId,
+  //     type: 'loading',
+  //     content: 'Loading...',
+  //   });
+  //   setTimeout(() => {
+  //     queryMessqge.open({
+  //       queryResId,
+  //       type: 'success',
+  //       content: `为您推荐${Math.floor(Math.random() * 30)}所学校`,
+  //       duration: 2,
+  //     });
+  //   }, 1000);
+  // };
   const task = locationFetch => {
-    // if (province === Enum.province.None) {
-    //   myChart.current.setOption({
-    //     geo: {
-    //       roam: false,
-    //     },
-    //     series: [
-    //       {
-    //         name: 'map',
-    //         roam: false,
-    //       }
-    //     ]
-    //   })
-    // } else {
-    //   myChart.current.setOption({
-    //     geo: {
-    //       roam: true,
-    //     },
-    //     series: [
-    //       {
-    //         name: 'map',
-    //         roam: true,
-    //       }
-    //     ]
-    //   })
-    // }
     setIsLoadingScatter(true)
     fetch(locationFetch)
       .then(res => res.json())
@@ -85,7 +77,10 @@ function EChartsMap() {
       .catch(err => {
         console.log(err)
       })
-      .finally(() => setIsLoadingScatter(false))
+      .finally(() => { 
+        setTimeout(()=>setIsRecommending(false),1500)
+        setIsLoadingScatter(false)
+       })
   }
 
   function startInterval(locationFetch) {
@@ -248,7 +243,8 @@ function EChartsMap() {
       // startInterval('api/locateUniversityRandomly_v2')
       task('api/locateUniversityRandomly_v2')
     } else {
-      clearInterval(locationInterval)
+      // clearInterval(locationInterval)
+      setIsRecommending(true)
       task(`api/locateUniversityByProvince_v2?location=${province}`)
     }
     fetch(proviceDataMap.get(province))
@@ -266,6 +262,7 @@ function EChartsMap() {
       .catch(error => {
         console.error(error)
       })
+    // openMessage()
   }, [province])
 
   const getMax = data => {
@@ -529,6 +526,8 @@ function EChartsMap() {
           justifyContent: 'center',
         }}
       >
+        {/* {queryContextHolder} */}
+        {isRecommending && <Alert style={{ zIndex: 2, position: 'absolute' }} message={isLoadingScatter?"正在智能推荐":`为您推荐${Math.floor(Math.random() * 30)}所大学`} type={isLoadingScatter ? "info" : "success"} showIcon closable icon={isLoadingScatter ? <LoadingOutlined /> : <CheckCircleOutlined />} />}
         {province !== Enum.province.None ? (
           <Button
             onClick={() => {
@@ -573,6 +572,6 @@ function EChartsMap() {
       )}
     </>
   )
-}
+})
 
 export default EChartsMap

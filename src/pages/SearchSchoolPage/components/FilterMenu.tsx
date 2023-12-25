@@ -8,7 +8,7 @@ import {
   PartitionOutlined,
 } from '@ant-design/icons'
 import type { MenuProps } from 'antd'
-import { Menu, Button, InputNumber } from 'antd'
+import { Menu, Button, InputNumber, Space } from 'antd'
 import ProvinceList from './ProvinceList'
 import SchoolFilterList from './SchoolFilterList'
 import * as Enum from '../enum'
@@ -106,13 +106,15 @@ const FilterMenu: React.FC = () => {
   const items: MenuProps['items'] = [
     getItem(
       collapsed ? '收缩' : '展开',
-      'sub3',
+      'sub5',
       collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />,
     ),
 
     getItem('地区', 'sub1', <GlobalOutlined />, [
       getItem(
-        <ProvinceList onSelect={handleProvinceSelect} selected={province} />,
+        <Space direction="vertical" style={{ width: '100%' }}>
+          <ProvinceList onSelect={handleProvinceSelect} selected={province} />
+        </Space>,
         'g1',
         null,
         [],
@@ -149,7 +151,7 @@ const FilterMenu: React.FC = () => {
       // getItem('双一流大学数量', Enum.rank.DoubleFristClass),
       // getItem('教育总经费', Enum.rank.EduFunds),
       getItem(
-        <ClassSelector/>,
+        <ClassSelector />,
         'g2',
         null,
         [],
@@ -164,7 +166,9 @@ const FilterMenu: React.FC = () => {
       // getItem('双一流大学数量', Enum.rank.DoubleFristClass),
       // getItem('教育总经费', Enum.rank.EduFunds),
       getItem(
-        <InputNumber min={0} max={750} value={700} />,
+        <Space direction="vertical" style={{ width: '100%' }}>
+          <InputNumber addonAfter="分" style={{ width: '100%' }} min={0} max={750} value={700} />
+        </Space>,
         'g2',
         null,
         [],
@@ -191,7 +195,7 @@ const FilterMenu: React.FC = () => {
       rank: Number(e.key) as Enum.rank,
       filterSchool,
     })
-    if (e.key === 'sub3') {
+    if (e.key === 'sub5') {
       toggleCollapsed()
     }
   }
@@ -201,7 +205,7 @@ const FilterMenu: React.FC = () => {
       onClick={onClick}
       style={{
         height: '100%',
-        width: collapsed ? '5%' : '20%',
+        width: collapsed ? '5%' : '30%',
         overflowY: 'auto',
       }}
       defaultSelectedKeys={['0']}
