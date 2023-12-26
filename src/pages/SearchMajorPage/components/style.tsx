@@ -22,6 +22,13 @@ export const SelectedItem = styled.li`
   backgroundcolor: '#eee';
 `
 
+export const UniversityItem = styled.li`
+  display: flex;
+  padding: 0px;
+  flex-direction: column;
+  font-family: PingFangSC-Regular, sans-serif;
+`
+
 export const MajorItem = styled.li`
   display: flex;
   flex-direction: row;

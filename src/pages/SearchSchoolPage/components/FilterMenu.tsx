@@ -150,13 +150,7 @@ const FilterMenu: React.FC = () => {
       // getItem('211大学数量', Enum.rank._211),
       // getItem('双一流大学数量', Enum.rank.DoubleFristClass),
       // getItem('教育总经费', Enum.rank.EduFunds),
-      getItem(
-        <ClassSelector />,
-        'g2',
-        null,
-        [],
-        'group',
-      ),
+      getItem(<ClassSelector />, 'g2', null, [], 'group'),
     ]),
     getItem('您的预估分数', 'sub4', <FundProjectionScreenOutlined />, [
       // getItem('无', Enum.rank.None),
@@ -167,7 +161,13 @@ const FilterMenu: React.FC = () => {
       // getItem('教育总经费', Enum.rank.EduFunds),
       getItem(
         <Space direction="vertical" style={{ width: '100%' }}>
-          <InputNumber addonAfter="分" style={{ width: '100%' }} min={0} max={750} value={700} />
+          <InputNumber
+            addonAfter="分"
+            style={{ width: '100%' }}
+            min={0}
+            max={750}
+            value={700}
+          />
         </Space>,
         'g2',
         null,
@@ -175,7 +175,6 @@ const FilterMenu: React.FC = () => {
         'group',
       ),
     ]),
-
 
     // getItem('等级', 'sub4', <SettingOutlined />, [
     //   getItem('Option 9', '9'),

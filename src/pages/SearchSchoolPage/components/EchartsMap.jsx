@@ -24,7 +24,7 @@ import { provinceMap, proviceDataMap, reverseProvinceMap } from '../maps'
 // let locationFetch = 'api/locateUniversityRandomly'
 let locationInterval = null
 
-const EChartsMap = React.forwardRef((ref) => {
+const EChartsMap = React.forwardRef(ref => {
   const { province, city, rank, filterSchool, setChoices } =
     useContext(SearchContext)
   const chartRef = useRef(null)
@@ -77,10 +77,10 @@ const EChartsMap = React.forwardRef((ref) => {
       .catch(err => {
         console.log(err)
       })
-      .finally(() => { 
-        setTimeout(()=>setIsRecommending(false),1500)
+      .finally(() => {
+        setTimeout(() => setIsRecommending(false), 1500)
         setIsLoadingScatter(false)
-       })
+      })
   }
 
   function startInterval(locationFetch) {
@@ -527,7 +527,22 @@ const EChartsMap = React.forwardRef((ref) => {
         }}
       >
         {/* {queryContextHolder} */}
-        {isRecommending && <Alert style={{ zIndex: 2, position: 'absolute' }} message={isLoadingScatter?"正在智能推荐":`为您推荐${Math.floor(Math.random() * 30)}所大学`} type={isLoadingScatter ? "info" : "success"} showIcon closable icon={isLoadingScatter ? <LoadingOutlined /> : <CheckCircleOutlined />} />}
+        {isRecommending && (
+          <Alert
+            style={{ zIndex: 2, position: 'absolute' }}
+            message={
+              isLoadingScatter
+                ? '正在智能推荐'
+                : `为您推荐${Math.floor(Math.random() * 30)}所大学`
+            }
+            type={isLoadingScatter ? 'info' : 'success'}
+            showIcon
+            closable
+            icon={
+              isLoadingScatter ? <LoadingOutlined /> : <CheckCircleOutlined />
+            }
+          />
+        )}
         {province !== Enum.province.None ? (
           <Button
             onClick={() => {
@@ -565,7 +580,10 @@ const EChartsMap = React.forwardRef((ref) => {
       </div>
       {typeof window !== 'undefined' && (
         <Spin spinning={isLoadingScatter}>
-          <div ref={chartRef} style={{ width: '100%', height: '90vh', margin: 'auto' }}>
+          <div
+            ref={chartRef}
+            style={{ width: '100%', height: '90vh', margin: 'auto' }}
+          >
             Loading...
           </div>
         </Spin>

@@ -51,7 +51,7 @@ const ProvinceList: React.FC<ProvinceListProps> = ({ onSelect, selected }) => {
 
   return (
     <ListContainer>
-      <List style={{maxWidth:'300px'}}>
+      <List style={{ maxWidth: '300px' }}>
         {provinces.map(province => (
           <ListItem
             key={province}

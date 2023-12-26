@@ -212,9 +212,10 @@ const UniversityList: React.FC<AppPorps> = props => {
           onClick={() => {
             setIsFolded(prev => {
               props.setUniversityListWidth(!prev ? '4%' : '30%')
-              if(typeof window !== 'undefined'){
-                setTimeout(()=>{window.dispatchEvent(new Event('resize'))},
-                30)
+              if (typeof window !== 'undefined') {
+                setTimeout(() => {
+                  window.dispatchEvent(new Event('resize'))
+                }, 30)
               }
               return !prev
             })
@@ -225,7 +226,7 @@ const UniversityList: React.FC<AppPorps> = props => {
           <Searchbar
             optionsData={options}
             onSearch={searshTargetSchool}
-            size='middle'
+            size="middle"
             style={{
               height: '5%',
               width: '97%',
