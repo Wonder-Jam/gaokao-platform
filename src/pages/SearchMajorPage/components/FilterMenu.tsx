@@ -1,23 +1,18 @@
-import React, { useContext, useState } from 'react'
+import MajorCategoriesList from '@/pages/SearchMajorPage/components/MajorCategoriesList'
 import {
-  BarChartOutlined,
-  FundProjectionScreenOutlined,
   GlobalOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-  PartitionOutlined,
 } from '@ant-design/icons'
 import type { MenuProps } from 'antd'
-import { Menu, Button, InputNumber, Space } from 'antd'
-import ProvinceList from './ProvinceList'
-import MajorCategoriesList from '@/pages/SearchMajorPage/components/MajorCategoriesList'
+import { Menu } from 'antd'
+import React, { useContext, useState } from 'react'
 
 import { majorCategories } from '../enum'
 
 import { MajorSearchContext } from '../index.page'
 
 import * as Enum from '../enum'
-import { SearchContext } from '../Context/SearchContext'
 
 // TODO: 1. 这个Menu也是信息密度太低了，目前计划改成三个antd中的select组件（但是感觉也不合适）2. 使用context
 

@@ -1,15 +1,11 @@
-import React, { useContext, useState } from 'react'
-import {
-  BarChartOutlined,
-  GlobalOutlined,
-  SettingOutlined,
-} from '@ant-design/icons'
+import MajorCategoriesList from '@/pages/SearchMajorPage/components/MajorCategoriesList'
+import { GlobalOutlined } from '@ant-design/icons'
 import type { MenuProps } from 'antd'
 import { Menu } from 'antd'
+import React, { useContext } from 'react'
 import * as Enum from '../enum'
-import { MajorSearchContext } from '../index.page'
 import { majorCategories } from '../enum'
-import MajorCategoriesList from '@/pages/SearchMajorPage/components/MajorCategoriesList'
+import { MajorSearchContext } from '../index.page'
 
 // TODO: 1. 这个Menu也是信息密度太低了，目前计划改成三个antd中的select组件（但是感觉也不合适）2. 使用context
 

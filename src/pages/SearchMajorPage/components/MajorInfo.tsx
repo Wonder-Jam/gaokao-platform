@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import { Card, Divider, Input, Button, List, Skeleton, Typography } from 'antd'
-import { MajorItem } from './style'
+import { Button, Card, Divider, Input, Typography } from 'antd'
 import dynamic from 'next/dynamic'
+import React, { useEffect, useState } from 'react'
+import { MajorItem } from './style'
 const GenderRatioChart = dynamic(() => import('./GenderRatio'), { ssr: false })
 // import GenderRatioChart from './GenderRatio'
 const SubjectRatioChart = dynamic(() => import('./SubjectRatio'), {
@@ -9,9 +9,7 @@ const SubjectRatioChart = dynamic(() => import('./SubjectRatio'), {
 })
 // import SubjectRatioChart from './SubjectRatio'
 
-import { it } from 'node:test'
 import { SearchProps } from 'antd/es/input/Search'
-import { router } from 'next/client'
 
 const { Text } = Typography
 

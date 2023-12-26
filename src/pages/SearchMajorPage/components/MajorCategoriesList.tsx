@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
-import { ListContainer, List, ListItem, SelectedItem } from './style' // 引入样式对象
-import * as Enum from '../enum'
+import React from 'react'
+import { List, ListContainer, ListItem } from './style' // 引入样式对象
 
 interface MajorCategoriesListProps {
   onSelect: (selectedMajorCategories: string) => void

@@ -1,7 +1,7 @@
 import React, { createContext, useState, useEffect } from 'react'
 import Entry from '@/components/Entry'
 import FilterMenu from './components/FilterMenu'
-import UniversityList from './components/UniversityList'
+import UniversityList from './components/MajorList'
 import { MapContainer, Layer, CardListContainer } from './style'
 import * as Enum from './enum'
 import Tabs from './components/Tabs'
