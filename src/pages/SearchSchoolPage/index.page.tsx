@@ -14,23 +14,29 @@ export default function SearchSchoolPage() {
     city: Enum.city.None,
     rank: Enum.rank.None,
     filterSchool: [] as string[],
+    selectedClass: [] as string[],
+    score: 600,
   })
 
   return (
-    <SearchContext.Provider value={{ ...choices, setChoices }}>
-      <>
-        <RootLayout>
-          <Layer>
-            <FilterMenu />
-            <MapContainer>
-              <Tabs />
-            </MapContainer>
-            <CardListContainer width={universityListWidth}>
-              <UniversityList setUniversityListWidth={setUniversityListWidth} />
-            </CardListContainer>
-          </Layer>
-        </RootLayout>
-      </>
-    </SearchContext.Provider>
+    <>
+      {SearchContext ? (
+        <SearchContext.Provider value={{ ...choices, setChoices }}>
+          <RootLayout>
+            <Layer>
+              <FilterMenu />
+              <MapContainer>
+                <Tabs />
+              </MapContainer>
+              <CardListContainer width={universityListWidth}>
+                <UniversityList
+                  setUniversityListWidth={setUniversityListWidth}
+                />
+              </CardListContainer>
+            </Layer>
+          </RootLayout>
+        </SearchContext.Provider>
+      ) : null}
+    </>
   )
 }

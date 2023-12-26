@@ -1,17 +1,18 @@
+import Searchbar from '@/components/Searchbar'
+import { usePageNavigation } from '@/hooks/usePageNavigation'
+import { responseData } from '@/pages/SearchMajorPage/components/MajorList'
+import { responseSchoolData } from '@/pages/SearchSchoolPage/components/UniversityList'
 import { List, Skeleton, Tabs } from 'antd'
+import React from 'react'
+import { useMaskContext } from '../../context/MaskContext'
 import { RightBarContainer, TabContainer } from '../../style'
-import { TabData, TabDataType, HotSpot, TabTitle } from './HotSpotData'
+import { HotSpot, TabData, TabDataType, TabTitle } from './HotSpotData'
 import {
   HotSpotListContainer,
   ItemContainer,
   NumberContainer,
   TitleContainer,
 } from './style'
-import { usePageNavigation } from '@/hooks/usePageNavigation'
-import React from 'react'
-import Searchbar from '@/components/Searchbar'
-import { responseData } from '@/pages/SearchSchoolPage/components/UniversityList'
-import { useMaskContext } from '../../context/MaskContext'
 
 const fakeDataUrl = 'api/universitylist'
 function HotSpotList({
@@ -21,8 +22,8 @@ function HotSpotList({
   list: HotSpot[]
   hotSpotType: TabTitle
 }) {
-  const { goToSearchSchoolPage } = usePageNavigation()
-  const targetSchool = React.useRef('')
+  const { goToSearchSchoolPage, goToSearchMajorPage } = usePageNavigation()
+  const targetRef = React.useRef('')
   return (
     <HotSpotListContainer>
       <List
@@ -32,12 +33,17 @@ function HotSpotList({
           <ItemContainer>
             <List.Item
               onClick={() => {
-                if (hotSpotType === '政策分析' || hotSpotType === '专业热搜') {
+                if (hotSpotType === '政策分析') {
                   window.open(item.link, '_blank')
-                } else {
-                  targetSchool.current = item.title
+                } else if (hotSpotType === '院校热搜') {
+                  targetRef.current = item.title
                   goToSearchSchoolPage({
-                    name: targetSchool.current,
+                    name: targetRef.current,
+                  })
+                } else if (hotSpotType === '专业热搜') {
+                  targetRef.current = item.title
+                  goToSearchMajorPage({
+                    name: targetRef.current,
                   })
                 }
               }}
@@ -75,7 +81,7 @@ export function HotSpotTopicContainer({ show }: { show: boolean }) {
   React.useEffect(() => {
     fetch(fakeDataUrl)
       .then(res => res.json())
-      .then((res: responseData) => {
+      .then((res: responseSchoolData) => {
         const { page } = res
         TabData[1].dataSource = page.map(value => ({
           title: value.name,
@@ -88,6 +94,16 @@ export function HotSpotTopicContainer({ show }: { show: boolean }) {
       })
       .finally(() => {
         setIsLoading(false)
+      })
+    fetch('/data/mockMajorData.json')
+      .then(res => res.json())
+      .then((res: responseData) => {
+        const { page } = res
+        TabData[2].dataSource = page.map(value => ({
+          title: value.name,
+          link: value.website,
+        }))
+        setData(TabData) // 更新数据到状态变量
       })
   }, [])
   const options = React.useMemo(() => {

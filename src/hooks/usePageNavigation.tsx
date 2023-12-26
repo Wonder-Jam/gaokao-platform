@@ -12,8 +12,11 @@ export function usePageNavigation() {
         query: params,
       })
     },
-    goToSearchMajorPage() {
-      router.push('/SearchMajorPage')
+    goToSearchMajorPage(params: any = null) {
+      router.push({
+        pathname: '/SearchMajorPage',
+        query: params,
+      })
     },
     goToYangGuangGaoKaoPage() {
       window.location.href = 'https://gaokao.chsi.com.cn/'

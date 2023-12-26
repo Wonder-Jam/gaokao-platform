@@ -14,6 +14,8 @@ export const SearchContext = createContext<{
       city: Enum.city
       rank: Enum.rank
       filterSchool: string[]
+      selectedClass: string[]
+      score: number
     }>
   >
 }>({

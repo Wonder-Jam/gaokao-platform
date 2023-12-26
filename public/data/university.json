@@ -1,0 +1,406 @@
+{
+  "contentSize": 20,
+  "page": [
+    {
+      "name": "南京大学",
+      "website": "https://nju.edu.cn/",
+      "picture": {
+        "large": "https://files.lsmcloud.top/blog049ee3d1eb59c42ad5daa5ad08c21c01.svg",
+        "medium": "https://randomuser.me/api/portraits/med/women/89.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/women/89.jpg"
+      },
+      "motto": "诚朴雄伟 励学敦行",
+      "description": "南京大学，简称南大，位于中国江苏省南京市，该校历史或可追溯至三国吴永安元年（258年），历史上曾历经多次变迁，亦是中国第一所集教学和研究于一体的现代大学。中华民国政府撤离南京后，中华人民共和国成立前夕由“国立中央大学”易名“国立南京大学”，翌年迳称“南京大学”，沿用至今。南京大学在长期的历史中积淀了丰厚的学风传统和精神遗产，倡行人文思想之会通与学术之昌明，以求世界的和平繁荣，在教育、学术和文化上均具重要贡献和影响。",
+      "tags": [
+        "985",
+        "211",
+        "双一流",
+        "华东五校"
+      ],
+      "background": "https://files.lsmcloud.top/blogdce2e342063735250399b454065cab94.jpg",
+      "province": "江苏",
+      "created": "1902",
+      "dominant": "教育部",
+      "location": [
+        {
+          "name": "鼓楼校区",
+          "place": "江苏省南京市鼓楼区汉口路22号"
+        },
+        {
+          "name": "仙林校区",
+          "place": "江苏省南京市栖霞区仙林大道163号"
+        },
+        {
+          "name": "浦口校区",
+          "place": "江苏省南京市浦口区学府路8号"
+        },
+        {
+          "name": "苏州校区",
+          "place": "江苏省苏州市太湖大道1520号"
+        }
+      ]
+    },
+    {
+      "name": "东南大学",
+      "website": "https://www.seu.edu.cn/",
+      "picture": {
+        "large": "https://files.lsmcloud.top/blogc3d7971078eef13e361680b43df6d789.svg",
+        "medium": "https://randomuser.me/api/portraits/med/women/89.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/women/89.jpg"
+      },
+      "motto": "止于至善",
+      "description": "东南大学，简称东大、SEU，位于中华人民共和国江苏省南京市，是中央直管、教育部直属的研究型综合性大学，原四大工学院、建筑老八校之一。东南大学创办于1902年，以工科和理科见长。东南大学是中华人民共和国顶尖高校之一，是双一流A类和原985工程、原211工程重点建设大学，同时是2011计划、111计划入选高校，也是卓越大学联盟、卓越工程师教育培养计划、卓越医生教育培养计划、一带一路高校联盟、中英大学工程教育与研究联盟、中俄工科大学联盟、中欧工程教育平台、长三角高校合作联盟主要成员。",
+      "tags": [
+        "985",
+        "211",
+        "双一流"
+      ],
+      "background": "https://files.lsmcloud.top/blogdd78c4d90b59c36ee39025e166fed8b9.png",
+      "province": "江苏",
+      "created": "1902",
+      "dominant": "教育部",
+      "location": [
+        {
+          "name": "四牌楼校区",
+          "place": "江苏省南京市玄武区四牌楼2号"
+        },
+        {
+          "name": "九龙湖校区",
+          "place": "江苏省南京市江宁区东南大学路2号"
+        },
+        {
+          "name": "丁家桥校区",
+          "place": "江苏省南京市鼓楼区湖南路丁家桥87号"
+        }
+      ]
+    },
+    {
+      "name": "南京理工大学",
+      "website": "https://nju.edu.cn/",
+      "picture": {
+        "large": "https://files.lsmcloud.top/blogfe526f964e5abe20d3fc39adccce89c1.png",
+        "medium": "https://randomuser.me/api/portraits/med/women/89.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/women/89.jpg"
+      },
+      "motto": "进德修业，志道鼎新",
+      "description": "南京理工大学是直属于中华人民共和国工业和信息化部的全国重点大学。学校前身为中国人民解放军军事工程学院（简称哈军工）炮兵工程系，先后经历炮兵工程学院、华东工程学院、华东工学院等历史时期，1993年更名为南京理工大学。教育部“211工程”建设高校。兵器科学与技术一级学科评估排名全国第一（2012年）",
+      "tags": [
+        "211"
+      ],
+      "background": "https://files.lsmcloud.top/blog2857bccef0a0e1c687c8b8d89b07e577.png",
+      "province": "江苏",
+      "created": "1953",
+      "dominant": "江苏省教育厅",
+      "location": [
+        {
+          "name": "四牌楼校区",
+          "place": "江苏省南京市玄武区四牌楼2号"
+        },
+        {
+          "name": "九龙湖校区",
+          "place": "江苏省南京市江宁区东南大学路2号"
+        },
+        {
+          "name": "丁家桥校区",
+          "place": "江苏省南京市鼓楼区湖南路丁家桥87号"
+        }
+      ]
+    },
+    {
+      "name": "南京邮电大学",
+      "website": "https://www.seu.edu.cn/",
+      "picture": {
+        "large": "https://files.lsmcloud.top/blogf3844e460cbd320518bc8082a9457de9.png",
+        "medium": "https://randomuser.me/api/portraits/med/women/89.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/women/89.jpg"
+      },
+      "motto": "厚德、弘毅、求是、笃行",
+      "description": "南京邮电大学是一所以工学、理学、管理学为主体，以电子、信息学科为特色，具有工学、理学、文学、经济学、管理学和教育学等多个学科门类，博士、硕士、本科等多层次教育协调发展的高等学校。是入选国家“双一流”一流学科建设、首批国家“2011计划”建设、国家“111计划”建设、国际电信联盟首个学术成员、教育部“卓越工程师教育培养计划”建设、江苏省高水平大学的高校。",
+      "tags": [
+        "双一流"
+      ],
+      "background": "https://files.lsmcloud.top/blog6cc788b79cd539b80e196a53760761d4.png",
+      "province": "江苏",
+      "created": "1942",
+      "dominant": "江苏省教育厅",
+      "location": [
+        {
+          "name": "四牌楼校区",
+          "place": "江苏省南京市玄武区四牌楼2号"
+        },
+        {
+          "name": "九龙湖校区",
+          "place": "江苏省南京市江宁区东南大学路2号"
+        },
+        {
+          "name": "丁家桥校区",
+          "place": "江苏省南京市鼓楼区湖南路丁家桥87号"
+        }
+      ]
+    },
+    {
+      "name": "清华大学",
+      "website": "https://www.tsinghua.edu.cn/",
+      "picture": {
+        "large": "https://files.lsmcloud.top/blogbfeb9574f77c6369ba39d3eed0c46916.svg",
+        "medium": "https://randomuser.me/api/portraits/med/women/89.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/women/89.jpg"
+      },
+      "motto": "自强不息 厚德载物",
+      "description": "清华大学的前身为始建于1911年的清华学堂，1912年更名为清华学校。1928年更名为国立清华大学。1937年抗日战争全面爆发后南迁长沙，与北京大学、南开大学组建国立长沙临时大学，1938年迁至昆明改名为国立西南联合大学。学校先后恢复或新建了理科、文科、医学学科和经济管理学科，并成立了研究生院和继续教育学院。1999年，中央工艺美术学院并入，成立清华大学美术学院。2012年，中国人民银行研究生部并入，成为清华大学五道口金融学院。清华大学共设21个学院、59个系，已成为一所设有理学、工学、文学、艺术学、历史学、哲学、经济学、管理学、法学、教育学、医学和交叉学科等12个学科门类的综合性、研究型、开放式大学。",
+      "tags": [
+        "985",
+        "211",
+        "双一流"
+      ],
+      "background": "https://files.lsmcloud.top/blog6cc788b79cd539b80e196a53760761d4.png",
+      "province": "北京",
+      "created": "1911",
+      "dominant": "教育部",
+      "location": [
+        {
+          "name": "主校区",
+          "place": "中华人民共和国北京市海淀区清华园"
+        }
+      ]
+    },
+    {
+      "name": "北京大学",
+      "website": "www.pku.edu.cn",
+      "picture": {
+        "large": "https://files.lsmcloud.top/blogf8e560269d9df97fb0291d2eb957ec78.svg",
+        "medium": "https://randomuser.me/api/portraits/med/women/89.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/women/89.jpg"
+      },
+      "motto": "",
+      "description": "北京大学是中国第一所国立综合性大学，为当时中国最高教育行政机关。 创立于1898年维新变法之际，初名京师大学堂。1912年改为国立北京大学。1938年迁至昆明，更名为国立西南联合大学。1946年返回北平。1952年成为以文理基础学科为主的综合性大学，并自北京沙滩等地迁至现址。2000年与原北京医科大学合并组建为新的北京大学。 北京大学是新文化运动的中心和五四运动的策源地，最早在中国传播马克思主义和科学、民主思想，是创建中国共产党的重要基地之一。",
+      "tags": [
+        "985",
+        "211",
+        "双一流"
+      ],
+      "background": "https://files.lsmcloud.top/blog6cc788b79cd539b80e196a53760761d4.png",
+      "province": "北京",
+      "created": "1898",
+      "dominant": "教育部",
+      "location": [
+        {
+          "name": "主校区",
+          "place": "北京市海淀区颐和园路5号"
+        },
+        {
+          "name": "医学部",
+          "place": "北京市海淀区学院路38号"
+        },
+        {
+          "name": "昌平校区",
+          "place": "北京市昌平区马池口镇北小营村"
+        },
+        {
+          "name": "深圳研究生院",
+          "place": "深圳市南山区西丽街道丽水路深圳大学城北大校区"
+        }
+      ]
+    },
+    {
+      "name": "复旦大学",
+      "website": "https://www.fudan.edu.cn/",
+      "picture": {
+        "large": "https://files.lsmcloud.top/blogca71c7f5e3933e2f4fe7e51c03522d72.svg",
+        "medium": "https://randomuser.me/api/portraits/med/women/89.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/women/89.jpg"
+      },
+      "motto": "博学而笃志，切问而近思",
+      "description": "复旦大学（英语：Fudan University），简称复旦，旧称复旦公学、国立复旦大学，始创于1905年，位于中国上海，是一所综合性研究型大学。复旦大学校名取自《尚书大传》之“日月光华，旦复旦兮”，表示取之不尽，用之不竭的自力更生和勤奋，更含不忘“震旦”之旧和复兴中华的意义。1917年始设大学部，1952年院系调整，苏、浙、皖、沪等地大批文理学科的专家学者调入复旦，复旦大学自此成为人文社会和自然科学的全国重镇。2000年与上海医科大学合并组建新的复旦大学。",
+      "tags": [
+        "985",
+        "211",
+        "双一流"
+      ],
+      "background": "https://files.lsmcloud.top/blog6cc788b79cd539b80e196a53760761d4.png",
+      "province": "上海",
+      "created": "1905",
+      "dominant": "教育部",
+      "location": [
+        {
+          "name": "邯郸校区",
+          "place": "上海市杨浦区邯郸路220号"
+        },
+        {
+          "name": "枫林校区",
+          "place": "上海市徐汇区东安路130号"
+        },
+        {
+          "name": "江湾校区",
+          "place": "上海市杨浦区淞沪路2005号"
+        },
+        {
+          "name": "张江校区",
+          "place": "上海市浦东新区张衡路826号"
+        }
+      ]
+    },
+    {
+      "name": "浙江大学",
+      "website": "www.zju.edu.cn",
+      "picture": {
+        "large": "https://files.lsmcloud.top/blog8f4cae3721555d55a8750ce9c107289d.svg",
+        "medium": "https://randomuser.me/api/portraits/med/women/89.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/women/89.jpg"
+      },
+      "motto": "求是创新",
+      "description": "浙江大学（英语：Zhejiang University，缩写：ZJU），简称浙大，是中华人民共和国教育部直属的综合性全国重点大学，位于浙江省杭州市。其前身可追溯至1897年时任杭州知府林启所设立的浙江省第一所国人自办的新式书院——求是书院。求是书院后改称浙江高等学堂，在辛亥革命后因学制问题而停办。1927年作为国立第三中山大学由求是、浙高校友于求是书院旧址重建，后于1928年改名为国立浙江大学。1936－1949年竺可桢校长任内，浙大延揽学衡社、科学社学者而成为学术重镇。抗战爆发后西迁贵州省，被当时访问该校的英国学者李约瑟赞誉为“东方剑桥”。中华人民共和国成立后，经历院系调整，文理学院被剥离，农学院、医学院各自独立建校，之江大学工学院系被并入，成为多科性工业大学。1998年，由浙江大学、浙江医科大学、浙江农业大学、杭州大学重新合并为一所综合性大学",
+      "tags": [
+        "985",
+        "211",
+        "双一流"
+      ],
+      "background": "https://files.lsmcloud.top/blog6cc788b79cd539b80e196a53760761d4.png",
+      "province": "浙江",
+      "created": "1897",
+      "dominant": "教育部",
+      "location": [
+        {
+          "name": "紫金港校区",
+          "place": "浙江省杭州市西湖区余杭塘路866号"
+        },
+        {
+          "name": "玉泉校区",
+          "place": "浙江省杭州市西湖区浙大路38号"
+        },
+        {
+          "name": "西溪校区",
+          "place": "浙江省杭州市西湖区天目山路148号"
+        },
+        {
+          "name": "华家池校区",
+          "place": "浙江省杭州市上城区凯旋路268号"
+        }
+      ]
+    },
+    {
+      "name": "上海交通大学",
+      "website": "www.sjtu.edu.cn/",
+      "picture": {
+        "large": "https://files.lsmcloud.top/blog794d0a77a4c889980cf5bcd19b3be24d.svg",
+        "medium": "https://randomuser.me/api/portraits/med/women/89.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/women/89.jpg"
+      },
+      "motto": "饮水思源，爱国荣校",
+      "description": "上海交通大学是中华人民共和国最顶尖的高校之一，现时属于“QS世界百强大学”、“泰晤士高等教育世界百强大学”、“美国新闻与世界报道世界百强大学”及“软科世界百强大学”，是“双一流A类”和原“985工程”、原“211工程”重点建设大学。上海交大是近代中国历史最为悠久的大学之一，其前身是清末洋务派政治家、实业家和福利事业家盛宣怀于1896年创建的南洋公学，后曾易名南洋大学、上海工业专门学校，中华民国大陆时期后期称为国立交通大学。1959年交通大学分立，交通大学上海部分定名为上海交通大学，1999年合并原上海农学院，2005年合并原上海第二医科大学，使其成为上海交通大学医学院。",
+      "tags": [
+        "985",
+        "211",
+        "双一流"
+      ],
+      "background": "https://files.lsmcloud.top/blog6cc788b79cd539b80e196a53760761d4.png",
+      "province": "上海",
+      "created": "1896",
+      "dominant": "教育部",
+      "location": [
+        {
+          "name": "闵行校区",
+          "place": "上海市闵行区东川路800号"
+        },
+        {
+          "name": "徐汇校区",
+          "place": "上海市徐汇区华山路1954号"
+        }
+      ]
+    },
+    {
+      "name": "中国科学技术大学",
+      "website": "https://www.ustc.edu.cn/",
+      "picture": {
+        "large": "https://files.lsmcloud.top/blog768992aa8b388cb91b2c6bf035fce4e4.svg",
+        "medium": "https://randomuser.me/api/portraits/med/women/89.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/women/89.jpg"
+      },
+      "motto": "红专并进，理实交融",
+      "description": "中国科学技术大学（University of Science and Technology of China），位于安徽省合肥市，是中国科学院直属的一所以前沿科学和高新技术为主，兼有医学、特色管理和人文学科的全国重点大学，中央直管副部级建制，由中科院、教育部和安徽省三方重点共建。学校1958年9月创建于北京，首任校长由郭沫若兼任；建校后，中科院实施“全院办校，所系结合”的办学方针，汇集了严济慈、华罗庚、钱学森、赵忠尧、郭永怀、赵九章等一批著名科学家，建校第二年即被列为全国重点大学；1970年初，学校迁至安徽省合肥市，开始了第二次创业；1978年以后，学校创办少年班、首建研究生院、建设国家大科学工程、面向世界开放办学等新举措；也是唯一参与国家知识创新工程的大学。",
+      "tags": [
+        "985",
+        "211",
+        "双一流"
+      ],
+      "background": "https://files.lsmcloud.top/blog6cc788b79cd539b80e196a53760761d4.png",
+      "province": "安徽",
+      "created": "1958",
+      "dominant": "中国科学院",
+      "location": [
+        {
+          "name": "主校区",
+          "place": "安徽省合肥市金寨路96号"
+        }
+      ]
+    },
+    {
+      "name": "西安交通大学",
+      "website": "www.xjtu.edu.cn",
+      "picture": {
+        "large": "https://files.lsmcloud.top/blog4ff68e278e9e58e759fa3d87d9e25788.svg",
+        "medium": "https://randomuser.me/api/portraits/med/women/89.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/women/89.jpg"
+      },
+      "motto": "红专并进，理实交融",
+      "description": "西安交通大学是中华人民共和国顶尖高校之一，是“C9高校联盟”成员之一，“双一流A类”和原“985工程”、原“211工程”重点建设大学。西安交大的前身是清末洋务派政治家、实业家和福利事业家盛宣怀于1896年创建的南洋公学，后曾易名南洋大学、上海工业专门学校，中华民国大陆时期后期称为国立交通大学。1955年，由于国际形势的风云变幻并为积极支援西北地区教育建设，国务院决定交通大学迁往西安，是为交大西迁，后西迁被迫中断，大部院系已迁入西安的情况下，改为两地办学为交通大学西安部分和交通大学上海部分。1959年交通大学分立，交通大学西安部分定名为西安交通大学，原交通大学校长彭康被任命为西安交通大学首任校长。",
+      "tags": [
+        "985",
+        "211",
+        "双一流"
+      ],
+      "background": "https://files.lsmcloud.top/blog6cc788b79cd539b80e196a53760761d4.png",
+      "province": "陕西",
+      "created": "1896",
+      "dominant": "教育部",
+      "location": [
+        {
+          "name": "兴庆校区",
+          "place": "陕西省西安市碑林区咸宁西路28号"
+        },
+        {
+          "name": "雁塔校区",
+          "place": "陕西省西安市雁塔区朱雀大街205号"
+        },
+        {
+          "name": "曲江校区",
+          "place": "陕西省西安市雁塔区雁翔路99号"
+        }
+      ]
+    },
+    {
+      "name": "哈尔滨工业大学",
+      "website": "https://www.hit.edu.cn/",
+      "picture": {
+        "large": "https://files.lsmcloud.top/blog51e6dfd03189eb01c6960ca14de6c2e8.svg",
+        "medium": "https://randomuser.me/api/portraits/med/women/89.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/women/89.jpg"
+      },
+      "motto": "规格严格，功夫到家",
+      "description": "哈尔滨工业大学（英语：Harbin Institute of Technology，缩写：HIT），简称哈工大，创建于1920年，隶属中华人民共和国工业和信息化部。哈尔滨工业大学是中华人民共和国顶尖高校之一，是“双一流A类”和原“985工程”、原“211工程”重点建设大学，是一所以理工为主，理、工、文、管、生命相结合，多学科、开放式的研究型高校，为中国C9联盟成员之一，拥有哈尔滨、威海和深圳三大校区，已建成一校三城区的“大哈工大”格局。",
+      "tags": [
+        "985",
+        "211",
+        "双一流"
+      ],
+      "background": "https://files.lsmcloud.top/blog6cc788b79cd539b80e196a53760761d4.png",
+      "province": "黑龙江",
+      "created": "1920",
+      "dominant": "教育部",
+      "location": [
+        {
+          "name": "主校区",
+          "place": "黑龙江省哈尔滨市南岗区西大直街92号"
+        },
+        {
+          "name": "威海校区",
+          "place": "山东省威海市环翠区文化西路2号"
+        },
+        {
+          "name": "深圳校区",
+          "place": "广东省深圳市南山区西丽深圳大学城"
+        }
+      ]
+    }
+  ]
+}

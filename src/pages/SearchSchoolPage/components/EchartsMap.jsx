@@ -24,7 +24,7 @@ import { provinceMap, proviceDataMap, reverseProvinceMap } from '../maps'
 // let locationFetch = 'api/locateUniversityRandomly'
 let locationInterval = null
 
-const EChartsMap = React.forwardRef(ref => {
+const EChartsMap = () => {
   const { province, city, rank, filterSchool, setChoices } =
     useContext(SearchContext)
   const chartRef = useRef(null)
@@ -61,6 +61,8 @@ const EChartsMap = React.forwardRef(ref => {
             name: item.name,
             symbol: 'image://' + item.logo,
             symbolSize: 20,
+            address: item.address,
+            note: item.note,
           }
         })
         console.log(tmpScatter)
@@ -107,6 +109,7 @@ const EChartsMap = React.forwardRef(ref => {
       echarts.registerMap(map, features)
       const option = {
         tooltip: {
+          show: map === 'china' ? true : false,
           backgroundColor: '#FFFFFFE6',
           borderWidth: 0,
           trigger: 'item',
@@ -191,6 +194,28 @@ const EChartsMap = React.forwardRef(ref => {
             name: 'school',
             type: 'scatter',
             coordinateSystem: 'geo',
+            tooltip: {
+              show: true,
+              trigger: 'item',
+              formatter: function (params) {
+                console.log(params)
+                console.log(params.data.symbol.substring(8))
+                return `
+                <div style="display: flex; flex-direction: column; justify-content: center; align-items: center">
+                <image src=${params.data.symbol.substring(
+                  8,
+                )} style="width: 50px; height: 50px" />
+                <div style="font-size: 16; font-weight: bold">${
+                  params.data.name
+                }</div>
+                <div style="font-size: 10">地址: ${params.data.address}</div>
+                <div style="font-size: 10">等级: ${
+                  params.data.note ?? '无特殊等级'
+                }</div>
+                </div>
+              `
+              },
+            },
             geoIndex: 0,
             // data: scatter
             // data: [
@@ -590,6 +615,6 @@ const EChartsMap = React.forwardRef(ref => {
       )}
     </>
   )
-})
+}
 
 export default EChartsMap
