@@ -24,7 +24,11 @@ import { provinceMap, proviceDataMap, reverseProvinceMap } from '../maps'
 // let locationFetch = 'api/locateUniversityRandomly'
 let locationInterval = null
 
+<<<<<<< HEAD
 const EChartsMap = () => {
+=======
+const EChartsMap = React.forwardRef(ref => {
+>>>>>>> origin
   const { province, city, rank, filterSchool, setChoices } =
     useContext(SearchContext)
   const chartRef = useRef(null)
@@ -202,13 +206,19 @@ const EChartsMap = () => {
                 console.log(params.data.symbol.substring(8))
                 return `
                 <div style="display: flex; flex-direction: column; justify-content: center; align-items: center">
-                <image src=${params.data.symbol.substring(8)} style="width: 50px; height: 50px" />
-                <div style="font-size: 16; font-weight: bold">${params.data.name}</div>
+                <image src=${params.data.symbol.substring(
+                  8,
+                )} style="width: 50px; height: 50px" />
+                <div style="font-size: 16; font-weight: bold">${
+                  params.data.name
+                }</div>
                 <div style="font-size: 10">地址: ${params.data.address}</div>
-                <div style="font-size: 10">等级: ${params.data.note??'无特殊等级'}</div>
+                <div style="font-size: 10">等级: ${
+                  params.data.note ?? '无特殊等级'
+                }</div>
                 </div>
               `
-              }
+              },
             },
             geoIndex: 0,
             // data: scatter
@@ -546,7 +556,22 @@ const EChartsMap = () => {
         }}
       >
         {/* {queryContextHolder} */}
-        {isRecommending && <Alert style={{ zIndex: 2, position: 'absolute' }} message={isLoadingScatter ? "正在智能推荐" : `为您推荐${Math.floor(Math.random() * 30)}所大学`} type={isLoadingScatter ? "info" : "success"} showIcon closable icon={isLoadingScatter ? <LoadingOutlined /> : <CheckCircleOutlined />} />}
+        {isRecommending && (
+          <Alert
+            style={{ zIndex: 2, position: 'absolute' }}
+            message={
+              isLoadingScatter
+                ? '正在智能推荐'
+                : `为您推荐${Math.floor(Math.random() * 30)}所大学`
+            }
+            type={isLoadingScatter ? 'info' : 'success'}
+            showIcon
+            closable
+            icon={
+              isLoadingScatter ? <LoadingOutlined /> : <CheckCircleOutlined />
+            }
+          />
+        )}
         {province !== Enum.province.None ? (
           <Button
             onClick={() => {
@@ -584,7 +609,10 @@ const EChartsMap = () => {
       </div>
       {typeof window !== 'undefined' && (
         <Spin spinning={isLoadingScatter}>
-          <div ref={chartRef} style={{ width: '100%', height: '90vh', margin: 'auto' }}>
+          <div
+            ref={chartRef}
+            style={{ width: '100%', height: '90vh', margin: 'auto' }}
+          >
             Loading...
           </div>
         </Spin>

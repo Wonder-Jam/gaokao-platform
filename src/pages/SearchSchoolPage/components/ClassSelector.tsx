@@ -1,16 +1,13 @@
-import React, { useState } from 'react';
-import { Radio, Select, Space } from 'antd';
-import type { SizeType } from 'antd/es/config-provider/SizeContext';
-import type { SelectProps, RadioChangeEvent } from 'antd';
-
+import React, { useState } from 'react'
+import { Radio, Select, Space } from 'antd'
+import type { SizeType } from 'antd/es/config-provider/SizeContext'
+import type { SelectProps, RadioChangeEvent } from 'antd'
 
 const handleChange = (value: string | string[]) => {
-  console.log(`Selected: ${value}`);
-};
+  console.log(`Selected: ${value}`)
+}
 
 const App: React.FC = () => {
-
-
   return (
     <>
       <Space direction="vertical" style={{ width: '100%' }}>
@@ -37,7 +34,7 @@ const App: React.FC = () => {
         />
       </Space>
     </>
-  );
-};
+  )
+}
 
-export default App;
+export default App

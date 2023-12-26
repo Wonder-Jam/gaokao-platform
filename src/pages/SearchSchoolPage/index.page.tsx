@@ -20,21 +20,23 @@ export default function SearchSchoolPage() {
 
   return (
     <>
-    {SearchContext ? (
-      <SearchContext.Provider value={{ ...choices, setChoices }}>
-        <RootLayout>
-          <Layer>
-            <FilterMenu />
-            <MapContainer>
-              <Tabs />
-            </MapContainer>
-            <CardListContainer width={universityListWidth}>
-              <UniversityList setUniversityListWidth={setUniversityListWidth} />
-            </CardListContainer>
-          </Layer>
-        </RootLayout>
-      </SearchContext.Provider>
-    ) : null}
-      </>
+      {SearchContext ? (
+        <SearchContext.Provider value={{ ...choices, setChoices }}>
+          <RootLayout>
+            <Layer>
+              <FilterMenu />
+              <MapContainer>
+                <Tabs />
+              </MapContainer>
+              <CardListContainer width={universityListWidth}>
+                <UniversityList
+                  setUniversityListWidth={setUniversityListWidth}
+                />
+              </CardListContainer>
+            </Layer>
+          </RootLayout>
+        </SearchContext.Provider>
+      ) : null}
+    </>
   )
 }

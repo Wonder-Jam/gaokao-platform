@@ -39,7 +39,7 @@ interface DataType {
 const count = 3
 const fakeDataUrl = `/data/majors.json`
 
-const MajorList: React.FC = () => {
+const MajorList2: React.FC = () => {
   const [initLoading, setInitLoading] = useState(true)
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState<DataType[]>([])
@@ -190,4 +190,4 @@ const MajorList: React.FC = () => {
   )
 }
 
-export default MajorList
+export default MajorList2

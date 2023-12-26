@@ -19,15 +19,19 @@ const FilterTag: React.FC<Props> = props => {
     const newTags = tags.filter(tag => tag !== removedTag)
     console.log(newTags)
     if (removedTag === province) {
-      setChoices(prev => ({
-        ...prev,
+      setChoices({
         province: Enum.province.None,
-      }))
+        city: city,
+        rank: rank,
+        filterSchool: filterSchool,
+      })
     } else {
-      setChoices(prev => ({
-        ...prev,
+      setChoices({
+        province: province,
+        city: city,
+        rank: rank,
         filterSchool: filterSchool.filter(item => item !== removedTag),
-      }))
+      })
     }
     setTags(newTags)
   }
@@ -35,7 +39,7 @@ const FilterTag: React.FC<Props> = props => {
   const forMap = (tag: string) => {
     const tagElem = (
       <Tag
-        closable={tag !== '全国'}
+        closable={tag !== '全部'}
         onClose={e => {
           e.preventDefault()
           handleClose(tag)
