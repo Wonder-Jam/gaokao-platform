@@ -19,19 +19,15 @@ const FilterTag: React.FC<Props> = props => {
     const newTags = tags.filter(tag => tag !== removedTag)
     console.log(newTags)
     if (removedTag === province) {
-      setChoices({
+      setChoices(prev => ({
+        ...prev,
         province: Enum.province.None,
-        city: city,
-        rank: rank,
-        filterSchool: filterSchool,
-      })
+      }))
     } else {
-      setChoices({
-        province: province,
-        city: city,
-        rank: rank,
+      setChoices(prev => ({
+        ...prev,
         filterSchool: filterSchool.filter(item => item !== removedTag),
-      })
+      }))
     }
     setTags(newTags)
   }

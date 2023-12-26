@@ -61,6 +61,8 @@ const EChartsMap = React.forwardRef(ref => {
             name: item.name,
             symbol: 'image://' + item.logo,
             symbolSize: 20,
+            address: item.address,
+            note: item.note,
           }
         })
         console.log(tmpScatter)
@@ -106,40 +108,41 @@ const EChartsMap = React.forwardRef(ref => {
     if (myChart.current) {
       echarts.registerMap(map, features)
       const option = {
-        tooltip: {
-          backgroundColor: '#FFFFFFE6',
-          borderWidth: 0,
-          trigger: 'item',
-          formatter: function (params) {
-            // console.log('params', params)
-            const name = params.name
-            const gdp = gdpData.find(item => item.name === name) ?? {
-              value: 'unkown',
-            }
-            const _985 = universities985.find(item => item.name === name) ?? {
-              value: 'unkown',
-            }
-            const _211 = universities211.find(item => item.name === name) ?? {
-              value: 'unkown',
-            }
-            const doubleFirstClass = universitiesDoubleFirstClass.find(
-              item => item.name === name,
-            ) ?? { value: 'unkown' }
-            const eduFunds = educationBudget.find(
-              item => item.name === name,
-            ) ?? { value: 'unkown' }
-            return `
-                        <div style="font-size: 16; font-weight: bold">${name}</div>
-                        <div style="font-size: 10">GDP: ${gdp.value} (亿)</div>
-                        <div style="font-size: 10">985: ${_985.value} (所)</div>
-                        <div style="font-size: 10">211: ${_211.value} (所)</div>
-                        <div style="font-size: 10">双一流: ${doubleFirstClass.value} (所)</div>
-                        <div style="font-size: 10">教育经费: ${eduFunds.value} (亿)</div>
-                    `
-          },
-          // formatter: '呼啦呼啦'
-        },
         geo: {
+          tooltip: {
+            show: map === 'china' ? true : false,
+            backgroundColor: '#FFFFFFE6',
+            borderWidth: 0,
+            trigger: 'item',
+            formatter: function (params) {
+              // console.log('params', params)
+              const name = params.name
+              const gdp = gdpData.find(item => item.name === name) ?? {
+                value: 'unkown',
+              }
+              const _985 = universities985.find(item => item.name === name) ?? {
+                value: 'unkown',
+              }
+              const _211 = universities211.find(item => item.name === name) ?? {
+                value: 'unkown',
+              }
+              const doubleFirstClass = universitiesDoubleFirstClass.find(
+                item => item.name === name,
+              ) ?? { value: 'unkown' }
+              const eduFunds = educationBudget.find(
+                item => item.name === name,
+              ) ?? { value: 'unkown' }
+              return `
+                          <div style="font-size: 16; font-weight: bold">${name}</div>
+                          <div style="font-size: 10">GDP: ${gdp.value} (亿)</div>
+                          <div style="font-size: 10">985: ${_985.value} (所)</div>
+                          <div style="font-size: 10">211: ${_211.value} (所)</div>
+                          <div style="font-size: 10">双一流: ${doubleFirstClass.value} (所)</div>
+                          <div style="font-size: 10">教育经费: ${eduFunds.value} (亿)</div>
+                      `
+            },
+            // formatter: '呼啦呼啦'
+          },
           type: 'map',
           map: map,
           // name: 'map',
@@ -191,6 +194,27 @@ const EChartsMap = React.forwardRef(ref => {
             name: 'school',
             type: 'scatter',
             coordinateSystem: 'geo',
+            tooltip: {
+              show: true,
+              formatter: function (params) {
+                console.log(params)
+                console.log(params.data.symbol.substring(8))
+                return `
+                <div style="display: flex; flex-direction: column; justify-content: center; align-items: center">
+                <image src=${params.data.symbol.substring(
+                  8,
+                )} style="width: 50px; height: 50px" />
+                <div style="font-size: 16; font-weight: bold">${
+                  params.data.name
+                }</div>
+                <div style="font-size: 10">地址: ${params.data.address}</div>
+                <div style="font-size: 10">等级: ${
+                  params.data.note ?? '无特殊等级'
+                }</div>
+                </div>
+              `
+              },
+            },
             geoIndex: 0,
             // data: scatter
             // data: [

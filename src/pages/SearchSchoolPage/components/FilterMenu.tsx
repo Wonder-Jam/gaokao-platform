@@ -83,24 +83,20 @@ const FilterMenu: React.FC = () => {
   const handleProvinceSelect = (selectedProvince: string) => {
     // 在这里处理选中省份的逻辑，可以将选中的值存储在某个变量中
     // console.log(`Selected Province: ${selectedProvince}`);
-    setChoices({
+    setChoices(prev => ({
+      ...prev,
       province:
         provinceAbbreviationMap.get(selectedProvince) ?? Enum.province.None,
-      city,
-      rank,
-      filterSchool,
-    })
+    }))
   }
 
   const handleFilterSelect = (selectedFilters: string[]) => {
     // 在这里处理选中省份的逻辑，可以将选中的值存储在某个变量中
     // console.log(`Selected Province: ${selectedProvince}`);
-    setChoices({
-      province,
-      city,
-      rank,
+    setChoices(prev => ({
+      ...prev,
       filterSchool: selectedFilters,
-    })
+    }))
   }
 
   const items: MenuProps['items'] = [
@@ -113,7 +109,10 @@ const FilterMenu: React.FC = () => {
     getItem('地区', 'sub1', <GlobalOutlined />, [
       getItem(
         <Space direction="vertical" style={{ width: '100%' }}>
-          <ProvinceList onSelect={handleProvinceSelect} selected={province} />
+          <ProvinceList
+            onSelect={handleProvinceSelect}
+            selected={province ?? Enum.province.None}
+          />
         </Space>,
         'g1',
         null,
@@ -132,7 +131,7 @@ const FilterMenu: React.FC = () => {
       getItem(
         <SchoolFilterList
           onSelect={handleFilterSelect}
-          selected={filterSchool}
+          selected={filterSchool ?? []}
         />,
         'g2',
         null,
@@ -188,12 +187,10 @@ const FilterMenu: React.FC = () => {
   ]
 
   const onClick: MenuProps['onClick'] = e => {
-    setChoices({
+    setChoices(prev => ({
+      ...prev,
       province,
-      city,
-      rank: Number(e.key) as Enum.rank,
-      filterSchool,
-    })
+    }))
     if (e.key === 'sub5') {
       toggleCollapsed()
     }
