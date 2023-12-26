@@ -16,6 +16,7 @@ import { SearchContext } from '../Context/SearchContext'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { useDebounceFn } from 'ahooks'
 import { useRouter } from 'next/router'
+import { MajorSearchContext } from '../index.page'
 
 // TODO: UniversityList 太丑了，需要美化：1.太空了，资源利用不到位 2.List.Item.Meta限制太多了，要自定义内容
 
@@ -122,32 +123,15 @@ const UniversityList: React.FC<AppPorps> = props => {
     }
   }, [])
 
-  const { majorCategories, province, filterSchool } = useContext(SearchContext)
+  const { majorCategories } = useContext(MajorSearchContext)
   useEffect(() => {
-    if (majorCategories === '全部' && filterSchool.length === 0) {
+    console.log('专业' + majorCategories)
+    if (majorCategories === '全部') {
       setList(data)
-    } else if (majorCategories === '全部' && filterSchool.length !== 0) {
-      setList(
-        data.filter(item => {
-          console.log('阿啦啦啦！' + item.tags)
-          return item.tags.some(tag => filterSchool.includes(tag))
-        }),
-      )
-    } else if (
-      majorCategories !== '全部'
-      // && filterSchool.length === 0
-    ) {
-      setList(data.filter(item => item.majorCategories === majorCategories))
     } else {
-      setList(
-        data.filter(
-          item =>
-            item.majorCategories === majorCategories &&
-            item.tags.some(tag => filterSchool.includes(tag)),
-        ),
-      )
+      setList(data.filter(item => item.majorCategories === majorCategories))
     }
-  }, [data, filterSchool, province])
+  }, [data, majorCategories])
 
   const onLoadMore = () => {
     fetch(fakeDataUrl)
