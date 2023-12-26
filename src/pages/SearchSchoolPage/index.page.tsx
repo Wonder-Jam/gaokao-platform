@@ -19,8 +19,9 @@ export default function SearchSchoolPage() {
   })
 
   return (
-    <SearchContext.Provider value={{ ...choices, setChoices }}>
-      <>
+    <>
+    {SearchContext ? (
+      <SearchContext.Provider value={{ ...choices, setChoices }}>
         <RootLayout>
           <Layer>
             <FilterMenu />
@@ -32,7 +33,8 @@ export default function SearchSchoolPage() {
             </CardListContainer>
           </Layer>
         </RootLayout>
+      </SearchContext.Provider>
+    ) : null}
       </>
-    </SearchContext.Provider>
   )
 }

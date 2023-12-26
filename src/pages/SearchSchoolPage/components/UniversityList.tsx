@@ -117,23 +117,23 @@ const UniversityList: React.FC<AppPorps> = props => {
 
   const { province, filterSchool } = useContext(SearchContext)
   useEffect(() => {
-    if (province === '全国' && filterSchool.length === 0) {
+    if (province === '全国' && filterSchool?.length === 0) {
       setList(data)
-    } else if (province === '全国' && filterSchool.length !== 0) {
+    } else if (province === '全国' && filterSchool?.length !== 0) {
       setList(
         data.filter(item => {
           console.log('阿啦啦啦！' + item.tags)
-          return item.tags.some(tag => filterSchool.includes(tag))
+          return item.tags.some(tag => filterSchool?.includes(tag))
         }),
       )
-    } else if (province !== '全国' && filterSchool.length === 0) {
+    } else if (province !== '全国' && filterSchool?.length === 0) {
       setList(data.filter(item => item.province === province))
     } else {
       setList(
         data.filter(
           item =>
             item.province === province &&
-            item.tags.some(tag => filterSchool.includes(tag)),
+            item.tags.some(tag => filterSchool?.includes(tag)),
         ),
       )
     }
