@@ -14,6 +14,8 @@ export default function SearchSchoolPage() {
     city: Enum.city.None,
     rank: Enum.rank.None,
     filterSchool: [] as string[],
+    selectedClass: [] as string[],
+    score: 600,
   })
 
   return (
