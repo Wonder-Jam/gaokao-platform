@@ -1,7 +1,7 @@
 import React, { createContext, useState, useEffect } from 'react'
 import Entry from '@/components/Entry'
 import FilterMenu from './components/FilterMenu'
-import MajorList from './components/MajorList'
+import UniversityList from './components/UniversityList'
 import { MapContainer, Layer, CardListContainer } from './style'
 import * as Enum from './enum'
 import Tabs from './components/Tabs'
@@ -21,6 +21,8 @@ export const MajorSearchContext = createContext<{
 })
 
 export default function SearchSchoolPage() {
+  const [universityListWidth, setUniversityListWidth] = useState('30%')
+
   const [choices, setChoices] = useState({
     majorCategories: Enum.majorCategories.ALL,
   })
@@ -46,8 +48,8 @@ export default function SearchSchoolPage() {
               <Tabs />
             </MapContainer>
 
-            <CardListContainer>
-              <MajorList />
+            <CardListContainer width={universityListWidth}>
+              <UniversityList setUniversityListWidth={setUniversityListWidth} />
             </CardListContainer>
           </Layer>
         </Entry>

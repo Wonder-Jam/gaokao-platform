@@ -9,13 +9,14 @@ import React, {
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons'
 import { List, Card, Tag, Space, Divider, Skeleton, Button } from 'antd'
 import { UniversityItem } from './style'
-import eventBus from '@/utils/eventBus'
+import { eventBus } from '../utils/eventBus'
 import Searchbar from '@/components/Searchbar'
 import FilterTag from './FilterTag'
 import { SearchContext } from '../Context/SearchContext'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { useDebounceFn } from 'ahooks'
 import { useRouter } from 'next/router'
+import { MajorSearchContext } from '../index.page'
 
 // TODO: UniversityList 太丑了，需要美化：1.太空了，资源利用不到位 2.List.Item.Meta限制太多了，要自定义内容
 
@@ -32,6 +33,10 @@ interface AppPorps {
 
 export type tagsType = keyof typeof TagColorMap
 export interface DataType {
+  majorCategories: string
+
+  id?: number
+
   name: string
   website: string
   picture: {
@@ -40,6 +45,7 @@ export interface DataType {
     thumbnail?: string
   }
   motto: string
+  direction: string
   loading: boolean
   description: string
   background: string
@@ -54,7 +60,9 @@ export interface DataType {
 }
 
 const count = 3
-const fakeDataUrl = 'api/universitylist'
+const fakeDataUrl =
+  // 'api/universitylist'
+  '/data/mockMajorData.json'
 export interface responseData {
   contentSize: number
   page: DataType[]
@@ -115,29 +123,15 @@ const UniversityList: React.FC<AppPorps> = props => {
     }
   }, [])
 
-  const { province, filterSchool } = useContext(SearchContext)
+  const { majorCategories } = useContext(MajorSearchContext)
   useEffect(() => {
-    if (province === '全国' && filterSchool?.length === 0) {
+    console.log('专业' + majorCategories)
+    if (majorCategories === '全部') {
       setList(data)
-    } else if (province === '全国' && filterSchool?.length !== 0) {
-      setList(
-        data.filter(item => {
-          console.log('阿啦啦啦！' + item.tags)
-          return item.tags.some(tag => filterSchool?.includes(tag))
-        }),
-      )
-    } else if (province !== '全国' && filterSchool?.length === 0) {
-      setList(data.filter(item => item.province === province))
     } else {
-      setList(
-        data.filter(
-          item =>
-            item.province === province &&
-            item.tags.some(tag => filterSchool?.includes(tag)),
-        ),
-      )
+      setList(data.filter(item => item.majorCategories === majorCategories))
     }
-  }, [data, filterSchool, province])
+  }, [data, majorCategories])
 
   const onLoadMore = () => {
     fetch(fakeDataUrl)
@@ -156,7 +150,8 @@ const UniversityList: React.FC<AppPorps> = props => {
   }
 
   const onItemClicked = useCallback((item: DataType) => {
-    eventBus.emit('universityClicked', item)
+    // eventBus.emit('universityClicked', item)
+    eventBus.emit('majorClicked', item)
   }, [])
   const options = useMemo(() => {
     return list.map(value => value.name)
@@ -173,22 +168,30 @@ const UniversityList: React.FC<AppPorps> = props => {
     return (
       <UniversityItem>
         <div style={{ display: 'flex', flexDirection: 'row' }}>
-          <img
-            src={item.picture.large}
-            style={{ borderRadius: '3px', width: '80px', height: '80px' }}
-          />
+          {/*<img*/}
+          {/*  src={item.picture.large}*/}
+          {/*  style={{ borderRadius: '3px', width: '80px', height: '80px' }}*/}
+          {/*/>*/}
           <div style={{ marginLeft: '10px' }}>
             <h3 style={{ margin: '0px', marginTop: '3px' }}>{item.name}</h3>
             <p style={{ margin: '0px', marginTop: '2px', color: 'gray' }}>
-              {item.motto}
+              {item.direction}
             </p>
+
             <Space size={[0, 4]} wrap>
-              {item.tags.map((value: tagsType) => {
-                return TagColorMap[value] ? (
-                  <Tag color={TagColorMap[value]}>{value}</Tag>
-                ) : null
-              })}
+              {/*{item.tags[0] ? <Tag color="cyan">{item.tags[0]}</Tag> : null}*/}
+              {item.tags[1] ? <Tag color="green">{item.tags[1]}</Tag> : null}
+              {item.tags[2] ? <Tag color="orange">{item.tags[2]}</Tag> : null}
+              {item.tags[3] ? <Tag color="red">{item.tags[3]}</Tag> : null}
             </Space>
+
+            {/*<Space size={[0, 4]} wrap>*/}
+            {/*  {item.tags.map((value: tagsType) => {*/}
+            {/*    return TagColorMap[value] ? (*/}
+            {/*      <Tag color={TagColorMap[value]}>{value}</Tag>*/}
+            {/*    ) : null*/}
+            {/*  })}*/}
+            {/*</Space>*/}
           </div>
         </div>
       </UniversityItem>
@@ -236,16 +239,16 @@ const UniversityList: React.FC<AppPorps> = props => {
           />
         )}
       </div>
-      {isFolded ? null : (
-        <FilterTag
-          style={{
-            width: '97%',
-            height: '5%',
-            marginLeft: '5px',
-            marginRight: '5px',
-          }}
-        />
-      )}
+      {/*{isFolded ? null : (*/}
+      {/*  <FilterTag*/}
+      {/*    style={{*/}
+      {/*      width: '97%',*/}
+      {/*      height: '5%',*/}
+      {/*      marginLeft: '5px',*/}
+      {/*      marginRight: '5px',*/}
+      {/*    }}*/}
+      {/*  />*/}
+      {/*)}*/}
       {isFolded ? null : (
         <div
           ref={listRef}

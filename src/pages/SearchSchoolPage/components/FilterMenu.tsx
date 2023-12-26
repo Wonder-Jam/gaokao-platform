@@ -83,7 +83,7 @@ const FilterMenu: React.FC = () => {
   const handleProvinceSelect = (selectedProvince: string) => {
     // 在这里处理选中省份的逻辑，可以将选中的值存储在某个变量中
     // console.log(`Selected Province: ${selectedProvince}`);
-    setChoices(prev=>({
+    setChoices(prev => ({
       ...prev,
       province:
         provinceAbbreviationMap.get(selectedProvince) ?? Enum.province.None,
@@ -93,7 +93,7 @@ const FilterMenu: React.FC = () => {
   const handleFilterSelect = (selectedFilters: string[]) => {
     // 在这里处理选中省份的逻辑，可以将选中的值存储在某个变量中
     // console.log(`Selected Province: ${selectedProvince}`);
-    setChoices(prev=>({
+    setChoices(prev => ({
       ...prev,
       filterSchool: selectedFilters,
     }))
@@ -109,7 +109,10 @@ const FilterMenu: React.FC = () => {
     getItem('地区', 'sub1', <GlobalOutlined />, [
       getItem(
         <Space direction="vertical" style={{ width: '100%' }}>
-          <ProvinceList onSelect={handleProvinceSelect} selected={province??Enum.province.None} />
+          <ProvinceList
+            onSelect={handleProvinceSelect}
+            selected={province ?? Enum.province.None}
+          />
         </Space>,
         'g1',
         null,
@@ -128,7 +131,7 @@ const FilterMenu: React.FC = () => {
       getItem(
         <SchoolFilterList
           onSelect={handleFilterSelect}
-          selected={filterSchool??[]}
+          selected={filterSchool ?? []}
         />,
         'g2',
         null,
@@ -146,13 +149,7 @@ const FilterMenu: React.FC = () => {
       // getItem('211大学数量', Enum.rank._211),
       // getItem('双一流大学数量', Enum.rank.DoubleFristClass),
       // getItem('教育总经费', Enum.rank.EduFunds),
-      getItem(
-        <ClassSelector />,
-        'g2',
-        null,
-        [],
-        'group',
-      ),
+      getItem(<ClassSelector />, 'g2', null, [], 'group'),
     ]),
     getItem('您的预估分数', 'sub4', <FundProjectionScreenOutlined />, [
       // getItem('无', Enum.rank.None),
@@ -163,7 +160,13 @@ const FilterMenu: React.FC = () => {
       // getItem('教育总经费', Enum.rank.EduFunds),
       getItem(
         <Space direction="vertical" style={{ width: '100%' }}>
-          <InputNumber addonAfter="分" style={{ width: '100%' }} min={0} max={750} value={700} />
+          <InputNumber
+            addonAfter="分"
+            style={{ width: '100%' }}
+            min={0}
+            max={750}
+            value={700}
+          />
         </Space>,
         'g2',
         null,
@@ -171,7 +174,6 @@ const FilterMenu: React.FC = () => {
         'group',
       ),
     ]),
-
 
     // getItem('等级', 'sub4', <SettingOutlined />, [
     //   getItem('Option 9', '9'),
@@ -187,7 +189,7 @@ const FilterMenu: React.FC = () => {
   const onClick: MenuProps['onClick'] = e => {
     setChoices(prev => ({
       ...prev,
-      province
+      province,
     }))
     if (e.key === 'sub5') {
       toggleCollapsed()
