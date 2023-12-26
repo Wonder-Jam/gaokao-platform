@@ -24,11 +24,7 @@ import { provinceMap, proviceDataMap, reverseProvinceMap } from '../maps'
 // let locationFetch = 'api/locateUniversityRandomly'
 let locationInterval = null
 
-<<<<<<< HEAD
 const EChartsMap = () => {
-=======
-const EChartsMap = React.forwardRef(ref => {
->>>>>>> origin
   const { province, city, rank, filterSchool, setChoices } =
     useContext(SearchContext)
   const chartRef = useRef(null)
