@@ -42,6 +42,7 @@ export interface DataType {
     thumbnail?: string
   }
   motto: string
+  direction: string
   loading: boolean
   description: string
   background: string
@@ -61,7 +62,7 @@ export interface responseData {
   contentSize: number
   page: DataType[]
 }
-const MajorList: React.FC<AppPorps> = props => {
+const UniversityList: React.FC<AppPorps> = props => {
   const [initLoading, setInitLoading] = useState(true)
   const [data, setData] = useState<DataType[]>([])
   const [list, setList] = useState<DataType[]>([])
@@ -183,11 +184,11 @@ const MajorList: React.FC<AppPorps> = props => {
           <div style={{ marginLeft: '10px' }}>
             <h3 style={{ margin: '0px', marginTop: '3px' }}>{item.name}</h3>
             <p style={{ margin: '0px', marginTop: '2px', color: 'gray' }}>
-              {item.motto}
+              {item.direction}
             </p>
 
             <Space size={[0, 4]} wrap>
-              {item.tags[0] ? <Tag color="cyan">{item.tags[0]}</Tag> : null}
+              {/*{item.tags[0] ? <Tag color="cyan">{item.tags[0]}</Tag> : null}*/}
               {item.tags[1] ? <Tag color="green">{item.tags[1]}</Tag> : null}
               {item.tags[2] ? <Tag color="orange">{item.tags[2]}</Tag> : null}
               {item.tags[3] ? <Tag color="red">{item.tags[3]}</Tag> : null}
@@ -218,21 +219,21 @@ const MajorList: React.FC<AppPorps> = props => {
           marginRight: '5px',
         }}
       >
-        {/*<Button*/}
-        {/*  icon={isFolded ? <MenuFoldOutlined /> : <MenuUnfoldOutlined />}*/}
-        {/*  onClick={() => {*/}
-        {/*    setIsFolded(prev => {*/}
-        {/*      props.setUniversityListWidth(!prev ? '4%' : '30%')*/}
-        {/*      if (typeof window !== 'undefined') {*/}
-        {/*        setTimeout(() => {*/}
-        {/*          window.dispatchEvent(new Event('resize'))*/}
-        {/*        }, 30)*/}
-        {/*      }*/}
-        {/*      return !prev*/}
-        {/*    })*/}
-        {/*    console.log(isFolded)*/}
-        {/*  }}*/}
-        {/*/>*/}
+        <Button
+          icon={isFolded ? <MenuFoldOutlined /> : <MenuUnfoldOutlined />}
+          onClick={() => {
+            setIsFolded(prev => {
+              props.setUniversityListWidth(!prev ? '4%' : '30%')
+              if (typeof window !== 'undefined') {
+                setTimeout(() => {
+                  window.dispatchEvent(new Event('resize'))
+                }, 30)
+              }
+              return !prev
+            })
+            console.log(isFolded)
+          }}
+        />
         {isFolded ? null : (
           <Searchbar
             optionsData={options}
@@ -310,4 +311,4 @@ const MajorList: React.FC<AppPorps> = props => {
   )
 }
 
-export default MajorList
+export default UniversityList

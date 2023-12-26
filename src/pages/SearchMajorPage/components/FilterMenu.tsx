@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import {
   BarChartOutlined,
   GlobalOutlined,
@@ -30,6 +30,8 @@ function getItem(
     type,
   } as MenuItem
 }
+
+// const [collapsed, setCollapsed] = useState(false)
 
 const majorCategoriesMap: Map<string, Enum.majorCategories> = new Map([
   ['教育学', majorCategories.Education],
@@ -101,7 +103,7 @@ const FilterMenu: React.FC = () => {
   return (
     <Menu
       onClick={onClick}
-      style={{ height: '100%', width: '20%', overflowY: 'auto' }}
+      style={{ height: '100%', width: '30%', overflowY: 'auto' }}
       defaultSelectedKeys={['0']}
       defaultOpenKeys={['sub1', 'sub2']}
       mode="inline"
