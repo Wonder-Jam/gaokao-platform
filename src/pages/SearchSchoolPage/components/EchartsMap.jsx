@@ -24,7 +24,7 @@ import { provinceMap, proviceDataMap, reverseProvinceMap } from '../maps'
 // let locationFetch = 'api/locateUniversityRandomly'
 let locationInterval = null
 
-const EChartsMap = React.forwardRef(ref => {
+const EChartsMap = () => {
   const { province, city, rank, filterSchool, setChoices } =
     useContext(SearchContext)
   const chartRef = useRef(null)
@@ -108,41 +108,41 @@ const EChartsMap = React.forwardRef(ref => {
     if (myChart.current) {
       echarts.registerMap(map, features)
       const option = {
-        geo: {
-          tooltip: {
-            show: map === 'china' ? true : false,
-            backgroundColor: '#FFFFFFE6',
-            borderWidth: 0,
-            trigger: 'item',
-            formatter: function (params) {
-              // console.log('params', params)
-              const name = params.name
-              const gdp = gdpData.find(item => item.name === name) ?? {
-                value: 'unkown',
-              }
-              const _985 = universities985.find(item => item.name === name) ?? {
-                value: 'unkown',
-              }
-              const _211 = universities211.find(item => item.name === name) ?? {
-                value: 'unkown',
-              }
-              const doubleFirstClass = universitiesDoubleFirstClass.find(
-                item => item.name === name,
-              ) ?? { value: 'unkown' }
-              const eduFunds = educationBudget.find(
-                item => item.name === name,
-              ) ?? { value: 'unkown' }
-              return `
-                          <div style="font-size: 16; font-weight: bold">${name}</div>
-                          <div style="font-size: 10">GDP: ${gdp.value} (亿)</div>
-                          <div style="font-size: 10">985: ${_985.value} (所)</div>
-                          <div style="font-size: 10">211: ${_211.value} (所)</div>
-                          <div style="font-size: 10">双一流: ${doubleFirstClass.value} (所)</div>
-                          <div style="font-size: 10">教育经费: ${eduFunds.value} (亿)</div>
-                      `
-            },
-            // formatter: '呼啦呼啦'
+        tooltip: {
+          show: map === 'china' ? true : false,
+          backgroundColor: '#FFFFFFE6',
+          borderWidth: 0,
+          trigger: 'item',
+          formatter: function (params) {
+            // console.log('params', params)
+            const name = params.name
+            const gdp = gdpData.find(item => item.name === name) ?? {
+              value: 'unkown',
+            }
+            const _985 = universities985.find(item => item.name === name) ?? {
+              value: 'unkown',
+            }
+            const _211 = universities211.find(item => item.name === name) ?? {
+              value: 'unkown',
+            }
+            const doubleFirstClass = universitiesDoubleFirstClass.find(
+              item => item.name === name,
+            ) ?? { value: 'unkown' }
+            const eduFunds = educationBudget.find(
+              item => item.name === name,
+            ) ?? { value: 'unkown' }
+            return `
+                        <div style="font-size: 16; font-weight: bold">${name}</div>
+                        <div style="font-size: 10">GDP: ${gdp.value} (亿)</div>
+                        <div style="font-size: 10">985: ${_985.value} (所)</div>
+                        <div style="font-size: 10">211: ${_211.value} (所)</div>
+                        <div style="font-size: 10">双一流: ${doubleFirstClass.value} (所)</div>
+                        <div style="font-size: 10">教育经费: ${eduFunds.value} (亿)</div>
+                    `
           },
+          // formatter: '呼啦呼啦'
+        },
+        geo: {
           type: 'map',
           map: map,
           // name: 'map',
@@ -196,6 +196,7 @@ const EChartsMap = React.forwardRef(ref => {
             coordinateSystem: 'geo',
             tooltip: {
               show: true,
+              trigger: 'item',
               formatter: function (params) {
                 console.log(params)
                 console.log(params.data.symbol.substring(8))
@@ -614,6 +615,6 @@ const EChartsMap = React.forwardRef(ref => {
       )}
     </>
   )
-})
+}
 
 export default EChartsMap
