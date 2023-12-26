@@ -39,7 +39,7 @@ const FilterTag: React.FC<Props> = props => {
   const forMap = (tag: string) => {
     const tagElem = (
       <Tag
-        closable={tag !== '全国'}
+        closable={tag !== '全部'}
         onClose={e => {
           e.preventDefault()
           handleClose(tag)

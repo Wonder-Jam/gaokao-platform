@@ -9,7 +9,7 @@ import React, {
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons'
 import { List, Card, Tag, Space, Divider, Skeleton, Button } from 'antd'
 import { UniversityItem } from './style'
-import eventBus from '@/utils/eventBus'
+import { eventBus } from '../utils/eventBus'
 import Searchbar from '@/components/Searchbar'
 import FilterTag from './FilterTag'
 import { SearchContext } from '../Context/SearchContext'
@@ -32,6 +32,8 @@ interface AppPorps {
 
 export type tagsType = keyof typeof TagColorMap
 export interface DataType {
+  id?: number
+
   name: string
   website: string
   picture: {
@@ -54,7 +56,7 @@ export interface DataType {
 }
 
 const count = 3
-const fakeDataUrl = 'api/universitylist'
+const fakeDataUrl = '/data/mockMajorData.json'
 export interface responseData {
   contentSize: number
   page: DataType[]
@@ -156,7 +158,8 @@ const MajorList: React.FC<AppPorps> = props => {
   }
 
   const onItemClicked = useCallback((item: DataType) => {
-    eventBus.emit('universityClicked', item)
+    // eventBus.emit('universityClicked', item)
+    eventBus.emit('majorClicked', item)
   }, [])
   const options = useMemo(() => {
     return list.map(value => value.name)
@@ -173,22 +176,30 @@ const MajorList: React.FC<AppPorps> = props => {
     return (
       <UniversityItem>
         <div style={{ display: 'flex', flexDirection: 'row' }}>
-          <img
-            src={item.picture.large}
-            style={{ borderRadius: '3px', width: '80px', height: '80px' }}
-          />
+          {/*<img*/}
+          {/*  src={item.picture.large}*/}
+          {/*  style={{ borderRadius: '3px', width: '80px', height: '80px' }}*/}
+          {/*/>*/}
           <div style={{ marginLeft: '10px' }}>
             <h3 style={{ margin: '0px', marginTop: '3px' }}>{item.name}</h3>
             <p style={{ margin: '0px', marginTop: '2px', color: 'gray' }}>
               {item.motto}
             </p>
+
             <Space size={[0, 4]} wrap>
-              {item.tags.map((value: tagsType) => {
-                return TagColorMap[value] ? (
-                  <Tag color={TagColorMap[value]}>{value}</Tag>
-                ) : null
-              })}
+              {item.tags[0] ? <Tag color="cyan">{item.tags[0]}</Tag> : null}
+              {item.tags[1] ? <Tag color="green">{item.tags[1]}</Tag> : null}
+              {item.tags[2] ? <Tag color="orange">{item.tags[2]}</Tag> : null}
+              {item.tags[3] ? <Tag color="red">{item.tags[3]}</Tag> : null}
             </Space>
+
+            {/*<Space size={[0, 4]} wrap>*/}
+            {/*  {item.tags.map((value: tagsType) => {*/}
+            {/*    return TagColorMap[value] ? (*/}
+            {/*      <Tag color={TagColorMap[value]}>{value}</Tag>*/}
+            {/*    ) : null*/}
+            {/*  })}*/}
+            {/*</Space>*/}
           </div>
         </div>
       </UniversityItem>
@@ -207,21 +218,21 @@ const MajorList: React.FC<AppPorps> = props => {
           marginRight: '5px',
         }}
       >
-        <Button
-          icon={isFolded ? <MenuFoldOutlined /> : <MenuUnfoldOutlined />}
-          onClick={() => {
-            setIsFolded(prev => {
-              props.setUniversityListWidth(!prev ? '4%' : '30%')
-              if (typeof window !== 'undefined') {
-                setTimeout(() => {
-                  window.dispatchEvent(new Event('resize'))
-                }, 30)
-              }
-              return !prev
-            })
-            console.log(isFolded)
-          }}
-        />
+        {/*<Button*/}
+        {/*  icon={isFolded ? <MenuFoldOutlined /> : <MenuUnfoldOutlined />}*/}
+        {/*  onClick={() => {*/}
+        {/*    setIsFolded(prev => {*/}
+        {/*      props.setUniversityListWidth(!prev ? '4%' : '30%')*/}
+        {/*      if (typeof window !== 'undefined') {*/}
+        {/*        setTimeout(() => {*/}
+        {/*          window.dispatchEvent(new Event('resize'))*/}
+        {/*        }, 30)*/}
+        {/*      }*/}
+        {/*      return !prev*/}
+        {/*    })*/}
+        {/*    console.log(isFolded)*/}
+        {/*  }}*/}
+        {/*/>*/}
         {isFolded ? null : (
           <Searchbar
             optionsData={options}
@@ -236,16 +247,16 @@ const MajorList: React.FC<AppPorps> = props => {
           />
         )}
       </div>
-      {isFolded ? null : (
-        <FilterTag
-          style={{
-            width: '97%',
-            height: '5%',
-            marginLeft: '5px',
-            marginRight: '5px',
-          }}
-        />
-      )}
+      {/*{isFolded ? null : (*/}
+      {/*  <FilterTag*/}
+      {/*    style={{*/}
+      {/*      width: '97%',*/}
+      {/*      height: '5%',*/}
+      {/*      marginLeft: '5px',*/}
+      {/*      marginRight: '5px',*/}
+      {/*    }}*/}
+      {/*  />*/}
+      {/*)}*/}
       {isFolded ? null : (
         <div
           ref={listRef}
