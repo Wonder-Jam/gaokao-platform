@@ -36,11 +36,6 @@ export default function Home() {
               containerRef: containerRef,
             }}
           >
-            {/*<div className={'section'}><IndexHeader></IndexHeader></div>*/}
-            {/*<div className={'section'}><Intro></Intro></div>*/}
-            {/*<div className={'section'}><IndexSearchSchool></IndexSearchSchool></div>*/}
-            {/*<div className={'section'}><IndexSearchMajor></IndexSearchMajor></div>*/}
-            {/*<div className={'section'}><IndexVideoPlay></IndexVideoPlay></div>*/}
             <section>
               <IndexHeader></IndexHeader>
             </section>

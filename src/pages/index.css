@@ -9,28 +9,16 @@
   scroll-snap-type: y mandatory;
 }
 
-.scroller {
-  width: 100vw;
-  /*height: 400vh;*/
-  /*height: 500px;*/
-  height: 92vh;
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory;
-  /*scroll-padding: 8vh;*/
-  /*background-color: #0f0;*/
-}
-
 section {
   width: 100vw;
-  /*height: 92vh;*/
   height: 92vh;
   scroll-snap-align: start;
   /*background-color: antiquewhite;*/
-  /*margin: 20px auto;*/
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 6px auto;
 }
 
 /*.scroller .section:nth-child(2){*/

@@ -75,7 +75,16 @@ const IndexSearchMajor: React.FC = () => {
                     style={{ width: '200px', opacity: 1, borderRadius: 32 }}
                   />
                 </div>
-                <div className={'card-content is-back'}></div>
+                <div className={'card-content is-back'}>
+                  <div className={'text-wrapper'}>
+                    <h1>机械工程</h1>
+                    <em />
+                    <p>
+                      机械工程（Mechanical
+                      Engineering）是一门利用物理定律和化学规律为机械系统作分析、设计、制造及维修的工程学科。机械工程是以有关的自然科学和技术科学为理论基础，结合生产实践中的技术经验，研究和解决在开发、设计、制造、安装、运用和维修各种机械中的全部理论和实际问题的应用学科。
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -88,7 +97,16 @@ const IndexSearchMajor: React.FC = () => {
                     style={{ width: '200px', opacity: 1 }}
                   />
                 </div>
-                <div className={'card-content is-back'}></div>
+                <div className={'card-content is-back'}>
+                  <div className={'text-wrapper'}>
+                    <h1>生物学</h1>
+                    <em />
+                    <p>
+                      生物学（biology）是探索生命现象和生命活动规律的科学，是自然科学中的一门基础学科。
+                      [6]其研究对象是生物（包括植物、动物和微生物）的结构、功能、发生和发展规律。其目的在于阐明和控制生命活动，改造自然，为农业、工业和医学等实践服务。
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -101,7 +119,15 @@ const IndexSearchMajor: React.FC = () => {
                     style={{ width: '200px', opacity: 1 }}
                   />
                 </div>
-                <div className={'card-content is-back'}></div>
+                <div className={'card-content is-back'}>
+                  <div className={'text-wrapper'}>
+                    <h1>化学</h1>
+                    <em />
+                    <p>
+                      化学（chemistry）是在原子、分子水平上研究物质的组成、结构、性质、转化及其应用的基础自然科学。它源自生活和生产实践，并随着人类社会的进步而不断发展。
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -114,7 +140,16 @@ const IndexSearchMajor: React.FC = () => {
                     style={{ width: '200px', opacity: 1 }}
                   />
                 </div>
-                <div className={'card-content is-back'}></div>
+                <div className={'card-content is-back'}>
+                  <div className={'text-wrapper'}>
+                    <h1>农学</h1>
+                    <em />
+                    <p>
+                      农学（Agriculture），是农业科学领域的传统学科，
+                      以解决人类的“吃饭穿衣”为首要己任。随着农业科技创新速度的不断加快，生物技术和信息技术的飞速发展及其在农业中的广泛应用，农学在保持传统特色的基础上，正焕发着勃勃生机。
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
