@@ -66,6 +66,7 @@
     {
 
       "sort": 1,
+      "majorCategories": "哲学",
 
       "id": 2,
       "name": "逻辑学",
@@ -103,6 +104,7 @@
     },{
 
       "sort": 1,
+      "majorCategories": "哲学",
 
       "id": 3,
       "name": "宗教学",
@@ -141,6 +143,7 @@
     {
 
       "sort": 2,
+      "majorCategories": "经济学",
 
       "id": 4,
       "name": "经济学",
@@ -179,6 +182,7 @@
     {
 
       "sort": 2,
+      "majorCategories": "经济学",
 
       "id": 5,
       "name": "国民经济管理",
@@ -217,6 +221,7 @@
     {
 
       "sort": 2,
+      "majorCategories": "经济学",
 
       "id": 6,
       "name": "资源与环境经济学",
@@ -255,6 +260,7 @@
     {
 
       "sort": 2,
+      "majorCategories": "经济学",
 
       "id": 7,
       "name": "商务经济学",
@@ -293,9 +299,10 @@
     {
 
       "sort": 3,
+      "majorCategories": "经济学",
 
       "id": 8,
-      "name": "财政学人气值",
+      "name": "财政学",
       "website": "https://www.sysu.edu.cn/",
       "picture": {
         "large": "https://files.lsmcloud.top/blog656ac9fc66a720ce26135d70f8182f52.svg",
@@ -331,7 +338,7 @@
     {
 
       "sort": 4,
-
+      "majorCategories": "经济学",
       "id": 9,
       "name": "金融学",
       "website": "https://www.sysu.edu.cn/",
@@ -369,6 +376,7 @@
     {
 
       "sort": 4,
+      "majorCategories": "经济学",
 
       "id": 10,
       "name": "投资学",
@@ -407,6 +415,7 @@
     {
 
       "sort": 4,
+      "majorCategories": "经济学",
 
       "id": 11,
       "name": "互联网金融",
