@@ -32,6 +32,8 @@ interface AppPorps {
 
 export type tagsType = keyof typeof TagColorMap
 export interface DataType {
+  majorCategories: string
+
   id?: number
 
   name: string
@@ -57,7 +59,9 @@ export interface DataType {
 }
 
 const count = 3
-const fakeDataUrl = '/data/mockMajorData.json'
+const fakeDataUrl =
+  // 'api/universitylist'
+  '/data/mockMajorData.json'
 export interface responseData {
   contentSize: number
   page: DataType[]
@@ -118,24 +122,27 @@ const UniversityList: React.FC<AppPorps> = props => {
     }
   }, [])
 
-  const { province, filterSchool } = useContext(SearchContext)
+  const { majorCategories, province, filterSchool } = useContext(SearchContext)
   useEffect(() => {
-    if (province === '全国' && filterSchool.length === 0) {
+    if (majorCategories === '全部' && filterSchool.length === 0) {
       setList(data)
-    } else if (province === '全国' && filterSchool.length !== 0) {
+    } else if (majorCategories === '全部' && filterSchool.length !== 0) {
       setList(
         data.filter(item => {
           console.log('阿啦啦啦！' + item.tags)
           return item.tags.some(tag => filterSchool.includes(tag))
         }),
       )
-    } else if (province !== '全国' && filterSchool.length === 0) {
-      setList(data.filter(item => item.province === province))
+    } else if (
+      majorCategories !== '全部'
+      // && filterSchool.length === 0
+    ) {
+      setList(data.filter(item => item.majorCategories === majorCategories))
     } else {
       setList(
         data.filter(
           item =>
-            item.province === province &&
+            item.majorCategories === majorCategories &&
             item.tags.some(tag => filterSchool.includes(tag)),
         ),
       )

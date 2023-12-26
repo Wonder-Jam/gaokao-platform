@@ -2,6 +2,8 @@ import * as Enum from '../enum'
 import React, { createContext } from 'react'
 
 export const SearchContext = createContext<{
+  majorCategories: Enum.majorCategories
+
   province: Enum.province
   city: Enum.city
   rank: Enum.rank
@@ -17,6 +19,7 @@ export const SearchContext = createContext<{
     }>
   >
 }>({
+  majorCategories: Enum.majorCategories.ALL,
   province: Enum.province.None,
   city: Enum.city.None,
   rank: Enum.rank.None,

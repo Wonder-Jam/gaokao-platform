@@ -163,6 +163,7 @@ const FilterMenu: React.FC = () => {
 
   const onClick: MenuProps['onClick'] = e => {
     setChoices({ majorCategories })
+    // setChoices({ majorCategories })
 
     // setChoices({
     //   province,
