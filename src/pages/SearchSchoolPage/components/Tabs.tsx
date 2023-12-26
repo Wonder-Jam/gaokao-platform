@@ -16,17 +16,17 @@ const EChartsMap = dynamic(() => import('./EchartsMap'), { ssr: false })
 import eventBus from '@/utils/eventBus'
 import UniversityDetail from './UniversityDetail'
 
-  // const EchartsMapRef = useRef(null)
-  let initialItems = [
-    {
-      label: '地图数据',
-      children: <EChartsMap />,
-      key: '1',
-      closable: false,
-    },
-    // { label: 'Tab 1', children: 'Content of Tab 1', key: '2' },
-    // { label: 'Tab 2', children: 'Content of Tab 2', key: '3' },
-  ]
+// const EchartsMapRef = useRef(null)
+let initialItems = [
+  {
+    label: '地图数据',
+    children: <EChartsMap />,
+    key: '1',
+    closable: false,
+  },
+  // { label: 'Tab 1', children: 'Content of Tab 1', key: '2' },
+  // { label: 'Tab 2', children: 'Content of Tab 2', key: '3' },
+]
 type TargetKey = React.MouseEvent | React.KeyboardEvent | string
 
 interface DraggableTabPaneProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -63,7 +63,6 @@ const App: React.FC = () => {
   console.log('executed!')
   const newTabIndex = useRef(0)
 
-
   useEffect(() => {
     const cachedTabs = sessionStorage.getItem('schoolTabs') // 注意这得到的是个字符串，需要转换
     if (cachedTabs && cachedTabs !== '[]') {
@@ -76,7 +75,7 @@ const App: React.FC = () => {
           if (tabInfo.label === '地图数据') {
             initialItems.push({
               label: tabInfo.label,
-              children: <EChartsMap  />,
+              children: <EChartsMap />,
               key: tabInfo.key,
               closable: false,
             })
@@ -152,7 +151,7 @@ const App: React.FC = () => {
     if (newPanes.length && targetKey === activeKey) {
       const { key } =
         newPanes[
-        targetIndex === newPanes.length ? targetIndex - 1 : targetIndex
+          targetIndex === newPanes.length ? targetIndex - 1 : targetIndex
         ]
       setActiveKey(key)
     }
@@ -192,8 +191,9 @@ const App: React.FC = () => {
     console.log(key)
     setActiveKey(key)
     if (typeof window !== 'undefined') {
-      setTimeout(() => { window.dispatchEvent(new Event('resize')) },
-        30)
+      setTimeout(() => {
+        window.dispatchEvent(new Event('resize'))
+      }, 30)
     }
   }
 

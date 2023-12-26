@@ -2,18 +2,42 @@
   position: relative;
 }
 
-.progress {
-  height: 1rem;
-  position: fixed;
-  background: blue;
-  top: 0;
-  left: 0;
+.scrollContainer {
   width: 100%;
-  transform-origin: 0 50%;
-  animation: scaleProgress auto linear;
-  z-index: 100;
-  animation-timeline: scroll(nearest y);
+  height: 100%;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
 }
+
+.scroller {
+  width: 100vw;
+  /*height: 400vh;*/
+  /*height: 500px;*/
+  height: 92vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  /*scroll-padding: 8vh;*/
+  /*background-color: #0f0;*/
+}
+
+section {
+  width: 100vw;
+  /*height: 92vh;*/
+  height: 92vh;
+  scroll-snap-align: start;
+  /*background-color: antiquewhite;*/
+  /*margin: 20px auto;*/
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/*.scroller .section:nth-child(2){*/
+/*  display: flex;*/
+/*  justify-content: center;*/
+/*  align-items: center;*/
+/*}*/
 
 @keyframes scaleProgress {
   0% {

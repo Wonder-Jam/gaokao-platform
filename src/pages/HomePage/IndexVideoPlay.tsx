@@ -23,9 +23,9 @@ const IndexVideoPlay: React.FC = () => {
       // @ts-ignore
       if (rect.top < containerRef.current.clientHeight && rect.bottom >= 0) {
         // @ts-ignore
-        eltitle.current.classList.add('slideLeft')
+        eltitle.current.classList.add('slideEnter')
         // @ts-ignore
-        elintro.current.classList.add('slideLeft')
+        elintro.current.classList.add('slideEnter')
 
         // @ts-ignore
         elVideo1.current.classList.add('mot-1')
@@ -50,10 +50,12 @@ const IndexVideoPlay: React.FC = () => {
       style={{
         width: 1280,
         height: 500,
+        // backgroundColor: '#00f',
         margin: '0px auto',
         marginBottom: '100px',
         display: 'flex',
         flexDirection: 'column',
+        // justifyContent: 'space-between'
       }}
     >
       <div
@@ -85,7 +87,7 @@ const IndexVideoPlay: React.FC = () => {
               fontSize: '38px',
               letterSpacing: '.02em',
               marginBottom: '10px',
-              animationDelay: '1.5s',
+              // animationDelay: '1.5s',
               opacity: 0,
             }}
           >
@@ -102,7 +104,7 @@ const IndexVideoPlay: React.FC = () => {
               fontSize: '20px',
               letterSpacing: '.02em',
               color: '#777e87',
-              animationDelay: '2s',
+              // animationDelay: '2s',
               opacity: 0,
             }}
           >

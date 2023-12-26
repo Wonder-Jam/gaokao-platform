@@ -24,9 +24,9 @@ const IndexSearchMajor: React.FC = () => {
       if (!containerRef.current) return
       if (rect.top < containerRef.current.clientHeight && rect.bottom >= 0) {
         // @ts-ignore
-        eltitle.current.classList.add('slideBottom')
+        eltitle.current.classList.add('slideEnter')
         // @ts-ignore
-        elintro.current.classList.add('slideTop')
+        elintro.current.classList.add('slideEnter')
         // @ts-ignore
         eldes1.current.classList.add('slideList1')
         // @ts-ignore
@@ -55,11 +55,12 @@ const IndexSearchMajor: React.FC = () => {
   return (
     <div
       style={{
-        width: 1280,
-        height: 500,
+        // width: 1280,
+        width: '100vw',
+        height: '500px',
         display: 'flex',
         // backgroundColor: '#0f0',
-        margin: '50px auto',
+        // margin: '50px auto',
       }}
     >
       <div className={'major-des'}>
@@ -147,7 +148,7 @@ const IndexSearchMajor: React.FC = () => {
               letterSpacing: '.02em',
               marginBottom: '12px',
               opacity: 0,
-              animationDelay: '1s',
+              // animationDelay: '1s',
             }}
           >
             查专业
@@ -164,7 +165,7 @@ const IndexSearchMajor: React.FC = () => {
               letterSpacing: '.02em',
               color: '#777e87',
               opacity: 0,
-              animationDelay: '1s',
+              // animationDelay: '1s',
             }}
           >
             喜欢土木工程怎么办？稳啦！
@@ -174,21 +175,21 @@ const IndexSearchMajor: React.FC = () => {
             <li
               ref={eldes1}
               className={'desList'}
-              style={{ opacity: 0, animationDelay: '2s' }}
+              style={{ opacity: 0, animationDelay: '1s' }}
             >
               小众专业，尽情探索你的兴趣
             </li>
             <li
               ref={eldes2}
               className={'desList'}
-              style={{ opacity: 0, animationDelay: '2.5s' }}
+              style={{ opacity: 0, animationDelay: '1.5s' }}
             >
               同屏三栏，专业详情尽在眼前
             </li>
             <li
               ref={eldes3}
               className={'desList'}
-              style={{ opacity: 0, animationDelay: '3s' }}
+              style={{ opacity: 0, animationDelay: '2s' }}
             >
               深度解析，从此选择不再迷茫
             </li>

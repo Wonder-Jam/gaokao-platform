@@ -23,9 +23,9 @@ const IndexSearchSchool: React.FC = () => {
       const rect = eldes3.current?.getBoundingClientRect()
       if (rect.top < containerRef.current.clientHeight && rect.bottom >= 0) {
         // @ts-ignore
-        eltitle.current.classList.add('slideBottom')
+        eltitle.current.classList.add('slideEnter')
         // @ts-ignore
-        elintro.current.classList.add('slideTop')
+        elintro.current.classList.add('slideEnter')
         // @ts-ignore
         eldes1.current.classList.add('slideList1')
         // @ts-ignore
@@ -45,11 +45,14 @@ const IndexSearchSchool: React.FC = () => {
   return (
     <div
       style={{
-        width: '1280px',
+        // width: '1280px',
+        width: '100vw',
         height: 500,
+        // height: '92vh',
         // backgroundColor: '#00f',
         display: 'flex',
         margin: '0 auto',
+        position: 'relative',
       }}
     >
       <div
@@ -80,7 +83,7 @@ const IndexSearchSchool: React.FC = () => {
               letterSpacing: '.02em',
               marginBottom: '10px',
               opacity: 0,
-              animationDelay: '3.3s',
+              // animationDelay: '3.3s',
             }}
           >
             查学校
@@ -98,7 +101,7 @@ const IndexSearchSchool: React.FC = () => {
               letterSpacing: '.02em',
               color: '#777e87',
               opacity: 0,
-              animationDelay: '3.3s',
+              // animationDelay: '3.3s',
             }}
           >
             猜猜它们都是哪个大学的？
@@ -108,21 +111,21 @@ const IndexSearchSchool: React.FC = () => {
             <li
               ref={eldes1}
               className={'desList'}
-              style={{ animationDelay: '4.3s' }}
+              style={{ animationDelay: '3.3s' }}
             >
               独特交互式地图，轻松了解大学地理全貌
             </li>
             <li
               ref={eldes2}
               className={'desList'}
-              style={{ animationDelay: '4.8s' }}
+              style={{ animationDelay: '3.8s' }}
             >
               从GDP开始筛选，增加择校考虑条件维度
             </li>
             <li
               ref={eldes3}
               className={'desList'}
-              style={{ animationDelay: '5.3s' }}
+              style={{ animationDelay: '4.3s' }}
             >
               精而全信息展示，从此不再担心有信息差
             </li>
@@ -137,6 +140,8 @@ const IndexSearchSchool: React.FC = () => {
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
+          position: 'relative',
+          top: 10,
         }}
       >
         <ImgIntro></ImgIntro>

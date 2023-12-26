@@ -33,7 +33,7 @@
 }
 
 .slideTopTitle {
-  animation: slideTopTitle 1s ease forwards;
+  animation: slideTopTitle 0.5s ease forwards;
   animation-delay: 0.5s;
 }
 
@@ -54,13 +54,13 @@
 }
 
 .slideTopContent1 {
-  animation: slideTopContent1 0.7s ease forwards;
+  animation: slideTopContent1 0.8s ease forwards;
   animation-delay: 1s;
 }
 
 @keyframes slideTopContent1 {
   0% {
-    transform: translateY(60px);
+    transform: translateY(100px);
   }
   100% {
     transform: translateY(0);
@@ -69,13 +69,13 @@
 }
 
 .slideTopContent2 {
-  animation: slideTopContent2 0.7s ease forwards;
-  animation-delay: 1.3s;
+  animation: slideTopContent2 0.8s ease forwards;
+  animation-delay: 1.2s;
 }
 
 @keyframes slideTopContent2 {
   0% {
-    transform: translateY(30px);
+    transform: translateY(100px);
   }
   100% {
     transform: translateY(0);
@@ -84,13 +84,13 @@
 }
 
 .slideTopContent3 {
-  animation: slideTopContent3 0.7s ease forwards;
-  animation-delay: 1.6s;
+  animation: slideTopContent3 0.8s ease forwards;
+  animation-delay: 1.4s;
 }
 
 @keyframes slideTopContent3 {
   0% {
-    transform: translateY(0px);
+    transform: translateY(100px);
   }
   100% {
     transform: translateY(0);

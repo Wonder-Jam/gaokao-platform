@@ -9,26 +9,6 @@
   position: relative;
 }
 
-.bubble {
-  position: relative;
-  right: -30px;
-  width: 500px;
-  height: 180px;
-  background: #999999;
-  font-size: 16px;
-  border-radius: 50%;
-  margin-bottom: 40px;
-  margin-top: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 20px 25px rgba(0, 0, 0, 0.5);
-}
-
-.bubble .content {
-  margin: 0 auto;
-}
-
 .cards-container {
   width: 360px;
   height: 360px;
@@ -46,6 +26,8 @@
   grid-template-columns: repeat(2, 180px);
   /*background-color: #525154;*/
   position: relative;
+  /*box-shadow: 0 20px 25px #efefef;*/
+  /*box-shadow: 0 20px 25px #efefef;*/
 }
 
 .cards .card-wrapper:nth-child(1) {
@@ -187,7 +169,7 @@
 }
 
 .card-content.is-back {
-  background-color: antiquewhite;
+  background-color: #efefef;
   background-position: 50%;
   background-size: cover;
   /*box-shadow: 0 20px 25px #efefef;*/
