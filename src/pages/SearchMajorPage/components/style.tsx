@@ -19,7 +19,7 @@ export const ListItem = styled.li`
   margin-right: 5px;
 `
 export const SelectedItem = styled.li`
-  backgroundcolor: '#eee';
+  background-color: '#eee';
 `
 
 export const UniversityItem = styled.li`

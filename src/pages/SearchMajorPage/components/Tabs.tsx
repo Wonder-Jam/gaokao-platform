@@ -1,15 +1,15 @@
 import type { DragEndEvent } from '@dnd-kit/core'
 import { DndContext, PointerSensor, useSensor } from '@dnd-kit/core'
 import {
+  SortableContext,
   arrayMove,
   horizontalListSortingStrategy,
-  SortableContext,
   useSortable,
 } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 
-import React, { useState, useRef, useEffect } from 'react'
-import { Tabs, Divider } from 'antd'
+import { Tabs } from 'antd'
+import React, { useEffect, useRef, useState } from 'react'
 import { eventBus } from '../utils/eventBus'
 import MajorInfo from './MajorInfo'
 
@@ -32,18 +32,6 @@ const initialItems = [
           '哲学概论、马克思主义哲学原理、中国哲学史、西方哲学史、科学技术哲学、伦理学、宗教学、美学、逻辑学、心理学、中外哲学原著导读等。'
         }
         celebrity={'老子、庄子、孔子、苏格拉底、柏拉图、歌德等。'}
-        // picture={item.picture}
-        // motto={item.motto}
-        // loading={item.loading}
-        // introduction={item.introduction}
-        // detailed_introduction={item.detailed_introduction}
-        // subject={item.subject}
-        // ratio={item.ratio}
-        // direction={item.direction}
-        // course={item.course}
-        // celebrity={item.celebrity}
-        // description={item.description}
-
         picture={{
           large: undefined,
           medium: undefined,
@@ -60,8 +48,6 @@ const initialItems = [
     key: '1',
     closable: false,
   },
-  // { label: 'Tab 1', children: 'Content of Tab 1', key: '2' },
-  // { label: 'Tab 2', children: 'Content of Tab 2', key: '3' },
 ]
 
 type TargetKey = React.MouseEvent | React.KeyboardEvent | string

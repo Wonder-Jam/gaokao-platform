@@ -55,7 +55,7 @@ export interface DataType {
 
 const count = 3
 const fakeDataUrl = 'api/universitylist'
-export interface responseData {
+export interface responseSchoolData {
   contentSize: number
   page: DataType[]
 }
@@ -92,7 +92,7 @@ const UniversityList: React.FC<AppPorps> = props => {
   useEffect(() => {
     fetch(fakeDataUrl)
       .then(res => res.json())
-      .then((res: responseData) => {
+      .then((res: responseSchoolData) => {
         setInitLoading(false)
         const { page } = res
         contentSize.current = res.contentSize

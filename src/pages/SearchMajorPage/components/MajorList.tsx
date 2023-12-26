@@ -11,8 +11,6 @@ import { List, Card, Tag, Space, Divider, Skeleton, Button } from 'antd'
 import { UniversityItem } from './style'
 import { eventBus } from '../utils/eventBus'
 import Searchbar from '@/components/Searchbar'
-import FilterTag from './FilterTag'
-import { SearchContext } from '../Context/SearchContext'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { useDebounceFn } from 'ahooks'
 import { useRouter } from 'next/router'
@@ -125,7 +123,6 @@ const UniversityList: React.FC<AppPorps> = props => {
 
   const { majorCategories } = useContext(MajorSearchContext)
   useEffect(() => {
-    console.log('专业' + majorCategories)
     if (majorCategories === '全部') {
       setList(data)
     } else {
@@ -239,16 +236,6 @@ const UniversityList: React.FC<AppPorps> = props => {
           />
         )}
       </div>
-      {/*{isFolded ? null : (*/}
-      {/*  <FilterTag*/}
-      {/*    style={{*/}
-      {/*      width: '97%',*/}
-      {/*      height: '5%',*/}
-      {/*      marginLeft: '5px',*/}
-      {/*      marginRight: '5px',*/}
-      {/*    }}*/}
-      {/*  />*/}
-      {/*)}*/}
       {isFolded ? null : (
         <div
           ref={listRef}
