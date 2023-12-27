@@ -116,7 +116,7 @@ function GaoKaoMenu() {
 }
 
 function HeaderBar() {
-  const { goToEolPage, goToYangGuangGaoKaoPage } = usePageNavigation()
+  const { goToHomePage } = usePageNavigation()
   return (
     <HeaderBarContainer>
       <div>
@@ -126,7 +126,7 @@ function HeaderBar() {
             preview={false}
             // style={{ transform: 'scale(0.6)' }}
             height={'50px'}
-            onClick={goToEolPage}
+            onClick={goToHomePage}
           />
         </ImageContainer>
         {/* <ImageContainer>

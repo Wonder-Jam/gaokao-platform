@@ -3,9 +3,6 @@ import { useRouter } from 'next/router'
 export function usePageNavigation() {
   const router = useRouter()
   return {
-    goToMainPage() {
-      router.push('/MainPage')
-    },
     goToSearchSchoolPage(params: any = null) {
       router.push({
         pathname: '/SearchSchoolPage',
@@ -29,6 +26,9 @@ export function usePageNavigation() {
     },
     goToVideoPlayPage() {
       router.push('/VideoPlayPage')
+    },
+    goToHomePage() {
+      router.push('/')
     },
   }
 }
