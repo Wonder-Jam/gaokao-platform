@@ -35,8 +35,6 @@ const IndexVideoPlay: React.FC = () => {
         eltitle.current.classList.add('slideEnter')
         // @ts-ignore
         elintro.current.classList.add('slideEnter')
-        // @ts-ignore
-        elbutton.current.classList.add('slideEnter')
 
         // @ts-ignore
         elVideo1.current.classList.add('mot-1')
@@ -110,21 +108,6 @@ const IndexVideoPlay: React.FC = () => {
             >
               看一看
             </p>
-            <Button
-              ref={elbutton}
-              style={{
-                width: '102px',
-                fontWeight: '600',
-                marginLeft: '10px',
-                opacity: 0,
-              }}
-              type={'primary'}
-              shape={'round'}
-              size={'large'}
-              onClick={() => goToVideoPlayPage()}
-            >
-              了解更多
-            </Button>
           </div>
           <div
             ref={elintro}
@@ -141,7 +124,7 @@ const IndexVideoPlay: React.FC = () => {
               opacity: 0,
             }}
           >
-            大学宣传资讯，应有尽有!
+            你想要的大学看点，这里都有
           </div>
         </div>
       </div>

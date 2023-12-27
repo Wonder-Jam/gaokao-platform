@@ -73,7 +73,7 @@ const Slider: React.FC<{ indexActive: number }> = ({ indexActive }) => {
                     height={'100%'}
                     width={'100%'}
                     preview={false}
-                    src={'/images/slider1.jpg'}
+                    src={'/images/slider3.jpg'}
                   ></Image>
                 </div>
               </QueueAnim>
@@ -88,7 +88,7 @@ const Slider: React.FC<{ indexActive: number }> = ({ indexActive }) => {
                     height={'100%'}
                     width={'100%'}
                     preview={false}
-                    src={'/images/slider3.jpg'}
+                    src={'/images/slider1.jpg'}
                   ></Image>
                 </div>
               </QueueAnim>
@@ -165,7 +165,6 @@ const ProgressBar: React.FC<{ indexActive: number; onChange: () => void }> = ({
             onChange()
             setProgress2(0)
           }
-          setIsAuto(!isAuto)
         }}
       >
         <div
@@ -204,7 +203,6 @@ const ProgressBar: React.FC<{ indexActive: number; onChange: () => void }> = ({
             onChange()
             setProgress1(0)
           }
-          setIsAuto(!isAuto)
         }}
       >
         <div
