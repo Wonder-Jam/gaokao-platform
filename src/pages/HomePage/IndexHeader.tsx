@@ -11,7 +11,7 @@ const IndexHeader: React.FC = () => {
     <div className={'header-wrapper'}>
       <div
         style={{
-          width: '40%',
+          width: '38%',
           height: '100%',
           borderRadius: 30,
           overflow: 'hidden',
