@@ -74,7 +74,7 @@ const provinceAbbreviationMap: Map<string, Enum.province> = new Map([
 ])
 
 const FilterMenu: React.FC = () => {
-  const { province, city, rank, setChoices, filterSchool } =
+  const { score,province, city, rank, setChoices, filterSchool } =
     useContext(SearchContext)
   const [collapsed, setCollapsed] = useState(false)
   const toggleCollapsed = () => {
@@ -165,7 +165,14 @@ const FilterMenu: React.FC = () => {
             style={{ width: '100%' }}
             min={0}
             max={750}
-            value={700}
+            value={score??0}
+            onChange={value => {
+              setChoices(prev => ({
+                ...prev,
+                score: value??0,
+              }))
+              console.log(value)
+            }}
           />
         </Space>,
         'g2',
