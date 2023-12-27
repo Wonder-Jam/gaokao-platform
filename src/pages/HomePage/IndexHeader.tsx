@@ -72,6 +72,7 @@ const Slider: React.FC<{ indexActive: number }> = ({ indexActive }) => {
                   <Image
                     height={'100%'}
                     width={'100%'}
+                    preview={false}
                     src={'/images/slider1.jpg'}
                   ></Image>
                 </div>
@@ -86,6 +87,7 @@ const Slider: React.FC<{ indexActive: number }> = ({ indexActive }) => {
                   <Image
                     height={'100%'}
                     width={'100%'}
+                    preview={false}
                     src={'/images/slider3.jpg'}
                   ></Image>
                 </div>
