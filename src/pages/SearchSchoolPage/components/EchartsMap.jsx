@@ -11,6 +11,7 @@ import {
   educationBudget,
 } from '../mockedData'
 import { LoadingOutlined, CheckCircleOutlined } from '@ant-design/icons'
+import eventBus from '@/utils/eventBus'
 // import * as Enum from '../enum'
 
 // import china from "../data/china"; // 假设你有中国地图数据
@@ -25,7 +26,7 @@ import { provinceMap, proviceDataMap, reverseProvinceMap } from '../maps'
 let locationInterval = null
 
 const EChartsMap = () => {
-  const { province, city, rank, filterSchool, setChoices } =
+  const { province, city, rank, score, selectedClass, filterSchool, setChoices } =
     useContext(SearchContext)
   const chartRef = useRef(null)
   const myChart = useRef(null)
@@ -33,6 +34,8 @@ const EChartsMap = () => {
   const queryResId = 'queryid'
   const [isLoadingScatter, setIsLoadingScatter] = useState(false)
   const [isRecommending, setIsRecommending] = useState(false)
+  const [scatterData, setScatterData] = useState([])
+
   // const openMessage = () => {
   //   console.log('open message')
   //   queryMessqge.open({
@@ -55,6 +58,18 @@ const EChartsMap = () => {
       .then(res => res.json())
       .then(data => {
         console.log(data)
+        if (filterSchool.length !== 0) {
+          data = data.filter(item => {
+            return filterSchool.some(element => { 
+              if(element === '双一流'){
+              return item.note?.includes('一流')
+              } else {
+                return item.note?.includes(element)
+              }
+             })
+          })
+        }
+        setScatterData(data)
         const tmpScatter = data.map(item => {
           return {
             value: [item.lon, item.lat],
@@ -198,20 +213,18 @@ const EChartsMap = () => {
               show: true,
               trigger: 'item',
               formatter: function (params) {
-                console.log(params)
-                console.log(params.data.symbol.substring(8))
+                // console.log(params)
+                // console.log(params.data.symbol.substring(8))
                 return `
                 <div style="display: flex; flex-direction: column; justify-content: center; align-items: center">
                 <image src=${params.data.symbol.substring(
                   8,
                 )} style="width: 50px; height: 50px" />
-                <div style="font-size: 16; font-weight: bold">${
-                  params.data.name
-                }</div>
+                <div style="font-size: 16; font-weight: bold">${params.data.name
+                  }</div>
                 <div style="font-size: 10">地址: ${params.data.address}</div>
-                <div style="font-size: 10">等级: ${
-                  params.data.note ?? '无特殊等级'
-                }</div>
+                <div style="font-size: 10">等级: ${params.data.note ?? '无特殊等级'
+                  }</div>
                 </div>
               `
               },
@@ -239,6 +252,7 @@ const EChartsMap = () => {
           myChart.current.resize && myChart.current.resize()
         })
         myChart.current.setOption(option)
+        myChart.current.off('click')
         myChart.current.on('click', function (params) {
           // console.log(provinceMap.get(params.name))
           if (provinceMap.get(params.name)) {
@@ -251,6 +265,27 @@ const EChartsMap = () => {
           }
         })
       }
+      myChart.current.on('click', 'series.scatter', function (params) {
+        console.log('echarts detect click!')
+        const universityData = sessionStorage.getItem('universityData')
+        if (universityData) {
+          const universityDataJson = JSON.parse(universityData)
+          console.log(universityDataJson)
+          const { page } = universityDataJson
+          const university = page.find(
+            item => item.name === params.data.name,
+          )
+          if (university) {
+            eventBus.emit('universityClicked', university)
+          } else {
+            console.log('没找到！')
+            message.error('无法找到该学校的信息')
+          }
+        } else {
+          console.log('连sessionStorage都没找到！')
+          message.error('无法找到该学校的信息')
+        }
+      })
     } else {
       console.log('faild to init chartRef')
     }
@@ -288,7 +323,7 @@ const EChartsMap = () => {
         console.error(error)
       })
     // openMessage()
-  }, [province])
+  }, [province, score, selectedClass, filterSchool])
 
   const getMax = data => {
     return data.reduce((prevMax, current) => {
@@ -558,7 +593,7 @@ const EChartsMap = () => {
             message={
               isLoadingScatter
                 ? '正在智能推荐'
-                : `为您推荐${Math.floor(Math.random() * 30)}所大学`
+                : `为您推荐${scatterData.length}所大学`
             }
             type={isLoadingScatter ? 'info' : 'success'}
             showIcon
