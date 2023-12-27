@@ -20,7 +20,7 @@ export const MainContainer = styled.div`
 
 export const HeaderBarContainer = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   flex-direction: row;
   align-items: center;
   height: 100%;
@@ -32,7 +32,7 @@ export const ImageContainer = styled.span`
   display: flex;
   // width: 169px;
   margin-right: 10px;
-  margin-left: 10px;
+  margin-left: 30px;
   // margin-top: 16px;
 `
 

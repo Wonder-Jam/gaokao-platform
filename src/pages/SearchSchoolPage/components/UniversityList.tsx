@@ -176,7 +176,7 @@ const UniversityList: React.FC<AppPorps> = props => {
         <div style={{ display: 'flex', flexDirection: 'row' }}>
           <img
             src={item.picture.large}
-            style={{ borderRadius: '3px', width: '80px', height: '80px' }}
+            style={{ borderRadius: '3px', width: '80px', height: '80px', margin: 'auto', scale: '1.2' }}
           />
           <div style={{ marginLeft: '10px' }}>
             <h3 style={{ margin: '0px', marginTop: '3px' }}>{item.name}</h3>
