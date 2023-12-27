@@ -15,7 +15,6 @@ import RootLayout from '@/app/layout'
 import IndexHeader from '@/pages/HomePage/IndexHeader'
 import { VerticalAlignTopOutlined } from '@ant-design/icons'
 import './index.css'
-import { usePageNavigation } from '@/hooks/usePageNavigation'
 
 export const ContainerContext = createContext<{
   containerRef: RefObject<HTMLDivElement>
