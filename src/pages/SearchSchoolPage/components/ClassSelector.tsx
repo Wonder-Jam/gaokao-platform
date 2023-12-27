@@ -1,13 +1,25 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Radio, Select, Space } from 'antd'
 import type { SizeType } from 'antd/es/config-provider/SizeContext'
 import type { SelectProps, RadioChangeEvent } from 'antd'
-
-const handleChange = (value: string | string[]) => {
-  console.log(`Selected: ${value}`)
-}
+import { SearchContext } from '../Context/SearchContext'
 
 const App: React.FC = () => {
+  const { selectedClass, setChoices, filterSchool } = useContext(SearchContext)
+  const handleChange = (value: string | string[]) => {
+    console.log(`Selected: ${value}`)
+    if (typeof value === 'string') {
+      setChoices(prev => ({
+        ...prev,
+        selectedClass: selectedClass.concat(value),
+      }))
+    } else {
+      setChoices(prev => ({
+        ...prev,
+        selectedClass: value,
+      }))
+    }
+  }
   return (
     <>
       <Space direction="vertical" style={{ width: '100%' }}>
