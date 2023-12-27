@@ -70,7 +70,7 @@ const Slider: React.FC<{ indexActive: number }> = ({ indexActive }) => {
                   style={{ borderRadius: 30, overflow: 'hidden' }}
                 >
                   <Image
-                    height={'100%'}
+                    height={'80%'}
                     width={'100%'}
                     preview={false}
                     src={'/images/slider3.jpg'}

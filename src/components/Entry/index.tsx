@@ -1,8 +1,9 @@
 import { usePageNavigation } from '../../hooks/usePageNavigation'
 import logo from '../../static/logo.jpeg'
-import { Menu, MenuProps, Image } from 'antd'
+import { Menu, MenuProps, Image, Select } from 'antd'
 import { useRouter } from 'next/router'
 import React from 'react'
+import Head from 'next/head'
 import {
   HeaderContainer,
   MainContainer,
@@ -62,6 +63,13 @@ export default function Entry({ children }: { children: React.ReactNode }) {
   }, [scroll?.top])
   return (
     <div style={{ width: '100%', height: '100%' }}>
+      <Head>
+        <title>GoSchool-你的择校利器!</title>
+        <link
+          rel="icon"
+          href="/files/blogcef6f59c8c54b99a5684ec6a902d0ff8.png"
+        />
+      </Head>
       <HeaderContainer ref={HeaderRef} style={headerStyle}>
         <HeaderBar />
       </HeaderContainer>
@@ -111,7 +119,7 @@ function GaoKaoMenu() {
 }
 
 function HeaderBar() {
-  const { goToEolPage, goToYangGuangGaoKaoPage } = usePageNavigation()
+  const { goToHomePage } = usePageNavigation()
   return (
     <HeaderBarContainer>
       <div>
@@ -121,7 +129,7 @@ function HeaderBar() {
             preview={false}
             // style={{ transform: 'scale(0.6)' }}
             height={'50px'}
-            onClick={goToEolPage}
+            onClick={goToHomePage}
           />
         </ImageContainer>
         {/* <ImageContainer>
@@ -135,6 +143,22 @@ function HeaderBar() {
         </ImageContainer> */}
       </div>
       <GaoKaoMenu />
+      <Select
+        defaultValue="江苏"
+        style={{ width: 200, marginRight: '5px' }}
+        options={[
+          { value: '北京', label: '北京' },
+          { value: '天津', label: '天津' },
+          { value: '湖南', label: '湖南' },
+          { value: '湖北', label: '湖北' },
+          { value: '江苏', label: '江苏' },
+          { value: '浙江', label: '浙江' },
+          { value: '广东', label: '广东' },
+          { value: '四川', label: '四川' },
+          { value: '上海', label: '上海' },
+          { value: '重庆', label: '重庆' },
+        ]}
+      />
     </HeaderBarContainer>
   )
 }

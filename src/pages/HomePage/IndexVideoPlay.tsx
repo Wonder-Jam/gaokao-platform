@@ -2,8 +2,6 @@ import React, { useEffect, useRef } from 'react'
 import './IndexVideoPlay.css'
 import '../../styles/enterMotion.css'
 import { useContainerRef } from '../index.page'
-import { Button } from 'antd'
-import { usePageNavigation } from '@/hooks/usePageNavigation'
 
 const IndexVideoPlay: React.FC = () => {
   const elVideo1 = useRef<HTMLDivElement>(null)
@@ -13,9 +11,7 @@ const IndexVideoPlay: React.FC = () => {
 
   const eltitle = useRef(null)
   const elintro = useRef(null)
-  const elbutton = useRef(null)
   const containerRef = useContainerRef()
-  const { goToVideoPlayPage } = usePageNavigation()
 
   useEffect(() => {
     if (!containerRef.current) return
@@ -124,7 +120,7 @@ const IndexVideoPlay: React.FC = () => {
               opacity: 0,
             }}
           >
-            你想要的大学看点，这里都有
+            你想了解的大学，这里都有
           </div>
         </div>
       </div>
