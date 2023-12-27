@@ -1,13 +1,15 @@
 .header-wrapper {
   display: flex;
   justify-content: space-between;
-  overflow: hidden;
-  width: 1280px;
+  /*overflow: hidden;*/
   margin: 0 auto;
   flex-wrap: wrap;
-  padding: 4% 5% 0;
+  padding: 0.5% 5% 0;
   /*background-color: #0f0;*/
-  height: 600px;
+  height: 92vh;
+  /*height: 92vh;*/
+  /*width: 1280px;*/
+  width: 100vw;
   position: relative;
 }
 

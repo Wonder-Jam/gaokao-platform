@@ -15,6 +15,7 @@ import RootLayout from '@/app/layout'
 import IndexHeader from '@/pages/HomePage/IndexHeader'
 import { VerticalAlignTopOutlined } from '@ant-design/icons'
 import './index.css'
+import Test from '@/pages/HomePage/Test'
 
 export const ContainerContext = createContext<{
   containerRef: RefObject<HTMLDivElement>
@@ -27,18 +28,30 @@ export default function Home() {
       <RootLayout>
         <div
           ref={containerRef}
-          style={{ width: '100%', height: '100%', overflow: 'auto' }}
+          className={'scrollContainer'}
+          // style={{ width: '100%', height: '100%', overflow: 'auto' }}
         >
           <ContainerContext.Provider
             value={{
               containerRef: containerRef,
             }}
           >
-            <IndexHeader></IndexHeader>
-            <Intro></Intro>
-            <IndexSearchSchool></IndexSearchSchool>
-            <IndexSearchMajor></IndexSearchMajor>
-            <IndexVideoPlay></IndexVideoPlay>
+            <section>
+              <IndexHeader></IndexHeader>
+            </section>
+            {/*<section><Test></Test></section>*/}
+            <section>
+              <Intro></Intro>
+            </section>
+            <section>
+              <IndexSearchSchool></IndexSearchSchool>
+            </section>
+            <section>
+              <IndexSearchMajor></IndexSearchMajor>
+            </section>
+            <section>
+              <IndexVideoPlay></IndexVideoPlay>
+            </section>
             <Footer></Footer>
             <ToTop></ToTop>
           </ContainerContext.Provider>

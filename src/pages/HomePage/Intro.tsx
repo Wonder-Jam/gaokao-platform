@@ -46,14 +46,13 @@ const Intro: React.FC = () => {
     <div
       style={{
         // backgroundColor: '#efefef',
-        width: '1280px',
-        margin: '200px auto 230px',
+        // width: '1280px',
+        width: '100vw',
       }}
     >
       <div className={'title'} ref={el}>
         Go School
       </div>
-
       <div className={'mainbody-wrapper'}>
         <div className={'mainbody'}>
           <h1 className={'mainbody-inner'}>
