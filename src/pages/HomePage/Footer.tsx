@@ -12,24 +12,53 @@ export const Title = styled.div`
   color: rgba(0, 0, 0, 0.88);
   font-weight: 500;
 `
+
+export const Slogan = styled.div`
+  font-size: 16px;
+  margin-top: 10px;
+  color: #1f1f1f;
+`
 const Footer: React.FC = () => {
   return (
     <div
       style={{
-        // height: '150px',
         backgroundColor: '#f0f3fa',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'center',
+        width: '100%',
+        height: '100%',
       }}
     >
+      <div
+        style={{
+          paddingTop: '75px',
+        }}
+      >
+        <Image
+          src="/images/GoSchoolLogo.png"
+          height={'100px'}
+          preview={false}
+        />
+      </div>
+
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          paddingTop: '75px',
+        }}
+      >
+        <Slogan>去想去的地方</Slogan>
+        <Slogan>做想做的事情</Slogan>
+        <Slogan>成为想成为的人</Slogan>
+      </div>
       <section
         style={{
           display: 'flex',
           justifyContent: 'space-around',
-          width: '100%',
           padding: '25px',
+          marginTop: '50px',
         }}
       >
         <div
@@ -57,22 +86,6 @@ const Footer: React.FC = () => {
               />
               Ant Design 设计
             </Typography.Link>
-            {/* &nbsp;
-            <Typography.Link
-              target="_blank"
-              href="https://medium.com/as-a-product-designer/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88%E4%B8%AD%E9%A0%81%E8%85%B3-footer-%E7%9A%84%E8%A8%AD%E8%A8%88%E8%A7%80%E9%BB%9E-a1d25657bdc4"
-            >
-                            <Image
-                style={{
-                  marginTop: '2px',
-                }}
-                width={'16px'}
-                height={'16px'}
-                preview={false}
-                src="https://miro.medium.com/v2/1*m-R_BkNf1Qjr1YbyOIJY2w.png"
-              />
-              网页设计中页脚 Footer 的设计观念
-            </Typography.Link> */}
           </div>
           <div>
             <Member>网站部署支持：</Member>
@@ -186,26 +199,6 @@ const Footer: React.FC = () => {
           </div>
         </div>
       </section>
-      {/* <span
-        style={{
-          textAlign: 'center',
-          opacity: '0.4',
-          colorScheme: 'light',
-          lineHeight: '28px',
-          fontSize: '13px',
-        }}
-      >
-        Made with <span style={{ color: '#fff' }}>&#129505;</span> for
-      </span>
-      <span
-        style={{
-          fontSize: '14px',
-          opacity: '0.7',
-          marginBottom: '15px',
-        }}
-      >
-        南软人机交互系统大作业
-      </span> */}
     </div>
   )
 }

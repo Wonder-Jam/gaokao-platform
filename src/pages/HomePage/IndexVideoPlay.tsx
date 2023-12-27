@@ -2,6 +2,8 @@ import React, { useEffect, useRef } from 'react'
 import './IndexVideoPlay.css'
 import '../../styles/enterMotion.css'
 import { useContainerRef } from '../index.page'
+import { Button } from 'antd'
+import { usePageNavigation } from '@/hooks/usePageNavigation'
 
 const IndexVideoPlay: React.FC = () => {
   const elVideo1 = useRef<HTMLDivElement>(null)
@@ -11,7 +13,9 @@ const IndexVideoPlay: React.FC = () => {
 
   const eltitle = useRef(null)
   const elintro = useRef(null)
+  const elbutton = useRef(null)
   const containerRef = useContainerRef()
+  const { goToVideoPlayPage } = usePageNavigation()
 
   useEffect(() => {
     if (!containerRef.current) return
@@ -22,10 +26,17 @@ const IndexVideoPlay: React.FC = () => {
       if (!containerRef.current) return
       // @ts-ignore
       if (rect.top < containerRef.current.clientHeight && rect.bottom >= 0) {
+        console.log(
+          'containerRef.current.clientHeight: ',
+          containerRef.current.clientHeight,
+        )
+        console.log('window.scrollY', window.scrollY)
         // @ts-ignore
         eltitle.current.classList.add('slideEnter')
         // @ts-ignore
         elintro.current.classList.add('slideEnter')
+        // @ts-ignore
+        elbutton.current.classList.add('slideEnter')
 
         // @ts-ignore
         elVideo1.current.classList.add('mot-1')
@@ -74,25 +85,47 @@ const IndexVideoPlay: React.FC = () => {
         }}
       >
         <div>
-          <p
-            ref={eltitle}
+          <div
             style={{
-              lineHeight: 1.15,
-              // color: '#000',
-              fontFamily:
-                'Gilroy-regular,-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Helvetica Neue,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol',
-              margin: 0,
-              padding: 0,
-              fontWeight: 'bold',
-              fontSize: '38px',
-              letterSpacing: '.02em',
-              marginBottom: '10px',
-              // animationDelay: '1.5s',
-              opacity: 0,
+              display: 'flex',
+              alignItems: 'center',
             }}
           >
-            看一看
-          </p>
+            <p
+              ref={eltitle}
+              style={{
+                lineHeight: 1.15,
+                // color: '#000',
+                fontFamily:
+                  'Gilroy-regular,-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Helvetica Neue,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol',
+                margin: 0,
+                padding: 0,
+                fontWeight: 'bold',
+                fontSize: '38px',
+                letterSpacing: '.02em',
+                marginBottom: '10px',
+                // animationDelay: '1.5s',
+                opacity: 0,
+              }}
+            >
+              看一看
+            </p>
+            <Button
+              ref={elbutton}
+              style={{
+                width: '102px',
+                fontWeight: '600',
+                marginLeft: '10px',
+                opacity: 0,
+              }}
+              type={'primary'}
+              shape={'round'}
+              size={'large'}
+              onClick={() => goToVideoPlayPage()}
+            >
+              了解更多
+            </Button>
+          </div>
           <div
             ref={elintro}
             style={{

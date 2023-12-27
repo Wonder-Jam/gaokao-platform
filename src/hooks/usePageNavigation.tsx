@@ -27,5 +27,8 @@ export function usePageNavigation() {
     goToSchoolDetailPage() {
       router.push('/SchoolDetailPage')
     },
+    goToVideoPlayPage() {
+      router.push('/VideoPlayPage')
+    },
   }
 }

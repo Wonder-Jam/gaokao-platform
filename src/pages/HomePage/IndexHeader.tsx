@@ -3,6 +3,7 @@ import { Button, Image } from 'antd'
 import QueueAnim from 'rc-queue-anim'
 import { PauseCircleOutlined, PlayCircleOutlined } from '@ant-design/icons'
 import './IndexHeader.css'
+import { usePageNavigation } from '@/hooks/usePageNavigation'
 
 const IndexHeader: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0)
@@ -11,7 +12,7 @@ const IndexHeader: React.FC = () => {
     <div className={'header-wrapper'}>
       <div
         style={{
-          width: '40%',
+          width: '38%',
           height: '100%',
           borderRadius: 30,
           overflow: 'hidden',
@@ -71,6 +72,7 @@ const Slider: React.FC<{ indexActive: number }> = ({ indexActive }) => {
                   <Image
                     height={'100%'}
                     width={'100%'}
+                    preview={false}
                     src={'/images/slider1.jpg'}
                   ></Image>
                 </div>
@@ -85,6 +87,7 @@ const Slider: React.FC<{ indexActive: number }> = ({ indexActive }) => {
                   <Image
                     height={'100%'}
                     width={'100%'}
+                    preview={false}
                     src={'/images/slider3.jpg'}
                   ></Image>
                 </div>
@@ -239,6 +242,8 @@ const ProgressBar: React.FC<{ indexActive: number; onChange: () => void }> = ({
 
 const Description: React.FC<{ indexActive: number }> = ({ indexActive }) => {
   const [isClient, setIsClient] = useState(false)
+  const { goToSearchSchoolPage } = usePageNavigation()
+
   useEffect(() => {
     setIsClient(true)
   }, [])
@@ -283,6 +288,11 @@ const Description: React.FC<{ indexActive: number }> = ({ indexActive }) => {
                         type={'primary'}
                         shape={'round'}
                         size={'large'}
+                        onClick={() => {
+                          goToSearchSchoolPage({
+                            name: '南京大学',
+                          })
+                        }}
                       >
                         了解更多
                       </Button>
@@ -315,6 +325,11 @@ const Description: React.FC<{ indexActive: number }> = ({ indexActive }) => {
                         type={'primary'}
                         shape={'round'}
                         size={'large'}
+                        onClick={() => {
+                          goToSearchSchoolPage({
+                            name: '南京大学',
+                          })
+                        }}
                       >
                         了解更多
                       </Button>

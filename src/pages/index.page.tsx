@@ -15,7 +15,6 @@ import RootLayout from '@/app/layout'
 import IndexHeader from '@/pages/HomePage/IndexHeader'
 import { VerticalAlignTopOutlined } from '@ant-design/icons'
 import './index.css'
-import Test from '@/pages/HomePage/Test'
 
 export const ContainerContext = createContext<{
   containerRef: RefObject<HTMLDivElement>
@@ -23,12 +22,28 @@ export const ContainerContext = createContext<{
 export const useContainerRef = () => useContext(ContainerContext).containerRef
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (!containerRef.current) return
+
+    const handleScroll = () => {
+      // @ts-ignore
+      containerRef.current.classList.add('scrollContainer')
+    }
+    containerRef.current.addEventListener('scroll', handleScroll)
+    return () => {
+      if (containerRef.current) {
+        containerRef.current.removeEventListener('scroll', handleScroll)
+      }
+    }
+  }, [])
+
   return (
     <>
       <RootLayout>
         <div
           ref={containerRef}
-          className={'scrollContainer'}
+          className={'test'}
           // style={{ width: '100%', height: '100%', overflow: 'auto' }}
         >
           <ContainerContext.Provider
@@ -39,7 +54,6 @@ export default function Home() {
             <section>
               <IndexHeader></IndexHeader>
             </section>
-            {/*<section><Test></Test></section>*/}
             <section>
               <Intro></Intro>
             </section>
@@ -62,25 +76,20 @@ export default function Home() {
 }
 
 function ToTop() {
+  const containerRef = useContainerRef()
   return (
     <div
-      style={{
-        color: '#000',
-        opacity: '.8',
-        position: 'fixed',
-        zIndex: '100',
-        right: '12px',
-        bottom: '12px',
-        width: '48px',
-        borderRadius: '24px',
-        height: '48px',
-        background: '#fff',
-        boxShadow: '0 0 12px rgba(0,0,0,.12)',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        cursor: 'pointer',
+      onClick={() => {
+        if (!containerRef.current) {
+          return
+        } else {
+          containerRef.current.scrollTo({
+            top: 0,
+          })
+          // console.log('containerRef.current.scrollTop', containerRef.current.clientHeight)
+        }
       }}
+      className={'toTop'}
     >
       <VerticalAlignTopOutlined style={{ color: '#92989f' }} />
     </div>

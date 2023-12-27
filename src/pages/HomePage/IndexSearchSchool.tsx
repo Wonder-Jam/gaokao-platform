@@ -231,7 +231,7 @@ const ImgIntro: React.FC = () => {
       <div ref={elImg3} className={'img3'}></div>
       <div
         ref={elSearch}
-        onClick={() => (window.location.href = 'https://software.nju.edu.cn/')}
+        onClick={() => window.open('https://software.nju.edu.cn/', '_blank')}
         style={{
           opacity: 0,
           position: 'absolute',
