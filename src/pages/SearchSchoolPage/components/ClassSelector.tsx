@@ -4,11 +4,8 @@ import type { SizeType } from 'antd/es/config-provider/SizeContext'
 import type { SelectProps, RadioChangeEvent } from 'antd'
 import { SearchContext } from '../Context/SearchContext'
 
-
-
 const App: React.FC = () => {
-  const { selectedClass, setChoices, filterSchool } =
-    useContext(SearchContext)
+  const { selectedClass, setChoices, filterSchool } = useContext(SearchContext)
   const handleChange = (value: string | string[]) => {
     console.log(`Selected: ${value}`)
     if (typeof value === 'string') {

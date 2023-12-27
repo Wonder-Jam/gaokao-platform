@@ -13,9 +13,7 @@ const IndexVideoPlay: React.FC = () => {
 
   const eltitle = useRef(null)
   const elintro = useRef(null)
-  const elbutton = useRef(null)
   const containerRef = useContainerRef()
-  const { goToVideoPlayPage } = usePageNavigation()
 
   useEffect(() => {
     if (!containerRef.current) return
@@ -35,9 +33,6 @@ const IndexVideoPlay: React.FC = () => {
         eltitle.current.classList.add('slideEnter')
         // @ts-ignore
         elintro.current.classList.add('slideEnter')
-        // @ts-ignore
-        elbutton.current.classList.add('slideEnter')
-
         // @ts-ignore
         elVideo1.current.classList.add('mot-1')
         // @ts-ignore
@@ -110,21 +105,6 @@ const IndexVideoPlay: React.FC = () => {
             >
               看一看
             </p>
-            <Button
-              ref={elbutton}
-              style={{
-                width: '102px',
-                fontWeight: '600',
-                marginLeft: '10px',
-                opacity: 0,
-              }}
-              type={'primary'}
-              shape={'round'}
-              size={'large'}
-              onClick={() => goToVideoPlayPage()}
-            >
-              了解更多
-            </Button>
           </div>
           <div
             ref={elintro}

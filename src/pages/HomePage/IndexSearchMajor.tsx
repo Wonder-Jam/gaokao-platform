@@ -80,10 +80,11 @@ const IndexSearchMajor: React.FC = () => {
                 </div>
                 <div className={'card-content is-back'}>
                   <div className={'text-wrapper'}>
-                    <h1>逻辑学</h1>
+                    <h1>机械工程</h1>
                     <em />
                     <p>
-                      逻辑学研习中西逻辑史、逻辑学、数理逻辑、思维科学等方面的基本理论和知识，以人类的思维形式及思维规律为研究对象，横跨数学、物理、计算机等多个学科，进行既定命题发生过程的推理和推导等。常见的找规律就是数理逻辑的典型，而数理逻辑也是现代逻辑学的主流。
+                      机械工程（Mechanical
+                      Engineering）是一门利用物理定律和化学规律为机械系统作分析、设计、制造及维修的工程学科。机械工程是以有关的自然科学和技术科学为理论基础，结合生产实践中的技术经验，研究和解决在开发、设计、制造、安装、运用和维修各种机械中的全部理论和实际问题的应用学科。
                     </p>
                     <Button
                       style={{
@@ -94,11 +95,7 @@ const IndexSearchMajor: React.FC = () => {
                       type={'primary'}
                       shape={'round'}
                       size={'large'}
-                      onClick={() =>
-                        goToSearchMajorPage({
-                          name: '逻辑学',
-                        })
-                      }
+                      onClick={() => goToSearchMajorPage()}
                     >
                       了解更多
                     </Button>
@@ -118,10 +115,11 @@ const IndexSearchMajor: React.FC = () => {
                 </div>
                 <div className={'card-content is-back'}>
                   <div className={'text-wrapper'}>
-                    <h1>经济学</h1>
+                    <h1>生物学</h1>
                     <em />
                     <p>
-                      经济学主要研究经济学、金融学、投资学、精算学等方面的基本知识和技能，在银行、证券、信托等金融机构进行经济分析、预测、规划、管理以及各类金融服务。例如：债券、基金的投资前景分析，股票、投资的风险评估，汽车、房子的抵押贷款，企业破产时的资产清算等。
+                      生物学（biology）是探索生命现象和生命活动规律的科学，是自然科学中的一门基础学科。
+                      [6]其研究对象是生物（包括植物、动物和微生物）的结构、功能、发生和发展规律。其目的在于阐明和控制生命活动，改造自然，为农业、工业和医学等实践服务。
                     </p>
                     <Button
                       style={{
@@ -132,11 +130,7 @@ const IndexSearchMajor: React.FC = () => {
                       type={'primary'}
                       shape={'round'}
                       size={'large'}
-                      onClick={() =>
-                        goToSearchMajorPage({
-                          name: '经济学',
-                        })
-                      }
+                      onClick={() => goToSearchMajorPage()}
                     >
                       了解更多
                     </Button>
@@ -156,10 +150,11 @@ const IndexSearchMajor: React.FC = () => {
                 </div>
                 <div className={'card-content is-back'}>
                   <div className={'text-wrapper'}>
-                    <h1>宗教学</h1>
+                    <h1>化学</h1>
                     <em />
                     <p>
-                      宗教学主要研究人类宗教现象及其历史演变，包括各大宗教的历史与理论、人类宗教的起源、宗教与人类其他精神活动的关系、宗教对社会生活的影响、宗教与政治的关系等方面。当今世界主要的宗教有：基督教、伊斯兰教、印度教、犹太教、佛教、道教、神道教等。{' '}
+                      化学（chemistry）是在原子、分子水平上研究物质的组成、结构、性质、转化及其应用的基础自然科学。它源自生活和生产实践，并随着人类社会的进步而不断发展。
+                      它是一门研究物质的性质、组成、结构、以及变化规律的物理的子学科。化学研究的对象涉及物质之间的相互关系，或物质和能量之间的关联。
                     </p>
                     <Button
                       style={{
@@ -170,11 +165,7 @@ const IndexSearchMajor: React.FC = () => {
                       type={'primary'}
                       shape={'round'}
                       size={'large'}
-                      onClick={() =>
-                        goToSearchMajorPage({
-                          name: '宗教学',
-                        })
-                      }
+                      onClick={() => goToSearchMajorPage()}
                     >
                       了解更多
                     </Button>
@@ -194,10 +185,11 @@ const IndexSearchMajor: React.FC = () => {
                 </div>
                 <div className={'card-content is-back'}>
                   <div className={'text-wrapper'}>
-                    <h1>互联网金融</h1>
+                    <h1>农学</h1>
                     <em />
                     <p>
-                      互联网金融主要研究现代金融理论、金融科技及互联网金融、管理理论与电子商务技术，进行金融数据分析、金融信息系统分析和设计等。例如：余额宝等投资理财类产品的设计、金融建模，对金融产品进行数据收集于分析管理。
+                      农学（Agriculture），是农业科学领域的传统学科，
+                      以解决人类的“吃饭穿衣”为首要己任。随着农业科技创新速度的不断加快，生物技术和信息技术的飞速发展及其在农业中的广泛应用，农学在保持传统特色的基础上，正焕发着勃勃生机。
                     </p>
                     <Button
                       style={{
@@ -208,11 +200,7 @@ const IndexSearchMajor: React.FC = () => {
                       type={'primary'}
                       shape={'round'}
                       size={'large'}
-                      onClick={() =>
-                        goToSearchMajorPage({
-                          name: '互联网金融',
-                        })
-                      }
+                      onClick={() => goToSearchMajorPage()}
                     >
                       了解更多
                     </Button>

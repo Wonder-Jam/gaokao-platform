@@ -65,7 +65,10 @@ export default function Entry({ children }: { children: React.ReactNode }) {
     <div style={{ width: '100%', height: '100%' }}>
       <Head>
         <title>GoSchool-你的择校利器!</title>
-        <link rel="icon" href="/files/blogcef6f59c8c54b99a5684ec6a902d0ff8.png" />
+        <link
+          rel="icon"
+          href="/files/blogcef6f59c8c54b99a5684ec6a902d0ff8.png"
+        />
       </Head>
       <HeaderContainer ref={HeaderRef} style={headerStyle}>
         <HeaderBar />
@@ -143,7 +146,18 @@ function HeaderBar() {
       <Select
         defaultValue="江苏"
         style={{ width: 200, marginRight: '5px' }}
-        options={[{ value: '北京', label: '北京' }, { value: '天津', label: '天津' }, { value: '湖南', label: '湖南' }, { value: '湖北', label: '湖北' }, { value: '江苏', label: '江苏' }, { value: '浙江', label: '浙江' }, { value: '广东', label: '广东' }, { value: '四川', label: '四川' }, { value: '上海', label: '上海' }, { value: '重庆', label: '重庆' }]}
+        options={[
+          { value: '北京', label: '北京' },
+          { value: '天津', label: '天津' },
+          { value: '湖南', label: '湖南' },
+          { value: '湖北', label: '湖北' },
+          { value: '江苏', label: '江苏' },
+          { value: '浙江', label: '浙江' },
+          { value: '广东', label: '广东' },
+          { value: '四川', label: '四川' },
+          { value: '上海', label: '上海' },
+          { value: '重庆', label: '重庆' },
+        ]}
       />
     </HeaderBarContainer>
   )
