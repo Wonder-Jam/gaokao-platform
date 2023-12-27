@@ -28,6 +28,7 @@
     "dnd-kit": "^0.0.0-0",
     "echarts": "^5.4.3",
     "eslint-config-next": "13.4.19",
+    "flatted": "^3.2.9",
     "fs": "^0.0.1-security",
     "next": "13.4.19",
     "rc-queue-anim": "^2.0.0",

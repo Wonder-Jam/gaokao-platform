@@ -15,6 +15,7 @@ import dynamic from 'next/dynamic'
 const EChartsMap = dynamic(() => import('./EchartsMap'), { ssr: false })
 import eventBus from '@/utils/eventBus'
 import UniversityDetail from './UniversityDetail'
+import flatted from 'flatted';
 
 // const EchartsMapRef = useRef(null)
 let initialItems = [
@@ -69,9 +70,10 @@ const App: React.FC = () => {
       // console.log('还是进来了？！')
       initialItems = []
       const tabInfos = JSON.parse(cachedTabs)
+      console.log('tabInfos', tabInfos)
       // 复现一个自定义组件比较复杂，这里选择了一种比较愚蠢的写法
       tabInfos.forEach(
-        (tabInfo: { label: string; children: any; key: string }) => {
+        (tabInfo: { label: string; props: any; key: string }) => {
           if (tabInfo.label === '地图数据') {
             initialItems.push({
               label: tabInfo.label,
@@ -84,16 +86,16 @@ const App: React.FC = () => {
               label: tabInfo.label,
               children: (
                 <UniversityDetail
-                  name={tabInfo.children.props.name}
-                  description={tabInfo.children.props.description}
-                  motto={tabInfo.children.props.motto}
-                  logoUrl={tabInfo.children.props.logoUrl}
-                  backgroundUrl={tabInfo.children.props.backgroundUrl}
-                  tags={tabInfo.children.props.tags}
-                  website={tabInfo.children.props.website}
-                  dominant={tabInfo.children.props.dominant}
-                  created={tabInfo.children.props.created}
-                  location={tabInfo.children.props.location}
+                  name={tabInfo.props.name}
+                  description={tabInfo.props.description}
+                  motto={tabInfo.props.motto}
+                  logoUrl={tabInfo.props.logoUrl}
+                  backgroundUrl={tabInfo.props.backgroundUrl}
+                  tags={tabInfo.props.tags}
+                  website={tabInfo.props.website}
+                  dominant={tabInfo.props.dominant}
+                  created={tabInfo.props.created}
+                  location={tabInfo.props.location}
                 />
               ),
               key: tabInfo.key,
@@ -119,7 +121,16 @@ const App: React.FC = () => {
 
   useEffect(() => {
     console.log('tabItems stored', tabItems)
-    sessionStorage.setItem('schoolTabs', JSON.stringify(tabItems))
+    const tabs = tabItems.map(tab => {
+      console.log('tab', tab)
+      return {
+        label: tab.label,
+        props: (tab.children as React.ReactElement)?.props,
+        key: tab.key,
+        // closable: tab.closable,
+      }
+    })
+    sessionStorage.setItem('schoolTabs', JSON.stringify(tabs))
     sessionStorage.setItem('newTabIndex', newTabIndex.current.toString())
   }, [tabItems])
 

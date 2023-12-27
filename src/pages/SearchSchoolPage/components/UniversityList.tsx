@@ -93,6 +93,7 @@ const UniversityList: React.FC<AppPorps> = props => {
     fetch(fakeDataUrl)
       .then(res => res.json())
       .then((res: responseSchoolData) => {
+        sessionStorage.setItem('universityData',JSON.stringify(res))
         setInitLoading(false)
         const { page } = res
         contentSize.current = res.contentSize
