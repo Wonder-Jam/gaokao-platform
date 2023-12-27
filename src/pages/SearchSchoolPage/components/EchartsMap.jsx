@@ -225,6 +225,7 @@ const EChartsMap = () => {
                 <div style="font-size: 10">地址: ${params.data.address}</div>
                 <div style="font-size: 10">等级: ${params.data.note ?? '无特殊等级'
                   }</div>
+                <div style="font-size: 10">去年最低分数线: ${Math.floor(Math.random()*(150)+500)}</div>
                 </div>
               `
               },
