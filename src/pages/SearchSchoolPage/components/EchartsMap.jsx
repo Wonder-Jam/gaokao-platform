@@ -26,8 +26,15 @@ import { provinceMap, proviceDataMap, reverseProvinceMap } from '../maps'
 let locationInterval = null
 
 const EChartsMap = () => {
-  const { province, city, rank, score, selectedClass, filterSchool, setChoices } =
-    useContext(SearchContext)
+  const {
+    province,
+    city,
+    rank,
+    score,
+    selectedClass,
+    filterSchool,
+    setChoices,
+  } = useContext(SearchContext)
   const chartRef = useRef(null)
   const myChart = useRef(null)
   // const [queryMessqge, queryContextHolder] = message.useMessage()
@@ -60,13 +67,13 @@ const EChartsMap = () => {
         console.log(data)
         if (filterSchool.length !== 0) {
           data = data.filter(item => {
-            return filterSchool.some(element => { 
-              if(element === '双一流'){
-              return item.note?.includes('一流')
+            return filterSchool.some(element => {
+              if (element === '双一流') {
+                return item.note?.includes('一流')
               } else {
                 return item.note?.includes(element)
               }
-             })
+            })
           })
         }
         setScatterData(data)
@@ -220,11 +227,13 @@ const EChartsMap = () => {
                 <image src=${params.data.symbol.substring(
                   8,
                 )} style="width: 50px; height: 50px" />
-                <div style="font-size: 16; font-weight: bold">${params.data.name
-                  }</div>
+                <div style="font-size: 16; font-weight: bold">${
+                  params.data.name
+                }</div>
                 <div style="font-size: 10">地址: ${params.data.address}</div>
-                <div style="font-size: 10">等级: ${params.data.note ?? '无特殊等级'
-                  }</div>
+                <div style="font-size: 10">等级: ${
+                  params.data.note ?? '无特殊等级'
+                }</div>
                 </div>
               `
               },
@@ -272,9 +281,7 @@ const EChartsMap = () => {
           const universityDataJson = JSON.parse(universityData)
           console.log(universityDataJson)
           const { page } = universityDataJson
-          const university = page.find(
-            item => item.name === params.data.name,
-          )
+          const university = page.find(item => item.name === params.data.name)
           if (university) {
             eventBus.emit('universityClicked', university)
           } else {

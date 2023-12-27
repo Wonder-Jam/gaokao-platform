@@ -3,6 +3,7 @@ import { Button, Image } from 'antd'
 import QueueAnim from 'rc-queue-anim'
 import { PauseCircleOutlined, PlayCircleOutlined } from '@ant-design/icons'
 import './IndexHeader.css'
+import { usePageNavigation } from '@/hooks/usePageNavigation'
 
 const IndexHeader: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0)
@@ -239,6 +240,8 @@ const ProgressBar: React.FC<{ indexActive: number; onChange: () => void }> = ({
 
 const Description: React.FC<{ indexActive: number }> = ({ indexActive }) => {
   const [isClient, setIsClient] = useState(false)
+  const { goToSearchSchoolPage } = usePageNavigation()
+
   useEffect(() => {
     setIsClient(true)
   }, [])
@@ -283,6 +286,11 @@ const Description: React.FC<{ indexActive: number }> = ({ indexActive }) => {
                         type={'primary'}
                         shape={'round'}
                         size={'large'}
+                        onClick={() => {
+                          goToSearchSchoolPage({
+                            name: '南京大学',
+                          })
+                        }}
                       >
                         了解更多
                       </Button>
@@ -315,6 +323,11 @@ const Description: React.FC<{ indexActive: number }> = ({ indexActive }) => {
                         type={'primary'}
                         shape={'round'}
                         size={'large'}
+                        onClick={() => {
+                          goToSearchSchoolPage({
+                            name: '南京大学',
+                          })
+                        }}
                       >
                         了解更多
                       </Button>

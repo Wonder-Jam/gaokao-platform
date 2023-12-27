@@ -15,7 +15,7 @@ import dynamic from 'next/dynamic'
 const EChartsMap = dynamic(() => import('./EchartsMap'), { ssr: false })
 import eventBus from '@/utils/eventBus'
 import UniversityDetail from './UniversityDetail'
-import flatted from 'flatted';
+import flatted from 'flatted'
 
 // const EchartsMapRef = useRef(null)
 let initialItems = [
