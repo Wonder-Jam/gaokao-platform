@@ -11,7 +11,7 @@ const App: React.FC = () => {
     if (typeof value === 'string') {
       setChoices(prev => ({
         ...prev,
-        selectedClass: selectedClass.concat(value),
+        selectedClass: [value],
       }))
     } else {
       setChoices(prev => ({
