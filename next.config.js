@@ -12,7 +12,8 @@ const nextConfig = {
             },
             {
               source: '/api/:path*', // 匹配所有以 /files 开头的路径
-              destination: 'https://gaokaoapi.lsmcloud.top/api/:path*', // 代理到的目标地址
+              //               destination: 'https://gaokaoapi.lsmcloud.top/api/:path*', // 代理到的目标地址
+              destination: 'https://088df7d10b5146e4a444e43444c3e635.apig.cn-east-3.huaweicloudapis.com/goschool/api/:path*', // 代理到的目标地址
             },
             {
               source: '/dev/:path*', // 匹配所有以 /files 开头的路径
