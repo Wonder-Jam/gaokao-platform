@@ -1,17 +1,20 @@
-import React, { useEffect, useState, useRef, useContext } from 'react'
-import * as echarts from 'echarts'
-import { SearchContext } from '../Context/SearchContext'
-import { Dropdown, Button, Spin, message, Alert } from 'antd'
-import { BarChartOutlined } from '@ant-design/icons'
+import eventBus from '@/utils/eventBus'
 import {
+  BarChartOutlined,
+  CheckCircleOutlined,
+  LoadingOutlined,
+} from '@ant-design/icons'
+import { Alert, Button, Dropdown, Spin, message } from 'antd'
+import * as echarts from 'echarts'
+import { useContext, useEffect, useRef, useState } from 'react'
+import { SearchContext } from '../Context/SearchContext'
+import {
+  educationBudget,
   gdpData,
   universities211,
   universities985,
   universitiesDoubleFirstClass,
-  educationBudget,
 } from '../mockedData'
-import { LoadingOutlined, CheckCircleOutlined } from '@ant-design/icons'
-import eventBus from '@/utils/eventBus'
 // import * as Enum from '../enum'
 
 // import china from "../data/china"; // 假设你有中国地图数据
@@ -19,7 +22,7 @@ import eventBus from '@/utils/eventBus'
 // TODO: 1. 使用context传递数据
 
 import * as Enum from '../enum' // 假设你的枚举文件在 '../enum' 中
-import { provinceMap, proviceDataMap, reverseProvinceMap } from '../maps'
+import { proviceDataMap, provinceMap } from '../maps'
 
 // 在代码的开始处定义一个标志变量
 // let locationFetch = 'api/locateUniversityRandomly'
@@ -37,85 +40,73 @@ const EChartsMap = () => {
   } = useContext(SearchContext)
   const chartRef = useRef(null)
   const myChart = useRef(null)
-  // const [queryMessqge, queryContextHolder] = message.useMessage()
-  const queryResId = 'queryid'
   const [isLoadingScatter, setIsLoadingScatter] = useState(false)
   const [isRecommending, setIsRecommending] = useState(false)
   const [scatterData, setScatterData] = useState([])
 
-  // const openMessage = () => {
-  //   console.log('open message')
-  //   queryMessqge.open({
-  //     queryResId,
-  //     type: 'loading',
-  //     content: 'Loading...',
-  //   });
-  //   setTimeout(() => {
-  //     queryMessqge.open({
-  //       queryResId,
-  //       type: 'success',
-  //       content: `为您推荐${Math.floor(Math.random() * 30)}所学校`,
-  //       duration: 2,
-  //     });
-  //   }, 1000);
-  // };
-  const task = locationFetch => {
-    setIsLoadingScatter(true)
-    fetch(locationFetch)
-      .then(res => res.json())
-      .then(data => {
-        console.log(data)
-        if (filterSchool.length !== 0) {
-          data = data.filter(item => {
-            return filterSchool.some(element => {
-              if (element === '双一流') {
-                return item.note?.includes('一流')
-              } else {
-                return item.note?.includes(element)
-              }
-            })
+  const fetchSchoolData = async locationFetch => {
+    try {
+      const res = await fetch(locationFetch)
+      const data = await res.json()
+
+      if (filterSchool.length !== 0) {
+        const filteredData = data.filter(item => {
+          return filterSchool.some(element => {
+            return element === '双一流'
+              ? item.note?.includes('一流')
+              : item.note?.includes(element)
           })
-        }
-        setScatterData(data)
-        const tmpScatter = data.map(item => {
-          return {
-            value: [item.lon, item.lat],
-            name: item.name,
-            symbol: 'image://' + item.logo,
-            symbolSize: 20,
-            address: item.address,
-            note: item.note,
-          }
         })
-        console.log(tmpScatter)
-        myChart.current.setOption({
-          series: [
-            {
-              name: 'school',
-              data: tmpScatter,
-              colorBy: 'data',
-            },
-          ],
-        })
-      })
-      .catch(err => {
-        console.log(err)
-      })
-      .finally(() => {
-        setTimeout(() => setIsRecommending(false), 1500)
-        setIsLoadingScatter(false)
-      })
+
+        setScatterData(filteredData)
+
+        const tmpScatter = filteredData.map(item => ({
+          value: [item.lon, item.lat],
+          name: item.name,
+          symbol: 'image://' + item.logo,
+          symbolSize: 20,
+          address: item.address,
+          note: item.note,
+        }))
+
+        return tmpScatter
+      }
+
+      setScatterData(data)
+
+      return data.map(item => ({
+        value: [item.lon, item.lat],
+        name: item.name,
+        symbol: 'image://' + item.logo,
+        symbolSize: 20,
+        address: item.address,
+        note: item.note,
+      }))
+    } catch (err) {
+      console.error(err)
+      throw err // Re-throw the error to be handled by the caller if needed.
+    }
   }
 
-  function startInterval(locationFetch) {
-    console.log('start interval!')
-    if (locationInterval) {
-      clearInterval(locationInterval)
+  const updateScatterChart = scatterData => {
+    myChart.current.setOption({
+      series: [
+        {
+          name: 'school',
+          data: scatterData,
+          colorBy: 'data',
+        },
+      ],
+    })
+  }
+
+  const task = async locationFetch => {
+    try {
+      const scatterData = await fetchSchoolData(locationFetch)
+      updateScatterChart(scatterData)
+    } catch (err) {
+      // Handle or log errors if needed.
     }
-    task(locationFetch)
-    locationInterval = setInterval(() => {
-      task(locationFetch)
-    }, 10000)
   }
 
   useEffect(() => {
@@ -136,7 +127,6 @@ const EChartsMap = () => {
           borderWidth: 0,
           trigger: 'item',
           formatter: function (params) {
-            // console.log('params', params)
             const name = params.name
             const gdp = gdpData.find(item => item.name === name) ?? {
               value: 'unkown',
@@ -162,13 +152,11 @@ const EChartsMap = () => {
                         <div style="font-size: 10">教育经费: ${eduFunds.value} (亿)</div>
                     `
           },
-          // formatter: '呼啦呼啦'
         },
         geo: {
           type: 'map',
           map: map,
-          // name: 'map',
-          roam: true, // 一定要关闭拖拽
+          roam: true,
           center:
             province === Enum.province.None
               ? ''
@@ -181,15 +169,11 @@ const EChartsMap = () => {
             borderColor: '#1677FF',
             borderWidth: 0.7, //设置外层边框
             shadowBlur: 4,
-            // shadowOffsetY: 8,
-            // shadowOffsetX: 0,
             shadowColor: '#87CEFA',
           },
           emphasis: {
             itemStyle: {
               areaColor: '#F5FFFA',
-              // shadowOffsetX: 0,
-              // shadowOffsetY: 0,
               shadowBlur: 5,
               borderWidth: 0,
               shadowColor: 'rgba(0, 0, 0, 0.5)',
@@ -202,16 +186,8 @@ const EChartsMap = () => {
               borderColor: '#ADD8E6',
             },
           },
-          // center: [105, 35], // 调整地图位置
         },
         series: [
-          // {
-          //   type: 'map',
-          //   // map: map,
-          //   name: 'map',
-          //   roam: false, // 一定要关闭拖拽
-          //   zoom: 1.0,
-          // },
           {
             name: 'school',
             type: 'scatter',
@@ -242,19 +218,12 @@ const EChartsMap = () => {
               },
             },
             geoIndex: 0,
-            // data: scatter
-            // data: [
-            //   [121.47,31.23, 0],
-            //   [116.40,39.90, 0],
-            //   [106.55,29.56, 0]
-            // ]
           },
           {
             type: 'map',
             map: map,
             name: 'map',
             geoIndex: 0,
-            // roam: true,
           },
         ],
       }
@@ -307,255 +276,106 @@ const EChartsMap = () => {
     }
   }, [chartRef.current])
   useEffect(() => {
-    // console.log('something changed')
-    // setFeatures(null)
-    if (province === Enum.province.None) {
-      // startInterval('api/locateUniversityRandomly_v2')
-      task('api/locateUniversityRandomly_v2')
-    } else {
-      // clearInterval(locationInterval)
-      setIsRecommending(true)
-      task(`api/locateUniversityByProvince_v2?location=${province}`)
-    }
-    fetch(proviceDataMap.get(province))
-      .then(responce => responce.json())
-      .then(data => {
-        // setMap('tmp')
-        if (province !== Enum.province.None) {
-          initEChart('tmp', data)
+    const fetchDataAndInitChart = async () => {
+      try {
+        let locationFetch
+        if (province === Enum.province.None) {
+          locationFetch = 'api/locateUniversityRandomly_v2'
         } else {
-          initEChart('china', data)
+          setIsRecommending(true)
+          locationFetch = `api/locateUniversityByProvince_v2?location=${province}`
         }
-        // setFeatures(data)
-        console.log(data)
-      })
-      .catch(error => {
+        setIsLoadingScatter(true)
+        const scatterData = await task(locationFetch)
+        const provinceData = await fetch(proviceDataMap.get(province)).then(
+          res => res.json(),
+        )
+        setIsLoadingScatter(false)
+        setTimeout(() => setIsRecommending(false), 1500)
+        if (province !== Enum.province.None) {
+          initEChart('tmp', provinceData)
+        } else {
+          initEChart('china', provinceData)
+        }
+        console.log(provinceData)
+      } catch (error) {
         console.error(error)
-      })
-    // openMessage()
+      }
+    }
+
+    fetchDataAndInitChart()
   }, [province, score, selectedClass, filterSchool])
 
   const getMax = data => {
     return data.reduce((prevMax, current) => {
-      console.log(current)
       const value = parseFloat(current.value)
       return value > prevMax ? value : prevMax
     }, 0)
   }
 
-  useEffect(() => {
-    // if (features) {
-    switch (rank) {
-      case Enum.rank.None:
-        if (province === Enum.province.None) {
-          // setMap('tmp')
-          myChart.current.setOption({
-            visualMap: {
-              show: false,
-            },
-            series: [
-              {
-                name: 'map',
-                data: [],
-                itemStyle: {
-                  areaColor: '#F0F8FF',
-                  borderColor: '#1677FF',
-                  borderWidth: 1, //设置外层边框
-                  shadowBlur: 4,
-                  // shadowOffsetY: 8,
-                  // shadowOffsetX: 0,
-                  // shadowColor: '#87CEFA',
-                },
-              },
-            ],
-            // legend: {
-            //     // Try 'horizontal'
-            //     show: false,
-            // },
-          })
-        }
-        break
-      case Enum.rank.GDP:
-        // TODO: 后续展示不同的数据，可以将代码逻辑抽象
-        if (province === Enum.province.None) {
-          const max = getMax(gdpData)
-          myChart.current.setOption({
-            visualMap: {
-              show: true,
-              min: 0,
-              max: max,
-              text: ['高', '低'],
-              realtime: false,
-              calculable: true,
-              inRange: {
-                color: ['#F0FFFF', '#0000CD'],
-              },
-            },
-            series: [
-              {
-                name: 'map',
-                data: gdpData,
-                itemStyle: {
-                  areaColor: '#F0F8FF',
-                  borderColor: '#1677FF',
-                  borderWidth: 0.7, //设置外层边框
-                  shadowBlur: 4,
-                  // shadowOffsetY: 1,
-                  // shadowOffsetX: 0,
-                  // shadowColor: '#87CEFA',
-                },
-              },
-            ],
-          })
-          console.log('set gdp')
-        }
-        break
-      case Enum.rank._985:
-        if (province === Enum.province.None) {
-          const max = getMax(universities985)
-          myChart.current.setOption({
-            visualMap: {
-              show: true,
-              min: 0,
-              max: max,
-              text: ['高', '低'],
-              realtime: false,
-              calculable: true,
-              inRange: {
-                color: ['#FFF0F5', '#FF4500'],
-              },
-            },
-            series: [
-              {
-                name: 'map',
-                data: universities985,
-                itemStyle: {
-                  areaColor: '#F0F8FF',
-                  borderColor: '#1677FF',
-                  borderWidth: 0.7, //设置外层边框
-                  shadowBlur: 4,
-                  // shadowOffsetY: 1,
-                  // shadowOffsetX: 0,
-                  // shadowColor: '#87CEFA',
-                },
-              },
-            ],
-          })
-          console.log('set 985')
-        }
-        break
-      case Enum.rank._211:
-        if (province === Enum.province.None) {
-          const max = getMax(universities211)
-          console.log(max)
-          myChart.current.setOption({
-            visualMap: {
-              show: true,
-              min: 0,
-              max: max,
-              text: ['高', '低'],
-              realtime: false,
-              calculable: true,
-              inRange: {
-                color: ['#E0FFFF', '#228B22'],
-              },
-            },
-            series: [
-              {
-                name: 'map',
-                data: universities211,
-                itemStyle: {
-                  areaColor: '#F0F8FF',
-                  borderColor: '#1677FF',
-                  borderWidth: 0.7, //设置外层边框
-                  shadowBlur: 4,
-                  // shadowOffsetY: 1,
-                  // shadowOffsetX: 0,
-                  // shadowColor: '#87CEFA',
-                },
-              },
-            ],
-          })
-          console.log('set 211')
-        }
-        break
-      case Enum.rank.DoubleFristClass:
-        if (province === Enum.province.None) {
-          const max = getMax(universitiesDoubleFirstClass)
-          console.log(max)
-          myChart.current.setOption({
-            visualMap: {
-              show: true,
-              min: 0,
-              max: max,
-              text: ['高', '低'],
-              realtime: false,
-              calculable: true,
-              inRange: {
-                color: ['#FFFFE0', '#CD9B1D'],
-              },
-            },
-            series: [
-              {
-                name: 'map',
-                data: universitiesDoubleFirstClass,
-                itemStyle: {
-                  areaColor: '#F0F8FF',
-                  borderColor: '#1677FF',
-                  borderWidth: 0.7, //设置外层边框
-                  shadowBlur: 4,
-                  // shadowOffsetY: 1,
-                  // shadowOffsetX: 0,
-                  // shadowColor: '#87CEFA',
-                },
-              },
-            ],
-          })
-          console.log('set double first class')
-        }
-        break
-      case Enum.rank.EduFunds:
-        if (province === Enum.province.None) {
-          const max = getMax(educationBudget)
-          console.log(max)
-          myChart.current.setOption({
-            visualMap: {
-              show: true,
-              min: 0,
-              max: max,
-              text: ['高', '低'],
-              realtime: false,
-              calculable: true,
-              inRange: {
-                color: ['#FFFAFA', '#8B8378'],
-              },
-            },
-            series: [
-              {
-                name: 'map',
-                data: educationBudget,
-                itemStyle: {
-                  areaColor: '#F0F8FF',
-                  borderColor: '#1677FF',
-                  borderWidth: 0.7, //设置外层边框
-                  shadowBlur: 4,
-                  // shadowOffsetY: 1,
-                  // shadowOffsetX: 0,
-                  // shadowColor: '#87CEFA',
-                },
-              },
-            ],
-          })
-          console.log('set edu funds')
-        }
-        break
-    }
-    // }
-  }, [rank])
+  const setMapOption = (data, visualMapColor) => {
+    const max = getMax(data)
 
-  // if (features) {
-  //   initEChart()
-  // }
+    return {
+      visualMap: {
+        show: true,
+        min: 0,
+        max: max,
+        text: ['高', '低'],
+        realtime: false,
+        calculable: true,
+        inRange: {
+          color: visualMapColor,
+        },
+        seriesIndex: 1,
+      },
+      series: [
+        {
+          name: 'map',
+          data: data,
+          itemStyle: {
+            areaColor: '#F0F8FF',
+            borderColor: '#1677FF',
+            borderWidth: 0.7,
+            shadowBlur: 4,
+          },
+        },
+      ],
+    }
+  }
+
+  const rankConfigMap = {
+    [Enum.rank.None]: {
+      visualMap: { show: false },
+      series: [
+        {
+          name: 'map',
+          data: [],
+          itemStyle: {
+            areaColor: '#F0F8FF',
+            borderColor: '#1677FF',
+            borderWidth: 1,
+            shadowBlur: 4,
+          },
+        },
+      ],
+    },
+    [Enum.rank.GDP]: setMapOption(gdpData, ['#F0FFFF', '#0000CD']),
+    [Enum.rank._985]: setMapOption(universities985, ['#FFF0F5', '#FF4500']),
+    [Enum.rank._211]: setMapOption(universities211, ['#E0FFFF', '#228B22']),
+    [Enum.rank.DoubleFristClass]: setMapOption(universitiesDoubleFirstClass, [
+      '#FFFFE0',
+      '#CD9B1D',
+    ]),
+    [Enum.rank.EduFunds]: setMapOption(educationBudget, ['#FFFAFA', '#8B8378']),
+  }
+
+  useEffect(() => {
+    if (province === Enum.province.None) {
+      myChart.current.setOption(rankConfigMap[rank])
+      console.log(`set ${Enum.rank[rank]}`)
+    }
+  }, [rank, province])
 
   const items = [
     {
@@ -596,7 +416,6 @@ const EChartsMap = () => {
           justifyContent: 'center',
         }}
       >
-        {/* {queryContextHolder} */}
         {isRecommending && (
           <Alert
             style={{ zIndex: 2, position: 'absolute' }}
