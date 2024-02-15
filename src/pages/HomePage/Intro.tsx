@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import './Intro.css'
 import '../../styles/enterMotion.css'
 import { useContainerRef } from '../index.page'
+import useScrollAnimationEffect from '@/hooks/useScrollAnimationEffect'
 
 const Intro: React.FC = () => {
   const el = useRef(null)
@@ -9,38 +10,15 @@ const Intro: React.FC = () => {
   const elContent2 = useRef(null)
   const elContent3 = useRef(null)
   const containerRef = useContainerRef()
-  useEffect(() => {
-    if (!containerRef?.current) return
-    const handleScroll = () => {
-      if (!containerRef?.current) return
-      const scrollPosition = containerRef?.current?.scrollTop
-      // @ts-ignore
-      const elementPosition = elContent3.current?.offsetTop || 0
-      // console.log('scrollY: ', scrollPosition)
-      // console.log('offsetTop: ', elementPosition)
-      if (
-        scrollPosition >
-        elementPosition - containerRef.current.clientHeight
-      ) {
-        // @ts-ignore
-        el.current.classList.add('slideTopTitle')
-        // @ts-ignore
-        elContent1.current.classList.add('slideTopContent1')
-        // @ts-ignore
-        elContent2.current.classList.add('slideTopContent2')
-        // @ts-ignore
-        elContent3.current.classList.add('slideTopContent3')
-      }
-    }
-    console.log('ref success')
-    containerRef.current.addEventListener('scroll', handleScroll)
-
-    return () => {
-      if (containerRef.current) {
-        containerRef.current.removeEventListener('scroll', handleScroll)
-      }
-    }
-  }, [containerRef])
+  useScrollAnimationEffect(
+    containerRef,
+    new Map([
+      [el, 'slideTopTitle'],
+      [elContent1, 'slideTopContent1'],
+      [elContent2, 'slideTopContent2'],
+      [elContent3, 'slideTopContent3'],
+    ]),
+  )
 
   return (
     <div

@@ -22,11 +22,6 @@ const IndexVideoPlay: React.FC = () => {
       if (!containerRef.current) return
       // @ts-ignore
       if (rect.top < containerRef.current.clientHeight && rect.bottom >= 0) {
-        console.log(
-          'containerRef.current.clientHeight: ',
-          containerRef.current.clientHeight,
-        )
-        console.log('window.scrollY', window.scrollY)
         // @ts-ignore
         eltitle.current.classList.add('slideEnter')
         // @ts-ignore

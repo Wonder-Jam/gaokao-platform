@@ -1,9 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react'
-import './IndexSearchMajor.css'
+import { usePageNavigation } from '@/hooks/usePageNavigation'
+import useScrollAnimationEffect from '@/hooks/useScrollAnimationEffect'
+import { Button } from 'antd'
+import React, { useRef } from 'react'
 import '../../styles/enterMotion.css'
 import { useContainerRef } from '../index.page'
-import { Button } from 'antd'
-import { usePageNavigation } from '@/hooks/usePageNavigation'
+import './IndexSearchMajor.css'
 
 const IndexSearchMajor: React.FC = () => {
   const { goToSearchMajorPage } = usePageNavigation()
@@ -18,42 +19,20 @@ const IndexSearchMajor: React.FC = () => {
   const eldes2 = useRef(null)
   const eldes3 = useRef(null)
   const containerRef = useContainerRef()
-
-  useEffect(() => {
-    if (!containerRef.current) return
-    const handleScroll = () => {
-      // @ts-ignore
-      const rect = eldes3.current?.getBoundingClientRect()
-      if (!containerRef.current) return
-      if (rect.top < containerRef.current.clientHeight && rect.bottom >= 0) {
-        // @ts-ignore
-        eltitle.current.classList.add('slideEnter')
-        // @ts-ignore
-        elintro.current.classList.add('slideEnter')
-        // @ts-ignore
-        eldes1.current.classList.add('slideList1')
-        // @ts-ignore
-        eldes2.current.classList.add('slideList2')
-        // @ts-ignore
-        eldes3.current.classList.add('slideList3')
-
-        // @ts-ignore
-        elImg1.current.classList.add('motionImg1')
-        // @ts-ignore
-        elImg2.current.classList.add('motionImg2')
-        // @ts-ignore
-        elImg3.current.classList.add('motionImg3')
-        // @ts-ignore
-        elImg4.current.classList.add('motionImg4')
-      }
-    }
-    containerRef.current.addEventListener('scroll', handleScroll)
-    return () => {
-      if (containerRef.current) {
-        containerRef.current.removeEventListener('scroll', handleScroll)
-      }
-    }
-  }, [])
+  useScrollAnimationEffect(
+    containerRef,
+    new Map([
+      [eltitle, 'slideEnter'],
+      [elintro, 'slideEnter'],
+      [eldes1, 'slideList1'],
+      [eldes2, 'slideList2'],
+      [eldes3, 'slideList3'],
+      [elImg1, 'motionImg1'],
+      [elImg2, 'motionImg2'],
+      [elImg3, 'motionImg3'],
+      [elImg4, 'motionImg4'],
+    ]),
+  )
 
   return (
     <div

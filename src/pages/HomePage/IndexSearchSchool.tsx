@@ -1,11 +1,12 @@
 // "use client"
 
-import React, { useEffect, useRef, useState } from 'react'
-import './IndexSearchSchool.css'
-import '../../styles/enterMotion.css'
+import useScrollAnimationEffect from '@/hooks/useScrollAnimationEffect'
 import { SearchOutlined } from '@ant-design/icons'
+import React, { useEffect, useRef } from 'react'
 import Typed from 'typed.js'
+import '../../styles/enterMotion.css'
 import { useContainerRef } from '../index.page'
+import './IndexSearchSchool.css'
 
 const IndexSearchSchool: React.FC = () => {
   const eltitle = useRef(null)
@@ -14,33 +15,16 @@ const IndexSearchSchool: React.FC = () => {
   const eldes2 = useRef(null)
   const eldes3 = useRef(null)
   const containerRef = useContainerRef()
-
-  useEffect(() => {
-    if (!containerRef.current) return
-    const handleScroll = () => {
-      if (!containerRef.current) return
-      // @ts-ignore
-      const rect = eldes3.current?.getBoundingClientRect()
-      if (rect.top < containerRef.current.clientHeight && rect.bottom >= 0) {
-        // @ts-ignore
-        eltitle.current.classList.add('slideEnter')
-        // @ts-ignore
-        elintro.current.classList.add('slideEnter')
-        // @ts-ignore
-        eldes1.current.classList.add('slideList1')
-        // @ts-ignore
-        eldes2.current.classList.add('slideList2')
-        // @ts-ignore
-        eldes3.current.classList.add('slideList3')
-      }
-    }
-    containerRef.current.addEventListener('scroll', handleScroll)
-    return () => {
-      if (containerRef.current) {
-        containerRef.current.removeEventListener('scroll', handleScroll)
-      }
-    }
-  }, [containerRef])
+  useScrollAnimationEffect(
+    containerRef,
+    new Map([
+      [eltitle, 'slideEnter'],
+      [elintro, 'slideEnter'],
+      [eldes1, 'slideList1'],
+      [eldes2, 'slideList2'],
+      [eldes3, 'slideList3'],
+    ]),
+  )
 
   return (
     <div
@@ -173,36 +157,16 @@ const ImgIntro: React.FC = () => {
   const elSearch = useRef(null)
   const containerRef = useContainerRef()
 
-  useEffect(() => {
-    if (!containerRef?.current) return
-    const handleScroll = () => {
-      if (!containerRef?.current) return
-
-      // @ts-ignore
-      const rect = elImg3.current?.getBoundingClientRect()
-      console.log('width&height: ', rect.top, rect.bottom)
-      if (rect.top < containerRef.current.clientHeight && rect.bottom >= 0) {
-        console.log('schoolenter !')
-        // @ts-ignore
-        elImg0.current.classList.add('occur')
-        // @ts-ignore
-        elImg1.current.classList.add('slide1')
-        // @ts-ignore
-        elImg2.current.classList.add('slide2')
-        // @ts-ignore
-        elImg3.current.classList.add('slide3')
-        // @ts-ignore
-        elSearch.current.classList.add('occurSearch')
-      }
-    }
-    containerRef.current.addEventListener('scroll', handleScroll)
-
-    return () => {
-      if (containerRef.current) {
-        containerRef.current.removeEventListener('scroll', handleScroll)
-      }
-    }
-  }, [containerRef])
+  useScrollAnimationEffect(
+    containerRef,
+    new Map([
+      [elImg0, 'occur'],
+      [elImg1, 'slide1'],
+      [elImg2, 'slide2'],
+      [elImg3, 'slide3'],
+      [elSearch, 'occurSearch'],
+    ]),
+  )
 
   return (
     <div
