@@ -1,6 +1,7 @@
 import { usePageNavigation } from '@/hooks/usePageNavigation'
 import useScrollAnimationEffect from '@/hooks/useScrollAnimationEffect'
 import { Button } from 'antd'
+import Image from 'next/image'
 import React, { useRef } from 'react'
 import '../../styles/enterMotion.css'
 import { useContainerRef } from '../index.page'
@@ -37,12 +38,9 @@ const IndexSearchMajor: React.FC = () => {
   return (
     <div
       style={{
-        // width: 1280,
         width: '100vw',
         height: '500px',
         display: 'flex',
-        // backgroundColor: '#0f0',
-        // margin: '50px auto',
       }}
     >
       <div className={'major-des'}>
@@ -51,10 +49,12 @@ const IndexSearchMajor: React.FC = () => {
             <div ref={elImg1} className={'card-wrapper'}>
               <div className={'card'}>
                 <div className={'card-content is-front'}>
-                  <img
+                  <Image
                     src="/images/machine.jpg"
                     alt="Magic Image icon"
-                    style={{ width: '200px', opacity: 1, borderRadius: 32 }}
+                    width={200}
+                    height={200}
+                    style={{ opacity: 1, borderRadius: 32 }}
                   />
                 </div>
                 <div className={'card-content is-back'}>
@@ -86,9 +86,11 @@ const IndexSearchMajor: React.FC = () => {
             <div ref={elImg2} className={'card-wrapper'}>
               <div className={'card'}>
                 <div className={'card-content is-front'}>
-                  <img
+                  <Image
                     src="/images/dna.jpg"
                     alt="Magic Image icon"
+                    width={200}
+                    height={200}
                     style={{ width: '200px', opacity: 1 }}
                   />
                 </div>
@@ -121,9 +123,11 @@ const IndexSearchMajor: React.FC = () => {
             <div ref={elImg3} className={'card-wrapper'}>
               <div className={'card'}>
                 <div className={'card-content is-front'}>
-                  <img
+                  <Image
                     src="/images/chemistry.jpg"
                     alt="Loading"
+                    width={200}
+                    height={200}
                     style={{ width: '200px', opacity: 1 }}
                   />
                 </div>
@@ -156,9 +160,11 @@ const IndexSearchMajor: React.FC = () => {
             <div ref={elImg4} className={'card-wrapper'}>
               <div className={'card'}>
                 <div className={'card-content is-front'}>
-                  <img
+                  <Image
                     src="/images/farmer.jpg"
                     alt="Loading"
+                    width={200}
+                    height={200}
                     style={{ width: '200px', opacity: 1 }}
                   />
                 </div>

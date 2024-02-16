@@ -1,7 +1,8 @@
-import React, { useEffect, useRef } from 'react'
-import './IndexVideoPlay.css'
+import useScrollAnimationEffect from '@/hooks/useScrollAnimationEffect'
+import React, { useRef } from 'react'
 import '../../styles/enterMotion.css'
 import { useContainerRef } from '../index.page'
+import './IndexVideoPlay.css'
 
 const IndexVideoPlay: React.FC = () => {
   const elVideo1 = useRef<HTMLDivElement>(null)
@@ -12,39 +13,17 @@ const IndexVideoPlay: React.FC = () => {
   const eltitle = useRef(null)
   const elintro = useRef(null)
   const containerRef = useContainerRef()
-
-  useEffect(() => {
-    if (!containerRef.current) return
-
-    const handleScroll = () => {
-      // @ts-ignore
-      const rect = elVideo4.current?.getBoundingClientRect()
-      if (!containerRef.current) return
-      // @ts-ignore
-      if (rect.top < containerRef.current.clientHeight && rect.bottom >= 0) {
-        // @ts-ignore
-        eltitle.current.classList.add('slideEnter')
-        // @ts-ignore
-        elintro.current.classList.add('slideEnter')
-
-        // @ts-ignore
-        elVideo1.current.classList.add('mot-1')
-        // @ts-ignore
-        elVideo2.current.classList.add('mot-2')
-        // @ts-ignore
-        elVideo3.current.classList.add('mot-3')
-        // @ts-ignore
-        elVideo4.current.classList.add('mot-4')
-      }
-    }
-    containerRef.current.addEventListener('scroll', handleScroll)
-    return () => {
-      if (containerRef.current) {
-        containerRef.current.removeEventListener('scroll', handleScroll)
-      }
-    }
-  }, [])
-
+  useScrollAnimationEffect(
+    containerRef,
+    new Map([
+      [eltitle,'slideEnter'],
+      [elintro,'slideEnter'],
+      [elVideo1,'mot-1'],
+      [elVideo2,'mot-2'],
+      [elVideo3,'mot-3'],
+      [elVideo4,'mot-4'],
+    ])
+  )
   return (
     <div
       style={{

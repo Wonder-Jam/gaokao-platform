@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import { Button, Image } from 'antd'
-import QueueAnim from 'rc-queue-anim'
-import { PauseCircleOutlined, PlayCircleOutlined } from '@ant-design/icons'
-import './IndexHeader.css'
 import { usePageNavigation } from '@/hooks/usePageNavigation'
+import { PauseCircleOutlined, PlayCircleOutlined } from '@ant-design/icons'
+import { Button } from 'antd'
+import Image from 'next/image'
+import QueueAnim from 'rc-queue-anim'
+import React, { useEffect, useState } from 'react'
+import './IndexHeader.css'
 
 const IndexHeader: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0)
@@ -16,7 +17,6 @@ const IndexHeader: React.FC = () => {
           height: '100%',
           borderRadius: 30,
           overflow: 'hidden',
-          // backgroundColor: '#00f',
         }}
       >
         <Slider indexActive={activeIndex}></Slider>
@@ -25,7 +25,6 @@ const IndexHeader: React.FC = () => {
       <div
         style={{
           width: '30%',
-          // backgroundColor: '#efefef'
         }}
       >
         <Description indexActive={activeIndex}></Description>
@@ -40,7 +39,6 @@ const IndexHeader: React.FC = () => {
           flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'center',
-          // backgroundColor: '#f00',
         }}
       >
         <ProgressBar
@@ -61,35 +59,64 @@ const Slider: React.FC<{ indexActive: number }> = ({ indexActive }) => {
   return (
     <>
       {isClient ? (
-        <QueueAnim>
-          <div key={'img'}>
+        <QueueAnim
+          style={{
+            height: '100%',
+            width: '100%',
+          }}
+        >
+          <div
+            key={'img'}
+            style={{
+              height: '100%',
+              width: '100%',
+            }}
+          >
             {indexActive === 0 && (
-              <QueueAnim type={['bottom', 'top']} duration={2000} key={'img0'}>
+              <QueueAnim
+                style={{
+                  height: '100%',
+                  width: '100%',
+                }}
+                type={['bottom', 'top']}
+                duration={2000}
+                key={'img0'}
+              >
                 <div
                   key={'img1'}
-                  style={{ borderRadius: 30, overflow: 'hidden' }}
+                  style={{
+                    borderRadius: 30,
+                    overflow: 'hidden',
+                    position: 'relative',
+                    height: '100%',
+                    width: '100%',
+                  }}
                 >
-                  <Image
-                    height={'100%'}
-                    width={'100%'}
-                    preview={false}
-                    src={'/images/slider3.jpg'}
-                  ></Image>
+                  <Image alt="" fill src={'/images/slider3.jpg'}></Image>
                 </div>
               </QueueAnim>
             )}
             {indexActive === 1 && (
-              <QueueAnim type={['bottom', 'top']} duration={2000} key={'img1'}>
+              <QueueAnim
+                style={{
+                  height: '100%',
+                  width: '100%',
+                }}
+                type={['bottom', 'top']}
+                duration={2000}
+                key={'img1'}
+              >
                 <div
                   key={'img2'}
-                  style={{ borderRadius: 30, overflow: 'hidden' }}
+                  style={{
+                    borderRadius: 30,
+                    overflow: 'hidden',
+                    position: 'relative',
+                    height: '100%',
+                    width: '100%',
+                  }}
                 >
-                  <Image
-                    height={'100%'}
-                    width={'100%'}
-                    preview={false}
-                    src={'/images/slider1.jpg'}
-                  ></Image>
+                  <Image fill alt="" src={'/images/slider1.jpg'}></Image>
                 </div>
               </QueueAnim>
             )}
@@ -333,11 +360,6 @@ const Description: React.FC<{ indexActive: number }> = ({ indexActive }) => {
                       </Button>
                     </div>
                   </div>
-
-                  {/*<div key="a">Queue Demo</div>*/}
-                  {/*<div key="b">Queue Demo</div>*/}
-                  {/*<div key="c">Queue Demo</div>*/}
-                  {/*<div key="d">Queue Demo</div>*/}
                 </QueueAnim>
               )}
             </div>

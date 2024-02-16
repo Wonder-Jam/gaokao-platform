@@ -1,8 +1,8 @@
-import React, { useEffect, useRef } from 'react'
-import './Intro.css'
+import useScrollAnimationEffect from '@/hooks/useScrollAnimationEffect'
+import React, { useRef } from 'react'
 import '../../styles/enterMotion.css'
 import { useContainerRef } from '../index.page'
-import useScrollAnimationEffect from '@/hooks/useScrollAnimationEffect'
+import './Intro.css'
 
 const Intro: React.FC = () => {
   const el = useRef(null)
@@ -23,8 +23,6 @@ const Intro: React.FC = () => {
   return (
     <div
       style={{
-        // backgroundColor: '#efefef',
-        // width: '1280px',
         width: '100vw',
       }}
     >
@@ -34,9 +32,6 @@ const Intro: React.FC = () => {
       <div className={'mainbody-wrapper'}>
         <div className={'mainbody'}>
           <h1 className={'mainbody-inner'}>
-            {/*GoSchool provides high school graduates with a search function for*/}
-            {/*universities and their majors <br />across China, as well as <br/>a style*/}
-            {/*display.*/}
             <span ref={elContent1} className={'content'}>
               GoSchool 平台提供便利的大学及专业信息检索功能
             </span>

@@ -9,7 +9,6 @@ function useScrollAnimationEffect(
 ) {
   const { run: handleScroll, cancel } = useThrottleFn(() => {
     if (!containerRef.current) return
-    console.log('scroll', containerRef.current)
     const containerRect = containerRef.current.getBoundingClientRect()
     for (const [
       elRef,

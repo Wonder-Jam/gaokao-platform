@@ -2,6 +2,7 @@
 
 import useScrollAnimationEffect from '@/hooks/useScrollAnimationEffect'
 import { SearchOutlined } from '@ant-design/icons'
+import Image from 'next/image'
 import React, { useEffect, useRef } from 'react'
 import Typed from 'typed.js'
 import '../../styles/enterMotion.css'
@@ -180,11 +181,12 @@ const ImgIntro: React.FC = () => {
       }}
     >
       <div ref={elImg0} className={'img0'} style={{ zIndex: 9, opacity: 0 }}>
-        <img
+        <Image
           src="/images/c3.jpg"
           alt="loading"
+          width={280}
+          height={400}
           style={{
-            width: '280px',
             opacity: 1,
             borderRadius: '32px',
           }}
