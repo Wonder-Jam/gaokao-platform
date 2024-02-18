@@ -74,60 +74,65 @@ const generateItems = (data: TabDataType[]) => {
 }
 
 // 在组件中使用generateItems函数生成items数组
-export function HotSpotTopicContainer({ show }: { show: boolean }) {
-  const [data, setData] = React.useState<TabDataType[]>([])
-  const [isLoading, setIsLoading] = React.useState(true)
-  const items = generateItems(data)
-  React.useEffect(() => {
-    fetch(fakeDataUrl)
-      .then(res => res.json())
-      .then((res: responseSchoolData) => {
-        const { page } = res
-        TabData[1].dataSource = page.map(value => ({
-          title: value.name,
-          link: value.website,
-        }))
-        setData(TabData) // 更新数据到状态变量
-      })
-      .catch(e => {
-        console.log(e)
-      })
-      .finally(() => {
-        setIsLoading(false)
-      })
-    fetch('/data/mockMajorData.json')
-      .then(res => res.json())
-      .then((res: responseData) => {
-        const { page } = res
-        TabData[2].dataSource = page.map(value => ({
-          title: value.name,
-          link: value.website,
-        }))
-        setData(TabData) // 更新数据到状态变量
-      })
-  }, [])
-  const options = React.useMemo(() => {
-    if (data.length > 1 && data[1].dataSource) {
-      return data[1].dataSource.map(value => value.title)
-    }
-    return []
-  }, [data])
-  const onSearch = useMaskContext().onSearch
-  return (
-    <RightBarContainer show={show}>
-      <Searchbar
-        onSearch={onSearch}
-        style={{ width: '100%', marginBottom: '5px' }}
-        optionsData={options}
-        placeholder={'快搜索你感兴趣的学校吧！'}
-      />
-      <TabContainer>
-        {isLoading ? (
-          <Skeleton style={{ width: '300px' }} />
-        ) : (
-          <Tabs type="card" defaultActiveKey="1" items={items} />
-        )}
-      </TabContainer>
-    </RightBarContainer>
-  )
-}
+export const HotSpotTopicContainer = React.memo(
+  ({ show }: { show: boolean }) => {
+    console.log('render HotSpotTopicContainer', show)
+    const [data, setData] = React.useState<TabDataType[]>([])
+    const [isLoading, setIsLoading] = React.useState(true)
+    const TabContent = React.useMemo(() => {
+      console.log('rerender')
+      const items = generateItems(data)
+      return isLoading ? (
+        <Skeleton style={{ width: '300px' }} />
+      ) : (
+        <Tabs type="card" defaultActiveKey="1" items={items} />
+      )
+    }, [data, isLoading])
+    React.useEffect(() => {
+      fetch(fakeDataUrl)
+        .then(res => res.json())
+        .then((res: responseSchoolData) => {
+          const { page } = res
+          TabData[1].dataSource = page.map(value => ({
+            title: value.name,
+            link: value.website,
+          }))
+          setData(TabData) // 更新数据到状态变量
+        })
+        .catch(e => {
+          console.log(e)
+        })
+        .finally(() => {
+          setIsLoading(false)
+        })
+      fetch('/data/mockMajorData.json')
+        .then(res => res.json())
+        .then((res: responseData) => {
+          const { page } = res
+          TabData[2].dataSource = page.map(value => ({
+            title: value.name,
+            link: value.website,
+          }))
+          setData(TabData) // 更新数据到状态变量
+        })
+    }, [])
+    const options = React.useMemo(() => {
+      if (data.length > 1 && data[1].dataSource) {
+        return data[1].dataSource.map(value => value.title)
+      }
+      return []
+    }, [data])
+    const onSearch = useMaskContext().onSearch
+    return (
+      <RightBarContainer show={show}>
+        <Searchbar
+          onSearch={onSearch}
+          style={{ width: '100%', marginBottom: '5px' }}
+          optionsData={options}
+          placeholder={'快搜索你感兴趣的学校吧！'}
+        />
+        <TabContainer>{TabContent}</TabContainer>
+      </RightBarContainer>
+    )
+  },
+)

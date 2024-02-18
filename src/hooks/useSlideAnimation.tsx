@@ -10,9 +10,48 @@ interface slideOptions {
 }
 export function useSlideAnimation(props: slideOptions) {
   const { targetRef, direction, pageRef, contentNode } = props
-  const slideIn = React.useRef<Keyframes>()
-  const slideOut = React.useRef<Keyframes>()
   const [coordinate, setCoordinate] = React.useState({ top: 0, left: 0 })
+  const SlideOutAnimation = React.useMemo(() => {
+    const slideOut = keyframes`
+    to{
+      top: ${coordinate.top}px;
+      left: ${coordinate.left}px;
+      position: fixed;
+      transform: scale(0.5);
+    }
+    from{
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%) scale(1);
+        position: fixed;
+    }`
+    return styled.div`
+      animation: ${slideOut} 0.3s ease-in-out;
+      animation-fill-mode: forwards;
+      z-index: 100;
+    `
+  }, [coordinate.top, coordinate.left])
+  const SlideInAnimation = React.useMemo(() => {
+    const slideIn = keyframes`
+    from {
+      top: ${coordinate.top}px;
+      left: ${coordinate.left}px;
+      position: fixed;
+      transform: scale(0.5);
+    }
+    to {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(1);
+      position: fixed;
+    }
+  `
+    return styled.div`
+      animation: ${slideIn} 0.3s ease-in-out;
+      animation-fill-mode: forwards;
+      z-index: 100;
+    `
+  }, [coordinate.top, coordinate.left])
   const onScroll = React.useCallback(() => {
     const { top, left } = targetRef.current?.getBoundingClientRect() ?? {
       top: 0,
@@ -36,53 +75,14 @@ export function useSlideAnimation(props: slideOptions) {
   React.useEffect(() => {
     onScroll()
   }, [targetRef.current])
-  slideIn.current = keyframes`
-      from{
-        top: ${coordinate.top}px;
-        left: ${coordinate.left}px;
-        position: fixed;
-        transform: scale(0.5);
-      }
-      to{
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%,-50%) scale(1);
-        position: fixed;
-      }
-    `
-  slideOut.current = keyframes`
-    to{
-      top: ${coordinate.top}px;
-      left: ${coordinate.left}px;
-      position: fixed;
-      transform: scale(0.5);
-    }
-    from{
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%,-50%) scale(1);
-        position: fixed;
-  }
-    `
-
-  const SlideOutAnimation = styled.div`
-    animation: ${slideOut.current} 0.3s ease-in-out;
-    animation-fill-mode: forwards;
-    z-index: 100;
-  `
-
-  const SlideInAnimation = styled.div`
-    animation: ${slideIn.current} 0.3s ease-in-out;
-    animation-fill-mode: forwards;
-    z-index: 100;
-  `
-  return (
-    <>
-      {direction === 'slide-in' ? (
+  const Node = React.useMemo(
+    () =>
+      direction === 'slide-in' ? (
         <SlideInAnimation>{contentNode}</SlideInAnimation>
       ) : (
         <SlideOutAnimation>{contentNode}</SlideOutAnimation>
-      )}
-    </>
+      ),
+    [contentNode],
   )
+  return Node
 }

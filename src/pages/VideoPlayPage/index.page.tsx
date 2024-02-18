@@ -41,14 +41,14 @@ export default function VideoPlayPage() {
       })
   }, [])
   React.useEffect(LoadData, [])
-  const cardItems = data.map((item, index) => (
-    <CardItem key={item.schoolName + '' + index} {...item} index={index} />
-  ))
+  const AnimationNode = React.useMemo(() => {
+    return <CardDetail {...data[targetIndex]} />
+  }, [targetIndex])
   const Animation = useSlideAnimation({
     targetRef: targetRef,
     direction: maskShown ? 'slide-in' : 'slide-out',
     pageRef: PageRef,
-    contentNode: <CardDetail {...data[targetIndex]} />,
+    contentNode: AnimationNode,
   })
 
   const searchTargetSchoolVideo = React.useCallback(
@@ -77,30 +77,11 @@ export default function VideoPlayPage() {
       >
         <RootLayout>
           <div style={{ display: 'flex', height: '100%', width: '100%' }}>
-            {isLoading ? (
-              <Skeleton active paragraph={{ rows: 10 }} />
-            ) : !isLoading && data.length === 0 ? (
-              <div
-                style={{
-                  width: '100%',
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}
-              >
-                <Empty />
-              </div>
-            ) : (
-              <InfiniteScroll
-                dataLength={data.length}
-                hasMore={true}
-                next={LoadData}
-                loader={<Skeleton paragraph={{ rows: 2 }} active />}
-                height={'100%'}
-              >
-                <CardListContainer>{cardItems}</CardListContainer>
-              </InfiniteScroll>
-            )}
+            <VideoStream
+              isLoading={isLoading}
+              data={data}
+              LoadData={LoadData}
+            />
             <ToggleContainer onClick={toggle} show={isShown}>
               <IconContainer>
                 {isShown ? <RightOutlined /> : <LeftOutlined />}
@@ -116,3 +97,44 @@ export default function VideoPlayPage() {
     </div>
   )
 }
+
+const VideoStream = React.memo(
+  ({
+    isLoading,
+    data,
+    LoadData,
+  }: {
+    isLoading: boolean
+    data: VideoSchoolType[]
+    LoadData: () => void
+  }) => {
+    console.log('render video stream')
+    const cardItems = data.map((item, index) => (
+      <CardItem key={item.schoolName + '' + index} {...item} index={index} />
+    ))
+    return isLoading ? (
+      <Skeleton active paragraph={{ rows: 10 }} />
+    ) : !isLoading && data.length === 0 ? (
+      <div
+        style={{
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <Empty />
+      </div>
+    ) : (
+      <InfiniteScroll
+        dataLength={data.length}
+        hasMore={true}
+        next={LoadData}
+        loader={<Skeleton paragraph={{ rows: 2 }} active />}
+        height={'100%'}
+      >
+        <CardListContainer>{cardItems}</CardListContainer>
+      </InfiniteScroll>
+    )
+  },
+)

@@ -93,7 +93,7 @@ export default function Entry({ children }: { children: React.ReactNode }) {
   )
 }
 
-function GaoKaoMenu() {
+const GaoKaoMenu = React.memo(() => {
   const router = useRouter()
   const [current, setCurrent] = React.useState(router.pathname)
   const onClick: MenuProps['onClick'] = e => {
@@ -116,9 +116,9 @@ function GaoKaoMenu() {
       />
     </>
   )
-}
+})
 
-function HeaderBar() {
+const HeaderBar = React.memo(() => {
   const { goToHomePage } = usePageNavigation()
   return (
     <HeaderBarContainer>
@@ -161,4 +161,4 @@ function HeaderBar() {
       />
     </HeaderBarContainer>
   )
-}
+})
