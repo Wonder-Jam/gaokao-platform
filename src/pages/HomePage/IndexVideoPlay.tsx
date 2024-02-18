@@ -16,13 +16,13 @@ const IndexVideoPlay: React.FC = () => {
   useScrollAnimationEffect(
     containerRef,
     new Map([
-      [eltitle,'slideEnter'],
-      [elintro,'slideEnter'],
-      [elVideo1,'mot-1'],
-      [elVideo2,'mot-2'],
-      [elVideo3,'mot-3'],
-      [elVideo4,'mot-4'],
-    ])
+      [eltitle, 'slideEnter'],
+      [elintro, 'slideEnter'],
+      [elVideo1, 'mot-1'],
+      [elVideo2, 'mot-2'],
+      [elVideo3, 'mot-3'],
+      [elVideo4, 'mot-4'],
+    ]),
   )
   return (
     <div

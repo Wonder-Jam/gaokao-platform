@@ -1,15 +1,17 @@
 import styled from '@emotion/styled'
 import React from 'react'
 
-export default function Mask({
-  isShown,
-  children,
-}: {
+interface MaskProps {
   isShown: boolean
   children?: React.ReactNode
-}) {
+}
+
+const Mask: React.FC<MaskProps> = ({ isShown, children }) => {
+  console.log('render mask', isShown, children)
   return <MaskStyle isShown={isShown}>{children}</MaskStyle>
 }
+
+export default React.memo(Mask)
 
 export const MaskStyle = styled.div<{
   isShown: boolean

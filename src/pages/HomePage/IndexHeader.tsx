@@ -92,7 +92,12 @@ const Slider: React.FC<{ indexActive: number }> = ({ indexActive }) => {
                     width: '100%',
                   }}
                 >
-                  <Image alt="" fill src={'/images/slider3.jpg'}></Image>
+                  <Image
+                    alt=""
+                    fill
+                    src={'/images/slider3.jpg'}
+                    priority
+                  ></Image>
                 </div>
               </QueueAnim>
             )}
