@@ -14,6 +14,7 @@ import {
   SchoolInfoContainer,
   StyledButton,
 } from './style'
+import Image from 'next/image'
 export function CardDetail(props: VideoSchoolType) {
   const {
     videoUrl,
@@ -68,11 +69,13 @@ export function CardDetail(props: VideoSchoolType) {
               onClick={() => window.open(item.destinationLink, '_blank')}
             >
               <List.Item>
-                <Avatar
-                  shape="square"
-                  size={{ xs: 24, sm: 32, md: 40, lg: 64, xl: 80, xxl: 100 }}
+                <Image
+                  alt="加载失败"
+                  height={60}
+                  width={60}
                   src={item.image}
-                  style={{ marginRight: '5px' }}
+                  style={{ marginRight: '5px', objectFit: 'cover' }}
+                  quality={100}
                 />
                 <List.Item.Meta
                   title={item.title}

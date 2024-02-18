@@ -1,4 +1,5 @@
-import { Card, Image, Tag } from 'antd'
+import { Card, Tag } from 'antd'
+import Image from 'next/image'
 const { Meta } = Card
 import React from 'react'
 import { useMaskContext } from '../../context/MaskContext'
@@ -17,7 +18,7 @@ export function CardItem(props: VideoSchoolType & { index: number }) {
   const { toggle, setTargetIndex, setTargetRef } = useMaskContext()
   const option = TagOptions[Math.floor(Math.random() * 3)]
   const TagItem = (
-    <span>
+    <span style={{ width: '100%' }}>
       <Tag color={TagColorMap['招生宣传']}>{'招生宣传'}</Tag>
       {/* <Tag color={TagColorMap['专业解读']}>{'专业解读'}</Tag> */}
       <Tag color={TagColorMap['热点']}>{'热点'}</Tag>
@@ -28,7 +29,6 @@ export function CardItem(props: VideoSchoolType & { index: number }) {
     <>
       <CardContainer>
         <Card
-          style={{}}
           ref={cardRef}
           onClick={() => {
             toggle(true)
@@ -37,15 +37,21 @@ export function CardItem(props: VideoSchoolType & { index: number }) {
           }}
           hoverable
           cover={
-            <Image
+            <div
               style={{
                 height: '350px',
-                objectFit: 'cover',
+                position: 'relative',
               }}
-              preview={false}
-              alt="example"
-              src={props.schoolCover}
-            />
+            >
+              <Image
+                style={{
+                  objectFit: 'cover',
+                }}
+                alt="example"
+                src={props.schoolCover}
+                fill
+              />
+            </div>
           }
         >
           <Meta
